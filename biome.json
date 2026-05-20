@@ -1,9 +1,9 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.4.13/schema.json",
   "vcs": {
-    "enabled": true,
+    "enabled": false,
     "clientKind": "git",
-    "useIgnoreFile": true
+    "useIgnoreFile": false
   },
   "files": {
     "ignoreUnknown": false
@@ -22,17 +22,11 @@
     }
   },
   "javascript": {
-    "parser": {
-      "unsafeParameterDecoratorsEnabled": true
-    },
     "formatter": {
       "quoteStyle": "double"
-    }
-  },
-  "css": {
+    },
     "parser": {
-      "tailwindDirectives": true,
-      "cssModules": true
+      "unsafeParameterDecoratorsEnabled": true
     }
   },
   "assist": {
