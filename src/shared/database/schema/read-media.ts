@@ -13,7 +13,7 @@ import {
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export const readMedia: PgTableWithColumns<any> = pgTable(
-  "read_attempt_media",
+  "read_media",
   {
     sceneKey: varchar("scene_key").notNull(),
     attemptNo: smallint("attempt_no").notNull(),

@@ -16,9 +16,10 @@ data
 .claude
 CLAUDE.md
 
+/docker/pgdata
+
 drizzle
 
-docs/01*
 
 # OS
 .DS_Store

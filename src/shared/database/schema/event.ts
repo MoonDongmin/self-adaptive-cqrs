@@ -11,8 +11,8 @@ import {
 } from "drizzle-orm/pg-core";
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-export const event: PgTableWithColumns<any> = pgTable(
-  "event",
+export const eventStore: PgTableWithColumns<any> = pgTable(
+  "event_store",
   {
     globalSeq: bigserial("global_seq", { mode: "number" }).primaryKey(),
     eventId: uuid("event_id").defaultRandom().notNull().unique(),
