@@ -1,6 +1,6 @@
-import { z, ZodObject } from "zod";
+import { z } from "zod";
 
-const cameraIntrinsicSchema: ZodObject = z.object({
+const cameraIntrinsicSchema = z.object({
   codx: z.number().nullable(),
   cody: z.number(),
   cx: z.number(),
@@ -17,20 +17,20 @@ const cameraIntrinsicSchema: ZodObject = z.object({
   p2: z.number(),
 });
 
-const cameraInfoSchema: ZodObject = z.object({
+const cameraInfoSchema = z.object({
   camera_intrinsic_param: cameraIntrinsicSchema,
   camera_name: z.string(),
   camera_type: z.string(),
 });
 
-const grip2dPoseSchema: ZodObject = z.object({
+const grip2dPoseSchema = z.object({
   xl: z.number(),
   xr: z.number(),
   yl: z.number(),
   yr: z.number(),
 });
 
-const grip3dPoseSchema: ZodObject = z.object({
+const grip3dPoseSchema = z.object({
   x1: z.number(),
   x2: z.number(),
   x3: z.number(),
@@ -57,12 +57,12 @@ const grip3dPoseSchema: ZodObject = z.object({
   z8: z.number(),
 });
 
-const gripDataSchema: ZodObject = z.object({
+const gripDataSchema = z.object({
   grip_2d_pose: grip2dPoseSchema,
   grip_3d_pose: grip3dPoseSchema,
 });
 
-const objectsSchema: ZodObject = z.object({
+const objectsSchema = z.object({
   annotation_type: z.string(),
   class_name: z.string(),
   package_type: z.string(),
@@ -71,19 +71,19 @@ const objectsSchema: ZodObject = z.object({
   segmentation_points: z.array(z.array(z.array(z.number()))),
 });
 
-const robotTfSchema: ZodObject = z.object({
+const robotTfSchema = z.object({
   rotation_3x3: z.array(z.number()).length(9),
   translation_3x1: z.array(z.number()).length(3),
 });
 
-const humanAnnotationSchema: ZodObject = z.object({
+const humanAnnotationSchema = z.object({
   annotation_type: z.string(),
   id: z.number().int(),
   annotation_points: z.array(z.number()),
   num_keypoints: z.number().int(),
 });
 
-export const toyDataSchema: ZodObject = z.object({
+export const toyDataSchema = z.object({
   "2D_image_file_name": z.string(),
   "3D_image_file_name": z.string(),
   video_file_name: z.string(),

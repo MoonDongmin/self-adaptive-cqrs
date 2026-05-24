@@ -3,15 +3,13 @@ import {
   integer,
   jsonb,
   pgTable,
-  PgTableWithColumns,
   timestamp,
   uniqueIndex,
   uuid,
   varchar,
 } from "drizzle-orm/pg-core";
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-export const eventStore: PgTableWithColumns<any> = pgTable(
+export const eventStore = pgTable(
   "event_store",
   {
     globalSeq: bigserial("global_seq", { mode: "number" }).primaryKey(),

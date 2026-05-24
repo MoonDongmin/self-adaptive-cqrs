@@ -13,5 +13,6 @@ import { EventStoreRepositoryImpl } from "@/insert/repository/event-store.reposi
       useClass: EventStoreRepositoryImpl,
     },
   ],
+  exports: [InsertService],
 })
 export class InsertModule {}

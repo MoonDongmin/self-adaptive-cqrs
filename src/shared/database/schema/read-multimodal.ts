@@ -1,7 +1,6 @@
 import {
   bigint,
   pgTable,
-  PgTableWithColumns,
   primaryKey,
   smallint,
   text,
@@ -9,8 +8,7 @@ import {
   varchar,
 } from "drizzle-orm/pg-core";
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-export const readMultimodal: PgTableWithColumns<any> = pgTable(
+export const readMultimodal = pgTable(
   "read_multimodal",
   {
     sceneKey: varchar("scene_key").notNull(),

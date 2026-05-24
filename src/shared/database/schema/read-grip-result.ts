@@ -3,15 +3,13 @@ import {
   index,
   jsonb,
   pgTable,
-  PgTableWithColumns,
   primaryKey,
   smallint,
   timestamp,
   varchar,
 } from "drizzle-orm/pg-core";
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-export const readGripResult: PgTableWithColumns<any> = pgTable(
+export const readGripResult = pgTable(
   "read_grip_result",
   {
     sceneKey: varchar("scene_key").notNull(),

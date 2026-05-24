@@ -1,12 +1,17 @@
-import { Controller, Post } from "@nestjs/common";
-import { IngestResult, InsertService } from "@/insert/insert.service";
+import { Controller, Param, ParseIntPipe, Post } from "@nestjs/common";
+import { InsertResult, InsertService } from "@/insert/insert.service";
 
-@Controller("/insert")
+@Controller("insert")
 export class InsertController {
   constructor(private readonly insertService: InsertService) {}
 
   @Post()
-  async insert(): Promise<IngestResult> {
-    return this.insertService.ingestToyData();
+  insert(): Promise<InsertResult> {
+    return this.insertService.insertToyData();
+  }
+
+  @Post(":index")
+  single(@Param("index", ParseIntPipe) index: number): Promise<InsertResult> {
+    return this.insertService.insertSingleByIndex(index);
   }
 }
