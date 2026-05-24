@@ -4,7 +4,7 @@ import { eventStore } from "@/shared/database/schema";
 
 export type AppendEventInput = {
   streamId: string;
-  streamVersion: number;
+  attemptNum: number;
   eventType: string;
   occurredAt: Date;
   payload: unknown;
@@ -23,19 +23,19 @@ export const EVENT_STORE_REPOSITORY: unique symbol = Symbol(
 export class DrizzleEventStoreRepository implements EventStoreRepository {
   constructor(@Inject(DRIZZLE) private readonly db: Drizzle) {}
 
-  // (stream_id, stream_version) 충돌 시 null. 신규 INSERT 시 globalSeq 반환.
+  // (stream_id, attempt_num) 충돌 시 null. 신규 INSERT 시 globalSeq 반환.
   async append(input: AppendEventInput): Promise<number | null> {
     const rows = await this.db
       .insert(eventStore)
       .values({
         streamId: input.streamId,
-        streamVersion: input.streamVersion,
+        attemptNum: input.attemptNum,
         eventType: input.eventType,
         occurredAt: input.occurredAt,
         payload: input.payload as object, // jsonb 컬럼에 unknown 박을 때 한 번만 단언
       })
       .onConflictDoNothing({
-        target: [eventStore.streamId, eventStore.streamVersion],
+        target: [eventStore.streamId, eventStore.attemptNum],
       })
       .returning({ globalSeq: eventStore.globalSeq });
 

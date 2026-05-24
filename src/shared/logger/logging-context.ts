@@ -1,7 +1,7 @@
 export const LogCtx = {
   EVENT_ID: "event_id",
   STREAM_ID: "stream_id",
-  STREAM_VERSION: "stream_version",
+  ATTEMPT_NUM: "attempt_num",
   GLOBAL_SEQ: "global_seq",
   EVENT_TYPE: "event_type",
 

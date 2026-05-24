@@ -4,8 +4,8 @@ export type ParsedFileName = {
   categoryPrefix: string;
   cameraCode: string;
   objectName: string;
-  sceneNo: string;
-  attemptNo: number;
+  sceneNum: string;
+  attemptNum: number;
   capturedDate: Date;
   sceneKey: string;
 };
@@ -22,7 +22,7 @@ export function parseToyDataFileName(fileName: string): ParsedFileName {
     categoryPrefix,
     cameraCode,
     objectName,
-    sceneNo,
+    sceneNum,
     attemptStr,
     dateStr,
   ] = m;
@@ -35,9 +35,9 @@ export function parseToyDataFileName(fileName: string): ParsedFileName {
     categoryPrefix,
     cameraCode,
     objectName,
-    sceneNo,
-    attemptNo: Number(attemptStr),
+    sceneNum,
+    attemptNum: Number(attemptStr),
     capturedDate: new Date(Date.UTC(year, month - 1, day)),
-    sceneKey: `${categoryPrefix}_${cameraCode}_${objectName}_${sceneNo}`,
+    sceneKey: `${categoryPrefix}_${cameraCode}_${objectName}_${sceneNum}`,
   };
 }

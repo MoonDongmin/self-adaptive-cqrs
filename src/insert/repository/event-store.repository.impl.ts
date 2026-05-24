@@ -12,13 +12,13 @@ export class EventStoreRepositoryImpl implements EventStoreRepositoryImpl {
       .insert(eventStore)
       .values({
         streamId: input.streamId,
-        streamVersion: input.streamVersion,
+        attemptNum: input.attemptNum,
         eventType: input.eventType,
         occurredAt: input.occurredAt,
         payload: input.payload as object,
       })
       .onConflictDoNothing({
-        target: [eventStore.streamId, eventStore.streamVersion],
+        target: [eventStore.streamId, eventStore.attemptNum],
       })
       .returning({ globalSeq: eventStore.globalSeq });
 

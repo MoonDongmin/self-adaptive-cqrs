@@ -15,7 +15,7 @@ export const readGripResult: PgTableWithColumns<any> = pgTable(
   "read_grip_result",
   {
     sceneKey: varchar("scene_key").notNull(),
-    attemptNo: smallint("attempt_no").notNull(),
+    attemptNum: smallint("attempt_num").notNull(),
 
     objectName: varchar("object_name").notNull(),
     gripSucceed: smallint("grip_succeed").notNull(),
@@ -33,7 +33,7 @@ export const readGripResult: PgTableWithColumns<any> = pgTable(
     globalSeq: bigint("global_seq", { mode: "number" }).notNull(),
   },
   (t) => [
-    primaryKey({ columns: [t.sceneKey, t.attemptNo] }),
+    primaryKey({ columns: [t.sceneKey, t.attemptNum] }),
     index("idx_grip_result_object").on(t.objectName, t.occurredAt),
     index("idx_grip_result_succeed").on(t.gripSucceed, t.occurredAt),
   ],

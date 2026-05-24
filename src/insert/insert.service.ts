@@ -58,7 +58,7 @@ export class InsertService {
 
         const seq: number | null = await this.eventStore.append({
           streamId: `grip-attempt:${meta.sceneKey}`,
-          streamVersion: meta.attemptNo,
+          attemptNum: meta.attemptNum,
           eventType: "GripAttemptRecorded",
           occurredAt: meta.capturedDate,
           payload: parsed,

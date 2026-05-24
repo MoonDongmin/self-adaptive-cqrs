@@ -1,9 +1,9 @@
 import {
-  pgTable,
-  varchar,
   bigint,
-  timestamp,
+  pgTable,
   PgTableWithColumns,
+  timestamp,
+  varchar,
 } from "drizzle-orm/pg-core";
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>

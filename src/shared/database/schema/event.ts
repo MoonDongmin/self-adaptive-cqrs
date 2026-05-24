@@ -17,7 +17,7 @@ export const eventStore: PgTableWithColumns<any> = pgTable(
     globalSeq: bigserial("global_seq", { mode: "number" }).primaryKey(),
     eventId: uuid("event_id").defaultRandom().notNull().unique(),
     streamId: varchar("stream_id").notNull(),
-    streamVersion: integer("stream_version").notNull(),
+    attemptNum: integer("attempt_num").notNull(),
     eventType: varchar("event_type", { length: 64 }).notNull(),
     occurredAt: timestamp("occurred_at", { withTimezone: true }).notNull(),
     recordedAt: timestamp("recorded_at", { withTimezone: true })
@@ -25,7 +25,5 @@ export const eventStore: PgTableWithColumns<any> = pgTable(
       .notNull(),
     payload: jsonb("payload").notNull(),
   },
-  (t) => [
-    uniqueIndex("uq_event_stream_version").on(t.streamId, t.streamVersion),
-  ],
+  (t) => [uniqueIndex("uq_event_stream_attempt").on(t.streamId, t.attemptNum)],
 );
