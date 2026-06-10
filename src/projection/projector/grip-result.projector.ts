@@ -1,10 +1,12 @@
 import { Injectable } from "@nestjs/common";
 import { type InferInsertModel } from "drizzle-orm";
+import { PinoLogger } from "nestjs-pino";
+import { type ToyDataDto, toyDataSchema } from "@/insert/dto/toy-data.dto";
+import type { Projector } from "@/projection/projector/projector";
+import type { EventStoreEventRow } from "@/projection/repository/event-store-reader.repository";
 import { DrizzleTx } from "@/shared/database/drizzle.provider";
 import { readGripResult } from "@/shared/database/schema";
-import { type ToyDataDto, toyDataSchema } from "@/insert/dto/toy-data.dto";
-import type { EventStoreEventRow } from "@/projection/repository/event-store-reader.repository";
-import type { Projector } from "@/projection/projector/projector";
+import { LogAction, LogContext } from "@/shared/logger/logging-context";
 
 type ReadGripResultInsert = InferInsertModel<typeof readGripResult>;
 
@@ -12,14 +14,55 @@ type ReadGripResultInsert = InferInsertModel<typeof readGripResult>;
 export class GripResultProjector implements Projector<ReadGripResultInsert> {
   readonly name: string = "grip-result-projector";
 
+  constructor(private readonly logger: PinoLogger) {
+    this.logger.setContext(GripResultProjector.name);
+  }
+
   map(event: EventStoreEventRow): ReadGripResultInsert {
-    const payload: ToyDataDto = toyDataSchema.parse(event.payload);
+    let payload: ToyDataDto;
+    try {
+      payload = toyDataSchema.parse(event.payload);
+    } catch (err) {
+      this.logger.error(
+        {
+          action: LogAction.MAP_FAILED,
+          err,
+          [LogContext.EVENT_ID]: event.eventId,
+          [LogContext.STREAM_ID]: event.streamId,
+          [LogContext.ATTEMPT_NUM]: event.attemptNum,
+          [LogContext.GLOBAL_SEQ]: event.globalSeq,
+        },
+        "이벤트 매핑(검증) 실패",
+      );
+
+      throw err;
+    }
 
     if (payload.objects.length === 0) {
+      this.logger.error(
+        {
+          action: LogAction.MAP_FAILED,
+          [LogContext.EVENT_ID]: event.eventId,
+          [LogContext.STREAM_ID]: event.streamId,
+        },
+        "objects 비어 있음",
+      );
+
       throw new Error(
         `grip-result map: empty objects in event ${event.eventId}`,
       );
     }
+
+    this.logger.debug(
+      {
+        action: LogAction.EVENT_MAPPED,
+        [LogContext.PROJECTOR_NAME]: this.name,
+        [LogContext.SCENE_KEY]: event.streamId.replace(/^grip-attempt:/, ""),
+        [LogContext.ATTEMPT_NUM]: event.attemptNum,
+        [LogContext.GLOBAL_SEQ]: event.globalSeq,
+      },
+      "이벤트 매핑",
+    );
 
     return {
       sceneKey: event.streamId.replace(/^grip-attempt:/, ""),
