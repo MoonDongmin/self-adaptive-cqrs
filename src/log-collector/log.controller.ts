@@ -1,4 +1,4 @@
-import { Controller, Post } from "@nestjs/common";
+import { Controller, Delete, Post } from "@nestjs/common";
 import { PinoLogger } from "nestjs-pino";
 import { IngestionResult, LogService } from "@/log-collector/log.service";
 
@@ -11,9 +11,16 @@ export class LogController {
     this.logger.setContext(LogController.name);
   }
 
-  @Post("run")
+  @Post()
   async run(): Promise<IngestionResult> {
     this.logger.debug("로그 적재 요청 수신");
     return this.logService.run();
+  }
+
+  @Delete()
+  async delete(): Promise<void> {
+    this.logger.debug("로그 삭제 요청 수신");
+
+    await this.logService.delete();
   }
 }

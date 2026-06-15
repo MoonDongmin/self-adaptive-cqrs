@@ -12,6 +12,7 @@ import {
   type LogEventRepository,
 } from "@/log-collector/repository/log-event.repository";
 import { DRIZZLE, type Drizzle } from "@/shared/database/drizzle.provider";
+import * as fs from "node:fs";
 
 export interface IngestionResult {
   sourceFile: string;
@@ -86,5 +87,17 @@ export class LogService {
 
     this.logger.info(result, "로그 적재 완료");
     return result;
+  }
+
+  async delete(): Promise<void> {
+    const file: string = LogService.LOG_FILE;
+
+    await fs.promises.writeFile(file, "");
+
+    await this.db.transaction(async (tx) => {
+      await this.cursors.update(tx, file, 0);
+    });
+
+    this.logger.info({ file }, "로그 파일 내용 비움 및 커서 초기화");
   }
 }
