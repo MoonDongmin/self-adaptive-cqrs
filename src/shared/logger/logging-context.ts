@@ -48,4 +48,8 @@ export const LogAction = {
 
   // 공통
   DB_ERROR: "db.error",
+
+  // insight
+  INSIGHT_SEED_REQUEST: "insight.seed.request",
+  INSIGHT_SEED_DONE: "insight.seed.done",
 } as const;

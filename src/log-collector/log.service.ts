@@ -1,3 +1,4 @@
+import * as fs from "node:fs";
 import { Inject, Injectable } from "@nestjs/common";
 import { PinoLogger } from "nestjs-pino";
 import { join } from "path";
@@ -12,7 +13,6 @@ import {
   type LogEventRepository,
 } from "@/log-collector/repository/log-event.repository";
 import { DRIZZLE, type Drizzle } from "@/shared/database/drizzle.provider";
-import * as fs from "node:fs";
 
 export interface IngestionResult {
   sourceFile: string;
