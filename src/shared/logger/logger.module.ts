@@ -1,11 +1,45 @@
 import { Global, Module } from "@nestjs/common";
 import { randomUUID } from "crypto";
 import { LoggerModule } from "nestjs-pino";
+import { join } from "path";
 import type { Options } from "pino-http";
-import pretty from "pino-pretty";
+
+const LOG_FILE_PATH: string = join(
+  process.cwd(),
+  "src/shared/logger/logs/log.json",
+);
+
+const isPretty: boolean = process.env.LOG_PRETTY === "true";
+const level: string = process.env.LOG_LEVEL ?? "info";
+
+const consoleTarget = isPretty
+  ? {
+      target: "pino-pretty",
+      level,
+      options: {
+        colorize: true,
+        colorizeObjects: false,
+        singleLine: true,
+        translateTime: "SYS:yyyy-mm-dd HH:MM:ss.l",
+        ignore: "pid,hostname,context",
+        messageFormat: "{if context}[{context}] {end}{msg}",
+      },
+    }
+  : {
+      // LOG_PRETTY=false: 콘솔에도 raw JSON (stdout = fd 1)
+      target: "pino/file",
+      level,
+      options: { destination: 1 },
+    };
+
+const fileTarget = {
+  target: "pino/file",
+  level,
+  options: { destination: LOG_FILE_PATH, mkdir: true }, // mkdir:true → logs 폴더 자동 생성
+};
 
 const basePinoHttpOptions: Options = {
-  level: process.env.LOG_LEVEL ?? "info",
+  level,
   customProps: (req) => ({ correlationId: req.id }),
   genReqId: (req) =>
     (req.headers["x-correlation-id"] as string) ?? randomUUID(),
@@ -22,29 +56,14 @@ const basePinoHttpOptions: Options = {
     ],
     censor: "[REDACTED]",
   },
+  transport: {
+    targets: [consoleTarget, fileTarget],
+  },
 };
 
 @Global()
 @Module({
-  imports: [
-    LoggerModule.forRoot({
-      pinoHttp:
-        process.env.LOG_PRETTY === "true"
-          ? [
-              basePinoHttpOptions,
-              pretty({
-                colorize: true,
-                colorizeObjects: false,
-                singleLine: true,
-                translateTime: "SYS:yyyy-mm-dd HH:MM:ss.l",
-                ignore: "pid,hostname,context",
-                // context가 있는 로그만 [Context] 접두사를 붙인다 (HTTP 자동 로그에는 context가 없음).
-                messageFormat: "{if context}[{context}] {end}{msg}",
-              }),
-            ]
-          : basePinoHttpOptions,
-    }),
-  ],
+  imports: [LoggerModule.forRoot({ pinoHttp: basePinoHttpOptions })],
   exports: [LoggerModule],
 })
 export class AppLoggerModule {}
