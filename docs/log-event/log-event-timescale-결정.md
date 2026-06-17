@@ -196,3 +196,5 @@ ALTER TABLE log_event SET (
 - **drizzle 스키마 drift 미해결**: 본 결정과 별개로, `src/shared/database/schema/event.ts`는 테이블명을 `event_store`로 정의하지만 마이그레이션 `0000`은 `event`라는 이름으로 만들었다(`stream_version` vs `attempt_num` 컬럼 차이도 존재). hypertable 작업과 무관하지만, 향후 `db:generate`가 의도치 않은 diff를 만들 수 있으므로 별도로 정리 권장.
 - **압축/보존은 분리**: `add_compression_policy` / `add_retention_policy`는 데이터 손실·복구 비용과 직결되므로 본 결정 범위에서 제외했다. 운영 요건이 확정된 뒤 별도로 다룬다.
 - **롤백**: hypertable → 일반 테이블 역전환은 단순하지 않다(청크 구조 해제 필요). 롤백이 필요하면 보통 **새 일반 테이블로 데이터 복사 후 swap**하는 편이 안전하다.
+
+![img.png](img.png)

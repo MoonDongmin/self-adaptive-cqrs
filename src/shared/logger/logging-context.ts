@@ -25,6 +25,21 @@ export const LogContext = {
   REASON: "reason",
   ROUTE: "route",
   INDEX: "index",
+
+  // log-collector
+  SOURCE_FILE: "source_file",
+  BYTE_OFFSET: "byte_offset",
+  FROM_OFFSET: "from_offset",
+  TO_OFFSET: "to_offset",
+  LINE_COUNT: "line_count",
+  INGESTED: "ingested",
+  LINE: "line",
+  COUNT: "count",
+
+  // insight read
+  ENTITY_NAME: "entity_name",
+  ENTITY_COUNT: "entity_count",
+  RENDERED_COUNT: "rendered_count",
 } as const;
 
 export const LogAction = {
@@ -52,4 +67,19 @@ export const LogAction = {
   // insight
   INSIGHT_SEED_REQUEST: "insight.seed.request",
   INSIGHT_SEED_DONE: "insight.seed.done",
+
+  // insight read
+  INSIGHT_CARD_REQUEST: "insight.card.request",
+  INSIGHT_CARDS_REQUEST: "insight.cards.request",
+  INSIGHT_CARD_RENDERED: "insight.card.rendered",
+  INSIGHT_CARD_MISS: "insight.card.miss",
+  INSIGHT_CARDS_DONE: "insight.cards.done",
+
+  // log-collector
+  LOG_INGEST_REQUEST: "log.ingest.request",
+  LOG_INGEST_START: "log.ingest.start",
+  LOG_INGEST_DONE: "log.ingest.done",
+  LOG_LINE_SKIPPED: "log.line.skipped",
+  LOG_DELETE_REQUEST: "log.delete.request",
+  LOG_DELETE_DONE: "log.delete.done",
 } as const;

@@ -6,6 +6,7 @@ import {
   INSIGHT_CATALOG,
   type InsightCatalogRepository,
 } from "@/insight/repository/insight-catalog.repository";
+import { LogAction, LogContext } from "@/shared/logger/logging-context";
 
 @Injectable()
 export class InsightService {
@@ -22,7 +23,27 @@ export class InsightService {
     const card: InsightCardData | null =
       await this.catalog.findCardData(entityName);
 
-    return card === null ? null : this.renderer.render(card);
+    if (card === null) {
+      this.logger.warn(
+        {
+          action: LogAction.INSIGHT_CARD_MISS,
+          [LogContext.ENTITY_NAME]: entityName,
+        },
+        "insight 카드 없음",
+      );
+
+      return null;
+    }
+
+    this.logger.debug(
+      {
+        action: LogAction.INSIGHT_CARD_RENDERED,
+        [LogContext.ENTITY_NAME]: entityName,
+      },
+      "insight 카드 렌더",
+    );
+
+    return this.renderer.render(card);
   }
 
   async renderAllCards(): Promise<string> {
@@ -53,6 +74,15 @@ export class InsightService {
         sections.push(this.renderer.renderHtml(card));
       }
     }
+
+    this.logger.info(
+      {
+        action: LogAction.INSIGHT_CARDS_DONE,
+        [LogContext.ENTITY_COUNT]: names.length,
+        [LogContext.RENDERED_COUNT]: sections.length,
+      },
+      "insight 카드 전체 렌더",
+    );
 
     return [
       "<!doctype html>",

@@ -7,6 +7,7 @@ import {
   DrizzleTx,
 } from "@/shared/database/drizzle.provider";
 import { logCursor } from "@/shared/database/schema";
+import { LogContext } from "@/shared/logger/logging-context";
 import { LogCursorRepository } from "./log-cursor.repository";
 
 @Injectable()
@@ -33,7 +34,10 @@ export class LogCursorRepositoryImpl implements LogCursorRepository {
       .values({ sourceFile, byteOffset: 0 })
       .onConflictDoNothing();
 
-    this.logger.debug({ sourceFile }, "신규 커서 초기화 (offset=0)");
+    this.logger.debug(
+      { [LogContext.SOURCE_FILE]: sourceFile },
+      "신규 커서 초기화 (offset=0)",
+    );
     return 0;
   }
 
@@ -50,6 +54,12 @@ export class LogCursorRepositoryImpl implements LogCursorRepository {
         set: { byteOffset, updatedAt: new Date() },
       });
 
-    this.logger.debug({ sourceFile, byteOffset }, "커서 오프셋 갱신");
+    this.logger.debug(
+      {
+        [LogContext.SOURCE_FILE]: sourceFile,
+        [LogContext.BYTE_OFFSET]: byteOffset,
+      },
+      "커서 오프셋 갱신",
+    );
   }
 }

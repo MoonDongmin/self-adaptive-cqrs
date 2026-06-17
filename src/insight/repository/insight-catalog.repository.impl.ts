@@ -8,7 +8,7 @@ import {
 } from "@/insight/repository/insight-catalog.repository";
 import { DRIZZLE, type Drizzle } from "@/shared/database/drizzle.provider";
 import { insightEntity, insightField } from "@/shared/database/schema";
-import { LogAction } from "@/shared/logger/logging-context";
+import { LogAction, LogContext } from "@/shared/logger/logging-context";
 import { InsightCardData } from "../insight-card.type";
 
 @Injectable()
@@ -21,52 +21,85 @@ export class InsightCatalogRepositoryImpl implements InsightCatalogRepository {
   }
 
   async listEntityNames(): Promise<string[]> {
-    const rows = await this.db
-      .select({ entityName: insightEntity.entityName })
-      .from(insightEntity)
-      .orderBy(asc(insightEntity.entityName));
+    try {
+      const rows = await this.db
+        .select({ entityName: insightEntity.entityName })
+        .from(insightEntity)
+        .orderBy(asc(insightEntity.entityName));
 
-    return rows.map((row) => row.entityName);
+      this.logger.debug(
+        { [LogContext.ENTITY_COUNT]: rows.length },
+        "엔티티 목록 조회",
+      );
+
+      return rows.map((row) => row.entityName);
+    } catch (err) {
+      this.logger.error(
+        { action: LogAction.DB_ERROR, err },
+        "엔티티 목록 조회 실패",
+      );
+      throw err;
+    }
   }
 
   async findCardData(entityName: string): Promise<InsightCardData | null> {
-    const entityRows = await this.db
-      .select()
-      .from(insightEntity)
-      .where(eq(insightEntity.entityName, entityName))
-      .limit(1);
+    try {
+      const entityRows = await this.db
+        .select()
+        .from(insightEntity)
+        .where(eq(insightEntity.entityName, entityName))
+        .limit(1);
 
-    if (entityRows.length === 0) {
-      return null;
+      if (entityRows.length === 0) {
+        return null;
+      }
+
+      const entity = entityRows[0];
+
+      const fieldRows = await this.db
+        .select({
+          fieldName: insightField.fieldName,
+          dataType: insightField.dataType,
+          meaning: insightField.meaning,
+          example: insightField.example,
+        })
+        .from(insightField)
+        .where(eq(insightField.entityName, entityName))
+        .orderBy(asc(insightField.displayOrder));
+
+      this.logger.debug(
+        {
+          [LogContext.ENTITY_NAME]: entityName,
+          [LogContext.COUNT]: fieldRows.length,
+        },
+        "카드 데이터 조회",
+      );
+
+      return {
+        kind: entity.kind,
+        name: entity.entityName,
+        purpose: entity.purpose,
+        keyColumns: entity.keyColumns,
+        rowCount: entity.rowCount,
+        refreshedAt: entity.refreshedAt,
+        fields: fieldRows.map((row) => ({
+          fieldName: row.fieldName,
+          dataType: row.dataType,
+          meaning: row.meaning,
+          example: row.example,
+        })),
+      };
+    } catch (err) {
+      this.logger.error(
+        {
+          action: LogAction.DB_ERROR,
+          err,
+          [LogContext.ENTITY_NAME]: entityName,
+        },
+        "카드 데이터 조회 실패",
+      );
+      throw err;
     }
-
-    const entity = entityRows[0];
-
-    const fieldRows = await this.db
-      .select({
-        fieldName: insightField.fieldName,
-        dataType: insightField.dataType,
-        meaning: insightField.meaning,
-        example: insightField.example,
-      })
-      .from(insightField)
-      .where(eq(insightField.entityName, entityName))
-      .orderBy(asc(insightField.displayOrder));
-
-    return {
-      kind: entity.kind,
-      name: entity.entityName,
-      purpose: entity.purpose,
-      keyColumns: entity.keyColumns,
-      rowCount: entity.rowCount,
-      refreshedAt: entity.refreshedAt,
-      fields: fieldRows.map((row) => ({
-        fieldName: row.fieldName,
-        dataType: row.dataType,
-        meaning: row.meaning,
-        example: row.example,
-      })),
-    };
   }
 
   async upsertEntity(entity: InsightEntityInput): Promise<void> {
