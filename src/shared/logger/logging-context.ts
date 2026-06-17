@@ -82,4 +82,8 @@ export const LogAction = {
   LOG_LINE_SKIPPED: "log.line.skipped",
   LOG_DELETE_REQUEST: "log.delete.request",
   LOG_DELETE_DONE: "log.delete.done",
+
+  // llm-context 선판단
+  LLM_PREJUDGE_TRIGGERED: "llm.prejudge.triggered",
+  LLM_PREJUDGE_SKIPPED: "llm.prejudge.skipped",
 } as const;

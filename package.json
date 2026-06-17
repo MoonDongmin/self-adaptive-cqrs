@@ -25,12 +25,16 @@
     "db:push": "drizzle-kit push --config=./src/config/drizzle.config.ts"
   },
   "dependencies": {
+    "@langchain/core": "^1.1.49",
+    "@langchain/ollama": "^1.2.7",
+    "@langchain/openai": "^1.4.7",
     "@nestjs/common": "^11.1.19",
     "@nestjs/config": "^4.0.4",
     "@nestjs/core": "^11.1.19",
     "@nestjs/cqrs": "^11.0.3",
     "@nestjs/platform-express": "^11.1.19",
     "drizzle-orm": "^0.45.2",
+    "kafkajs": "^2.2.4",
     "nestjs-pino": "^4.6.1",
     "pg": "^8.21.0",
     "pino": "^10.3.1",

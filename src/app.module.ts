@@ -6,6 +6,7 @@ import { ProjectionModule } from "@/projection/projection.module";
 import { DrizzleModule } from "@/shared/database/drizzle.module";
 import { CorrelationMiddleware } from "@/shared/logger/correlation.middleware";
 import { AppLoggerModule } from "@/shared/logger/logger.module";
+import { LlmContextModule } from "@/llm-context/llm.module";
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { AppLoggerModule } from "@/shared/logger/logger.module";
     ProjectionModule,
     LogModule,
     InsightModule,
+    LlmContextModule,
   ],
   controllers: [],
   providers: [],
