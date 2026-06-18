@@ -137,7 +137,7 @@ export class InsertService {
       if (seq === null) {
         result.skipped++;
 
-        this.logger.info(
+        this.logger.debug(
           {
             action: LogAction.INSERT_FILE_SKIPPED,
             [LogContext.FILE]: file,

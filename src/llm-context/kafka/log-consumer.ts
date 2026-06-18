@@ -6,7 +6,6 @@ import {
   LogBatchRecord,
   logBatchRecordSchema,
 } from "@/llm-context/llm-context.type";
-import { LogContext } from "@/shared/logger/logging-context";
 
 @Injectable()
 export class LogConsumer implements OnModuleInit, OnModuleDestroy {

@@ -41,9 +41,14 @@ const fileTarget = {
 const logTcpHost: string | undefined = process.env.LOG_TCP_HOST;
 const logTcpPort: number = Number(process.env.LOG_TCP_PORT);
 
+// LLM 선판단 파이프라인(TCP socket → Kafka)으로는 '의도적 신호'(INFO+)만 보낸다.
+// per-file DEBUG 같은 기계적 로그는 console·file 채널엔 남기되 LLM 컨텍스트에선
+// 제외해, 대량 적재가 LLM 입력을 폭주시키는 일을 원천 차단한다.
+const llmPipelineLevel: string = process.env.LOG_LLM_LEVEL ?? "info";
+
 const socketTarget = {
   target: "pino-socket",
-  level,
+  level: llmPipelineLevel,
   options: {
     address: logTcpHost,
     port: logTcpPort,
