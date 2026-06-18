@@ -38,6 +38,20 @@ const fileTarget = {
   options: { destination: LOG_FILE_PATH, mkdir: true }, // mkdir:true → logs 폴더 자동 생성
 };
 
+const logTcpHost: string | undefined = process.env.LOG_TCP_HOST;
+const logTcpPort: number = Number(process.env.LOG_TCP_PORT);
+
+const socketTarget = {
+  target: "pino-socket",
+  level,
+  options: {
+    address: logTcpHost,
+    port: logTcpPort,
+    mode: "tcp",
+    reconnect: true,
+  },
+};
+
 const basePinoHttpOptions: Options = {
   level,
   customProps: (req) => ({ correlationId: req.id }),
@@ -57,7 +71,7 @@ const basePinoHttpOptions: Options = {
     censor: "[REDACTED]",
   },
   transport: {
-    targets: [consoleTarget, fileTarget],
+    targets: [consoleTarget, fileTarget, socketTarget],
   },
 };
 

@@ -101,9 +101,10 @@ services:
       - kafka1
       - kafka2
       - kafka3
+    ports:
+      - "5170:5170"
     volumes:
       - ./fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf:ro
-      - ../src/shared/logger/logs:/logs:ro
 
 volumes:
   kafka1-data:

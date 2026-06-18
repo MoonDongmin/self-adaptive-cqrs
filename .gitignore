@@ -17,6 +17,7 @@ data
 CLAUDE.md
 
 /docker/pgdata
+/docker/kafka1-data
 
 drizzle
 
