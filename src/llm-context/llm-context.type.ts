@@ -1,22 +1,17 @@
 import { z } from "zod";
 
-export const logBatchRecordSchema = z.object({
-  time: z.number(),
-  level: z.number(),
-  action: z.string().nullable().optional(),
-  msg: z.string().nullable().optional(),
-  correlation_id: z.string().nullable().optional(),
-  stream_id: z.string().nullable().optional(),
-});
+export const logBatchRecordSchema = z
+  .object({
+    time: z.number(),
+    level: z.number(),
+    action: z.string().nullable().optional(),
+    msg: z.string().nullable().optional(),
+    correlationId: z.string().nullable().optional(),
+    streamId: z.string().nullable().optional(),
+  })
+  // 원본 로그를 그대로 LLM에 넘기기 위해 req/res/responseTime 등 추가 필드를 보존한다.
+  .passthrough();
 export type LogBatchRecord = z.infer<typeof logBatchRecordSchema>;
-
-export const frequencyRowSchema = z.object({
-  action: z.string().nullable(),
-  level: z.number(),
-  count: z.number(),
-});
-export type FrequencyRow = z.infer<typeof frequencyRowSchema>;
-export type FrequencySummary = { windowHours: number; rows: FrequencyRow[] };
 
 // 선판단 LLM 출력 = 트리거 여부 + 트립 위치.
 export const prejudgeCheckedSchema = z.object({

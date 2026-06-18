@@ -1,11 +1,11 @@
 import { Injectable, OnModuleDestroy, OnModuleInit } from "@nestjs/common";
 import { Consumer, EachBatchPayload, Kafka } from "kafkajs";
+import { PinoLogger } from "nestjs-pino";
+import { LOG_CONSUMER_CONFIG } from "@/llm-context/kafka/log-consumer.config";
 import {
   LogBatchRecord,
   logBatchRecordSchema,
 } from "@/llm-context/llm-context.type";
-import { PinoLogger } from "nestjs-pino";
-import { LOG_CONSUMER_CONFIG } from "@/llm-context/kafka/log-consumer.config";
 import { LogContext } from "@/shared/logger/logging-context";
 
 @Injectable()
@@ -46,6 +46,7 @@ export class LogConsumer implements OnModuleInit, OnModuleDestroy {
 
   private async onBatch({ batch, resolveOffset, heartbeat }: EachBatchPayload) {
     let skipped: number = 0;
+    let filtered: number = 0;
 
     for (const message of batch.messages) {
       resolveOffset(message.offset);
@@ -70,20 +71,28 @@ export class LogConsumer implements OnModuleInit, OnModuleDestroy {
         skipped += 1;
         continue;
       }
+
+      // 선판단 대상: (1) API 요청 기인 로그(correlationId 보유) 또는
+      // (2) 에러 이상 레벨 로그(요청 스코프 밖 백그라운드 장애 포착용).
+      // 둘 다 아니면 앱 시작/프레임워크 부트 로그 등으로 보고 버퍼에서 제외한다.
+      const correlationId: string | null | undefined =
+        parsed.data.correlationId;
+      const hasCorrelationId: boolean =
+        correlationId !== null &&
+        correlationId !== undefined &&
+        correlationId.length > 0;
+      const isErrorLevel: boolean =
+        parsed.data.level >= LOG_CONSUMER_CONFIG.errorLevelThreshold;
+
+      if (!hasCorrelationId && !isErrorLevel) {
+        filtered += 1;
+        continue;
+      }
+
       this.buffer.push(parsed.data);
     }
 
     await heartbeat();
-
-    if (skipped > 0) {
-      this.logger.debug(
-        {
-          [LogContext.SKIPPED]: skipped,
-          [LogContext.COUNT]: batch.messages.length,
-        },
-        "선판안 버퍼 적재 중 스킵",
-      );
-    }
   }
 
   drainOnce(): LogBatchRecord[] {
