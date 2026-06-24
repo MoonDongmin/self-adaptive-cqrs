@@ -54,12 +54,12 @@ export class LogCursorRepositoryImpl implements LogCursorRepository {
         set: { byteOffset, updatedAt: new Date() },
       });
 
-    this.logger.debug(
-      {
-        [LogContext.SOURCE_FILE]: sourceFile,
-        [LogContext.BYTE_OFFSET]: byteOffset,
-      },
-      "커서 오프셋 갱신",
-    );
+    // this.logger.debug(
+    //   {
+    //     [LogContext.SOURCE_FILE]: sourceFile,
+    //     [LogContext.BYTE_OFFSET]: byteOffset,
+    //   },
+    //   "커서 오프셋 갱신",
+    // );
   }
 }

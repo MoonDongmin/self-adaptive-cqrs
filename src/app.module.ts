@@ -7,6 +7,7 @@ import { ProjectionModule } from "@/projection/projection.module";
 import { DrizzleModule } from "@/shared/database/drizzle.module";
 import { CorrelationMiddleware } from "@/shared/logger/correlation.middleware";
 import { AppLoggerModule } from "@/shared/logger/logger.module";
+import { ScheduleModule } from "@nestjs/schedule";
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { AppLoggerModule } from "@/shared/logger/logger.module";
     LogModule,
     InsightModule,
     LlmContextModule,
+    ScheduleModule.forRoot(),
   ],
   controllers: [],
   providers: [],

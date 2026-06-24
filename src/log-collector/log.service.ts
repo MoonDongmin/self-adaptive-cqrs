@@ -45,17 +45,6 @@ export class LogService {
     const fromOffset: number = await this.cursors.getOrInit(file);
     const { lines, nextOffset } = await readNewLines(file, fromOffset);
 
-    this.logger.debug(
-      {
-        action: LogAction.LOG_INGEST_START,
-        [LogContext.SOURCE_FILE]: file,
-        [LogContext.FROM_OFFSET]: fromOffset,
-        [LogContext.TO_OFFSET]: nextOffset,
-        [LogContext.LINE_COUNT]: lines.length,
-      },
-      "신규 로그 라인 읽음",
-    );
-
     const rows: LogEventInsert[] = [];
 
     let skipped: number = 0;
@@ -106,17 +95,6 @@ export class LogService {
       toOffset: nextOffset,
     };
 
-    this.logger.info(
-      {
-        action: LogAction.LOG_INGEST_DONE,
-        [LogContext.SOURCE_FILE]: result.sourceFile,
-        [LogContext.INGESTED]: result.ingested,
-        [LogContext.SKIPPED]: result.skipped,
-        [LogContext.FROM_OFFSET]: result.fromOffset,
-        [LogContext.TO_OFFSET]: result.toOffset,
-      },
-      "로그 적재 완료",
-    );
     return result;
   }
 

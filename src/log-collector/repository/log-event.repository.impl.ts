@@ -18,9 +18,9 @@ export class LogEventRepositoryImpl implements LogEventRepository {
     }
 
     await tx.insert(logEvents).values(rows);
-    this.logger.debug(
-      { [LogContext.COUNT]: rows.length },
-      "로그 이벤트 배치 삽입",
-    );
+    // this.logger.debug(
+    //   { [LogContext.COUNT]: rows.length },
+    //   "로그 이벤트 배치 삽입",
+    // );
   }
 }

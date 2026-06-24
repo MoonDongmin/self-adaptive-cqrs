@@ -2,6 +2,7 @@ import { Controller, Delete, Post } from "@nestjs/common";
 import { PinoLogger } from "nestjs-pino";
 import { IngestionResult, LogService } from "@/log-collector/log.service";
 import { LogAction, LogContext } from "@/shared/logger/logging-context";
+import { Interval } from "@nestjs/schedule";
 
 @Controller("log")
 export class LogController {
@@ -12,15 +13,8 @@ export class LogController {
     this.logger.setContext(LogController.name);
   }
 
-  @Post()
+  @Interval(1000)
   async run(): Promise<IngestionResult> {
-    this.logger.info(
-      {
-        action: LogAction.LOG_INGEST_REQUEST,
-        [LogContext.ROUTE]: "POST /log",
-      },
-      "로그 적재 요청 수신",
-    );
     return this.logService.run();
   }
 
