@@ -1,15 +1,15 @@
-import { Inject, Injectable } from "@nestjs/common";
-import { asc, eq } from "drizzle-orm";
-import { PinoLogger } from "nestjs-pino";
+import { Inject, Injectable } from '@nestjs/common';
+import { asc, eq } from 'drizzle-orm';
+import { PinoLogger } from 'nestjs-pino';
 import {
   InsightCatalogRepository,
   InsightEntityInput,
   InsightFieldInput,
-} from "@/insight/repository/insight-catalog.repository";
-import { DRIZZLE, type Drizzle } from "@/shared/database/drizzle.provider";
-import { insightEntity, insightField } from "@/shared/database/schema";
-import { LogAction, LogContext } from "@/shared/logger/logging-context";
-import { InsightCardData } from "../insight-card.type";
+} from '@/insight/repository/insight-catalog.repository';
+import { DRIZZLE, type Drizzle } from '@/shared/database/drizzle.provider';
+import { insightEntity, insightField } from '@/shared/database/schema';
+import { LogAction, LogContext } from '@/shared/logger/logging-context';
+import { InsightCardData } from '../insight-card.type';
 
 @Injectable()
 export class InsightCatalogRepositoryImpl implements InsightCatalogRepository {

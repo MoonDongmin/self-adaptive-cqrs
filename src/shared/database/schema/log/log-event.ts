@@ -9,7 +9,7 @@ import {
   timestamp,
   uuid,
   varchar,
-} from "drizzle-orm/pg-core";
+} from 'drizzle-orm/pg-core';
 
 export const logEvents = pgTable(
   "log_event",

@@ -1,4 +1,4 @@
-import { bigint, pgTable, timestamp, varchar } from "drizzle-orm/pg-core";
+import { bigint, pgTable, timestamp, varchar } from 'drizzle-orm/pg-core';
 
 export const projectionCursor = pgTable("projection_cursor", {
   projectorName: varchar("projector_name").primaryKey(),

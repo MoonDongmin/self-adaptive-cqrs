@@ -1,5 +1,5 @@
-import { Injectable } from "@nestjs/common";
-import { InsightCardData, InsightCardField } from "@/insight/insight-card.type";
+import { Injectable } from '@nestjs/common';
+import { InsightCardData, InsightCardField } from '@/insight/insight-card.type';
 
 @Injectable()
 export class InsightCardRenderer {

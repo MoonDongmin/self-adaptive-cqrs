@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export const logBatchRecordSchema = z
   .object({
@@ -19,4 +19,26 @@ export const prejudgeCheckedSchema = z.object({
   reason: z.string(),
   tripCorrelationIds: z.array(z.string()).default([]), // 의심 레코드 추적용
 });
+
 export type PrejudgeChecked = z.infer<typeof prejudgeCheckedSchema>;
+
+export interface LogWindowRow {
+  time: Date;
+  level: number;
+  action: string | null;
+  correlationId: string | null;
+  msg: string | null;
+  isAnchor: boolean;
+}
+
+export interface FrequencyRollupRow {
+  action: string | null;
+  level: number;
+  count: number;
+}
+
+export interface AnomalyLogWindow {
+  rows: LogWindowRow[];
+  frequency: FrequencyRollupRow[];
+  windowHours: number;
+}

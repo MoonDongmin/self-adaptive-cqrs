@@ -1,12 +1,4 @@
-import {
-  bigint,
-  pgTable,
-  primaryKey,
-  smallint,
-  text,
-  timestamp,
-  varchar,
-} from "drizzle-orm/pg-core";
+import { bigint, pgTable, primaryKey, smallint, text, timestamp, varchar } from 'drizzle-orm/pg-core';
 
 export const readMultimodal = pgTable(
   "read_multimodal",

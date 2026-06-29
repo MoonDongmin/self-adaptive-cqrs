@@ -1,5 +1,5 @@
-import { EventStoreEventRow } from "@/projection/repository/event-store-reader.repository";
-import { DrizzleTx } from "@/shared/database/drizzle.provider";
+import { EventStoreEventRow } from '@/projection/repository/event-store-reader.repository';
+import { DrizzleTx } from '@/shared/database/drizzle.provider';
 
 export interface Projector<Insert> {
   readonly name: string;

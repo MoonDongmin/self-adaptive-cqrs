@@ -1,10 +1,9 @@
-import { Injectable } from "@nestjs/common";
-import { PinoLogger } from "nestjs-pino";
-import { LogEventRepository } from "@/log-collector/repository/log-event.repository";
-import { DrizzleTx } from "@/shared/database/drizzle.provider";
-import { logEvents } from "@/shared/database/schema";
-import { LogContext } from "@/shared/logger/logging-context";
-import { LogEventInsert } from "../log-record";
+import { Injectable } from '@nestjs/common';
+import { PinoLogger } from 'nestjs-pino';
+import { LogEventRepository } from '@/log-collector/repository/log-event.repository';
+import { DrizzleTx } from '@/shared/database/drizzle.provider';
+import { logEvents } from '@/shared/database/schema';
+import { LogEventInsert } from '../log-record';
 
 @Injectable()
 export class LogEventRepositoryImpl implements LogEventRepository {

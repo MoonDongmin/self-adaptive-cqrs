@@ -1,11 +1,8 @@
-import { Controller, Post } from "@nestjs/common";
-import { PinoLogger } from "nestjs-pino";
-import {
-  InsertAndProjectionAllResult,
-  ProjectionService,
-} from "@/projection/projection.service";
-import { ProjectionResult } from "@/projection/projector/projector";
-import { LogAction, LogContext } from "@/shared/logger/logging-context";
+import { Controller, Post } from '@nestjs/common';
+import { PinoLogger } from 'nestjs-pino';
+import { InsertAndProjectionAllResult, ProjectionService } from '@/projection/projection.service';
+import { ProjectionResult } from '@/projection/projector/projector';
+import { LogAction, LogContext } from '@/shared/logger/logging-context';
 
 @Controller("projection")
 export class ProjectionController {

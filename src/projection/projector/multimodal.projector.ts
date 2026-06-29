@@ -1,12 +1,12 @@
-import { Injectable } from "@nestjs/common";
-import { InferInsertModel } from "drizzle-orm";
-import { PinoLogger } from "nestjs-pino";
-import { ToyDataDto, toyDataSchema } from "@/insert/dto/toy-data.dto";
-import { Projector } from "@/projection/projector/projector";
-import { DrizzleTx } from "@/shared/database/drizzle.provider";
-import { readMultimodal } from "@/shared/database/schema";
-import { LogAction, LogContext } from "@/shared/logger/logging-context";
-import { EventStoreEventRow } from "../repository/event-store-reader.repository";
+import { Injectable } from '@nestjs/common';
+import { InferInsertModel } from 'drizzle-orm';
+import { PinoLogger } from 'nestjs-pino';
+import { ToyDataDto, toyDataSchema } from '@/insert/dto/toy-data.dto';
+import { Projector } from '@/projection/projector/projector';
+import { DrizzleTx } from '@/shared/database/drizzle.provider';
+import { readMultimodal } from '@/shared/database/schema';
+import { LogAction, LogContext } from '@/shared/logger/logging-context';
+import { EventStoreEventRow } from '../repository/event-store-reader.repository';
 
 type ReadMultimodalInsert = InferInsertModel<typeof readMultimodal>;
 

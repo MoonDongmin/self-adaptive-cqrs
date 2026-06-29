@@ -1,13 +1,4 @@
-import {
-  bigint,
-  index,
-  jsonb,
-  pgTable,
-  primaryKey,
-  smallint,
-  timestamp,
-  varchar,
-} from "drizzle-orm/pg-core";
+import { bigint, index, jsonb, pgTable, primaryKey, smallint, timestamp, varchar } from 'drizzle-orm/pg-core';
 
 export const readGripResult = pgTable(
   "read_grip_result",

@@ -1,4 +1,4 @@
-import { DrizzleTx } from "@/shared/database/drizzle.provider";
+import { DrizzleTx } from '@/shared/database/drizzle.provider';
 
 export const LOG_CURSOR: unique symbol = Symbol("LOG_CURSOR");
 

@@ -1,4 +1,4 @@
-import { InsightCardData } from "@/insight/insight-card.type";
+import { InsightCardData } from '@/insight/insight-card.type';
 
 export interface InsightEntityInput {
   entityName: string;

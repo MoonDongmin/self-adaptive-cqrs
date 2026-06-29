@@ -1,20 +1,29 @@
-import { clearTimeout, setTimeout } from "node:timers";
-import { Injectable, OnModuleDestroy, OnModuleInit } from "@nestjs/common";
-import { PinoLogger } from "nestjs-pino";
-import { LogConsumer } from "@/llm-context/kafka/log-consumer";
-import { LOG_CONSUMER_CONFIG } from "@/llm-context/kafka/log-consumer.config";
-import { PrejudgeChecked } from "@/llm-context/llm-context.type";
-import { prejudge } from "@/llm-context/screener/prejudge";
-import { LogAction, LogContext } from "@/shared/logger/logging-context";
+import * as fs from 'node:fs';
+import { clearTimeout, setTimeout } from 'node:timers';
+import { Inject, Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
+import { PinoLogger } from 'nestjs-pino';
+import { join } from 'path';
+import { buildAnalysisGraph } from '@/analysis/annalysis.graph';
+import { InsightService } from '@/insight/insight.service';
+import { LogConsumer } from '@/llm-context/kafka/log-consumer';
+import { LOG_CONSUMER_CONFIG } from '@/llm-context/kafka/log-consumer.config';
+import { AnomalyLogWindow, PrejudgeChecked } from '@/llm-context/llm-context.type';
+import { LOG_WINDOW, type LogWindowRepository } from '@/llm-context/repository/log-window.repository';
+import { prejudge } from '@/llm-context/screener/prejudge';
+import { LogAction, LogContext } from '@/shared/logger/logging-context';
 
 @Injectable()
 export class LLMContextService implements OnModuleInit, OnModuleDestroy {
   private timer: NodeJS.Timeout | null = null;
   private stopped: boolean = false;
+  private readonly graph = buildAnalysisGraph();
 
   constructor(
     private readonly logger: PinoLogger,
     private readonly consumer: LogConsumer,
+    private readonly insight: InsightService,
+    @Inject(LOG_WINDOW)
+    private readonly logWindow: LogWindowRepository,
   ) {
     this.logger.setContext(LLMContextService.name);
   }
@@ -30,13 +39,6 @@ export class LLMContextService implements OnModuleInit, OnModuleDestroy {
     }
   }
 
-  /**
-   * Kafka 버퍼를 폴링하는 자기-재스케줄 루프.
-   * - 버퍼가 비어 있으면(LLM 미호출) 5초 뒤 다시 확인한다.
-   * - 버퍼에 로그가 쌓여 있으면 LLM을 호출하고, 끝난 즉시 다시 확인한다.
-   * setInterval과 달리 다음 틱은 현재 작업이 끝난 뒤에야 예약되므로
-   * LLM 호출이 길어져도 실행이 겹치지 않는다.
-   */
   private async runLoop(): Promise<void> {
     if (this.stopped) {
       return;
@@ -87,7 +89,44 @@ export class LLMContextService implements OnModuleInit, OnModuleDestroy {
       checked.triggered ? "선판단: 비정상" : "선판단: 정상",
     );
 
-    // TODO(다음 라운드): triggered면 ±N 윈도우 조립 → 컨텍스트 .md → 분석 LLM(3출력)
+    if (checked.triggered) {
+      await this.analyze(checked);
+    }
+
     return checked;
+  }
+
+  private async analyze(checked: PrejudgeChecked): Promise<void> {
+    const window: AnomalyLogWindow = await this.logWindow.buildWindow(
+      checked.tripCorrelationIds,
+    );
+
+    const insightCards: string = await this.insight.renderAllCards();
+
+    const result = await this.graph.invoke({ window, insightCards });
+
+    const path = await this.writeReport(result.report ?? "", checked);
+
+    this.logger.info(
+      {
+        action: LogAction.LLM_ANALYSIS_AGGREGATE_DONE,
+        [LogContext.REPORT_PATH]: path,
+      },
+      "분석 리포트 생성",
+    );
+  }
+
+  private async writeReport(
+    report: string,
+    checked: PrejudgeChecked,
+  ): Promise<string> {
+    const id = checked.tripCorrelationIds[0] ?? "background";
+    const dir = join(process.cwd(), "src/analysis/output");
+    const path = join(dir, `analysis-${id}.md`);
+
+    await fs.promises.mkdir(dir, { recursive: true });
+    await fs.promises.writeFile(path, report);
+
+    return path;
   }
 }

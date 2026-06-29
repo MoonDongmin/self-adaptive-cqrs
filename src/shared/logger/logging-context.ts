@@ -40,6 +40,8 @@ export const LogContext = {
   ENTITY_NAME: "entityName",
   ENTITY_COUNT: "entityCount",
   RENDERED_COUNT: "renderedCount",
+
+  REPORT_PATH: "reportPath",
 } as const;
 
 export const LogAction = {
@@ -86,4 +88,10 @@ export const LogAction = {
   // llm-context 선판단
   LLM_PREJUDGE_TRIGGERED: "llm.prejudge.triggered",
   LLM_PREJUDGE_SKIPPED: "llm.prejudge.skipped",
+
+  // LogAction 에 추가 (기존 llm-context 선판단 아래)
+  LLM_ANALYSIS_ROOTCAUSE_DONE: "llm.analysis.rootcause.done",
+  LLM_ANALYSIS_DECISION_DONE: "llm.analysis.decision.done",
+  LLM_ANALYSIS_GENERATE_DONE: "llm.analysis.generate.done",
+  LLM_ANALYSIS_AGGREGATE_DONE: "llm.analysis.aggregate.done",
 } as const;

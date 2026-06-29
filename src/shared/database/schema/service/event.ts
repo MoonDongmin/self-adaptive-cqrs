@@ -1,13 +1,4 @@
-import {
-  bigserial,
-  integer,
-  jsonb,
-  pgTable,
-  timestamp,
-  uniqueIndex,
-  uuid,
-  varchar,
-} from "drizzle-orm/pg-core";
+import { bigserial, integer, jsonb, pgTable, timestamp, uniqueIndex, uuid, varchar } from 'drizzle-orm/pg-core';
 
 export const eventStore = pgTable(
   "event_store",

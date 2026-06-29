@@ -1,8 +1,8 @@
-import { Controller, Get, Header, Param, Post } from "@nestjs/common";
-import { PinoLogger } from "nestjs-pino";
-import { InsightService } from "@/insight/insight.service";
-import { InsightSeedService } from "@/insight/seed/insight-seed.service";
-import { LogAction, LogContext } from "@/shared/logger/logging-context";
+import { Controller, Get, Header, Param, Post } from '@nestjs/common';
+import { PinoLogger } from 'nestjs-pino';
+import { InsightService } from '@/insight/insight.service';
+import { InsightSeedService } from '@/insight/seed/insight-seed.service';
+import { LogAction, LogContext } from '@/shared/logger/logging-context';
 
 @Controller("insight")
 export class InsightController {

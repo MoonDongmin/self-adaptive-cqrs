@@ -1,6 +1,6 @@
-import { Inject, Injectable } from "@nestjs/common";
-import { DRIZZLE, type Drizzle } from "@/shared/database/drizzle.provider";
-import { eventStore } from "@/shared/database/schema";
+import { Inject, Injectable } from '@nestjs/common';
+import { DRIZZLE, type Drizzle } from '@/shared/database/drizzle.provider';
+import { eventStore } from '@/shared/database/schema';
 
 export type AppendEventInput = {
   streamId: string;

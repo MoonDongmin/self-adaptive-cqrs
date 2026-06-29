@@ -1,7 +1,7 @@
-import { Controller, Param, ParseIntPipe, Post } from "@nestjs/common";
-import { PinoLogger } from "nestjs-pino";
-import { InsertResult, InsertService } from "@/insert/insert.service";
-import { LogAction, LogContext } from "@/shared/logger/logging-context";
+import { Controller, Param, ParseIntPipe, Post } from '@nestjs/common';
+import { PinoLogger } from 'nestjs-pino';
+import { InsertResult, InsertService } from '@/insert/insert.service';
+import { LogAction, LogContext } from '@/shared/logger/logging-context';
 
 @Controller("insert")
 export class InsertController {

@@ -1,8 +1,8 @@
-import { Global, Module } from "@nestjs/common";
-import { randomUUID } from "crypto";
-import { LoggerModule } from "nestjs-pino";
-import { join } from "path";
-import type { Options } from "pino-http";
+import { Global, Module } from '@nestjs/common';
+import { randomUUID } from 'crypto';
+import { LoggerModule } from 'nestjs-pino';
+import { join } from 'path';
+import type { Options } from 'pino-http';
 
 const LOG_FILE_PATH: string = join(
   process.cwd(),

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 660" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif">
+  <defs>
+    <marker id="arrowThin" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#F97316"/>
+    </marker>
+    <marker id="arrowThick" markerWidth="12" markerHeight="12" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#059669"/>
+    </marker>
+    <marker id="arrowGray" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#94A3B8"/>
+    </marker>
+  </defs>
+
+  <!-- background -->
+  <rect x="0" y="0" width="1280" height="660" fill="#FAFAFA"/>
+
+  <!-- title -->
+  <text x="640" y="54" text-anchor="middle" font-size="32" font-weight="700" fill="#1F2937">왜 Kafka를 도입했나</text>
+  <text x="640" y="90" text-anchor="middle" font-size="19" fill="#6B7280">LLM 과부하 방지 → 로그를 모았다가(적립) 배치로 한 번에 질문</text>
+
+  <!-- ===================== 1. APP (producer) ===================== -->
+  <text x="150" y="150" text-anchor="middle" font-size="18" font-weight="700" fill="#EA580C">① 로그 생산 (빠름·대량)</text>
+  <rect x="55" y="280" width="190" height="120" rx="16" fill="#FFF7ED" stroke="#F97316" stroke-width="2.5"/>
+  <text x="150" y="332" text-anchor="middle" font-size="22" font-weight="700" fill="#9A3412">NestJS 앱</text>
+  <text x="150" y="362" text-anchor="middle" font-size="15" fill="#C2410C">Pino 구조화 로그</text>
+
+  <!-- streaming logs (fast, many) -->
+  <g>
+    <rect x="270" y="262" width="44" height="30" rx="4" fill="#FDBA74"/>
+    <rect x="270" y="302" width="44" height="30" rx="4" fill="#FB923C"/>
+    <rect x="270" y="342" width="44" height="30" rx="4" fill="#FDBA74"/>
+    <rect x="320" y="282" width="44" height="30" rx="4" fill="#FB923C"/>
+    <rect x="320" y="322" width="44" height="30" rx="4" fill="#FDBA74"/>
+    <rect x="320" y="362" width="44" height="30" rx="4" fill="#FB923C"/>
+  </g>
+  <line x1="375" y1="300" x2="466" y2="300" stroke="#F97316" stroke-width="2.5" marker-end="url(#arrowThin)"/>
+  <line x1="375" y1="340" x2="466" y2="340" stroke="#F97316" stroke-width="2.5" marker-end="url(#arrowThin)"/>
+  <text x="385" y="245" text-anchor="middle" font-size="14" fill="#EA580C">초당 수십 건</text>
+  <text x="385" y="415" text-anchor="middle" font-size="14" fill="#9CA3AF">쉴 새 없이 들어옴</text>
+
+  <!-- ===================== 2. KAFKA (buffer / reservoir) ===================== -->
+  <text x="595" y="150" text-anchor="middle" font-size="18" font-weight="700" fill="#4338CA">② Kafka</text>
+
+  <!-- FIFO queue lane -->
+  <rect x="470" y="262" width="250" height="150" rx="14" fill="#EEF2FF" stroke="#6366F1" stroke-width="2.5"/>
+
+  <!-- messages lined up in arrival order: appended on left, consumed on right -->
+  <g>
+    <rect x="496" y="296" width="28" height="58" rx="4" fill="#C7D2FE"/>
+    <rect x="530" y="296" width="28" height="58" rx="4" fill="#A5B4FC"/>
+    <rect x="564" y="296" width="28" height="58" rx="4" fill="#A5B4FC"/>
+    <rect x="598" y="296" width="28" height="58" rx="4" fill="#818CF8"/>
+    <rect x="632" y="296" width="28" height="58" rx="4" fill="#818CF8"/>
+    <rect x="666" y="296" width="28" height="58" rx="4" fill="#6366F1"/>
+  </g>
+
+  <!-- flow direction: oldest moves out to the right -->
+  <line x1="500" y1="382" x2="690" y2="382" stroke="#94A3B8" stroke-width="2" marker-end="url(#arrowGray)"/>
+  <text x="498" y="288" text-anchor="start" font-size="11" fill="#6B7280">새 로그 추가</text>
+  <text x="692" y="288" text-anchor="end" font-size="11" fill="#6B7280">먼저 나감</text>
+
+  <text x="595" y="440" text-anchor="middle" font-size="16" font-weight="700" fill="#4338CA">FIFO 큐 — 들어온 순서대로</text>
+  <text x="595" y="462" text-anchor="middle" font-size="14" fill="#6B7280">topic: log-events</text>
+
+  <!-- ===================== batch arrow ===================== -->
+  <line x1="720" y1="330" x2="1000" y2="330" stroke="#059669" stroke-width="7" marker-end="url(#arrowThick)"/>
+  <text x="860" y="300" text-anchor="middle" font-size="16" font-weight="700" fill="#047857">배치로 한 번에</text>
+  <text x="860" y="362" text-anchor="middle" font-size="14" fill="#059669">한 번에 최대 500건</text>
+  <text x="860" y="382" text-anchor="middle" font-size="13" fill="#9CA3AF">비면 5초마다 확인</text>
+
+  <!-- ===================== 3. LLM (consumer) ===================== -->
+  <text x="1110" y="150" text-anchor="middle" font-size="18" font-weight="700" fill="#047857">③ LLM (느림·비쌈)</text>
+  <rect x="1015" y="280" width="190" height="120" rx="16" fill="#ECFDF5" stroke="#10B981" stroke-width="2.5"/>
+  <text x="1110" y="338" text-anchor="middle" font-size="26" font-weight="700" fill="#065F46">🤖 LLM</text>
+  <text x="1110" y="368" text-anchor="middle" font-size="14" fill="#047857">한 번에 질문 처리</text>
+
+  <!-- ===================== bottom key message ===================== -->
+  <rect x="160" y="575" width="960" height="58" rx="14" fill="#1F2937"/>
+  <text x="640" y="611" text-anchor="middle" font-size="19" font-weight="700" fill="#FFFFFF">핵심: 로그(빠름) ↔ LLM(느림) 속도 불일치 → Kafka가 완충해 배치로 처리</text>
+</svg>

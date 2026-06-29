@@ -1,8 +1,8 @@
-import { Controller, Delete, Post } from "@nestjs/common";
-import { PinoLogger } from "nestjs-pino";
-import { IngestionResult, LogService } from "@/log-collector/log.service";
-import { LogAction, LogContext } from "@/shared/logger/logging-context";
-import { Interval } from "@nestjs/schedule";
+import { Controller, Delete } from '@nestjs/common';
+import { Interval } from '@nestjs/schedule';
+import { PinoLogger } from 'nestjs-pino';
+import { IngestionResult, LogService } from '@/log-collector/log.service';
+import { LogAction, LogContext } from '@/shared/logger/logging-context';
 
 @Controller("log")
 export class LogController {

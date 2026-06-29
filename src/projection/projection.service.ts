@@ -1,11 +1,11 @@
-import { Injectable } from "@nestjs/common";
-import { PinoLogger } from "nestjs-pino";
-import { InsertResult, InsertService } from "@/insert/insert.service";
-import { GripResultProjector } from "@/projection/projector/grip-result.projector";
-import { MultiModalProjector } from "@/projection/projector/multimodal.projector";
-import { ProjectionResult } from "@/projection/projector/projector";
-import { CatchUpRunner } from "@/projection/runner/catch-up.runner";
-import { LogAction } from "@/shared/logger/logging-context";
+import { Injectable } from '@nestjs/common';
+import { PinoLogger } from 'nestjs-pino';
+import { InsertResult, InsertService } from '@/insert/insert.service';
+import { GripResultProjector } from '@/projection/projector/grip-result.projector';
+import { MultiModalProjector } from '@/projection/projector/multimodal.projector';
+import { ProjectionResult } from '@/projection/projector/projector';
+import { CatchUpRunner } from '@/projection/runner/catch-up.runner';
+import { LogAction } from '@/shared/logger/logging-context';
 
 export type CatchUpAllResult = {
   multimodal: ProjectionResult;

@@ -1,4 +1,4 @@
-import { bigint, pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { bigint, pgTable, text, timestamp } from 'drizzle-orm/pg-core';
 
 export const logCursor = pgTable("log_cursor", {
   sourceFile: text("source_file").primaryKey(), // 파일 경로 = 커서 키

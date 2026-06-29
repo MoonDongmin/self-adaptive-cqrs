@@ -1,11 +1,8 @@
-import { Inject, Injectable } from "@nestjs/common";
-import { PinoLogger } from "nestjs-pino";
-import {
-  INSIGHT_CATALOG,
-  type InsightCatalogRepository,
-} from "@/insight/repository/insight-catalog.repository";
-import { PHASE1_CARDS } from "@/insight/seed/phase1-cards";
-import { LogAction } from "@/shared/logger/logging-context";
+import { Inject, Injectable } from '@nestjs/common';
+import { PinoLogger } from 'nestjs-pino';
+import { INSIGHT_CATALOG, type InsightCatalogRepository } from '@/insight/repository/insight-catalog.repository';
+import { PHASE1_CARDS } from '@/insight/seed/phase1-cards';
+import { LogAction } from '@/shared/logger/logging-context';
 
 @Injectable()
 export class InsightSeedService {

@@ -1,12 +1,12 @@
-import { Injectable } from "@nestjs/common";
-import { type InferInsertModel } from "drizzle-orm";
-import { PinoLogger } from "nestjs-pino";
-import { type ToyDataDto, toyDataSchema } from "@/insert/dto/toy-data.dto";
-import type { Projector } from "@/projection/projector/projector";
-import type { EventStoreEventRow } from "@/projection/repository/event-store-reader.repository";
-import { DrizzleTx } from "@/shared/database/drizzle.provider";
-import { readGripResult } from "@/shared/database/schema";
-import { LogAction, LogContext } from "@/shared/logger/logging-context";
+import { Injectable } from '@nestjs/common';
+import { type InferInsertModel } from 'drizzle-orm';
+import { PinoLogger } from 'nestjs-pino';
+import { type ToyDataDto, toyDataSchema } from '@/insert/dto/toy-data.dto';
+import type { Projector } from '@/projection/projector/projector';
+import type { EventStoreEventRow } from '@/projection/repository/event-store-reader.repository';
+import { DrizzleTx } from '@/shared/database/drizzle.provider';
+import { readGripResult } from '@/shared/database/schema';
+import { LogAction, LogContext } from '@/shared/logger/logging-context';
 
 type ReadGripResultInsert = InferInsertModel<typeof readGripResult>;
 

@@ -1,4 +1,4 @@
-import { DrizzleTx } from "@/shared/database/drizzle.provider";
+import { DrizzleTx } from '@/shared/database/drizzle.provider';
 
 export interface ProjectionCursorRepository {
   getOrInit(projectorName: string): Promise<number>;

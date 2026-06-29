@@ -1,4 +1,4 @@
-import { bigint, pgTable, text, timestamp, varchar } from "drizzle-orm/pg-core";
+import { bigint, pgTable, text, timestamp, varchar } from 'drizzle-orm/pg-core';
 
 /*
  * insight_entity — InsightDB 카드 1장 = 1행 (카드의 헤더 = 정의의 뿌리).

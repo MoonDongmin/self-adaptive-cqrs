@@ -1,12 +1,9 @@
-import { Inject, Injectable } from "@nestjs/common";
-import { PinoLogger } from "nestjs-pino";
-import { InsightCardRenderer } from "@/insight/insight-card.renderer";
-import { InsightCardData } from "@/insight/insight-card.type";
-import {
-  INSIGHT_CATALOG,
-  type InsightCatalogRepository,
-} from "@/insight/repository/insight-catalog.repository";
-import { LogAction, LogContext } from "@/shared/logger/logging-context";
+import { Inject, Injectable } from '@nestjs/common';
+import { PinoLogger } from 'nestjs-pino';
+import { InsightCardRenderer } from '@/insight/insight-card.renderer';
+import { InsightCardData } from '@/insight/insight-card.type';
+import { INSIGHT_CATALOG, type InsightCatalogRepository } from '@/insight/repository/insight-catalog.repository';
+import { LogAction, LogContext } from '@/shared/logger/logging-context';
 
 @Injectable()
 export class InsightService {

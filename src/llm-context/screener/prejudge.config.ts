@@ -1,6 +1,7 @@
+import { LLM_CONNECTION } from '@/shared/llm/llm-connection.config';
+
 export const PREJUDGE_CONFIG = {
+  ...LLM_CONNECTION,
   model: process.env.PREJUDGE_MODEL,
-  baseUrl: process.env.LLM_BASE_URL,
-  apiKey: process.env.LLM_API_KEY,
   temperature: 0,
 } as const;

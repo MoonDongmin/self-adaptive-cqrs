@@ -1,19 +1,13 @@
-import * as fs from "node:fs";
-import { Inject, Injectable } from "@nestjs/common";
-import { PinoLogger } from "nestjs-pino";
-import { join } from "path";
-import { readNewLines } from "@/log-collector/json-reader";
-import { LogEventInsert, parseLogLine } from "@/log-collector/log-record";
-import {
-  LOG_CURSOR,
-  type LogCursorRepository,
-} from "@/log-collector/repository/log-cursor.repository";
-import {
-  LOG_EVENT_WRITER,
-  type LogEventRepository,
-} from "@/log-collector/repository/log-event.repository";
-import { DRIZZLE, type Drizzle } from "@/shared/database/drizzle.provider";
-import { LogAction, LogContext } from "@/shared/logger/logging-context";
+import * as fs from 'node:fs';
+import { Inject, Injectable } from '@nestjs/common';
+import { PinoLogger } from 'nestjs-pino';
+import { join } from 'path';
+import { readNewLines } from '@/log-collector/json-reader';
+import { LogEventInsert, parseLogLine } from '@/log-collector/log-record';
+import { LOG_CURSOR, type LogCursorRepository } from '@/log-collector/repository/log-cursor.repository';
+import { LOG_EVENT_WRITER, type LogEventRepository } from '@/log-collector/repository/log-event.repository';
+import { DRIZZLE, type Drizzle } from '@/shared/database/drizzle.provider';
+import { LogAction, LogContext } from '@/shared/logger/logging-context';
 
 export interface IngestionResult {
   sourceFile: string;

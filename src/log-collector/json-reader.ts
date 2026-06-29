@@ -1,4 +1,4 @@
-import { open, stat } from "fs/promises";
+import { open, stat } from 'fs/promises';
 
 export interface NdjsonReadResult {
   lines: string[];

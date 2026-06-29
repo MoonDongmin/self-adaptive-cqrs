@@ -1,14 +1,10 @@
-import { Inject, Injectable } from "@nestjs/common";
-import { eq } from "drizzle-orm";
-import { PinoLogger } from "nestjs-pino";
-import {
-  DRIZZLE,
-  type Drizzle,
-  DrizzleTx,
-} from "@/shared/database/drizzle.provider";
-import { logCursor } from "@/shared/database/schema";
-import { LogContext } from "@/shared/logger/logging-context";
-import { LogCursorRepository } from "./log-cursor.repository";
+import { Inject, Injectable } from '@nestjs/common';
+import { eq } from 'drizzle-orm';
+import { PinoLogger } from 'nestjs-pino';
+import { DRIZZLE, type Drizzle, DrizzleTx } from '@/shared/database/drizzle.provider';
+import { logCursor } from '@/shared/database/schema';
+import { LogContext } from '@/shared/logger/logging-context';
+import { LogCursorRepository } from './log-cursor.repository';
 
 @Injectable()
 export class LogCursorRepositoryImpl implements LogCursorRepository {

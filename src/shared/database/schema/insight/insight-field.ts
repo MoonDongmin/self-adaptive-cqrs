@@ -1,11 +1,5 @@
-import {
-  integer,
-  pgTable,
-  primaryKey,
-  text,
-  varchar,
-} from "drizzle-orm/pg-core";
-import { insightEntity } from "@/shared/database/schema/insight/insight-entity";
+import { integer, pgTable, primaryKey, text, varchar } from 'drizzle-orm/pg-core';
+import { insightEntity } from '@/shared/database/schema/insight/insight-entity';
 
 /*
  * insight_field — 카드 필드표의 1행 = 1행 (정의의 불변부).

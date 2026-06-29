@@ -1,11 +1,8 @@
-import { Injectable, OnModuleDestroy, OnModuleInit } from "@nestjs/common";
-import { Consumer, EachBatchPayload, Kafka } from "kafkajs";
-import { PinoLogger } from "nestjs-pino";
-import { LOG_CONSUMER_CONFIG } from "@/llm-context/kafka/log-consumer.config";
-import {
-  LogBatchRecord,
-  logBatchRecordSchema,
-} from "@/llm-context/llm-context.type";
+import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
+import { Consumer, EachBatchPayload, Kafka } from 'kafkajs';
+import { PinoLogger } from 'nestjs-pino';
+import { LOG_CONSUMER_CONFIG } from '@/llm-context/kafka/log-consumer.config';
+import { LogBatchRecord, logBatchRecordSchema } from '@/llm-context/llm-context.type';
 
 @Injectable()
 export class LogConsumer implements OnModuleInit, OnModuleDestroy {

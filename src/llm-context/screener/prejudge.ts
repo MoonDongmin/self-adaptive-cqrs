@@ -1,11 +1,8 @@
-import { HumanMessage, SystemMessage } from "@langchain/core/messages";
-import { ChatOpenAI } from "@langchain/openai";
-import {
-  type LogBatchRecord,
-  type PrejudgeChecked,
-  prejudgeCheckedSchema,
-} from "@/llm-context/llm-context.type";
-import { PREJUDGE_CONFIG } from "@/llm-context/screener/prejudge.config";
+import { HumanMessage, SystemMessage } from '@langchain/core/messages';
+import { ChatOpenAI } from '@langchain/openai';
+import { type LogBatchRecord, type PrejudgeChecked, prejudgeCheckedSchema } from '@/llm-context/llm-context.type';
+import { PREJUDGE_CONFIG } from '@/llm-context/screener/prejudge.config';
+import { contentToString, extractJson } from '@/shared/llm/llm-json';
 
 const SYSTEM_PROMPT: string = [
   "너는 로그 이상 1차 선별기다. 아래 (A) 최근 로그 원본(JSON 한 줄당 한 레코드)을",
@@ -40,36 +37,6 @@ const SYSTEM_PROMPT: string = [
 // "단계 누락"처럼 오해되므로 원본을 통째로 준다.
 function renderBatchRaw(batch: LogBatchRecord[]): string {
   return batch.map((record) => JSON.stringify(record)).join("\n");
-}
-
-// AIMessage.content는 string | 복합블록[] 둘 다 가능 → 안전하게 문자열로.
-function contentToString(content: unknown): string {
-  if (typeof content === "string") {
-    return content;
-  }
-
-  if (Array.isArray(content)) {
-    return content
-      .map((part) =>
-        typeof part === "object" && part !== null && "text" in part
-          ? String((part as { text: unknown }).text)
-          : "",
-      )
-      .join("");
-  }
-
-  return "";
-}
-
-// 마지막 ```json 블록(없으면 첫 { ~ 마지막 })만 뽑아 unknown으로 반환.
-function extractJson(text: string): unknown {
-  const fenced = text.match(/```json\s*([\s\S]*?)```/i);
-
-  const raw = fenced
-    ? fenced[1]
-    : text.slice(text.indexOf("{"), text.lastIndexOf("}") + 1);
-
-  return JSON.parse(raw);
 }
 
 export async function prejudge(

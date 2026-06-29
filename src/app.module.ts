@@ -1,13 +1,13 @@
-import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
-import { InsertModule } from "@/insert/insert.module";
-import { InsightModule } from "@/insight/insight.module";
-import { LlmContextModule } from "@/llm-context/llm.module";
-import { LogModule } from "@/log-collector/log.module";
-import { ProjectionModule } from "@/projection/projection.module";
-import { DrizzleModule } from "@/shared/database/drizzle.module";
-import { CorrelationMiddleware } from "@/shared/logger/correlation.middleware";
-import { AppLoggerModule } from "@/shared/logger/logger.module";
-import { ScheduleModule } from "@nestjs/schedule";
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { ScheduleModule } from '@nestjs/schedule';
+import { InsertModule } from '@/insert/insert.module';
+import { InsightModule } from '@/insight/insight.module';
+import { LlmContextModule } from '@/llm-context/llm.module';
+import { LogModule } from '@/log-collector/log.module';
+import { ProjectionModule } from '@/projection/projection.module';
+import { DrizzleModule } from '@/shared/database/drizzle.module';
+import { CorrelationMiddleware } from '@/shared/logger/correlation.middleware';
+import { AppLoggerModule } from '@/shared/logger/logger.module';
 
 @Module({
   imports: [

@@ -1,7 +1,4 @@
-import type {
-  InsightEntityInput,
-  InsightFieldInput,
-} from "@/insight/repository/insight-catalog.repository";
+import type { InsightEntityInput, InsightFieldInput } from '@/insight/repository/insight-catalog.repository';
 
 export interface SeedCard {
   entity: InsightEntityInput;
