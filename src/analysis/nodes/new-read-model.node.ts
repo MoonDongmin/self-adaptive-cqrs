@@ -1,17 +1,27 @@
 import { AnalysisState } from '@/analysis/analysis.state';
+import { readSourceExamples } from '@/analysis/context/source-examples';
 import { invokeNode } from '@/analysis/nodes/invoke';
 import { NEW_READ_MODEL_PROMPT } from '@/analysis/prompts';
-import { renderRootCause } from '@/analysis/render';
+import { renderAnomalyWindow, renderRootCause } from '@/analysis/render';
 import { newReadModelOutputSchema } from '@/analysis/type/output.type';
 
 export async function newReadModelNode(state: typeof AnalysisState.State) {
-  const facts = `${renderRootCause(state.rootCause!)}\n\n## 1. 도메인 스키마\n${state.insightCards}`;
+  const facts = [
+    renderRootCause(state.rootCause!),
+    renderAnomalyWindow(state.window),
+    `## 도메인 스키마(Insight 카드)\n${state.insightCards}`,
+    await readSourceExamples(),
+  ].join("\n\n");
 
-  const newReadModel = await invokeNode(
-    NEW_READ_MODEL_PROMPT,
-    facts,
-    newReadModelOutputSchema,
-  );
+  try {
+    const newReadModel = await invokeNode(
+      NEW_READ_MODEL_PROMPT,
+      facts,
+      newReadModelOutputSchema,
+    );
 
-  return { outputs: { newReadModel } };
+    return { outputs: { newReadModel } };
+  } catch {
+    return { outputs: {} };
+  }
 }
