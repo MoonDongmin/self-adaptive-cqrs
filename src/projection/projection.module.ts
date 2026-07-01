@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { InsertModule } from '@/insert/insert.module';
+import { KafkaSensorValuePublisher, SENSOR_VALUE_PUBLISHER } from '@/projection/kafka/sensor-value.publisher';
 import { ProjectionController } from '@/projection/projection.controller';
 import { ProjectionService } from '@/projection/projection.service';
 import { GripResultProjector } from '@/projection/projector/grip-result.projector';
@@ -25,6 +26,10 @@ import { CatchUpRunner } from '@/projection/runner/catch-up.runner';
     {
       provide: PROJECTION_CURSOR,
       useClass: ProjectionCursorRepositoryImpl,
+    },
+    {
+      provide: SENSOR_VALUE_PUBLISHER,
+      useClass: KafkaSensorValuePublisher,
     },
   ],
   exports: [ProjectionService],

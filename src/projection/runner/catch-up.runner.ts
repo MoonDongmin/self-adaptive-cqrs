@@ -1,5 +1,6 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, Optional } from '@nestjs/common';
 import { PinoLogger } from 'nestjs-pino';
+import { SENSOR_VALUE_PUBLISHER, type SensorValuePublisher } from '@/projection/kafka/sensor-value.publisher';
 import { ProjectionResult, Projector } from '@/projection/projector/projector';
 import {
   EVENT_STORE_READER,
@@ -25,6 +26,9 @@ export class CatchUpRunner {
     private readonly reader: EventStoreReaderRepository,
     @Inject(PROJECTION_CURSOR)
     private readonly cursors: ProjectionCursorRepository,
+    @Optional()
+    @Inject(SENSOR_VALUE_PUBLISHER)
+    private readonly sensorPublisher?: SensorValuePublisher,
   ) {
     this.logger.setContext(CatchUpRunner.name);
   }
@@ -58,12 +62,15 @@ export class CatchUpRunner {
       const batchFrom: number = lastProcessed;
       const batchTo: number = events[events.length - 1].globalSeq;
 
+      const rows: Insert[] = [];
+
       try {
         await this.db.transaction(async (tx) => {
           for (const event of events) {
             const row: Insert = projector.map(event);
 
             await projector.upsert(tx, row);
+            rows.push(row);
           }
 
           await this.cursors.update(tx, projector.name, batchTo);
@@ -82,6 +89,9 @@ export class CatchUpRunner {
 
         throw err;
       }
+
+      // 커밋 성공 후에만, TX 밖에서 센서 값 발행(best-effort).
+      await this.publishSensorValues(projector, rows, events);
 
       this.logger.info(
         {
@@ -128,5 +138,37 @@ export class CatchUpRunner {
       toSeq: lastProcessed,
       processed,
     };
+  }
+
+  // 투영된 행을 센서 값 토픽으로 발행한다. 발행기가 없거나(테스트/multimodal) 프로젝터가
+  // 변환을 미구현하면 건너뛴다. Kafka 장애는 경고만 남기고 삼켜 투영을 막지 않는다.
+  private async publishSensorValues<Insert>(
+    projector: Projector<Insert>,
+    rows: Insert[],
+    events: EventStoreEventRow[],
+  ): Promise<void> {
+    if (
+      this.sensorPublisher === undefined ||
+      projector.toSensorValueMessages === undefined
+    ) {
+      return;
+    }
+
+    try {
+      const messages = projector.toSensorValueMessages(rows, events);
+
+      if (messages.length > 0) {
+        await this.sensorPublisher.publish(messages);
+      }
+    } catch (error) {
+      this.logger.error(
+        {
+          action: LogAction.SENSOR_PUBLISH_FAILED,
+          error,
+          [LogContext.PROJECTOR_NAME]: projector.name,
+        },
+        "센서 값 발행 실패(투영은 커밋됨)",
+      );
+    }
   }
 }

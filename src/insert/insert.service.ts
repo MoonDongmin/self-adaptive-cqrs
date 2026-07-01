@@ -7,7 +7,11 @@ import { ParsedFileName, parseToyDataFileName } from '@/insert/parser/toy-data-f
 import { EVENT_STORE_REPOSITORY, type EventStoreRepository } from '@/insert/repository/event-store.repository';
 import { LogAction, LogContext } from '@/shared/logger/logging-context';
 
-const TOY_DATA_DIR: string = path.resolve(process.cwd(), "data/toy-data");
+// const TOY_DATA_DIR: string = path.resolve(process.cwd(), "data/toy-data");
+const TOY_DATA_DIR: string = path.resolve(
+  process.cwd(),
+  "data/anomaly-fixtures",
+);
 
 export type InsertFailure = { file: string; reason: string };
 

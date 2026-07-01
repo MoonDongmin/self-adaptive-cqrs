@@ -8,6 +8,13 @@ export const logBatchRecordSchema = z
     msg: z.string().nullable().optional(),
     correlationId: z.string().nullable().optional(),
     streamId: z.string().nullable().optional(),
+    // 라우트 기반 필터(예: /insert 적재 요청 제외)를 위해 req.url 을 타입 안전하게 읽는다.
+    // 나머지 req 필드(method 등)는 passthrough 로 보존해 LLM 렌더링 시 손실이 없게 한다.
+    req: z
+      .object({ url: z.string().optional() })
+      .passthrough()
+      .nullable()
+      .optional(),
   })
   // 원본 로그를 그대로 LLM에 넘기기 위해 req/res/responseTime 등 추가 필드를 보존한다.
   .passthrough();

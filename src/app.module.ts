@@ -5,6 +5,7 @@ import { InsightModule } from '@/insight/insight.module';
 import { LlmContextModule } from '@/llm-context/llm.module';
 import { LogModule } from '@/log-collector/log.module';
 import { ProjectionModule } from '@/projection/projection.module';
+import { SensorObserverModule } from '@/sensor-observer/sensor-observer.module';
 import { DrizzleModule } from '@/shared/database/drizzle.module';
 import { CorrelationMiddleware } from '@/shared/logger/correlation.middleware';
 import { AppLoggerModule } from '@/shared/logger/logger.module';
@@ -18,6 +19,7 @@ import { AppLoggerModule } from '@/shared/logger/logger.module';
     LogModule,
     InsightModule,
     LlmContextModule,
+    SensorObserverModule,
     ScheduleModule.forRoot(),
   ],
   controllers: [],

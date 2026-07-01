@@ -6,6 +6,7 @@ import { renderReport } from '@/analysis/render';
 export function aggregateNode(state: typeof AnalysisState.State) {
   const report = renderReport({
     window: state.window,
+    sensorFinding: state.sensorFinding,
     rootCause: state.rootCause!, // analyzeRootCause 이후라 non-null (decision.node와 동일 관례)
     decision: state.decision,
     outputs: state.outputs,

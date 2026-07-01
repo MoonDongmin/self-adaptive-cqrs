@@ -68,6 +68,22 @@ export class LogConsumer implements OnModuleInit, OnModuleDestroy {
         continue;
       }
 
+      // 쓰기 측 적재(/insert) 요청은 read 측 Read Model 재생성 선판단 대상이 아니므로,
+      // 선판단(prejudge) LLM 을 아예 거치지 않도록 버퍼에서 통째로 제외한다.
+      //   (1) 도메인 로그(action=insert.*): 적재 실패 경고 등. level>=40 이어도 제외.
+      //   (2) 프레임워크 자동 요청 로그(req.url=/insert): "request completed" 등.
+      // 둘 다 빼야 insert POST 사이클에서 선판단이 한 번도 트리거되지 않는다.
+      const action: string | null | undefined = parsed.data.action;
+      const requestUrl: string | undefined = parsed.data.req?.url ?? undefined;
+      const isInsertLog: boolean =
+        (action?.startsWith("insert.") ?? false) ||
+        (requestUrl?.startsWith("/insert") ?? false);
+
+      if (isInsertLog) {
+        filtered += 1;
+        continue;
+      }
+
       // 선판단 대상: (1) API 요청 기인 로그(correlationId 보유) 또는
       // (2) 에러 이상 레벨 로그(요청 스코프 밖 백그라운드 장애 포착용).
       // 둘 다 아니면 앱 시작/프레임워크 부트 로그 등으로 보고 버퍼에서 제외한다.

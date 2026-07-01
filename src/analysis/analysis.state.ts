@@ -1,9 +1,22 @@
 import { Annotation } from '@langchain/langgraph';
-import { AnalysisDecision, GeneratedOutputs, RootCauseAnalysis } from '@/analysis/type/output.type';
-import type { AnomalyLogWindow } from '@/llm-context/llm-context.type'; // ★ 추가
+import {
+  AnalysisDecision,
+  GeneratedOutputs,
+  RootCauseAnalysis,
+  SensorAnomalyFinding,
+} from '@/analysis/type/output.type';
+import type { AnomalyLogWindow } from '@/llm-context/llm-context.type';
 
 export const AnalysisState = Annotation.Root({
-  window: Annotation<AnomalyLogWindow>(),
+  // 로그 라인은 window 를, 센서 라인은 sensorFinding 을 채운다(둘 중 non-null 이 소스 판별자).
+  window: Annotation<AnomalyLogWindow | null>({
+    default: () => null,
+    reducer: (_prev, next) => next,
+  }),
+  sensorFinding: Annotation<SensorAnomalyFinding | null>({
+    default: () => null,
+    reducer: (_prev, next) => next,
+  }),
   insightCards: Annotation<string>(),
   rootCause: Annotation<RootCauseAnalysis | null>({
     default: () => null,

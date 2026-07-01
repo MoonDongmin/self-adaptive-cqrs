@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { type InferInsertModel } from 'drizzle-orm';
 import { PinoLogger } from 'nestjs-pino';
 import { type ToyDataDto, toyDataSchema } from '@/insert/dto/toy-data.dto';
+import { SensorValueMessage } from '@/projection/kafka/sensor-value.message';
 import type { Projector } from '@/projection/projector/projector';
 import type { EventStoreEventRow } from '@/projection/repository/event-store-reader.repository';
 import { DrizzleTx } from '@/shared/database/drizzle.provider';
@@ -99,5 +100,23 @@ export class GripResultProjector implements Projector<ReadGripResultInsert> {
           globalSeq: row.globalSeq,
         },
       });
+  }
+
+  // 투영 행을 센서 값 관찰용 메시지로 변환한다. 원시 pose/robot_tf 값을 그대로 실어
+  // 관찰자(LLM)가 verbatim 으로 베이스라인과 비교할 수 있게 한다.
+  toSensorValueMessages(rows: ReadGripResultInsert[]): SensorValueMessage[] {
+    return rows.map((row) => ({
+      sceneKey: row.sceneKey,
+      attemptNumber: row.attemptNum,
+      streamId: row.streamId,
+      globalSequence: row.globalSeq,
+      occurredAt: row.occurredAt.toISOString(),
+      objectName: row.objectName,
+      gripSucceed: row.gripSucceed,
+      grip2dPose: row.grip2dPose,
+      grip3dPose: row.grip3dPose,
+      robotTf: row.robotTf,
+      humanAnnotationGrasp: row.humanAnnotationGrasp,
+    }));
   }
 }

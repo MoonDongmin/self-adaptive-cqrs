@@ -94,4 +94,10 @@ export const LogAction = {
   LLM_ANALYSIS_DECISION_DONE: "llm.analysis.decision.done",
   LLM_ANALYSIS_GENERATE_DONE: "llm.analysis.generate.done",
   LLM_ANALYSIS_AGGREGATE_DONE: "llm.analysis.aggregate.done",
+
+  // sensor-observer (센서 값 이상 관찰자)
+  SENSOR_PUBLISH_FAILED: "sensor.publish.failed",
+  SENSOR_OBSERVE_TRIGGERED: "sensor.observe.triggered",
+  SENSOR_OBSERVE_SKIPPED: "sensor.observe.skipped",
+  SENSOR_ANALYSIS_DONE: "sensor.analysis.done",
 } as const;

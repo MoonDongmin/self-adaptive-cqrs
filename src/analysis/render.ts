@@ -1,9 +1,11 @@
+import { renderDataQualityRecommendation, renderSensorFinding } from '@/analysis/render-sensor';
 import {
   AnalysisDecision,
   GeneratedOutputs,
   NewReadModelOutput,
   RecommendationDocsOutput,
   RootCauseAnalysis,
+  SensorAnomalyFinding,
   VersionSwitchOutput,
 } from '@/analysis/type/output.type';
 import { AnomalyLogWindow, LogWindowRow } from '@/llm-context/llm-context.type';
@@ -46,6 +48,22 @@ export function renderAnomalyWindow(window: AnomalyLogWindow): string {
     header,
     body,
   ].join("\n");
+}
+
+// 로그 라인은 window, 센서 라인은 sensorFinding 을 채운다. 있는 쪽을 근거 맥락으로 렌더.
+export function renderEvidenceContext(
+  window: AnomalyLogWindow | null,
+  sensorFinding: SensorAnomalyFinding | null,
+): string {
+  if (sensorFinding !== null) {
+    return renderSensorFinding(sensorFinding);
+  }
+
+  if (window !== null) {
+    return renderAnomalyWindow(window);
+  }
+
+  return "";
 }
 
 export function renderRootCause(rootCause: RootCauseAnalysis): string {
@@ -160,7 +178,8 @@ export function renderNewReadModel(output: NewReadModelOutput): string {
 
 // 추합 = LLM 요약이 아니라 결정론 조립. 생성물 전체를 섹션으로 verbatim 임베드.
 export function renderReport(input: {
-  window: AnomalyLogWindow;
+  window: AnomalyLogWindow | null;
+  sensorFinding: SensorAnomalyFinding | null;
   rootCause: RootCauseAnalysis;
   decision: AnalysisDecision | null;
   outputs: GeneratedOutputs;
@@ -168,14 +187,30 @@ export function renderReport(input: {
   const sections: string[] = [
     "# Self-Adaptive CQRS 분석 리포트",
     renderRootCause(input.rootCause),
-    renderAnomalyWindow(input.window),
   ];
+
+  const evidence: string = renderEvidenceContext(
+    input.window,
+    input.sensorFinding,
+  );
+  if (evidence.length > 0) {
+    sections.push(evidence);
+  }
 
   if (input.decision) {
     sections.push(renderDecision(input.decision));
   }
 
-  const { versionSwitch, recommendationDocs, newReadModel } = input.outputs;
+  const {
+    versionSwitch,
+    recommendationDocs,
+    newReadModel,
+    dataQualityRecommendation,
+  } = input.outputs;
+
+  if (dataQualityRecommendation) {
+    sections.push(renderDataQualityRecommendation(dataQualityRecommendation));
+  }
 
   if (versionSwitch) {
     sections.push(renderVersionSwitch(versionSwitch));
