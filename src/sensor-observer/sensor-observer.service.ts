@@ -116,9 +116,12 @@ export class SensorObserverService implements OnModuleInit, OnModuleDestroy {
 
     const insightCards: string = await this.insight.renderAllCards();
 
+    const id: string = finding.offendingSceneKeys[0] ?? "sensor";
     const result = await this.graph.invoke({
       sensorFinding: finding,
       insightCards,
+      docId: `dq-${id}`,
+      generatedAt: new Date().toISOString(),
     });
 
     const path = await this.writeReport(result.report ?? "", finding);

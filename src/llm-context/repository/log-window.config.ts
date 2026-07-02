@@ -4,4 +4,7 @@ export const WINDOW_CONFIG = {
   maxLines: 80, // 트레이스 + 패딩 합산 상한(토큰 통제)
   errorLevel: 40, // 앵커 후보 레벨(pino warn 이상)
   frequencyHours: 1, // 빈도 집계 구간(시간)
+  // LogSage(arXiv:2506.03691) 패턴: 신호 라인 주변만 남기는 노이즈 프루닝 폭.
+  contextBeforeLines: 4, // 신호 라인 앞 유지 줄 수
+  contextAfterLines: 6, // 신호 라인 뒤 유지 줄 수
 } as const;

@@ -18,6 +18,15 @@ export const AnalysisState = Annotation.Root({
     reducer: (_prev, next) => next,
   }),
   insightCards: Annotation<string>(),
+  // Docs front-matter 용 메타. 서비스가 invoke 시 주입(파일명 id·생성 시각).
+  docId: Annotation<string>({
+    default: () => "analysis-unknown",
+    reducer: (_prev, next) => next,
+  }),
+  generatedAt: Annotation<string>({
+    default: () => "",
+    reducer: (_prev, next) => next,
+  }),
   rootCause: Annotation<RootCauseAnalysis | null>({
     default: () => null,
     reducer: (_prev, next) => next,

@@ -8,6 +8,13 @@ export const LogContext = {
   CORRELATION_ID: "correlationId",
   PROJECTOR_NAME: "projectorName",
 
+  // projection 정합성 위반(제네릭 이상 방출)
+  READ_MODEL_NAME: "readModelName",
+  RULE_NAME: "ruleName",
+  AFFECTED_COLUMNS: "affectedColumns",
+  OBSERVED_VALUE: "observedValue",
+  EXPECTED: "expected",
+
   SCENE_KEY: "sceneKey",
   OBJECT_NAME: "objectName",
 
@@ -41,6 +48,10 @@ export const LogContext = {
   ENTITY_COUNT: "entityCount",
   RENDERED_COUNT: "renderedCount",
 
+  // 드리프트 관측기
+  NEW_KEYS: "newKeys",
+  MISSING_CARD_TABLES: "missingCardTables",
+
   REPORT_PATH: "reportPath",
 } as const;
 
@@ -62,6 +73,7 @@ export const LogAction = {
   PROJECTION_DONE: "projection.done",
   EVENT_MAPPED: "projection.event.mapped",
   MAP_FAILED: "projection.map.failed",
+  PROJECTION_INTEGRITY_VIOLATION: "projection.integrity.violation",
 
   // 공통
   DB_ERROR: "db.error",
@@ -100,4 +112,8 @@ export const LogAction = {
   SENSOR_OBSERVE_TRIGGERED: "sensor.observe.triggered",
   SENSOR_OBSERVE_SKIPPED: "sensor.observe.skipped",
   SENSOR_ANALYSIS_DONE: "sensor.analysis.done",
+
+  // 드리프트 관측기 (스키마/카탈로그 불일치)
+  PAYLOAD_SCHEMA_DRIFT: "payload.schema.drift",
+  INSIGHT_CARD_DRIFT: "insight.card.drift",
 } as const;

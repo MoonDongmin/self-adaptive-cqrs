@@ -4,6 +4,7 @@ import { Inject, Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/commo
 import { PinoLogger } from 'nestjs-pino';
 import { join } from 'path';
 import { buildAnalysisGraph } from '@/analysis/annalysis.graph';
+import { validateDocs } from '@/analysis/validate-docs';
 import { InsightService } from '@/insight/insight.service';
 import { LogConsumer } from '@/llm-context/kafka/log-consumer';
 import { LOG_CONSUMER_CONFIG } from '@/llm-context/kafka/log-consumer.config';
@@ -103,14 +104,29 @@ export class LLMContextService implements OnModuleInit, OnModuleDestroy {
 
     const insightCards: string = await this.insight.renderAllCards();
 
-    const result = await this.graph.invoke({ window, insightCards });
+    const id: string = checked.tripCorrelationIds[0] ?? "background";
+    const result = await this.graph.invoke({
+      window,
+      insightCards,
+      docId: `analysis-${id}`,
+      generatedAt: new Date().toISOString(),
+    });
 
-    const path = await this.writeReport(result.report ?? "", checked);
+    const report: string = result.report ?? "";
+    const path = await this.writeReport(report, checked);
+
+    // Docs 계약 검증(결정론). 실패해도 산출물은 남기되 결과를 기록한다.
+    // 주의: 이 서비스의 로그도 Kafka 로 재유입돼 prejudge 를 거치므로, 검증 실패를
+    // warn/error(level>=40)로 찍으면 자기 로그가 이상 탐지를 재트리거한다 — info 로 남긴다.
+    const validation = validateDocs(report);
 
     this.logger.info(
       {
         action: LogAction.LLM_ANALYSIS_AGGREGATE_DONE,
         [LogContext.REPORT_PATH]: path,
+        docsValid: validation.valid,
+        docsValidationErrors: validation.errors,
+        docsValidationWarnings: validation.warnings,
       },
       "분석 리포트 생성",
     );

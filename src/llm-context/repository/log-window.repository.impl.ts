@@ -67,6 +67,7 @@ export class LogWindowRepositoryImpl implements LogWindowRepository {
       const rows: LogWindowRow[] = await this.merge(
         [...trace, ...before, ...after],
         anchor,
+        tripCorrelationIds,
       );
       const frequency: FrequencyRollupRow[] = await this.fetchFrequency(
         anchor.time,
@@ -121,7 +122,11 @@ export class LogWindowRepositoryImpl implements LogWindowRepository {
     return latestError[0] ?? null;
   }
 
-  private async merge(rawRows: RawRow[], anchor: RawRow) {
+  private async merge(
+    rawRows: RawRow[],
+    anchor: RawRow,
+    tripCorrelationIds: string[],
+  ) {
     const byId = new Map<string, RawRow>();
 
     for (const rawRow of rawRows) {
@@ -132,8 +137,10 @@ export class LogWindowRepositoryImpl implements LogWindowRepository {
       (a, b) => a.time.getTime() - b.time.getTime(),
     );
 
-    const anchorIndex = sorted.findIndex((r) => r.logId === anchor.logId);
-    const capped = this.capAroundAnchor(sorted, anchorIndex);
+    const pruned = this.pruneNoise(sorted, anchor, tripCorrelationIds);
+
+    const anchorIndex = pruned.findIndex((r) => r.logId === anchor.logId);
+    const capped = this.capAroundAnchor(pruned, anchorIndex);
 
     return capped.map((r) => ({
       time: r.time,
@@ -167,6 +174,48 @@ export class LogWindowRepositoryImpl implements LogWindowRepository {
       level: r.level,
       count: r.count,
     }));
+  }
+
+  // LogSage(arXiv:2506.03691) 패턴: 신호 라인(에러/트립 트레이스) 주변 앞 4줄/뒤 6줄만
+  // 남기고 부팅·라우트 매핑 등 배경 노이즈를 제거한다. 소형 소비자 LLM의 context rot 방지.
+  private pruneNoise(
+    rows: RawRow[],
+    anchor: RawRow,
+    tripCorrelationIds: string[],
+  ): RawRow[] {
+    const tripIdSet = new Set(tripCorrelationIds);
+
+    const signalIndices: number[] = [];
+    rows.forEach((row, index) => {
+      const isSignal =
+        row.level >= WINDOW_CONFIG.errorLevel ||
+        row.logId === anchor.logId ||
+        (row.correlationId !== null && tripIdSet.has(row.correlationId));
+      if (isSignal) {
+        signalIndices.push(index);
+      }
+    });
+
+    if (signalIndices.length === 0) {
+      return rows;
+    }
+
+    const kept = new Set<number>();
+    for (const signalIndex of signalIndices) {
+      const start = Math.max(
+        0,
+        signalIndex - WINDOW_CONFIG.contextBeforeLines,
+      );
+      const end = Math.min(
+        rows.length - 1,
+        signalIndex + WINDOW_CONFIG.contextAfterLines,
+      );
+      for (let i = start; i <= end; i++) {
+        kept.add(i);
+      }
+    }
+
+    return rows.filter((_, index) => kept.has(index));
   }
 
   private capAroundAnchor(rows: RawRow[], anchorIndex: number) {

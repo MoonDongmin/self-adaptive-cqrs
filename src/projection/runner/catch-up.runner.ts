@@ -1,7 +1,11 @@
 import { Inject, Injectable, Optional } from '@nestjs/common';
 import { PinoLogger } from 'nestjs-pino';
 import { SENSOR_VALUE_PUBLISHER, type SensorValuePublisher } from '@/projection/kafka/sensor-value.publisher';
-import { ProjectionResult, Projector } from '@/projection/projector/projector';
+import {
+  IntegrityViolation,
+  ProjectionResult,
+  Projector,
+} from '@/projection/projector/projector';
 import {
   EVENT_STORE_READER,
   EventStoreEventRow,
@@ -93,6 +97,9 @@ export class CatchUpRunner {
       // 커밋 성공 후에만, TX 밖에서 센서 값 발행(best-effort).
       await this.publishSensorValues(projector, rows, events);
 
+      // 커밋된 행에 프로젝터별 정합성 규칙을 적용해 위반을 표준 이상 로그로 방출한다.
+      this.emitIntegrityViolations(projector, rows, events);
+
       this.logger.info(
         {
           action: LogAction.PROJECTION_BATCH,
@@ -169,6 +176,60 @@ export class CatchUpRunner {
         },
         "센서 값 발행 실패(투영은 커밋됨)",
       );
+    }
+  }
+
+  // 투영된 각 행에 프로젝터별 정합성 규칙(checkIntegrity)을 적용하고, 위반을 error 레벨
+  // 표준 로그로 방출한다. error(>=40)라 로그 레인 1차 게이트(prejudge)를 트리거하고
+  // 기존 분석 그래프가 근본원인 → 권고 문서를 산출한다. 검사 미구현 프로젝터는 건너뛴다.
+  // 로그 윈도우는 msg 만 LLM 에 노출하므로 violation.detail 을 msg 로 싣고, 나머지는
+  // 구조화 컬럼으로 함께 남긴다. 검사 예외는 삼켜(투영은 이미 커밋) 진행을 막지 않는다.
+  private emitIntegrityViolations<Insert>(
+    projector: Projector<Insert>,
+    rows: Insert[],
+    events: EventStoreEventRow[],
+  ): void {
+    if (projector.checkIntegrity === undefined) {
+      return;
+    }
+
+    for (let i = 0; i < rows.length; i++) {
+      let violations: IntegrityViolation[];
+
+      try {
+        violations = projector.checkIntegrity(rows[i], events[i]);
+      } catch (error) {
+        this.logger.error(
+          {
+            action: LogAction.DB_ERROR,
+            error,
+            [LogContext.PROJECTOR_NAME]: projector.name,
+            [LogContext.GLOBAL_SEQ]: events[i].globalSeq,
+          },
+          "정합성 검사 실패(투영은 커밋됨)",
+        );
+
+        continue;
+      }
+
+      for (const violation of violations) {
+        this.logger.error(
+          {
+            action: LogAction.PROJECTION_INTEGRITY_VIOLATION,
+            [LogContext.PROJECTOR_NAME]: projector.name,
+            [LogContext.READ_MODEL_NAME]: violation.readModelName,
+            [LogContext.SCENE_KEY]: violation.sceneKey,
+            [LogContext.ATTEMPT_NUM]: violation.attemptNum,
+            [LogContext.STREAM_ID]: violation.streamId,
+            [LogContext.GLOBAL_SEQ]: violation.globalSeq,
+            [LogContext.RULE_NAME]: violation.ruleName,
+            [LogContext.AFFECTED_COLUMNS]: violation.affectedColumns,
+            [LogContext.OBSERVED_VALUE]: violation.observedValue,
+            [LogContext.EXPECTED]: violation.expected,
+          },
+          violation.detail,
+        );
+      }
     }
   }
 }

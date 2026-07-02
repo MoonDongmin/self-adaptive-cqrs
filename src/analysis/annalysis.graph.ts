@@ -29,6 +29,10 @@ export function buildAnalysisGraph() {
   graph.addEdge(START, "analyzeRootCause");
   graph.addEdge("analyzeRootCause", "decide");
 
+  // 의사결정 게이트: decision.selected 가 고른 생성기만 실행한다. 아무것도 필요 없으면
+  // (예: 존재하지 않는 카드 이름 404 = insight.card.miss — Read Model 부족 신호 아님) 곧장
+  // aggregate 로 가서 3섹션 모두 INSUFFICIENT_EVIDENCE 센티넬 + '조치 불필요' 결론으로 렌더한다.
+  // '항상 3섹션'은 형태(헤딩)를 render 가 보장하고, 내용은 근거가 있는 섹션만 채운다(억지 생성 금지).
   graph.addConditionalEdges(
     "decide",
     (state) => {

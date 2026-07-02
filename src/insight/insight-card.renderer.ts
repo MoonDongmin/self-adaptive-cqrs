@@ -19,11 +19,10 @@ export class InsightCardRenderer {
       keyParts.push(`갱신 ${card.refreshedAt.toISOString().slice(0, 10)}`);
     }
 
-    const tableHeader: string =
-      "| 필드 | 타입 | 의미 | 예시 |\n| --- | --- | --- | --- |";
-
-    const rows: string[] = card.fields.map((field: InsightCardField) =>
-      this.renderRow(field),
+    // M-Schema(arXiv:2411.08599) 반구조화 표현: 컬럼별 (이름:타입, 의미, PK, 예시) 튜플.
+    // DDL/표 대비 컬럼 설명·예시값이 붙어 소형 LLM의 유사 컬럼 혼동을 줄인다.
+    const tuples: string[] = card.fields.map((field: InsightCardField) =>
+      this.renderTuple(field, card.keyColumns),
     );
 
     // 헤더 줄은 빈 줄로 분리해야 마크다운에서 각각 별도 줄로 렌더된다.
@@ -34,16 +33,30 @@ export class InsightCardRenderer {
       "",
       `키: ${keyParts.join(" · ")}`,
       "",
-      tableHeader,
-      ...rows,
+      "```mschema",
+      `# Table: ${card.name}`,
+      "[",
+      tuples.join(",\n"),
+      "]",
+      "```",
     ].join("\n");
   }
 
-  private renderRow(field: InsightCardField): string {
-    const example: string =
-      field.example === null ? "-" : this.cell(field.example);
+  private renderTuple(field: InsightCardField, keyColumns: string): string {
+    const parts: string[] = [
+      `${this.cell(field.fieldName)}:${this.cell(field.dataType)}`,
+      this.cell(field.meaning),
+    ];
 
-    return `| ${this.cell(field.fieldName)} | ${this.cell(field.dataType)} | ${this.cell(field.meaning)} | ${example} |`;
+    if (keyColumns.includes(field.fieldName)) {
+      parts.push("Primary Key");
+    }
+
+    if (field.example !== null) {
+      parts.push(`Examples: [${this.cell(field.example)}]`);
+    }
+
+    return `(${parts.join(", ")})`;
   }
 
   // 표 셀이 깨지지 않도록 개행·중복 공백을 한 줄로 압축하고 파이프(|)를 이스케이프한다.

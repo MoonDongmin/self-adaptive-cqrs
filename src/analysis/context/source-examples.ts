@@ -40,6 +40,11 @@ const SOURCE_FILES: ReadonlyArray<{
     language: "ts",
   },
   {
+    label: "Projector 구현 — MultiModalProjector(정합성 검사 포함)",
+    relativePath: "src/projection/projector/multimodal.projector.ts",
+    language: "ts",
+  },
+  {
     label: "ProjectionService(주입/catch-up 패턴)",
     relativePath: "src/projection/projection.service.ts",
     language: "ts",

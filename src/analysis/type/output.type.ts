@@ -41,6 +41,23 @@ export type VersionSwitchCodeChange = z.infer<
   typeof versionSwitchCodeChangeSchema
 >;
 
+// §3 API Versioning = Keep a Changelog(6 카테고리) + 마이그레이션 절차.
+export const changelogCategorySchema = z.enum([
+  "Added",
+  "Changed",
+  "Deprecated",
+  "Removed",
+  "Fixed",
+  "Security",
+]);
+export type ChangelogCategory = z.infer<typeof changelogCategorySchema>;
+
+export const changelogEntrySchema = z.object({
+  category: changelogCategorySchema,
+  description: z.string(),
+});
+export type ChangelogEntry = z.infer<typeof changelogEntrySchema>;
+
 export const versionSwitchOutputSchema = z.object({
   readModelName: z.string(),
   fromVersion: z.string(),
@@ -49,7 +66,11 @@ export const versionSwitchOutputSchema = z.object({
   triggeringEvidence: z.string(), // 로그 윈도우 앵커 행 직접 인용 + v1 코드의 어느 부분이 문제인지
   v1Compatibility: z.string(), // 유지되는 v1 자산(테이블·엔드포인트·프로젝터 name)
   codeChanges: z.array(versionSwitchCodeChangeSchema).min(1), // 최소 1개의 실제 변경
-  rollbackPlan: z.string(),
+  changelogEntries: z.array(changelogEntrySchema).default([]), // Unreleased 엔트리(6 카테고리)
+  backwardCompatibleChanges: z.array(z.string()).default([]), // 하위호환 변경
+  breakingChanges: z.array(z.string()).default([]), // 파괴적 변경(없으면 빈 배열)
+  testBeforeCutover: z.string().default(""), // 컷오버 전 검증 절차
+  rollbackPlan: z.string(), // 롤백 창/조건
 });
 export type VersionSwitchOutput = z.infer<typeof versionSwitchOutputSchema>;
 
@@ -72,12 +93,17 @@ export const solutionOptionSchema = z.object({
 });
 export type SolutionOption = z.infer<typeof solutionOptionSchema>;
 
+// §1 권고 = ADR/MADR 스켈레톤. 근거(evidence/observations) 먼저, 합성 결론(consequences 등)은 뒤.
 export const recommendationDocsOutputSchema = z.object({
   targetReadModel: z.string(),
-  evidence: z.array(logEvidenceSchema).min(1), // 어디서 에러가 났나(로그 인용)
-  observations: z.array(z.string()).min(1), // 실제 컬럼·코드를 대조해 읽히는 상황
-  solutionOptions: z.array(solutionOptionSchema).min(1), // 해결책(가능하면 복수)
-  recommendedOption: z.string(), // 권장 옵션 제목 + 한 줄 사유
+  evidence: z.array(logEvidenceSchema).min(1), // Context 근거: 어디서 에러가 났나(로그 인용)
+  observations: z.array(z.string()).min(1), // Context 관찰: 실제 컬럼·코드를 대조해 읽히는 상황
+  decisionDrivers: z.array(z.string()).default([]), // Decision Drivers(선택 기준 축)
+  solutionOptions: z.array(solutionOptionSchema).min(1), // Considered Options(비추천=기각 대안, 진 이유는 tradeoffs)
+  recommendedOption: z.string(), // Decision Outcome: 권장 옵션 제목 + 한 줄 사유
+  consequencesPositive: z.array(z.string()).default([]), // Consequences(+)
+  consequencesNegative: z.array(z.string()).default([]), // Consequences(−)
+  nonGoals: z.array(z.string()).default([]), // 이 권고가 손대지 않는 범위
 });
 export type RecommendationDocsOutput = z.infer<
   typeof recommendationDocsOutputSchema
@@ -85,7 +111,11 @@ export type RecommendationDocsOutput = z.infer<
 
 // ── newReadModel: 실제 코드(스키마·마이그레이션·프로젝터·배선)로 신규 생성 ──
 export const newReadModelOutputSchema = z.object({
-  proposedName: z.string(),
+  // Read Model 테이블명 컨벤션: read_ 접두 + 스네이크. zod가 구조적으로 강제하므로
+  // LLM이 접두를 빼먹으면 구조적 출력 검증 단계에서 재시도된다.
+  proposedName: z
+    .string()
+    .regex(/^read_[a-z0-9_]+$/, "Read Model 이름은 read_ 접두 스네이크 케이스"),
   purpose: z.string(),
   rationale: z.string(), // 왜 '신규'인가: 앵커 로그 인용 + 기존 모델이 못 채우는 이유 + 왜 버전교체/보강이 아닌지
   sourceEvents: z.array(z.string()), // 어떤 이벤트에서 투영하나
