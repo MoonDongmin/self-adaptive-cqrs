@@ -107,4 +107,10 @@ export class SensorValueConsumer implements OnModuleInit, OnModuleDestroy {
       (left, right) => left.globalSequence - right.globalSequence,
     );
   }
+
+  // 관찰(LLM 판정) 실패 시 드레인한 배치를 버퍼 앞에 되돌린다. Kafka 오프셋은 수신
+  // 즉시 resolve 되므로, 여기서 되돌리지 않으면 판정 실패 = 메시지 영구 유실이 된다.
+  requeueFront(messages: SensorValueMessage[]): void {
+    this.buffer.unshift(...messages);
+  }
 }

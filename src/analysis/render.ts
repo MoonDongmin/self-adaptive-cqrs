@@ -74,6 +74,7 @@ export function renderEvidenceContext(
 export function renderRootCause(rootCause: RootCauseAnalysis): string {
   return [
     "## 근본원인 분석",
+    `- 이상 유형: ${rootCause.anomalyKind}`,
     `- 요약: ${rootCause.summary}`,
     `- 타임라인: ${rootCause.timeline}`,
     `- 실패한 요청 의도: ${rootCause.failedIntent}`,
@@ -150,7 +151,7 @@ function renderVerdict(input: ReportInput, targetReadModel: string): string {
       ? "재생성"
       : "보강";
 
-  return `> 결론(TL;DR): \`${targetReadModel}\`을(를) ${action}한다 — ${input.rootCause.summary.trim()} (심각도: ${severityLabel(input)})`;
+  return `> 결론(TL;DR): \`${targetReadModel}\`을(를) ${action}한다 — ${input.rootCause.summary.trim()} (이상 유형: ${input.rootCause.anomalyKind} · 심각도: ${severityLabel(input)})`;
 }
 
 // 근거(원자료)는 결론보다 먼저, 상단에. 출처 구분용 얕은 태그로만 감싼다(중첩 XML 없음).

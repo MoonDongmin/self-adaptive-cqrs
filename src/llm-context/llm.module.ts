@@ -1,4 +1,6 @@
 import { Module } from '@nestjs/common';
+import { DIAGNOSIS_TOOLKIT } from '@/analysis/tools/diagnosis-toolkit';
+import { DiagnosisToolkitImpl } from '@/analysis/tools/diagnosis-toolkit.impl';
 import { InsightModule } from '@/insight/insight.module';
 import { LogConsumer } from '@/llm-context/kafka/log-consumer';
 import { LlmContextController } from '@/llm-context/llm-context.controller';
@@ -15,6 +17,10 @@ import { LogWindowRepositoryImpl } from '@/llm-context/repository/log-window.rep
     {
       provide: LOG_WINDOW,
       useClass: LogWindowRepositoryImpl,
+    },
+    {
+      provide: DIAGNOSIS_TOOLKIT,
+      useClass: DiagnosisToolkitImpl,
     },
   ],
 })

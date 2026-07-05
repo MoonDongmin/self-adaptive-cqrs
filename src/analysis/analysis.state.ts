@@ -31,6 +31,12 @@ export const AnalysisState = Annotation.Root({
     default: () => null,
     reducer: (_prev, next) => next,
   }),
+  // 진단 에이전트의 도구 호출 궤적(도구·입력·결과 미리보기). 산출 Docs 에는 싣지 않고
+  // (Context Rot 방지) 서비스가 로그로 남겨 재현성·평가(LLM judge)에 쓴다.
+  diagnosisTrajectory: Annotation<string[]>({
+    default: () => [],
+    reducer: (_prev, next) => next,
+  }),
   decision: Annotation<AnalysisDecision | null>({
     default: () => null,
     reducer: (_prev, next) => next,

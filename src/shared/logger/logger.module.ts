@@ -3,6 +3,7 @@ import { randomUUID } from 'crypto';
 import { Response } from 'express';
 import { LoggerModule } from 'nestjs-pino';
 import { join } from 'path';
+import { stdSerializers } from 'pino';
 import type { Options } from 'pino-http';
 
 const LOG_FILE_PATH: string = join(
@@ -66,6 +67,10 @@ const basePinoHttpOptions: Options = {
   serializers: {
     req: (req) => ({ method: req.method, url: req.url }),
     res: (res) => ({ statusCode: res.statusCode }),
+    // 'err' 키는 pino 가 기본 직렬화하지만 'error' 키는 안 한다 — Error 는 열거 가능
+    // 속성이 없어 {} 로 소실된다. 스택 트레이스가 log_event.payload 까지 흘러야
+    // 진단 에이전트(search_logs)가 '코드 어느 줄에서 터졌나'를 짚을 수 있다.
+    error: stdSerializers.err,
   },
   redact: {
     paths: [

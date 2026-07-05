@@ -4,6 +4,8 @@ import { Inject, Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/commo
 import { PinoLogger } from 'nestjs-pino';
 import { join } from 'path';
 import { buildAnalysisGraph } from '@/analysis/annalysis.graph';
+import { buildReportFileName } from '@/analysis/report-filename';
+import { DIAGNOSIS_TOOLKIT, type DiagnosisToolkit } from '@/analysis/tools/diagnosis-toolkit';
 import { validateDocs } from '@/analysis/validate-docs';
 import { InsightService } from '@/insight/insight.service';
 import { LogConsumer } from '@/llm-context/kafka/log-consumer';
@@ -17,7 +19,7 @@ import { LogAction, LogContext } from '@/shared/logger/logging-context';
 export class LLMContextService implements OnModuleInit, OnModuleDestroy {
   private timer: NodeJS.Timeout | null = null;
   private stopped: boolean = false;
-  private readonly graph = buildAnalysisGraph();
+  private readonly graph: ReturnType<typeof buildAnalysisGraph>;
 
   constructor(
     private readonly logger: PinoLogger,
@@ -25,8 +27,12 @@ export class LLMContextService implements OnModuleInit, OnModuleDestroy {
     private readonly insight: InsightService,
     @Inject(LOG_WINDOW)
     private readonly logWindow: LogWindowRepository,
+    @Inject(DIAGNOSIS_TOOLKIT)
+    diagnosisToolkit: DiagnosisToolkit,
   ) {
     this.logger.setContext(LLMContextService.name);
+    // 근본원인 노드를 tool-calling 에이전트로 승격(로그 DB·Insight 카드 직접 조회).
+    this.graph = buildAnalysisGraph(diagnosisToolkit);
   }
 
   onModuleInit(): void {
@@ -113,7 +119,13 @@ export class LLMContextService implements OnModuleInit, OnModuleDestroy {
     });
 
     const report: string = result.report ?? "";
-    const path = await this.writeReport(report, checked);
+    // 에러 발생 시각 = 윈도우의 트립 앵커 행 시각(없으면 분석 시각으로 폴백).
+    const occurredAt: Date =
+      window.rows.find((row) => row.isAnchor)?.time ?? new Date();
+    const path = await this.writeReport(
+      report,
+      buildReportFileName(occurredAt, id),
+    );
 
     // Docs 계약 검증(결정론). 실패해도 산출물은 남기되 결과를 기록한다.
     // 주의: 이 서비스의 로그도 Kafka 로 재유입돼 prejudge 를 거치므로, 검증 실패를
@@ -127,6 +139,8 @@ export class LLMContextService implements OnModuleInit, OnModuleDestroy {
         docsValid: validation.valid,
         docsValidationErrors: validation.errors,
         docsValidationWarnings: validation.warnings,
+        // 진단 에이전트 궤적(어떤 도구를 어떤 입력으로 불렀나) — 재현성·judge 평가용.
+        diagnosisTrajectory: result.diagnosisTrajectory,
       },
       "분석 리포트 생성",
     );
@@ -134,11 +148,10 @@ export class LLMContextService implements OnModuleInit, OnModuleDestroy {
 
   private async writeReport(
     report: string,
-    checked: PrejudgeChecked,
+    fileName: string,
   ): Promise<string> {
-    const id = checked.tripCorrelationIds[0] ?? "background";
-    const dir = join(process.cwd(), "src/analysis/output");
-    const path = join(dir, `analysis-${id}.md`);
+    const dir = join(process.cwd(), "llm-docs");
+    const path = join(dir, fileName);
 
     await fs.promises.mkdir(dir, { recursive: true });
     await fs.promises.writeFile(path, report);

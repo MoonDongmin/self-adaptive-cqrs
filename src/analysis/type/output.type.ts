@@ -11,6 +11,9 @@ export const outputKindSchema = z.enum([
 export type OutputKind = z.infer<typeof outputKindSchema>;
 
 export const rootCauseAnalysisSchema = z.object({
+  // open-set 이상 유형: 알려진 유형명 또는 어디에도 안 맞으면 모델이 창안한 새 유형명.
+  // 닫힌 enum 이 아닌 이유 — 미리 열거하지 않은 오류도 이름 붙여 보고하게 한다(미지 유형 탐지).
+  anomalyKind: z.string().default("미분류"),
   summary: z.string(), // 한 문단 요약
   timeline: z.string(), // 시간순 재구성
   failedIntent: z.string(), // 무엇을 보고 싶었는데 못 봤나

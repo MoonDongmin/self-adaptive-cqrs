@@ -16,6 +16,11 @@ export class InsightService {
     this.logger.setContext(InsightService.name);
   }
 
+  // 진단 도구(list_insight_cards)용 카탈로그 이름 목록 패스스루.
+  async listEntityNames(): Promise<string[]> {
+    return this.catalog.listEntityNames();
+  }
+
   async renderCard(entityName: string): Promise<string | null> {
     const card: InsightCardData | null =
       await this.catalog.findCardData(entityName);

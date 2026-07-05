@@ -1,3 +1,15 @@
+import {
+  readGripResultColumnSchema,
+  sensorDimensionSchema,
+} from "@/analysis/type/output.type";
+
+// zod enum 의 허용값을 프롬프트 JSON 예시용 리터럴 유니온 문자열로 파생한다.
+// 허용값 나열을 스키마(output.type.ts) 한 곳에만 두어, 프롬프트와 검증기가
+// 어긋나는 드리프트를 막는다(sensorDimension 미나열로 검증이 상시 실패했던 사례).
+function enumSpec(options: readonly string[]): string {
+  return options.map((option) => `"${option}"`).join("|");
+}
+
 export const ROOT_CAUSE_PROMPT: string = [
   "너는 로그 이상 **근본원인 분석가**다. 아래 ±N 윈도우(트레이스 + 앞뒤 맥락 + 빈도)를 보고,",
   "(a) 무슨 일이 일어났는지 시간순으로 재구성하고, (b) 어떤 요청이 무엇을 원했는데 왜 실패했는지,",
@@ -5,11 +17,32 @@ export const ROOT_CAUSE_PROMPT: string = [
   "(ii) 특정 이벤트의 payload 결함이나 투영 파이프라인의 에러 처리 정책 문제(예: 결함 이벤트 1건이",
   "배치 트랜잭션 전체를 롤백시켜 정상 이벤트까지 투영을 막는 poison event)인지.",
   "suspectedReadModelGap 에는 (i)이면 부족한 구조를, (ii)이면 '구조적 부족 아님 — <실제 원인>' 형식으로 적어라.",
+  "(d) anomalyKind 에 이상 유형명을 적어라. 알려진 유형 — '스키마 드리프트(신규 키 유입)',",
+  "'투영 정합성 위반', '카드 없는 Read Model 테이블', '요청 충족 실패', '센서 베이스라인 이탈' —",
+  "중 맞는 것이 있으면 그 이름을, 어디에도 맞지 않으면 **새 유형명을 직접 창안해** 적어라(강제 분류 금지).",
   "추론은 자유롭게 산문으로 한 뒤,",
   "마지막에 아래 JSON만 코드블록으로 출력:",
   "```json",
-  '{ "summary": string, "timeline": string, "failedIntent": string, "suspectedReadModelGap": string }',
+  '{ "anomalyKind": string, "summary": string, "timeline": string, "failedIntent": string, "suspectedReadModelGap": string }',
   "```",
+].join("\n");
+
+// 진단 에이전트 전용 부가 지시: 도구 사용 규범. rootCause 프롬프트 뒤에 붙여 주입한다.
+export const DIAGNOSIS_TOOLS_GUIDE: string = [
+  "[증거 수집 도구 — 판정 전에 사용하라]",
+  "너에게는 시스템의 실제 상태를 조회하는 도구가 있다. 주어진 윈도우/배치는 '트리거 시점의",
+  "발췌'일 뿐이므로, 단정하기 전에 도구로 가설을 검증하라:",
+  "  - search_logs: 앵커 correlationId 의 전체 트레이스 추적, 동일 action 의 과거 반복 여부,",
+  "    level>=40 에러 이력 확인. 발췌에 없는 앞뒤 맥락이 필요할 때. 에러 로그에는 stack",
+  "    필드(스택 트레이스 상단 프레임)가 실릴 수 있다 — 코드 위치의 1차 단서다.",
+  "  - read_source_code: stack 의 파일:라인을 열람해 '그 코드가 왜 실패했나'를 확인한다.",
+  "    스택→소스 순서를 지켜라: 먼저 search_logs 로 위치를 얻고, 그 파일의 해당 라인",
+  "    주변만 읽어라(파일 전체 훑기 금지). 코드 인용은 실제로 읽은 줄만 하라.",
+  "  - list_insight_cards → get_insight_card: 로그가 가리키는 Read Model/이벤트의 **현재 실제",
+  "    스키마**와 대조. '컬럼이 없다/모델이 없다'는 주장은 반드시 카드로 확인한 뒤에만 하라.",
+  "  - get_sensor_baseline: 관측값의 물리적 타당성 판정 기준.",
+  "규칙: 필요한 도구만 최소로 호출하라(왕복 상한 있음). 도구가 반환한 사실만 인용하고,",
+  "조회하지 않은 값을 지어내지 마라. 도구 결과가 초기 발췌와 모순되면 도구 결과를 우선하라.",
 ].join("\n");
 
 export const DECISION_PROMPT: string = [
@@ -189,9 +222,11 @@ export const SENSOR_ROOT_CAUSE_PROMPT: string = [
   "주입된 베이스라인을 보고, (a) 어떤 값이 어떤 기준선을 어떻게 벗어났는지 배치순으로 정리하고,",
   "(b) 그 값이 read_grip_result 의 어떤 컬럼을 어떻게 오염시키는지, (c) 어떤 Read Model 정합성/구조의",
   "부족 때문에 이 이상값이 조용히 통과했는지 추론하라(구조적 zod 검증만 있고 값 이상 판정이 없다는 점).",
+  "(d) anomalyKind 에 이상 유형명을 적어라. 전형적으로 '센서 베이스라인 이탈'이지만, 조회한 증거가",
+  "다른 유형(예: 투영 정합성 위반)이나 미지의 패턴을 가리키면 그 이름을(없으면 창안해서) 적어라.",
   "추론은 자유롭게 산문으로 한 뒤, 마지막에 아래 JSON만 코드블록으로 출력:",
   "```json",
-  '{ "summary": string, "timeline": string, "failedIntent": string, "suspectedReadModelGap": string }',
+  '{ "anomalyKind": string, "summary": string, "timeline": string, "failedIntent": string, "suspectedReadModelGap": string }',
   "```",
 ].join("\n");
 
@@ -205,8 +240,10 @@ export const DATA_QUALITY_PROMPT: string = [
   "  - sensorEvidence 를 가장 먼저 채운다. observedValue 는 제공된 배치 텍스트의 정확한 부분문자열이어야 하며",
   "    반올림/재구성 금지. baselineRuleName·baselineExpectedRange 는 주입된 베이스라인에서 그대로 인용한다",
   "    (베이스라인에 규칙 없는 차원은 기대 범위를 지어내지 말고 그 근거를 생략).",
-  "  - sceneKey/attemptNumber/streamId/globalSequence 는 배치에 실제 존재하는 값만. affectedColumn 은",
-  "    read_grip_result 의 실제 컬럼. deviation 은 계산된 델타(막연한 표현 금지).",
+  "  - sceneKey/attemptNumber/streamId/globalSequence 는 배치에 실제 존재하는 값만. affectedColumn 과",
+  "    sensorDimension 은 출력 JSON 스키마에 열거된 값 중에서만 고른다 — 점 표기 하위 차원 금지",
+  '    (예: "grip2dPose.x" ✗ → "grip2dPose" ✓), Insight 카드의 snake_case 컬럼명 금지',
+  '    (예: "grip_2d_pose" ✗ → "grip2dPose" ✓). deviation 은 계산된 델타(막연한 표현 금지).',
   "  - 최소 1개 근거가 뒷받침하지 않는 observation 을 쓰지 말고, 최소 1개 observation 을 다루지 않는",
   "    solutionOption 을 쓰지 마라.",
   "",
@@ -237,7 +274,9 @@ export const DATA_QUALITY_PROMPT: string = [
   '{ "statusLine": string, "targetReadModel": string, "severityTier": "critical"|"warning"|"info",',
   '  "severityJustification": string,',
   '  "sensorEvidence": [{ "sceneKey": string, "attemptNumber": number, "streamId": string, "globalSequence": number,',
-  '    "affectedColumn": string, "sensorDimension": string, "observedValue": string, "baselineRuleName": string,',
+  `    "affectedColumn": ${enumSpec(readGripResultColumnSchema.options)},`,
+  `    "sensorDimension": ${enumSpec(sensorDimensionSchema.options)},`,
+  '    "observedValue": string, "baselineRuleName": string,',
   '    "baselineExpectedRange": string, "deviation": string, "interpretation": string }],',
   '  "observations": string[], "blastRadius": string[],',
   '  "rootCauseLane": "upstreamSensorImplausible"|"projectionOrPipelineFault"|"staleBaseline",',

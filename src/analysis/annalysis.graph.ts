@@ -5,8 +5,9 @@ import { dataQualityNode } from '@/analysis/nodes/data-quality.node';
 import { decisionNode } from '@/analysis/nodes/decision.node';
 import { newReadModelNode } from '@/analysis/nodes/new-read-model.node';
 import { recommendationDocsNode } from '@/analysis/nodes/recommendation-docs.node';
-import { rootCauseNode } from '@/analysis/nodes/root-cause.node';
+import { makeRootCauseNode } from '@/analysis/nodes/root-cause.node';
 import { versionSwitchNode } from '@/analysis/nodes/version-switch.node';
+import { DiagnosisToolkit } from '@/analysis/tools/diagnosis-toolkit';
 import { OutputKind } from '@/analysis/type/output.type';
 
 const ROUTE: Record<OutputKind, string> = {
@@ -16,9 +17,11 @@ const ROUTE: Record<OutputKind, string> = {
   dataQualityRecommendation: "genDataQuality",
 };
 
-export function buildAnalysisGraph() {
+// 툴킷이 주입되면 근본원인 노드가 tool-calling 에이전트로 동작한다(로그 DB·Insight 카드·
+// 베이스라인 직접 조회). null 이면 기존 one-shot 판정(하위호환).
+export function buildAnalysisGraph(toolkit: DiagnosisToolkit | null = null) {
   const graph = new StateGraph(AnalysisState)
-    .addNode("analyzeRootCause", rootCauseNode)
+    .addNode("analyzeRootCause", makeRootCauseNode(toolkit))
     .addNode("decide", decisionNode)
     .addNode("genVersionSwitch", versionSwitchNode)
     .addNode("genRecommendationDocs", recommendationDocsNode)

@@ -48,6 +48,7 @@ export async function prejudge(
     model: PREJUDGE_CONFIG.model,
     apiKey: PREJUDGE_CONFIG.apiKey,
     temperature: PREJUDGE_CONFIG.temperature,
+    maxTokens: PREJUDGE_CONFIG.maxOutputTokens,
     configuration: {
       baseURL: PREJUDGE_CONFIG.baseUrl,
     },

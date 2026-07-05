@@ -15,6 +15,13 @@ export const sensorObserverVerdictSchema = z.object({
 });
 export type SensorObserverVerdict = z.infer<typeof sensorObserverVerdictSchema>;
 
+// 관찰자는 레코드×차원 근거 서술이 필요해 스크리너 상한(1024)으로는 JSON 도달 전에
+// 잘린다(finish_reason=length → extractJson 크래시 — 2026-07-05 재현). 프롬프트의
+// '이상 차원만 서술' 규칙과 쌍으로, 출력 상한도 별도로 여유를 둔다.
+const OBSERVER_MAX_OUTPUT_TOKENS: number = Number(
+  process.env.SENSOR_OBSERVER_MAX_OUTPUT_TOKENS ?? 2048,
+);
+
 // 싼 모델(PREJUDGE_CONFIG)로 배치 값 + 베이스라인을 직접 판정한다(2-pass 의 1차 게이트).
 export async function observeSensorBatch(
   batch: SensorValueMessage[],
@@ -24,6 +31,7 @@ export async function observeSensorBatch(
     model: PREJUDGE_CONFIG.model,
     apiKey: PREJUDGE_CONFIG.apiKey,
     temperature: PREJUDGE_CONFIG.temperature,
+    maxTokens: OBSERVER_MAX_OUTPUT_TOKENS,
     configuration: { baseURL: PREJUDGE_CONFIG.baseUrl },
   });
 
