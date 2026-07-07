@@ -202,10 +202,7 @@ export class LogWindowRepositoryImpl implements LogWindowRepository {
 
     const kept = new Set<number>();
     for (const signalIndex of signalIndices) {
-      const start = Math.max(
-        0,
-        signalIndex - WINDOW_CONFIG.contextBeforeLines,
-      );
+      const start = Math.max(0, signalIndex - WINDOW_CONFIG.contextBeforeLines);
       const end = Math.min(
         rows.length - 1,
         signalIndex + WINDOW_CONFIG.contextAfterLines,

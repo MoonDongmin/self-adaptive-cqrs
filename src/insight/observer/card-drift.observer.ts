@@ -40,8 +40,7 @@ export class CardDriftObserver {
         }
         const last = this.reportedAt.get(tableName);
         return (
-          last === undefined ||
-          now - last > CARD_DRIFT_CONFIG.reportSuppressMS
+          last === undefined || now - last > CARD_DRIFT_CONFIG.reportSuppressMS
         );
       });
 

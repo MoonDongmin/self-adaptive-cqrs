@@ -7,11 +7,11 @@ import { buildAnalysisGraph } from '@/analysis/annalysis.graph';
 import { readSensorBaseline } from '@/analysis/context/sensor-baseline';
 import { buildReportFileName } from '@/analysis/report-filename';
 import { DIAGNOSIS_TOOLKIT, type DiagnosisToolkit } from '@/analysis/tools/diagnosis-toolkit';
-import { renderSensorBatch } from '@/analysis/render-sensor';
 import { SensorAnomalyFinding } from '@/analysis/type/output.type';
 import { InsightService } from '@/insight/insight.service';
 import { SENSOR_OBSERVER_CONFIG } from '@/projection/kafka/sensor-observer.config';
 import { SensorValueMessage } from '@/projection/kafka/sensor-value.message';
+import { renderAnnotatedSensorBatch } from '@/sensor-observer/sensor-batch-annotator';
 import { observeSensorBatch, SensorObserverVerdict } from '@/sensor-observer/sensor-screener';
 import { SensorValueConsumer } from '@/sensor-observer/sensor-value.consumer';
 import { LogAction, LogContext } from '@/shared/logger/logging-context';
@@ -140,7 +140,7 @@ export class SensorObserverService implements OnModuleInit, OnModuleDestroy {
   ): Promise<void> {
     const finding: SensorAnomalyFinding = {
       batch,
-      batchText: renderSensorBatch(batch),
+      batchText: renderAnnotatedSensorBatch(batch),
       reason: verdict.reason,
       offendingSceneKeys: verdict.offendingSceneKeys,
       baselineText,
@@ -159,7 +159,9 @@ export class SensorObserverService implements OnModuleInit, OnModuleDestroy {
     // 에러 발생 시각 = 문제 scene 레코드의 occurredAt(없으면 배치 첫 레코드, 그마저 없으면 지금).
     const offendingMessage: SensorValueMessage | undefined =
       batch.find((message) => message.sceneKey === id) ?? batch[0];
-    const parsedOccurredAt = new Date(offendingMessage?.occurredAt ?? Date.now());
+    const parsedOccurredAt = new Date(
+      offendingMessage?.occurredAt ?? Date.now(),
+    );
     const occurredAt: Date = Number.isNaN(parsedOccurredAt.getTime())
       ? new Date()
       : parsedOccurredAt;
@@ -180,10 +182,7 @@ export class SensorObserverService implements OnModuleInit, OnModuleDestroy {
     );
   }
 
-  private async writeReport(
-    report: string,
-    fileName: string,
-  ): Promise<string> {
+  private async writeReport(report: string, fileName: string): Promise<string> {
     const dir = join(process.cwd(), "llm-docs");
     const path = join(dir, fileName);
 

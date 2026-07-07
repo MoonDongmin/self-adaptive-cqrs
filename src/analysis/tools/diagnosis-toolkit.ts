@@ -51,10 +51,19 @@ export function buildDiagnosisTools(toolkit: DiagnosisToolkit) {
         "correlationId 로 한 요청의 전체 트레이스를 추적하거나, action/minLevel 로 " +
         "반복 패턴·에러 이력을 확인할 때 쓴다. 조건이 없으면 최신 로그를 반환한다.",
       schema: z.object({
-        correlationId: z.string().optional().describe("요청 추적 id (전체 트레이스 조회)"),
-        action: z.string().optional().describe("action 필드 정확 일치 (예: projection.map.failed)"),
+        correlationId: z
+          .string()
+          .optional()
+          .describe("요청 추적 id (전체 트레이스 조회)"),
+        action: z
+          .string()
+          .optional()
+          .describe("action 필드 정확 일치 (예: projection.map.failed)"),
         sceneKey: z.string().optional().describe("센서 scene 키 정확 일치"),
-        minLevel: z.number().optional().describe("이 pino 레벨 이상만 (40=warn, 50=error)"),
+        minLevel: z
+          .number()
+          .optional()
+          .describe("이 pino 레벨 이상만 (40=warn, 50=error)"),
         limit: z.number().optional().describe("최대 행 수 (기본 20, 상한 40)"),
       }),
     },
@@ -80,7 +89,9 @@ export function buildDiagnosisTools(toolkit: DiagnosisToolkit) {
         "Insight 카드 1장(Read Model 또는 Event 의 컬럼·의미·예시)을 반환한다. " +
         "로그가 가리키는 테이블/이벤트의 현재 스키마와 대조할 때 쓴다.",
       schema: z.object({
-        entityName: z.string().describe("카드 엔티티 이름 (예: read_grip_result)"),
+        entityName: z
+          .string()
+          .describe("카드 엔티티 이름 (예: read_grip_result)"),
       }),
     },
   );
@@ -108,9 +119,17 @@ export function buildDiagnosisTools(toolkit: DiagnosisToolkit) {
       schema: z.object({
         filePath: z
           .string()
-          .describe("저장소 기준 상대 경로 또는 절대 경로 (예: src/projection/projector/grip-result.projector.ts)"),
-        startLine: z.number().optional().describe("시작 라인(1부터). 생략 시 파일 처음"),
-        endLine: z.number().optional().describe("끝 라인. 생략 시 시작+80줄 (한 번에 최대 120줄)"),
+          .describe(
+            "저장소 기준 상대 경로 또는 절대 경로 (예: src/projection/projector/grip-result.projector.ts)",
+          ),
+        startLine: z
+          .number()
+          .optional()
+          .describe("시작 라인(1부터). 생략 시 파일 처음"),
+        endLine: z
+          .number()
+          .optional()
+          .describe("끝 라인. 생략 시 시작+80줄 (한 번에 최대 120줄)"),
       }),
     },
   );

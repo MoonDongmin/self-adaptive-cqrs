@@ -7,7 +7,9 @@ export interface PayloadDrift {
 
 // 스키마(스트리퍼)가 아는 top-level 키. 카드가 아니라 zod shape 을 진실로 쓰는 이유:
 // strip 을 일으키는 주체와 비교 기준을 일치시켜야 "벗겨질 키 = 감지될 키"가 보장된다.
-const KNOWN_KEYS: ReadonlySet<string> = new Set(Object.keys(toyDataSchema.shape));
+const KNOWN_KEYS: ReadonlySet<string> = new Set(
+  Object.keys(toyDataSchema.shape),
+);
 
 const SAMPLE_MAX_LENGTH = 120;
 

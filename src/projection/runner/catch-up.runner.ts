@@ -1,11 +1,7 @@
 import { Inject, Injectable, Optional } from '@nestjs/common';
 import { PinoLogger } from 'nestjs-pino';
 import { SENSOR_VALUE_PUBLISHER, type SensorValuePublisher } from '@/projection/kafka/sensor-value.publisher';
-import {
-  IntegrityViolation,
-  ProjectionResult,
-  Projector,
-} from '@/projection/projector/projector';
+import { IntegrityViolation, ProjectionResult, Projector } from '@/projection/projector/projector';
 import {
   EVENT_STORE_READER,
   EventStoreEventRow,

@@ -91,7 +91,7 @@ flowchart LR
 
   subgraph LLMZONE["LLM 영역 (본 연구)"]
     PRE["Prejudge<br/>(로그 1차 선별, 소형 모델)"]
-    SOBS["Sensor Screener<br/>(베이스라인 비교, 소형 모델)"]
+    SOBS["Sensor Screener<br/>(통계 주석 + 베이스라인 비교, 소형 모델)"]
     GRAPH["분석 그래프<br/>(LangGraph StateGraph)"]
     TOOLS["Diagnosis Toolkit<br/>(진단 도구 5종)"]
     KAFKA1 --> PRE
@@ -195,7 +195,7 @@ flowchart TB
   subgraph LANE2["센서 레인"]
     K2[["Kafka: sensor-values"]]
     F2["SensorValueConsumer<br/>(배치 8개 단위)"]
-    P2{"Sensor Screener<br/>(소형 LLM + 베이스라인)"}
+    P2{"Sensor Screener<br/>(소형 LLM + 통계 주석 + 베이스라인)"}
     K2 --> F2 --> P2
   end
 
@@ -397,7 +397,7 @@ re-ask 2회 · 전체 호출 8회)과 도구 결과 4,000자 truncate가 무한 
 | `search_logs` | 로그 DB(`log_event`) 조건 조회 — correlationId로 한 요청의 전체 트레이스 추적, action/minLevel로 반복 패턴·에러 이력 확인. payload의 `err`/`error` 키에서 스택 **상단 6프레임만 발췌**해 동봉(전체 payload는 토큰 잠식이라 미포함) | correlationId · action · sceneKey · minLevel · limit | limit 상한 40행 · 결과 4,000자 truncate |
 | `list_insight_cards` | 카탈로그의 엔티티(Read Model·Event) 이름 목록 — 어떤 카드가 존재하는지 파악하는 탐색 진입점 | (없음) | 4,000자 truncate |
 | `get_insight_card` | 카드 1장(컬럼·의미·예시) 반환 — 로그가 가리키는 테이블/이벤트의 현재 스키마와 대조 | entityName | 4,000자 truncate |
-| `get_sensor_baseline` | 수기 베이스라인(규칙명·기대범위) 반환 — 관측값의 물리적 타당성과 이탈 정도 판정 | (없음) | 4,000자 truncate |
+| `get_sensor_baseline` | 수기 베이스라인(규칙명·기대범위·분포 통계) 반환 — 관측값의 물리적 타당성과 이탈 정도(robust-z·회전행렬 항등식) 판정 | (없음) | 4,000자 truncate |
 | `read_source_code` | 소스 파일을 라인 번호와 함께 읽기 전용 열람 — 스택의 파일:라인을 열어 "코드 어느 줄이 왜 실패했나" 확인 | filePath · startLine · endLine | **default-deny 경로 경계**: 정규화 후 저장소 내부 + 최상위 `src/`·`dist/`만 허용(`../` 탈출, `.env`, `node_modules`, `src/../.env` 위장 탈출 차단) · 한 번에 최대 120줄 · 파일 없음은 throw 대신 에이전트가 읽을 수 있는 실패 메시지 |
 
 **표 1.** 진단 도구 명세. 도구 description은 모델이 도구를 고르는 유일한 근거이므로

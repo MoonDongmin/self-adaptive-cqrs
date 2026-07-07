@@ -130,5 +130,7 @@ export async function invokeAgentNode<T>(
     }
   }
 
-  throw lastError ?? new Error("에이전트 루프가 최종 출력 없이 호출 상한에 도달");
+  throw (
+    lastError ?? new Error("에이전트 루프가 최종 출력 없이 호출 상한에 도달")
+  );
 }

@@ -1,12 +1,12 @@
-import { AnalysisState } from "@/analysis/analysis.state";
-import { invokeNode } from "@/analysis/nodes/invoke";
-import { PROJECTION_MAPPING_PROMPT } from "@/analysis/prompts";
-import { renderEvidenceContext, renderRootCause } from "@/analysis/render";
+import { AnalysisState } from '@/analysis/analysis.state';
+import { invokeNode } from '@/analysis/nodes/invoke';
+import { PROJECTION_MAPPING_PROMPT } from '@/analysis/prompts';
+import { renderEvidenceContext, renderRootCause } from '@/analysis/render';
 import {
   NewReadModelOutput,
   ProjectionMappingOutput,
   projectionMappingOutputSchema,
-} from "@/analysis/type/output.type";
+} from '@/analysis/type/output.type';
 
 // 결정론 사후검증: 매핑 행의 양끝이 실재하는 것만 남긴다(환각 행 strip).
 // - targetColumn 은 방금 설계된 newReadModel.fields 에 있어야 하고,

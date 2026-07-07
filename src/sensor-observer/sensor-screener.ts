@@ -1,9 +1,9 @@
 import { HumanMessage, SystemMessage } from '@langchain/core/messages';
 import { ChatOpenAI } from '@langchain/openai';
 import { z } from 'zod';
-import { renderSensorBatch } from '@/analysis/render-sensor';
 import { PREJUDGE_CONFIG } from '@/llm-context/screener/prejudge.config';
 import { SensorValueMessage } from '@/projection/kafka/sensor-value.message';
+import { renderAnnotatedSensorBatch } from '@/sensor-observer/sensor-batch-annotator';
 import { SENSOR_OBSERVER_PROMPT } from '@/sensor-observer/sensor-observer.prompt';
 import { contentToString, extractJson } from '@/shared/llm/llm-json';
 
@@ -38,8 +38,8 @@ export async function observeSensorBatch(
   const system: string = [SENSOR_OBSERVER_PROMPT, baselineText].join("\n\n");
 
   const userPrompt: string = [
-    "(A) 투영된 센서 값 배치 (globalSequence 순, JSON 한 줄당 한 레코드):",
-    renderSensorBatch(batch),
+    "(A) 투영된 센서 값 배치 (globalSequence 순, JSON 한 줄당 한 레코드, 걸린 레코드 아래 ⚠ stat 통계 주석):",
+    renderAnnotatedSensorBatch(batch),
   ].join("\n");
 
   const response = await model.invoke([

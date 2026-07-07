@@ -1,6 +1,6 @@
 import { AnalysisState } from '@/analysis/analysis.state';
-import { invokeAgentNode } from '@/analysis/nodes/invoke-agent';
 import { invokeNode } from '@/analysis/nodes/invoke';
+import { invokeAgentNode } from '@/analysis/nodes/invoke-agent';
 import { DIAGNOSIS_TOOLS_GUIDE, ROOT_CAUSE_PROMPT, SENSOR_ROOT_CAUSE_PROMPT } from '@/analysis/prompts';
 import { renderEvidenceContext } from '@/analysis/render';
 import { buildDiagnosisTools, DiagnosisToolkit } from '@/analysis/tools/diagnosis-toolkit';
@@ -21,7 +21,11 @@ export function makeRootCauseNode(toolkit: DiagnosisToolkit | null) {
       : ROOT_CAUSE_PROMPT;
 
     if (toolkit === null) {
-      const rootCause = await invokeNode(prompt, facts, rootCauseAnalysisSchema);
+      const rootCause = await invokeNode(
+        prompt,
+        facts,
+        rootCauseAnalysisSchema,
+      );
       return { rootCause };
     }
 

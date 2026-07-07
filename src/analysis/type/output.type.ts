@@ -265,7 +265,7 @@ export type ProjectionMappingOutput = z.infer<
 // 센서 라인이 그래프에 넣는 입력. 로그 라인의 AnomalyLogWindow 에 대응.
 export interface SensorAnomalyFinding {
   batch: SensorValueMessage[];
-  batchText: string; // renderSensorBatch(batch) — observedValue substring 검증 원천
+  batchText: string; // renderAnnotatedSensorBatch(batch) — observedValue substring 검증 원천
   reason: string;
   offendingSceneKeys: string[];
   baselineText: string;

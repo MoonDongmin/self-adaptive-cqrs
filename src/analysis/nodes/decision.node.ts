@@ -27,7 +27,9 @@ function isCatalogMissOnly(window: AnomalyLogWindow | null): boolean {
 
 // 정합성 불변식: newReadModel/versionSwitch(산출물 생성)를 골랐으면 권고 계열도 반드시
 // 함께 골라야 한다. 아니면 §1=INSUFFICIENT_EVIDENCE 인데 §2/§3 은 충실한 자기모순 문서가 된다.
-function enforceCoherentSelection(decision: AnalysisDecision): AnalysisDecision {
+function enforceCoherentSelection(
+  decision: AnalysisDecision,
+): AnalysisDecision {
   const selected = new Set(decision.selected);
   const buildsArtifact =
     selected.has("newReadModel") || selected.has("versionSwitch");

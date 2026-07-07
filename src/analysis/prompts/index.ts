@@ -1,7 +1,4 @@
-import {
-  readGripResultColumnSchema,
-  sensorDimensionSchema,
-} from "@/analysis/type/output.type";
+import { readGripResultColumnSchema, sensorDimensionSchema } from '@/analysis/type/output.type';
 
 // zod enum 의 허용값을 프롬프트 JSON 예시용 리터럴 유니온 문자열로 파생한다.
 // 허용값 나열을 스키마(output.type.ts) 한 곳에만 두어, 프롬프트와 검증기가

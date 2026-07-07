@@ -146,10 +146,7 @@ export class LLMContextService implements OnModuleInit, OnModuleDestroy {
     );
   }
 
-  private async writeReport(
-    report: string,
-    fileName: string,
-  ): Promise<string> {
+  private async writeReport(report: string, fileName: string): Promise<string> {
     const dir = join(process.cwd(), "llm-docs");
     const path = join(dir, fileName);
 

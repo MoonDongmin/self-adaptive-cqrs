@@ -1,8 +1,4 @@
-import {
-  buildFrontMatter,
-  extractEndpoints,
-  renderFrontMatter,
-} from '@/analysis/front-matter';
+import { buildFrontMatter, extractEndpoints, renderFrontMatter } from '@/analysis/front-matter';
 import { renderDataQualityRecommendation, renderSensorFinding } from '@/analysis/render-sensor';
 import {
   AnalysisDecision,
@@ -202,7 +198,9 @@ function renderInsightReadDb(
 }
 
 function bullets(items: string[]): string {
-  return items.length === 0 ? "- -" : items.map((item) => `- ${item}`).join("\n");
+  return items.length === 0
+    ? "- -"
+    : items.map((item) => `- ${item}`).join("\n");
 }
 
 // §1 권고 = ADR/MADR 스켈레톤. 근거(Context)에 [corr:id] 인용을 실어 그라운딩을 강제한다.
@@ -262,13 +260,14 @@ function renderRecommendationSection(outputs: GeneratedOutputs): string {
     ].join("\n\n");
   }
   if (outputs.recommendationDocs !== undefined) {
-    return [
-      heading,
-      renderRecommendationAdr(outputs.recommendationDocs),
-    ].join("\n\n");
+    return [heading, renderRecommendationAdr(outputs.recommendationDocs)].join(
+      "\n\n",
+    );
   }
 
-  return [heading, sentinel("권고를 뒷받침할 근거(로그/센서) 부족")].join("\n\n");
+  return [heading, sentinel("권고를 뒷받침할 근거(로그/센서) 부족")].join(
+    "\n\n",
+  );
 }
 
 // 환경을 변경하는 섹션(§2 DDL·§3 컷오버) 앞에 고정 삽입되는 인간 확인 게이트
@@ -404,7 +403,9 @@ function renderApiVersioningSection(outputs: GeneratedOutputs): string {
   const versionSwitch = outputs.versionSwitch;
 
   if (versionSwitch === undefined) {
-    return [heading, sentinel("API 버전 변경을 뒷받침할 근거 부족")].join("\n\n");
+    return [heading, sentinel("API 버전 변경을 뒷받침할 근거 부족")].join(
+      "\n\n",
+    );
   }
 
   const changelogLines: string[] = [];

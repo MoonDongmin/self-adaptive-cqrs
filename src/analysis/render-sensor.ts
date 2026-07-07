@@ -1,16 +1,9 @@
 import { DataQualityRecommendationOutput, SensorAnomalyFinding } from '@/analysis/type/output.type';
-import { SensorValueMessage } from '@/projection/kafka/sensor-value.message';
 
 // render.ts 의 codeBlock 과 동일하나, render.ts ↔ render-sensor.ts 순환 import 를
 //피하려고 여기서 로컬로 둔다(이 파일은 render.ts 를 import 하지 않는다).
 function codeBlock(language: string, source: string): string {
   return ["```" + language, source, "```"].join("\n");
-}
-
-// 배치를 원본 JSON 그대로(레코드당 한 줄). prejudge.renderBatchRaw 의 센서 버전.
-// observedValue 가 verbatim substring 으로 검증되도록 값을 손실 없이 직렬화한다.
-export function renderSensorBatch(batch: SensorValueMessage[]): string {
-  return batch.map((message) => JSON.stringify(message)).join("\n");
 }
 
 export function renderSensorFinding(finding: SensorAnomalyFinding): string {

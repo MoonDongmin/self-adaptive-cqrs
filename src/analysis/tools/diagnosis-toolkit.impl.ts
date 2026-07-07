@@ -97,7 +97,12 @@ export class DiagnosisToolkitImpl implements DiagnosisToolkit {
           ...rest,
           time: row.time.toISOString(),
           ...(stack !== null
-            ? { stack: stack.split("\n").slice(0, STACK_PREVIEW_LINES).join("\n") }
+            ? {
+                stack: stack
+                  .split("\n")
+                  .slice(0, STACK_PREVIEW_LINES)
+                  .join("\n"),
+              }
             : {}),
         });
       })
@@ -158,8 +163,9 @@ export class DiagnosisToolkitImpl implements DiagnosisToolkit {
       .map((line, index) => `${startLine + index} | ${line}`)
       .join("\n");
 
-    return [`# ${relativePath} (${startLine}-${endLine}/${lines.length}줄)`, numbered].join(
-      "\n",
-    );
+    return [
+      `# ${relativePath} (${startLine}-${endLine}/${lines.length}줄)`,
+      numbered,
+    ].join("\n");
   }
 }

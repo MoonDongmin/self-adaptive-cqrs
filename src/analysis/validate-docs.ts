@@ -133,7 +133,9 @@ export function validateDocs(markdown: string): DocsValidationResult {
     }
     const anchorId = kind === "seq" ? `seq:${id}` : id;
     if (!anchors.has(anchorId)) {
-      errors.push(`근거 미매핑 인용: [${kind}:${id}] 가 evidenceSources 에 없음`);
+      errors.push(
+        `근거 미매핑 인용: [${kind}:${id}] 가 evidenceSources 에 없음`,
+      );
     }
   }
 

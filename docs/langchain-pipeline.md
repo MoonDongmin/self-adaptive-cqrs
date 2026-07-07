@@ -105,7 +105,7 @@ graph TD
 분석 그래프(비용이 큰 다단계 LLM 호출)를 매 배치마다 돌리지 않기 위해, 두 지점에서 **값싼 모델로 트리거 여부만 먼저 판정**하는 동일한 패턴을 쓴다(둘 다 `PREJUDGE_CONFIG` 사용).
 
 - **`src/llm-context/screener/prejudge.ts:44-70`** — 로그 배치 1차 선별. `SYSTEM_PROMPT`(7-35행)는 "확실한 정상"(정상 요청 흐름, action 없는 프레임워크 로그)과 "이상"(순서 이상·`level>=40`·리소스 404·반복 요청) 기준을 명시하고, 그 어느 쪽도 아닌 애매한 경우는 `triggered=true`로 두도록(fail-open) 지시한다. 산문 추론 후 펜스드 JSON을 `prejudgeCheckedSchema`로 검증(재시도 루프 없음 — 실패 시 예외를 호출자가 catch).
-- **`src/sensor-observer/sensor-screener.ts:19-45`** — 센서 값 배치 1차 판정. `observeSensorBatch()`가 `SENSOR_OBSERVER_PROMPT` + 베이스라인 텍스트를 시스템 프롬프트에 합쳐 배치 값이 베이스라인을 벗어났는지만 `sensorObserverVerdictSchema`(`triggered`/`reason`/`offendingSceneKeys`)로 판정한다.
+- **`src/sensor-observer/sensor-screener.ts:19-45`** — 센서 값 배치 1차 판정. `observeSensorBatch()`가 `SENSOR_OBSERVER_PROMPT` + 베이스라인 텍스트를 시스템 프롬프트에 합쳐 배치 값이 베이스라인을 벗어났는지를 `sensorObserverVerdictSchema`(`triggered`/`reason`/`offendingSceneKeys`)로 판정한다. 배치는 `renderAnnotatedSensorBatch`(`sensor-batch-annotator.ts`)로 렌더되어, 코드가 결정론적으로 계산한 **통계 주석**(robust-z 이상치·회전행렬 항등식 위반 `⚠ stat` 라인)이 걸린 레코드에 첨부된다 — min/max로는 못 잡는 범위 안 이상치·가짜 회전행렬을 근거로 제공하되 판정 주체는 LLM이다(산수는 코드, 해석·트리거는 LLM).
 
 두 스크리너 모두 "트리거 여부"만 결정하고, 실제 근본원인·해결책 판단은 트립 이후 분석 그래프(§3~6)의 몫이다.
 
