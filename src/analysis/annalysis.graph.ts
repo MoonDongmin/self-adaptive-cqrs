@@ -4,6 +4,7 @@ import { aggregateNode } from '@/analysis/nodes/aggregate.node';
 import { dataQualityNode } from '@/analysis/nodes/data-quality.node';
 import { decisionNode } from '@/analysis/nodes/decision.node';
 import { newReadModelNode } from '@/analysis/nodes/new-read-model.node';
+import { projectionMappingNode } from '@/analysis/nodes/projection-mapping.node';
 import { recommendationDocsNode } from '@/analysis/nodes/recommendation-docs.node';
 import { makeRootCauseNode } from '@/analysis/nodes/root-cause.node';
 import { versionSwitchNode } from '@/analysis/nodes/version-switch.node';
@@ -26,6 +27,7 @@ export function buildAnalysisGraph(toolkit: DiagnosisToolkit | null = null) {
     .addNode("genVersionSwitch", versionSwitchNode)
     .addNode("genRecommendationDocs", recommendationDocsNode)
     .addNode("genNewReadModel", newReadModelNode)
+    .addNode("genProjectionMapping", projectionMappingNode)
     .addNode("genDataQuality", dataQualityNode)
     .addNode("aggregate", aggregateNode);
 
@@ -58,7 +60,12 @@ export function buildAnalysisGraph(toolkit: DiagnosisToolkit | null = null) {
 
   graph.addEdge("genVersionSwitch", "aggregate");
   graph.addEdge("genRecommendationDocs", "aggregate");
-  graph.addEdge("genNewReadModel", "aggregate");
+  // newReadModel 의 동반 스테이지: 매핑 명세는 방금 설계된 fields 를 봐야 하므로 fan-out 이
+  // 아니라 genNewReadModel 뒤에 체인한다(decide 는 이 노드를 모른다 — OutputKind 아님).
+  // 다른 생성기보다 한 super-step 늦게 aggregate 에 도달해 aggregate 가 두 번 실행될 수
+  // 있으나, aggregate 는 LLM 미호출 결정론 조립 + report 채널 last-write-wins 라 무해하다.
+  graph.addEdge("genNewReadModel", "genProjectionMapping");
+  graph.addEdge("genProjectionMapping", "aggregate");
   graph.addEdge("genDataQuality", "aggregate");
   graph.addEdge("aggregate", END);
 

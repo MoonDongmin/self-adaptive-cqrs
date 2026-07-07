@@ -232,6 +232,36 @@ export type DataQualityRecommendationOutput = z.infer<
   typeof dataQualityRecommendationOutputSchema
 >;
 
+// ── projectionMapping: 신규 Read Model 의 이벤트→컬럼 투영 매핑 명세 ──────────
+// decide 가 고르는 OutputKind 가 아니라 newReadModel 의 결정론 동반 산출물이다
+// (DDL 만으로는 빈 테이블 — 사람이 projector 를 작성/리뷰할 때의 대조 계약을 함께 낸다).
+// 코드가 아닌 데이터로 내는 이유: 양끝(sourceField·targetColumn)이 전부 검증 가능한
+// 앵커라서 환각 행을 결정론으로 strip 할 수 있다(자유 코드는 불가능).
+export const projectionMappingRowSchema = z.object({
+  sourceEvent: z.string(), // 원천 이벤트 타입 (newReadModel.sourceEvents 중 하나)
+  sourceField: z.string(), // 이벤트 payload 필드명 — 근거 텍스트에 실재해야 함(사후 substring 검증)
+  targetColumn: z.string(), // 신규 Read Model 컬럼명 — newReadModel.fields 에 실재해야 함(사후 검증)
+  transform: z.string(), // 변환 규칙. 무변환 복사는 "verbatim"
+});
+export type ProjectionMappingRow = z.infer<typeof projectionMappingRowSchema>;
+
+export const derivedColumnSchema = z.object({
+  column: z.string(), // 이벤트 payload 가 아닌 파생/시스템 값 컬럼 (예: scene_key ← streamId)
+  derivation: z.string(), // 유도 규칙
+});
+export type DerivedColumn = z.infer<typeof derivedColumnSchema>;
+
+export const projectionMappingOutputSchema = z.object({
+  readModelName: z.string(),
+  upsertKey: z.string(), // 멱등 upsert 기준 컬럼 (keyColumns 와 일치)
+  rows: z.array(projectionMappingRowSchema).min(1),
+  derivedColumns: z.array(derivedColumnSchema).default([]),
+  replayNote: z.string(), // projection_cursor 초기화·catch-up 재투영 주의사항
+});
+export type ProjectionMappingOutput = z.infer<
+  typeof projectionMappingOutputSchema
+>;
+
 // 센서 라인이 그래프에 넣는 입력. 로그 라인의 AnomalyLogWindow 에 대응.
 export interface SensorAnomalyFinding {
   batch: SensorValueMessage[];
@@ -241,10 +271,12 @@ export interface SensorAnomalyFinding {
   baselineText: string;
 }
 
-// outputs 채널 형태: 선택된 것만 존재. 키 = OutputKind.
+// outputs 채널 형태: 선택된 것만 존재. 키 = OutputKind + 동반 산출물(projectionMapping —
+// decide 선택이 아니라 newReadModel 존재 시 후속 스테이지가 채운다).
 export interface GeneratedOutputs {
   versionSwitch?: VersionSwitchOutput;
   recommendationDocs?: RecommendationDocsOutput;
   newReadModel?: NewReadModelOutput;
+  projectionMapping?: ProjectionMappingOutput;
   dataQualityRecommendation?: DataQualityRecommendationOutput;
 }

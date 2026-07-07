@@ -9,6 +9,7 @@ import {
   ChangelogCategory,
   GeneratedOutputs,
   NewReadModelOutput,
+  ProjectionMappingOutput,
   RecommendationDocsOutput,
   RootCauseAnalysis,
   SensorAnomalyFinding,
@@ -312,7 +313,40 @@ function renderInsightCardRegistration(
   ].join("\n\n");
 }
 
-// §2 Read Model 생성 SQL: DDL(마이그레이션) + M-Schema 필드 튜플. 프로젝터/배선/스키마 코드는 Optional 로.
+// 투영 매핑 명세: 이벤트 payload 필드 → 컬럼 계약 표. projector 코드(Optional)의 대조
+// 기준이므로 DDL 과 같은 §2 에 둔다(코드는 예산 부족 시 잘려도 계약은 코어에 남는다).
+function renderProjectionMapping(mapping: ProjectionMappingOutput): string {
+  const header =
+    "| 원천 이벤트 | payload 필드 | 컬럼 | 변환 |\n| --- | --- | --- | --- |";
+  const body = mapping.rows
+    .map(
+      (row) =>
+        `| ${cell(row.sourceEvent)} | ${cell(row.sourceField)} | ${cell(row.targetColumn)} | ${cell(row.transform)} |`,
+    )
+    .join("\n");
+
+  const derived =
+    mapping.derivedColumns.length === 0
+      ? []
+      : [
+          [
+            "파생 컬럼(이벤트 payload 아님):",
+            ...mapping.derivedColumns.map(
+              (item) => `- \`${item.column}\` ← ${item.derivation}`,
+            ),
+          ].join("\n"),
+        ];
+
+  return [
+    "### 투영 매핑 명세 (이벤트 → 컬럼)",
+    `> upsert 키: ${mapping.upsertKey} · 리플레이: ${mapping.replayNote}`,
+    [header, body].join("\n"),
+    ...derived,
+  ].join("\n\n");
+}
+
+// §2 Read Model 생성 SQL: DDL(마이그레이션) + M-Schema 필드 튜플 + 투영 매핑 명세.
+// 프로젝터/배선/스키마 코드는 Optional 로.
 function renderSqlSection(outputs: GeneratedOutputs): string {
   const heading = "## 2. Read Model 생성 SQL (Read Model DDL)";
   const newReadModel = outputs.newReadModel;
@@ -348,6 +382,9 @@ function renderSqlSection(outputs: GeneratedOutputs): string {
       "mschema",
       [`# Table: ${newReadModel.proposedName}`, "[", tuples, "]"].join("\n"),
     ),
+    ...(outputs.projectionMapping !== undefined
+      ? [renderProjectionMapping(outputs.projectionMapping)]
+      : []),
     renderInsightCardRegistration(newReadModel),
   ].join("\n\n");
 }

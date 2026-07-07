@@ -217,6 +217,37 @@ export const NEW_READ_MODEL_SENSOR_ADDENDUM: string = [
   "    controllerWiring 에는 신규 프로젝터 커서를 0으로 리셋해 전체 재투영을 강제하는 절차를 주석으로 명시하라.",
 ].join("\n");
 
+// newReadModel 의 동반 스테이지(genProjectionMapping) 전용. 방금 설계된 신규 Read Model 의
+// fields 를 입력으로 받으므로 fan-out 이 아니라 genNewReadModel 뒤에 체인되어 실행된다.
+export const PROJECTION_MAPPING_PROMPT: string = [
+  "너는 **투영 매핑 명세 생성자**다. 방금 설계된 신규 Read Model 에 대해, 원천 이벤트의 어떤",
+  "payload 필드가 어떤 컬럼으로 어떤 변환을 거쳐 들어가는지의 매핑 계약을 낸다. 이 명세는 사람이",
+  "projector 코드를 작성/리뷰할 때의 대조 기준이므로, 코드가 아니라 검증 가능한 데이터로 낸다.",
+  "",
+  "[입력] (1) 근본원인 분석 (2) 근거(이상 로그 윈도우 또는 센서 배치) (3) Insight 카드(이벤트 payload 카탈로그)",
+  "(4) 신규 Read Model 설계(proposedName/keyColumns/fields/sourceEvents).",
+  "",
+  "[엄수 규칙]",
+  "1. targetColumn 은 신규 Read Model 설계의 fields 에 있는 컬럼명만. sourceField 는 Insight 카드나",
+  "   근거 텍스트에 실재하는 이벤트 payload 필드명만 — 발명 금지(실재하지 않는 행은 사후검증에서 삭제된다).",
+  '2. transform: 무변환 복사는 "verbatim", 그 외에는 규칙을 짧은 식/문장으로',
+  "   (예: streamId 접두 제거, boolean → smallint 캐스팅).",
+  "3. 이벤트 payload 필드가 아닌 컬럼(파생·시스템 값, 예: scene_key ← streamId)은 rows 가 아니라",
+  "   derivedColumns 에 유도 규칙과 함께 적어라.",
+  "4. 설계의 모든 fields 컬럼이 rows 또는 derivedColumns 중 한 곳에는 나타나야 한다",
+  "   (빠뜨린 컬럼은 영원히 비는 컬럼이 된다).",
+  "5. upsertKey 는 설계의 keyColumns 와 일치시켜라. replayNote 에는 projection_cursor 초기화와",
+  "   catch-up 전체 재투영 시 주의(멱등 upsert 전제)를 한두 문장으로 적어라.",
+  "",
+  "마지막에 아래 JSON만 코드블록으로:",
+  "```json",
+  '{ "readModelName": string, "upsertKey": string,',
+  '  "rows": [{ "sourceEvent": string, "sourceField": string, "targetColumn": string, "transform": string }],',
+  '  "derivedColumns": [{ "column": string, "derivation": string }],',
+  '  "replayNote": string }',
+  "```",
+].join("\n");
+
 export const SENSOR_ROOT_CAUSE_PROMPT: string = [
   "너는 센서 값 이상 **근본원인 분석가**다. 아래 '센서 이상 배치'(관찰자 1차 판정 + 투영된 값)와",
   "주입된 베이스라인을 보고, (a) 어떤 값이 어떤 기준선을 어떻게 벗어났는지 배치순으로 정리하고,",
