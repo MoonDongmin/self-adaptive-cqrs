@@ -1,4 +1,7 @@
-import { readGripResultColumnSchema, sensorDimensionSchema } from '@/analysis/type/output.type';
+import {
+  readGripResultColumnEnum,
+  sensorDimensionEnum,
+} from "@/analysis/type/output.type";
 
 // zod enum 의 허용값을 프롬프트 JSON 예시용 리터럴 유니온 문자열로 파생한다.
 // 허용값 나열을 스키마(output.type.ts) 한 곳에만 두어, 프롬프트와 검증기가
@@ -302,8 +305,8 @@ export const DATA_QUALITY_PROMPT: string = [
   '{ "statusLine": string, "targetReadModel": string, "severityTier": "critical"|"warning"|"info",',
   '  "severityJustification": string,',
   '  "sensorEvidence": [{ "sceneKey": string, "attemptNumber": number, "streamId": string, "globalSequence": number,',
-  `    "affectedColumn": ${enumSpec(readGripResultColumnSchema.options)},`,
-  `    "sensorDimension": ${enumSpec(sensorDimensionSchema.options)},`,
+  `    "affectedColumn": ${enumSpec(readGripResultColumnEnum.options)},`,
+  `    "sensorDimension": ${enumSpec(sensorDimensionEnum.options)},`,
   '    "observedValue": string, "baselineRuleName": string,',
   '    "baselineExpectedRange": string, "deviation": string, "interpretation": string }],',
   '  "observations": string[], "blastRadius": string[],',

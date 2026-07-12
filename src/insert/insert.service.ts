@@ -11,7 +11,7 @@ import { LogAction, LogContext } from '@/shared/logger/logging-context';
 // const TOY_DATA_DIR: string = path.resolve(process.cwd(), "data/toy-data");
 const TOY_DATA_DIR: string = path.resolve(
   process.cwd(),
-  "data/anomaly-fixtures",
+  "data/eval/layer1-detection",
 );
 
 export type InsertFailure = { file: string; reason: string };
@@ -126,7 +126,8 @@ export class InsertService {
 
   private async listToyDataFiles(): Promise<string[]> {
     return (await fs.readdir(TOY_DATA_DIR))
-      .filter((f): boolean => f.endsWith(".json"))
+      // manifest.json 은 평가용 정답지(ground truth)라 적재 대상이 아니다.
+      .filter((f): boolean => f.endsWith(".json") && f !== "manifest.json")
       .sort();
   }
 

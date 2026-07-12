@@ -52,6 +52,10 @@ export const LogContext = {
   NEW_KEYS: "newKeys",
   MISSING_CARD_TABLES: "missingCardTables",
 
+  // sensor-observer 관찰 판정(윈도우 단위 채점·귀속용)
+  OFFENDING_SCENE_KEYS: "offendingSceneKeys",
+  BATCH_SCENE_KEYS: "batchSceneKeys",
+
   REPORT_PATH: "reportPath",
 } as const;
 
@@ -111,6 +115,7 @@ export const LogAction = {
   SENSOR_PUBLISH_FAILED: "sensor.publish.failed",
   SENSOR_OBSERVE_TRIGGERED: "sensor.observe.triggered",
   SENSOR_OBSERVE_SKIPPED: "sensor.observe.skipped",
+  SENSOR_EPISODE_CLOSED: "sensor.episode.closed",
   SENSOR_ANALYSIS_DONE: "sensor.analysis.done",
 
   // 드리프트 관측기 (스키마/카탈로그 불일치)

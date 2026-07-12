@@ -1,5 +1,5 @@
-import { z } from 'zod';
-import type { SensorValueMessage } from '@/projection/kafka/sensor-value.message';
+import { z } from "zod";
+import type { SensorValueMessage } from "@/projection/kafka/sensor-value.message";
 
 // 의사결정자 라우팅 키 = 출력의 종류 (그래프 ROUTE 키와 1:1)
 export const outputKindSchema = z.enum([
@@ -137,7 +137,23 @@ export type NewReadModelOutput = z.infer<typeof newReadModelOutputSchema>;
 // 로그용 logEvidence(correlationId/action/level/logQuote)는 '조용히 통과하는' 센서
 // 이상엔 존재하지 않으므로(에러 로그 없음) 별도 타입을 둔다. 욱여넣으면 식별자 환각을
 // 강제하기 때문이다. 섹션(필드) 순서 = LLM 좌→우 생성 순서 = 근거-우선 강제 메커니즘.
-export const readGripResultColumnSchema = z.enum([
+// LLM 은 배치의 ⚠ 주석 차원명(축 접미사 포함: robotTfTranslationZ, grip3dPoseZ(z3) 등)을
+// 그대로 베끼는 경향이 있다(2026-07-07 재현: enum 불일치 → §1 노드 통째 강등). 별칭을
+// 정규형으로 결정론 매핑해 구조 검증이 표기 차이로 죽지 않게 한다.
+function normalizeEnumAlias(
+  aliases: Record<string, string>,
+): (value: unknown) => unknown {
+  return (value: unknown) => {
+    if (typeof value !== "string") {
+      return value;
+    }
+    const withoutIndexSuffix: string = value.replace(/\((x|y|z)\d\)$/i, "");
+    return aliases[withoutIndexSuffix] ?? withoutIndexSuffix;
+  };
+}
+
+// 프롬프트가 유효값 나열에 쓰는 원본 enum. LLM 입력 대조용 스키마는 아래 preprocess 래퍼.
+export const readGripResultColumnEnum = z.enum([
   "grip2dPose",
   "grip3dPose",
   "robotTf",
@@ -147,9 +163,25 @@ export const readGripResultColumnSchema = z.enum([
   "gripperType",
   "occurredAt",
 ]);
+
+export const readGripResultColumnSchema = z.preprocess(
+  normalizeEnumAlias({
+    grip2dPoseX: "grip2dPose",
+    grip2dPoseY: "grip2dPose",
+    grip3dPoseX: "grip3dPose",
+    grip3dPoseY: "grip3dPose",
+    grip3dPoseZ: "grip3dPose",
+    robotTfTranslation: "robotTf",
+    robotTfTranslationX: "robotTf",
+    robotTfTranslationY: "robotTf",
+    robotTfTranslationZ: "robotTf",
+    robotTfRotation: "robotTf",
+  }),
+  readGripResultColumnEnum,
+);
 export type ReadGripResultColumn = z.infer<typeof readGripResultColumnSchema>;
 
-export const sensorDimensionSchema = z.enum([
+export const sensorDimensionEnum = z.enum([
   "grip2dPose",
   "grip3dPose",
   "robotTfRotation",
@@ -159,6 +191,20 @@ export const sensorDimensionSchema = z.enum([
   "gripSucceed",
   "cameraInfo",
 ]);
+
+export const sensorDimensionSchema = z.preprocess(
+  normalizeEnumAlias({
+    grip2dPoseX: "grip2dPose",
+    grip2dPoseY: "grip2dPose",
+    grip3dPoseX: "grip3dPose",
+    grip3dPoseY: "grip3dPose",
+    grip3dPoseZ: "grip3dPose",
+    robotTfTranslationX: "robotTfTranslation",
+    robotTfTranslationY: "robotTfTranslation",
+    robotTfTranslationZ: "robotTfTranslation",
+  }),
+  sensorDimensionEnum,
+);
 export type SensorDimension = z.infer<typeof sensorDimensionSchema>;
 
 export const sensorEvidenceSchema = z.object({

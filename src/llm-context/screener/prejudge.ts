@@ -64,8 +64,19 @@ export async function prejudge(
     new HumanMessage(userPrompt),
   ]);
 
+  const rawText: string = contentToString(response.content);
+
+  // thinking 모델은 reasoning 토큰이 max_tokens 에 포함된다. 상한에 걸려 잘리면
+  // content 가 비거나 JSON 이전에 끊기므로, 파싱 전에 원인을 명시해 실패시킨다.
+  const finishReason: unknown =
+    response.response_metadata?.["finish_reason"] ?? null;
+  if (finishReason === "length") {
+    throw new Error(
+      `선판단 출력이 max_tokens(${PREJUDGE_CONFIG.maxOutputTokens})에서 잘림 — ` +
+        `content 길이 ${rawText.length}. PREJUDGE_MAX_OUTPUT_TOKENS 상향 필요.`,
+    );
+  }
+
   // unknown → zod 검증. 파싱 실패하면 throw → service에서 잡아 로깅.
-  return prejudgeCheckedSchema.parse(
-    extractJson(contentToString(response.content)),
-  );
+  return prejudgeCheckedSchema.parse(extractJson(rawText));
 }

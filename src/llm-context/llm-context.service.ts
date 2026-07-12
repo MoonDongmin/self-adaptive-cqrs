@@ -56,7 +56,9 @@ export class LLMContextService implements OnModuleInit, OnModuleDestroy {
       const checked: PrejudgeChecked | null = await this.detectOnce();
       triggeredLLM = checked !== null;
     } catch (error: unknown) {
-      this.logger.error(
+      // 이 서비스의 로그도 Kafka 로 재유입돼 prejudge 를 거치므로, error(level>=40)로
+      // 찍으면 실패 로그 자신이 다음 선판단을 재트리거해 실패 루프가 된다 — info 로 남긴다.
+      this.logger.info(
         { [LogContext.REASON]: String(error) },
         "선판단 주기 실행 실패",
       );
