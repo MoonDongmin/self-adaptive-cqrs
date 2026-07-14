@@ -49,6 +49,10 @@ export async function prejudge(
     apiKey: PREJUDGE_CONFIG.apiKey,
     temperature: PREJUDGE_CONFIG.temperature,
     maxTokens: PREJUDGE_CONFIG.maxOutputTokens,
+    // qwen3.5 계열은 하이브리드 thinking 모델이라 상한이 타이트하면 추론만 하다
+    // content 0자로 잘린다(2026-07-13 실측: 1024 상한에서 재현 — sensor-screener 와
+    // 동일 증상). LM Studio 가 reasoning_effort 를 thinking 스위치로 매핑하므로 끈다.
+    modelKwargs: { reasoning_effort: "none" },
     configuration: {
       baseURL: PREJUDGE_CONFIG.baseUrl,
     },

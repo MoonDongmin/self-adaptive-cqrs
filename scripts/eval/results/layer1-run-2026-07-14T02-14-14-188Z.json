@@ -1,5 +1,5 @@
 {
-  "finishedAt": "2026-07-10T05:37:03.541Z",
+  "finishedAt": "2026-07-14T02:14:14.190Z",
   "insertedCount": 485,
   "projectedCount": 485,
   "observedCount": 485,
@@ -37,10 +37,10 @@
     }
   ],
   "metrics": {
-    "recallStrict": 100,
-    "recallLoose": 100,
-    "falsePositiveRate": 0,
-    "precision": 100
+    "recallStrict": 60,
+    "recallLoose": 92,
+    "falsePositiveRate": 0.4444444444444444,
+    "precision": 93.75
   },
   "perFile": [
     {
@@ -71,7 +71,7 @@
       "detectedStrict": false,
       "detectedLoose": false,
       "channel": null,
-      "falsePositive": false
+      "falsePositive": true
     },
     {
       "fileName": "반려동물용품_CR01_강아지공룡알장난감_00009_01_20230923.json",
@@ -4111,7 +4111,7 @@
       "detectedStrict": false,
       "detectedLoose": false,
       "channel": null,
-      "falsePositive": false
+      "falsePositive": true
     },
     {
       "fileName": "반려동물용품_CR01_강아지공룡알장난감_01286_01_20230923.json",
@@ -4363,8 +4363,8 @@
       "label": "anomalous",
       "hardNegative": false,
       "anomalyType": "physical-rotation-invalid",
-      "detectedStrict": true,
-      "detectedLoose": true,
+      "detectedStrict": false,
+      "detectedLoose": false,
       "channel": "sensor.observe"
     },
     {
@@ -4372,8 +4372,8 @@
       "label": "anomalous",
       "hardNegative": false,
       "anomalyType": "physical-rotation-invalid",
-      "detectedStrict": true,
-      "detectedLoose": true,
+      "detectedStrict": false,
+      "detectedLoose": false,
       "channel": "sensor.observe"
     },
     {
@@ -4381,8 +4381,8 @@
       "label": "anomalous",
       "hardNegative": false,
       "anomalyType": "physical-rotation-invalid",
-      "detectedStrict": true,
-      "detectedLoose": true,
+      "detectedStrict": false,
+      "detectedLoose": false,
       "channel": "sensor.observe"
     },
     {
@@ -4390,8 +4390,8 @@
       "label": "anomalous",
       "hardNegative": false,
       "anomalyType": "physical-rotation-invalid",
-      "detectedStrict": true,
-      "detectedLoose": true,
+      "detectedStrict": false,
+      "detectedLoose": false,
       "channel": "sensor.observe"
     },
     {
@@ -4399,7 +4399,7 @@
       "label": "anomalous",
       "hardNegative": false,
       "anomalyType": "physical-rotation-invalid",
-      "detectedStrict": true,
+      "detectedStrict": false,
       "detectedLoose": true,
       "channel": "sensor.observe"
     },
@@ -4417,7 +4417,7 @@
       "label": "anomalous",
       "hardNegative": false,
       "anomalyType": "physical-negative-depth",
-      "detectedStrict": true,
+      "detectedStrict": false,
       "detectedLoose": true,
       "channel": "sensor.observe"
     },
@@ -4426,7 +4426,7 @@
       "label": "anomalous",
       "hardNegative": false,
       "anomalyType": "physical-negative-depth",
-      "detectedStrict": true,
+      "detectedStrict": false,
       "detectedLoose": true,
       "channel": "sensor.observe"
     },
@@ -4435,7 +4435,7 @@
       "label": "anomalous",
       "hardNegative": false,
       "anomalyType": "physical-negative-depth",
-      "detectedStrict": true,
+      "detectedStrict": false,
       "detectedLoose": true,
       "channel": "sensor.observe"
     },
@@ -4453,7 +4453,7 @@
       "label": "anomalous",
       "hardNegative": false,
       "anomalyType": "physical-2d-out-of-image",
-      "detectedStrict": true,
+      "detectedStrict": false,
       "detectedLoose": true,
       "channel": "sensor.observe"
     },
@@ -4462,7 +4462,7 @@
       "label": "anomalous",
       "hardNegative": false,
       "anomalyType": "physical-2d-out-of-image",
-      "detectedStrict": true,
+      "detectedStrict": false,
       "detectedLoose": true,
       "channel": "sensor.observe"
     },
@@ -4471,7 +4471,7 @@
       "label": "anomalous",
       "hardNegative": false,
       "anomalyType": "physical-2d-out-of-image",
-      "detectedStrict": true,
+      "detectedStrict": false,
       "detectedLoose": true,
       "channel": "sensor.observe"
     },
@@ -4480,7 +4480,7 @@
       "label": "anomalous",
       "hardNegative": false,
       "anomalyType": "physical-2d-out-of-image",
-      "detectedStrict": true,
+      "detectedStrict": false,
       "detectedLoose": true,
       "channel": "sensor.observe"
     },
@@ -4498,7 +4498,7 @@
       "label": "anomalous",
       "hardNegative": false,
       "anomalyType": "consistency-translation-workspace",
-      "detectedStrict": true,
+      "detectedStrict": false,
       "detectedLoose": true,
       "channel": "sensor.observe"
     },
@@ -4507,7 +4507,7 @@
       "label": "anomalous",
       "hardNegative": false,
       "anomalyType": "consistency-translation-workspace",
-      "detectedStrict": true,
+      "detectedStrict": false,
       "detectedLoose": true,
       "channel": "sensor.observe"
     },
@@ -4525,7 +4525,7 @@
       "label": "anomalous",
       "hardNegative": false,
       "anomalyType": "consistency-translation-workspace",
-      "detectedStrict": true,
+      "detectedStrict": false,
       "detectedLoose": true,
       "channel": "sensor.observe"
     },
@@ -4534,7 +4534,7 @@
       "label": "anomalous",
       "hardNegative": false,
       "anomalyType": "consistency-translation-workspace",
-      "detectedStrict": true,
+      "detectedStrict": false,
       "detectedLoose": true,
       "channel": "sensor.observe"
     },
@@ -4543,7 +4543,7 @@
       "label": "anomalous",
       "hardNegative": false,
       "anomalyType": "consistency-grip-depth",
-      "detectedStrict": true,
+      "detectedStrict": false,
       "detectedLoose": true,
       "channel": "sensor.observe"
     },
@@ -4552,7 +4552,7 @@
       "label": "anomalous",
       "hardNegative": false,
       "anomalyType": "consistency-grip-depth",
-      "detectedStrict": true,
+      "detectedStrict": false,
       "detectedLoose": true,
       "channel": "sensor.observe"
     },
@@ -4570,7 +4570,7 @@
       "label": "anomalous",
       "hardNegative": false,
       "anomalyType": "consistency-grip-depth",
-      "detectedStrict": true,
+      "detectedStrict": false,
       "detectedLoose": true,
       "channel": "sensor.observe"
     },
@@ -4579,7 +4579,7 @@
       "label": "anomalous",
       "hardNegative": false,
       "anomalyType": "consistency-grip-depth",
-      "detectedStrict": true,
+      "detectedStrict": false,
       "detectedLoose": true,
       "channel": "sensor.observe"
     },

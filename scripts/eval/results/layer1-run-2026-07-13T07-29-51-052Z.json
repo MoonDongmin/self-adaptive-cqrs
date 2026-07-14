@@ -1,0 +1,4997 @@
+{
+  "finishedAt": "2026-07-13T07:29:51.054Z",
+  "insertedCount": 485,
+  "projectedCount": 485,
+  "observedCount": 40,
+  "discardedCount": 0,
+  "poisonOutcomes": [
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01346_01_20230923.json",
+      "inserted": true,
+      "projectionFailed": true,
+      "poisonSeq": "486"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01347_01_20230923.json",
+      "inserted": true,
+      "projectionFailed": true,
+      "poisonSeq": "487"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01348_01_20230923.json",
+      "inserted": true,
+      "projectionFailed": true,
+      "poisonSeq": "488"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01349_01_20230923.json",
+      "inserted": true,
+      "projectionFailed": true,
+      "poisonSeq": "489"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01350_01_20230923.json",
+      "inserted": true,
+      "projectionFailed": true,
+      "poisonSeq": "490"
+    }
+  ],
+  "metrics": {
+    "recallStrict": 40,
+    "recallLoose": 40,
+    "falsePositiveRate": 0.2222222222222222,
+    "precision": 95.23809523809523
+  },
+  "perFile": [
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00001_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00002_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": true
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00005_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00009_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00009_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00011_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00011_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00015_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00018_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00019_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00021_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00026_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00027_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00027_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00029_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00030_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00036_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00039_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00041_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00047_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00051_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00055_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00056_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00059_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00061_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00071_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00072_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00074_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00079_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00080_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00097_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00100_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00103_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00103_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00106_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00108_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00109_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00110_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00112_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00117_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00120_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00121_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00133_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00133_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00134_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00134_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00135_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00147_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00154_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00155_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00157_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00163_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00163_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00167_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00168_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00169_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00188_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00189_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00190_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00190_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00192_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00197_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00204_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00206_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00206_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00207_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00210_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00211_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00215_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00217_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00222_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00226_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00236_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00245_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00247_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00249_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00256_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00258_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00262_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00262_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00263_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00267_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00269_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00275_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00275_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00278_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00280_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00281_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00286_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00287_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00291_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00295_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00297_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00301_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00302_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00304_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00304_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00308_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00317_02_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00320_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00323_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00327_03_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00328_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00336_03_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00338_03_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00340_02_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00340_03_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00343_03_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00344_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00349_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00364_03_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00370_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00373_02_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00377_03_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00380_02_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00381_02_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00387_02_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00389_02_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00400_03_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00401_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00401_03_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00407_03_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00410_02_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00411_02_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00414_02_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00416_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00421_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00428_02_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00431_03_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00435_02_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00437_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00438_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_00439_03_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01000_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01001_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01002_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01003_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01004_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01005_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01006_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01007_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01008_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01009_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01010_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01011_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01012_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01013_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01014_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01015_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01016_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01017_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01018_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01019_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01020_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01021_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01022_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01023_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01024_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01025_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01026_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01027_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01028_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01029_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01030_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01031_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01032_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01033_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01034_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01035_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01036_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01037_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01038_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01039_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01040_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01041_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01042_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01043_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01044_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01045_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01046_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01047_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01048_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01049_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01050_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01051_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01052_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01053_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01054_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01055_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01056_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01057_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01058_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01059_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01060_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01061_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01062_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01063_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01064_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01065_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01066_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01067_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01068_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01069_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01070_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01071_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01072_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01073_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01074_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01075_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01076_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01077_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01078_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01079_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01080_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01081_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01082_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01083_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01084_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01085_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01086_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01087_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01088_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01089_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01090_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01091_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01092_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01093_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01094_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01095_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01096_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01097_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01098_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01099_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01100_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01101_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01102_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01103_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01104_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01105_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01106_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01107_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01108_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01109_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01110_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01111_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01112_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01113_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01114_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01115_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01116_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01117_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01118_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01119_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01120_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01121_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01122_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01123_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01124_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01125_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01126_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01127_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01128_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01129_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01130_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01131_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01132_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01139_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01140_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01141_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01142_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01143_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01144_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01145_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01146_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01147_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01148_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01149_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01150_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01151_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01152_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01153_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01154_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01155_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01156_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01157_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01158_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01159_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01160_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01161_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01162_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01163_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01164_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01165_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01166_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01167_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01168_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01169_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01170_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01171_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01172_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01173_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01174_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01175_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01176_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01177_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01178_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01179_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01180_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01181_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01182_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01183_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01184_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01185_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01186_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01187_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01188_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01189_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01190_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01191_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01192_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01193_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01194_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01195_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01196_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01197_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01198_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01199_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01200_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01201_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01202_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01203_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01204_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01205_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01206_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01207_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01208_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01209_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01210_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01211_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01212_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01213_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01214_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01215_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01216_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01217_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01218_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01219_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01220_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01221_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01222_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01223_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01224_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01225_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01226_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01227_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01228_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01229_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01230_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01231_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01232_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01233_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01234_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01235_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01236_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01237_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01238_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01239_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01240_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01241_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01242_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01243_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01244_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01245_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01246_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01247_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01248_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01249_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01250_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01251_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01252_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01253_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01254_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01255_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01256_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01257_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01258_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01259_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01260_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01261_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01262_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01263_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01264_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01265_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01266_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01267_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01268_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01269_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01270_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01271_01_20231010.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01278_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01279_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01280_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01281_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01282_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01283_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01284_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01285_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01286_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01287_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01288_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01289_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01290_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01291_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01292_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01293_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01294_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01295_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01296_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01297_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01298_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01299_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01300_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01301_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01301_02_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "jump-grip-depth",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01302_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01302_02_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "jump-grip-depth",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01303_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01303_02_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "jump-grip-depth",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01304_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01304_02_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "jump-grip-depth",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01305_01_20230923.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01305_02_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "jump-grip-depth",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01306_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "physical-rotation-invalid",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01307_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "physical-rotation-invalid",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01308_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "physical-rotation-invalid",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01309_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "physical-rotation-invalid",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01310_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "physical-rotation-invalid",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01311_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "physical-negative-depth",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01312_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "physical-negative-depth",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01313_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "physical-negative-depth",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01314_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "physical-negative-depth",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01315_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "physical-negative-depth",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01316_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "physical-2d-out-of-image",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01317_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "physical-2d-out-of-image",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01318_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "physical-2d-out-of-image",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01319_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "physical-2d-out-of-image",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01320_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "physical-2d-out-of-image",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01321_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "consistency-translation-workspace",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01322_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "consistency-translation-workspace",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01323_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "consistency-translation-workspace",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01324_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "consistency-translation-workspace",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01325_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "consistency-translation-workspace",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01326_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "consistency-grip-depth",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01327_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "consistency-grip-depth",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01328_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "consistency-grip-depth",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01329_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "consistency-grip-depth",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01330_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "consistency-grip-depth",
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": "sensor.observe"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01331_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "payload-drift",
+      "detectedStrict": true,
+      "detectedLoose": true,
+      "channel": "insert.drift"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01332_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "payload-drift",
+      "detectedStrict": true,
+      "detectedLoose": true,
+      "channel": "insert.drift"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01333_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "payload-drift",
+      "detectedStrict": true,
+      "detectedLoose": true,
+      "channel": "insert.drift"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01334_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "payload-drift",
+      "detectedStrict": true,
+      "detectedLoose": true,
+      "channel": "insert.drift"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01335_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "payload-drift",
+      "detectedStrict": true,
+      "detectedLoose": true,
+      "channel": "insert.drift"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01336_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "zod-reject-type-mismatch",
+      "detectedStrict": true,
+      "detectedLoose": true,
+      "channel": "insert.zod"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01337_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "zod-reject-type-mismatch",
+      "detectedStrict": true,
+      "detectedLoose": true,
+      "channel": "insert.zod"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01338_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "zod-reject-type-mismatch",
+      "detectedStrict": true,
+      "detectedLoose": true,
+      "channel": "insert.zod"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01339_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "zod-reject-type-mismatch",
+      "detectedStrict": true,
+      "detectedLoose": true,
+      "channel": "insert.zod"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01340_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "zod-reject-type-mismatch",
+      "detectedStrict": true,
+      "detectedLoose": true,
+      "channel": "insert.zod"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01341_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "zod-reject-missing-field",
+      "detectedStrict": true,
+      "detectedLoose": true,
+      "channel": "insert.zod"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01342_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "zod-reject-missing-field",
+      "detectedStrict": true,
+      "detectedLoose": true,
+      "channel": "insert.zod"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01343_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "zod-reject-missing-field",
+      "detectedStrict": true,
+      "detectedLoose": true,
+      "channel": "insert.zod"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01344_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "zod-reject-missing-field",
+      "detectedStrict": true,
+      "detectedLoose": true,
+      "channel": "insert.zod"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01345_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "zod-reject-missing-field",
+      "detectedStrict": true,
+      "detectedLoose": true,
+      "channel": "insert.zod"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01346_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "projection-map-failed",
+      "detectedStrict": true,
+      "detectedLoose": true,
+      "channel": "projection.map"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01347_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "projection-map-failed",
+      "detectedStrict": true,
+      "detectedLoose": true,
+      "channel": "projection.map"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01348_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "projection-map-failed",
+      "detectedStrict": true,
+      "detectedLoose": true,
+      "channel": "projection.map"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01349_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "projection-map-failed",
+      "detectedStrict": true,
+      "detectedLoose": true,
+      "channel": "projection.map"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01350_01_20230923.json",
+      "label": "anomalous",
+      "hardNegative": false,
+      "anomalyType": "projection-map-failed",
+      "detectedStrict": true,
+      "detectedLoose": true,
+      "channel": "projection.map"
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01351_01_20230923.json",
+      "label": "normal",
+      "hardNegative": true,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01352_01_20230923.json",
+      "label": "normal",
+      "hardNegative": true,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01353_01_20230923.json",
+      "label": "normal",
+      "hardNegative": true,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01354_01_20230923.json",
+      "label": "normal",
+      "hardNegative": true,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR01_강아지공룡알장난감_01355_01_20230923.json",
+      "label": "normal",
+      "hardNegative": true,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR02_강아지공룡알장난감_00002_02_20230919.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR02_강아지공룡알장난감_00006_01_20230919.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR02_강아지공룡알장난감_00013_02_20230919.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR02_강아지공룡알장난감_00021_02_20230919.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR02_강아지공룡알장난감_00022_02_20230919.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR02_강아지공룡알장난감_00025_01_20230919.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR02_강아지공룡알장난감_01133_01_20230919.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR02_강아지공룡알장난감_01134_01_20230919.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR02_강아지공룡알장난감_01135_01_20230919.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR02_강아지공룡알장난감_01136_01_20230919.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR02_강아지공룡알장난감_01137_01_20230919.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR02_강아지공룡알장난감_01138_01_20230919.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR02_강아지공룡알장난감_01272_01_20230919.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR02_강아지공룡알장난감_01273_01_20230919.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR02_강아지공룡알장난감_01274_01_20230919.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR02_강아지공룡알장난감_01275_01_20230919.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR02_강아지공룡알장난감_01276_01_20230919.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    },
+    {
+      "fileName": "반려동물용품_CR02_강아지공룡알장난감_01277_01_20230919.json",
+      "label": "normal",
+      "hardNegative": false,
+      "anomalyType": null,
+      "detectedStrict": false,
+      "detectedLoose": false,
+      "channel": null,
+      "falsePositive": false
+    }
+  ]
+}

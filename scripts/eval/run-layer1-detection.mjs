@@ -62,6 +62,14 @@ const DATABASE_URL =
   process.env.DATABASE_URL ?? dotEnvironment.DATABASE_URL ?? "postgresql://cqrs:cqrs@localhost:65432/cqrs";
 const BASE_URL = `http://localhost:${process.env.PORT ?? dotEnvironment.PORT ?? 3000}`;
 
+// 채점 비교 전용 정규화. macOS 파일명·DB·Kafka 메시지는 NFD(자모 분해)인데, LLM 이
+// 판정에서 재생성한 offendingSceneKeys 는 NFC 로 나온다(토크나이저가 NFC 생성 —
+// 2026-07-13 실측: 원문 비교 항상 false → strict/FPR 이 구조적으로 0 집계). 모든
+// scene 비교는 NFC 로 통일한다. 단 DB 조회(poison 커서 전진)는 NFD 원형을 써야 한다.
+function canonicalSceneKey(sceneKey) {
+  return String(sceneKey).normalize("NFC");
+}
+
 function parseFileName(fileName) {
   const match = FILE_NAME_PATTERN.exec(fileName);
   if (!match) {
@@ -157,7 +165,10 @@ async function main() {
   const anomalousSceneToFile = new Map();
   for (const entry of manifest.files) {
     if (entry.label === "anomalous") {
-      anomalousSceneToFile.set(parseFileName(entry.fileName).sceneKey, entry.fileName);
+      anomalousSceneToFile.set(
+        canonicalSceneKey(parseFileName(entry.fileName).sceneKey),
+        entry.fileName,
+      );
     }
   }
   // payload-drift 파일별 고유 신규 키(from == null 인 변조) → 로그의 newKeys 귀속용
@@ -306,18 +317,20 @@ async function main() {
       }
     }
     if (line.action === "projection.map.failed" && line.streamId) {
-      mapFailedScenes.add(String(line.streamId).replace(/^grip-attempt:/, ""));
+      mapFailedScenes.add(
+        canonicalSceneKey(String(line.streamId).replace(/^grip-attempt:/, "")),
+      );
     }
     if (line.action === "sensor.observe.triggered") {
       for (const sceneKey of line.offendingSceneKeys ?? []) {
-        offendingScenes.add(sceneKey);
+        offendingScenes.add(canonicalSceneKey(sceneKey));
       }
       for (const member of line.batchSceneKeys ?? []) {
-        triggeredMembers.add(member);
+        triggeredMembers.add(canonicalSceneKey(member));
       }
     }
     if (line.action === "projection.integrity.violation" && line.sceneKey) {
-      integrityViolationScenes.add(line.sceneKey);
+      integrityViolationScenes.add(canonicalSceneKey(line.sceneKey));
     }
     if (line.action === "insert.file.failed" && line.file) {
       if (!insertFailed.has(line.file)) {
@@ -328,8 +341,9 @@ async function main() {
 
   const perFile = [];
   for (const entry of manifest.files) {
-    const { sceneKey, attemptNumber } = parseFileName(entry.fileName);
-    const member = `${sceneKey}#${attemptNumber}`;
+    const parsedName = parseFileName(entry.fileName);
+    const sceneKey = canonicalSceneKey(parsedName.sceneKey);
+    const member = `${sceneKey}#${parsedName.attemptNumber}`;
     const record = {
       fileName: entry.fileName,
       label: entry.label,

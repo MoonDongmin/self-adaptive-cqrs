@@ -39,6 +39,9 @@ export async function invokeAgentNode<T>(
     apiKey: ANALYSIS_CONFIG.apiKey,
     temperature: ANALYSIS_CONFIG.temperature,
     maxTokens: ANALYSIS_CONFIG.maxOutputTokens,
+    // invoke.ts 와 동일 — qwen3.6 의 thinking 이 출력 상한을 잠식해 content 가
+    // 비는 것을 막는다(2026-07-14 실측).
+    modelKwargs: { reasoning_effort: "none" },
     configuration: { baseURL: ANALYSIS_CONFIG.baseUrl },
   }).bindTools(tools);
 

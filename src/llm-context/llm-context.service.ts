@@ -98,7 +98,7 @@ export class LLMContextService implements OnModuleInit, OnModuleDestroy {
       checked.triggered ? "선판단: 비정상" : "선판단: 정상",
     );
 
-    if (checked.triggered) {
+    if (checked.triggered && !LOG_CONSUMER_CONFIG.analysisDisabled) {
       await this.analyze(checked);
     }
 

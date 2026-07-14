@@ -1,3 +1,5 @@
+import * as fs from 'node:fs';
+import { join } from 'node:path';
 import { HumanMessage, SystemMessage } from '@langchain/core/messages';
 import { ChatOpenAI } from '@langchain/openai';
 import { z } from 'zod';
@@ -7,7 +9,10 @@ import {
   annotateSensorBatch,
   SensorBatchAnnotations,
 } from '@/sensor-observer/sensor-batch-annotator';
-import { SENSOR_OBSERVER_PROMPT } from '@/sensor-observer/sensor-observer.prompt';
+import {
+  SENSOR_OBSERVER_LLM_ONLY_PROMPT,
+  SENSOR_OBSERVER_PROMPT,
+} from '@/sensor-observer/sensor-observer.prompt';
 import { contentToString, extractJson } from '@/shared/llm/llm-json';
 
 // 센서 값 관찰자 출력 = 이상 여부 + 사유 + 의심 scene. prejudge 와 동형의 싼 스키마.
@@ -66,18 +71,6 @@ export async function observeSensorBatch(
     };
   }
 
-  const model = new ChatOpenAI({
-    model: PREJUDGE_CONFIG.model,
-    apiKey: PREJUDGE_CONFIG.apiKey,
-    temperature: PREJUDGE_CONFIG.temperature,
-    maxTokens: OBSERVER_MAX_OUTPUT_TOKENS,
-    timeout: OBSERVER_LLM_TIMEOUT_MS,
-    // SDK 내부 재시도는 끈다 — 배치 단위 재시도(관찰 루프의 streak)와 겹치면
-    // 실패 확정까지 걸리는 시간이 곱으로 늘어난다.
-    maxRetries: 0,
-    configuration: { baseURL: PREJUDGE_CONFIG.baseUrl },
-  });
-
   const system: string = [SENSOR_OBSERVER_PROMPT, baselineText].join("\n\n");
 
   const userPrompt: string = [
@@ -85,29 +78,130 @@ export async function observeSensorBatch(
     annotatedBatchText,
   ].join("\n");
 
-  const response = await model.invoke([
-    new SystemMessage(system),
-    new HumanMessage(userPrompt),
-  ]);
-
-  const rawText: string = contentToString(response.content);
-
-  // thinking 모델은 reasoning 토큰이 max_tokens 에 포함된다. 상한에 걸려 잘리면
-  // content 가 비거나 JSON 이전에 끊기므로, 파싱 전에 원인을 명시해 실패시킨다.
-  const finishReason: unknown =
-    response.response_metadata?.["finish_reason"] ?? null;
-  if (finishReason === "length") {
-    throw new Error(
-      `센서 관찰자 출력이 max_tokens(${OBSERVER_MAX_OUTPUT_TOKENS})에서 잘림 — ` +
-        `content 길이 ${rawText.length}. SENSOR_OBSERVER_MAX_OUTPUT_TOKENS 상향 필요.`,
-    );
-  }
-
-  const llmVerdict: SensorObserverVerdict = sensorObserverVerdictSchema.parse(
-    extractJson(rawText),
+  const llmVerdict: SensorObserverVerdict = await invokeForVerdict(
+    system,
+    userPrompt,
   );
 
   return mergeDeterministicFindings(llmVerdict, annotations);
+}
+
+// llm-only 관찰자에 주입하는 도메인 이상값 판정 룰북. 베이스라인(sensor-baseline.ts)과
+// 같은 런타임 디스크 로드 패턴 — 규칙 반복 실험 시 코드 재빌드 없이 문서만 고친다.
+async function readSensorObserverRulebook(): Promise<string> {
+  const source: string = await fs.promises.readFile(
+    join(process.cwd(), "src/sensor-observer/sensor-observer-rulebook.md"),
+    "utf-8",
+  );
+
+  return ["(R) 판정 룰북 — 판정 권한의 전부다:", source].join("\n\n");
+}
+
+// llm-only 모드: 주석·게이트·강제 병합 없이 LLM 이 단독 판정한다(순수 LLM 탐지율
+// 측정용 ablation). 급변 비교가 윈도우(8건) 경계에 갇혀 구조적 미탐이 되지 않도록,
+// 배치에 등장하는 scene 의 직전 윈도우 마지막 레코드를 (C) 블록으로 함께 준다 —
+// 원시 데이터 제공일 뿐 판정 개입이 아니다.
+export async function observeSensorBatchLLMOnly(
+  batch: SensorValueMessage[],
+  baselineText: string,
+  carriedRecordsByScene: ReadonlyMap<string, SensorValueMessage>,
+): Promise<SensorObserverVerdict> {
+  const rulebookText: string = await readSensorObserverRulebook();
+  const system: string = [
+    SENSOR_OBSERVER_LLM_ONLY_PROMPT,
+    rulebookText,
+    baselineText,
+  ].join("\n\n");
+
+  const sceneKeysInBatch = new Set(batch.map((message) => message.sceneKey));
+  const carriedLines: string[] = [...carriedRecordsByScene.entries()]
+    .filter(([sceneKey]) => sceneKeysInBatch.has(sceneKey))
+    .map(([, message]) => JSON.stringify(message));
+
+  const sections: string[] = [];
+  if (carriedLines.length > 0) {
+    sections.push(
+      "(C) 직전 윈도우 이월 레코드 — 같은 scene 급변 비교 전용, 판정 대상 아님:",
+      carriedLines.join("\n"),
+      "",
+    );
+  }
+  sections.push(
+    "(A) 투영된 센서 값 배치 (globalSequence 순, JSON 한 줄당 한 레코드):",
+    batch.map((message) => JSON.stringify(message)).join("\n"),
+  );
+
+  return invokeForVerdict(system, sections.join("\n"));
+}
+
+function buildObserverModel(maxTokens: number): ChatOpenAI {
+  return new ChatOpenAI({
+    model: PREJUDGE_CONFIG.model,
+    apiKey: PREJUDGE_CONFIG.apiKey,
+    temperature: PREJUDGE_CONFIG.temperature,
+    maxTokens,
+    timeout: OBSERVER_LLM_TIMEOUT_MS,
+    // SDK 내부 재시도는 끈다 — 배치 단위 재시도(관찰 루프의 streak)와 겹치면
+    // 실패 확정까지 걸리는 시간이 곱으로 늘어난다.
+    maxRetries: 0,
+    // qwen3.5 계열은 하이브리드 thinking 모델이라 복잡한 관찰 프롬프트에서 스스로 추론을
+    // 시작해 max_tokens 전체를 reasoning 으로 소진한다(2026-07-13 실측: content 0자 +
+    // finish=length → 2배 재시도 → 타임아웃 연쇄). LM Studio 가 reasoning_effort 를
+    // thinking 스위치로 매핑하므로 none 으로 추론을 끈다(/no_think 는 qwen3.5 에서 무효).
+    modelKwargs: { reasoning_effort: "none" },
+    configuration: { baseURL: PREJUDGE_CONFIG.baseUrl },
+  });
+}
+
+// JSON 추출 실패 시의 복구 프롬프트 — 새 판정 생성이 아니라 기존 출력의 형식 교정만 시킨다.
+const VERDICT_REPAIR_PROMPT: string = [
+  "아래 텍스트는 센서 값 관찰자의 판정 출력인데 JSON 추출에 실패했다.",
+  "텍스트에 담긴 결론을 그대로 옮겨 ```json 코드블록 정확히 하나만 출력해라. 새 판정을 만들지 마라.",
+  '형식: { "triggered": boolean, "reason": string, "offendingSceneKeys": string[] }',
+].join("\n");
+
+// LLM 호출 → verdict 파싱. 흔한 실패 두 가지를 호출 안에서 1회씩 소화해, 배치 단위
+// 재시도(관찰 루프 streak → 폴백/폐기)까지 번지기 전에 회복한다:
+//  (1) finish_reason=length — thinking 모델의 reasoning 토큰이 상한을 잠식한 경우.
+//      max_tokens 2배로 1회 재시도한다.
+//  (2) JSON 추출·스키마 파싱 실패 — 원문을 되돌려 'JSON 만 재출력' 복구 호출 1회.
+async function invokeForVerdict(
+  system: string,
+  userPrompt: string,
+): Promise<SensorObserverVerdict> {
+  const messages = [new SystemMessage(system), new HumanMessage(userPrompt)];
+
+  let maxTokens: number = OBSERVER_MAX_OUTPUT_TOKENS;
+  let response = await buildObserverModel(maxTokens).invoke(messages);
+  // thinking 모델은 reasoning 토큰이 max_tokens 에 포함된다. 상한에 걸려 잘리면
+  // content 가 비거나 JSON 이전에 끊긴다.
+  if (finishReasonOf(response) === "length") {
+    maxTokens *= 2;
+    response = await buildObserverModel(maxTokens).invoke(messages);
+    if (finishReasonOf(response) === "length") {
+      throw new Error(
+        `센서 관찰자 출력이 재시도 상한(max_tokens ${maxTokens})에서도 잘림 — ` +
+          `SENSOR_OBSERVER_MAX_OUTPUT_TOKENS 상향 필요.`,
+      );
+    }
+  }
+
+  const rawText: string = contentToString(response.content);
+  try {
+    return sensorObserverVerdictSchema.parse(extractJson(rawText));
+  } catch {
+    const repaired = await buildObserverModel(maxTokens).invoke([
+      new SystemMessage(VERDICT_REPAIR_PROMPT),
+      new HumanMessage(rawText),
+    ]);
+    return sensorObserverVerdictSchema.parse(
+      extractJson(contentToString(repaired.content)),
+    );
+  }
+}
+
+function finishReasonOf(response: { response_metadata?: Record<string, unknown> }): unknown {
+  return response.response_metadata?.["finish_reason"] ?? null;
 }
 
 // 확정 위반(physical/consistency) scene 을 LLM verdict 에 합집합으로 강제 병합한다.

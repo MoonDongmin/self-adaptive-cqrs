@@ -44,3 +44,24 @@ export const SENSOR_OBSERVER_PROMPT: string = [
   '{ "triggered": boolean, "reason": string, "offendingSceneKeys": string[] }',
   "```",
 ].join("\n");
+
+// llm-only 모드(주석 없음) 시스템 프롬프트. 위 프롬프트와 달리 코드가 계산한 ⚠ 주석이
+// 없으므로, 4층 검사(physical/consistency/jump)의 산수까지 LLM 이 직접 수행한다.
+// 판정 규칙 전체는 함께 주입되는 (R) 룰북(sensor-observer-rulebook.md)이 담당한다 —
+// 이 프롬프트는 역할·입출력 정의만 남긴다. 2026-07-13 1차 실측(서술형 절차 프롬프트)의
+// 실패 모드 세 가지(경계선 급변 산수 회피, 분포 통계의 임계값 오용 환각, scene 지목
+// 부정확)를 룰북의 R6-CHECK 의무 계산·rule ID 인용·출력 계약으로 누른다.
+export const SENSOR_OBSERVER_LLM_ONLY_PROMPT: string = [
+  "너는 센서 값 이상 1차 관찰자다. 아래 (A) 투영된 센서 값 배치(JSON 한 줄당 한 레코드)를",
+  "시스템 프롬프트에 함께 주입된 (R) 판정 룰북과 (B) 수기 베이스라인에 따라 '값이 말이",
+  "되는가' 판정해라. 이 모드에는 코드가 계산한 ⚠ 주석이 없다 — (R)의 R1~R6 검사를 전부",
+  "네가 직접 수행해야 하며, 판정 근거·오판 방지·출력 계약은 (R)을 그대로 따른다.",
+  "(B)는 rule 이름과 기대 범위의 근거 사전이다.",
+  "",
+  "출력 형식 엄수: (R) 출력 계약의 산문(R6-CHECK 계산 라인, 위반 요약) 뒤, 전체 응답에서",
+  "JSON 은 마지막의 ```json 코드블록 **정확히 하나**뿐이어야 한다. 레코드별 JSON 을 여러 개",
+  "내지 말고, 산문 중에 중괄호({})를 쓰지 마라 — 배치 전체에 대한 단일 종합 판정 하나만 낸다:",
+  "```json",
+  '{ "triggered": boolean, "reason": string, "offendingSceneKeys": string[] }',
+  "```",
+].join("\n");

@@ -21,6 +21,11 @@ export async function invokeNode<T>(
     apiKey: ANALYSIS_CONFIG.apiKey,
     temperature: ANALYSIS_CONFIG.temperature,
     maxTokens: ANALYSIS_CONFIG.maxOutputTokens,
+    // qwen3.6 계열은 하이브리드 thinking 모델 — 추론이 출력 상한을 전부 잠식해
+    // content 0자(finish=length, reasoning_tokens=완전 소진)로 JSON 파싱이 죽는다
+    // (2026-07-14 실측: 511/511 토큰이 전부 reasoning). sensor-screener·prejudge 와
+    // 동일하게 LM Studio 의 reasoning_effort 매핑으로 thinking 을 끈다.
+    modelKwargs: { reasoning_effort: "none" },
     configuration: { baseURL: ANALYSIS_CONFIG.baseUrl },
   });
 

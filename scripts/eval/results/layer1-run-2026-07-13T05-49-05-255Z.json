@@ -1,8 +1,8 @@
 {
-  "finishedAt": "2026-07-10T04:41:15.691Z",
+  "finishedAt": "2026-07-13T05:49:05.256Z",
   "insertedCount": 485,
   "projectedCount": 485,
-  "observedCount": 432,
+  "observedCount": 40,
   "discardedCount": 0,
   "poisonOutcomes": [
     {
@@ -38,9 +38,9 @@
   ],
   "metrics": {
     "recallStrict": 40,
-    "recallLoose": 50,
-    "falsePositiveRate": 0,
-    "precision": 100
+    "recallLoose": 40,
+    "falsePositiveRate": 0.2222222222222222,
+    "precision": 95.23809523809523
   },
   "perFile": [
     {
@@ -61,7 +61,7 @@
       "detectedStrict": false,
       "detectedLoose": false,
       "channel": null,
-      "falsePositive": false
+      "falsePositive": true
     },
     {
       "fileName": "반려동물용품_CR01_강아지공룡알장난감_00005_03_20230923.json",
@@ -4279,7 +4279,7 @@
       "hardNegative": false,
       "anomalyType": "jump-grip-depth",
       "detectedStrict": false,
-      "detectedLoose": true,
+      "detectedLoose": false,
       "channel": "sensor.observe"
     },
     {
@@ -4298,7 +4298,7 @@
       "hardNegative": false,
       "anomalyType": "jump-grip-depth",
       "detectedStrict": false,
-      "detectedLoose": true,
+      "detectedLoose": false,
       "channel": "sensor.observe"
     },
     {
@@ -4317,7 +4317,7 @@
       "hardNegative": false,
       "anomalyType": "jump-grip-depth",
       "detectedStrict": false,
-      "detectedLoose": true,
+      "detectedLoose": false,
       "channel": "sensor.observe"
     },
     {
@@ -4336,7 +4336,7 @@
       "hardNegative": false,
       "anomalyType": "jump-grip-depth",
       "detectedStrict": false,
-      "detectedLoose": true,
+      "detectedLoose": false,
       "channel": "sensor.observe"
     },
     {
@@ -4355,7 +4355,7 @@
       "hardNegative": false,
       "anomalyType": "jump-grip-depth",
       "detectedStrict": false,
-      "detectedLoose": true,
+      "detectedLoose": false,
       "channel": "sensor.observe"
     },
     {
