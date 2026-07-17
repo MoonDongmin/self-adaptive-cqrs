@@ -3,6 +3,7 @@ import { ChatOpenAI } from '@langchain/openai';
 import { type LogBatchRecord, type PrejudgeChecked, prejudgeCheckedSchema } from '@/llm-context/llm-context.type';
 import { PREJUDGE_CONFIG } from '@/llm-context/screener/prejudge.config';
 import { contentToString, extractJson } from '@/shared/llm/llm-json';
+import { runExclusive } from '@/shared/llm/llm-serial-queue';
 
 const SYSTEM_PROMPT: string = [
   "너는 로그 이상 1차 선별기다. 아래 (A) 최근 로그 원본(JSON 한 줄당 한 레코드)을",
@@ -41,9 +42,34 @@ function renderBatchRaw(batch: LogBatchRecord[]): string {
   return batch.map((record) => JSON.stringify(record)).join("\n");
 }
 
+// 결정론 프리게이트: level>=40(warning 이상) 로그는 프롬프트 규칙 ②의 '확실한 이상'이다.
+// LLM 판정은 큰 배치에서 확률적으로 이를 놓친다(2026-07-14 실측: 17건 배치에서
+// payload.schema.drift warn 미탐 → 분석 미실행). 결정론 규칙은 코드로 확정하고,
+// LLM 은 규칙으로 못 잡는 애매한 패턴(순서 이상·반복 요청 등)만 판정하게 한다.
+function findDeterministicTrips(batch: LogBatchRecord[]): LogBatchRecord[] {
+  return batch.filter((record) => record.level >= 40);
+}
+
 export async function prejudge(
   batch: LogBatchRecord[],
 ): Promise<PrejudgeChecked> {
+  const deterministicTrips = findDeterministicTrips(batch);
+  if (deterministicTrips.length > 0) {
+    const actions = [
+      ...new Set(deterministicTrips.map((record) => record.action ?? "-")),
+    ];
+    return {
+      triggered: true,
+      reason: `결정론 프리게이트: level>=40 로그 ${deterministicTrips.length}건 (${actions.join(", ")})`,
+      tripCorrelationIds: [
+        ...new Set(
+          deterministicTrips
+            .map((record) => record.correlationId)
+            .filter((id): id is string => typeof id === "string"),
+        ),
+      ],
+    };
+  }
   const model = new ChatOpenAI({
     model: PREJUDGE_CONFIG.model,
     apiKey: PREJUDGE_CONFIG.apiKey,
@@ -63,10 +89,11 @@ export async function prejudge(
     renderBatchRaw(batch),
   ].join("\n");
 
-  const response = await model.invoke([
-    new SystemMessage(SYSTEM_PROMPT),
-    new HumanMessage(userPrompt),
-  ]);
+  // 서버 전체 직렬화: 분석(35B)과 동시 요청이 겹치면 LM Studio 가 한쪽을 응답 없이
+  // 유실한다(2026-07-14 실측) — 모든 LLM 호출을 한 큐로 직렬화한다.
+  const response = await runExclusive(() =>
+    model.invoke([new SystemMessage(SYSTEM_PROMPT), new HumanMessage(userPrompt)]),
+  );
 
   const rawText: string = contentToString(response.content);
 

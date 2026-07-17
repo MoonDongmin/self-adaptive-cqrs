@@ -41,8 +41,10 @@ export async function versionSwitchNode(state: typeof AnalysisState.State) {
     );
 
     return { outputs: { versionSwitch } }; // 부분 기록 → reducer가 머지
-  } catch {
+  } catch (error) {
     // 코드가 담긴 큰 JSON은 파싱이 깨질 수 있다. 한 노드 실패가 전체 사이클을 죽이지 않게 degrade.
+    // 강등이 문서 전체를 센티넬로 만들 수 있으므로 반드시 흔적을 남긴다(dataQualityNode 와 동일).
+    console.warn("[versionSwitchNode] 생성/검증 실패로 강등:", String(error));
     return { outputs: {} };
   }
 }

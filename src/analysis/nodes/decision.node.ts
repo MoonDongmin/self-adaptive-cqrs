@@ -10,12 +10,21 @@ import { WINDOW_CONFIG } from '@/llm-context/repository/log-window.config';
 // 결정론 프리게이트: 트립 앵커가 카탈로그 404(insight.card.miss)뿐이고 윈도우에 다른
 // 에러 신호가 없으면 LLM을 부르지 않고 '조치 불필요'로 확정한다. 프롬프트 지시만으로는
 // 같은 입력에서도 확률적으로 뚫린다(analysis-bruno-card-miss-a 사례).
+// 단, 같은 윈도우에서 카드 miss 가 반복(2회 이상)되면 '사용자가 같은 데이터를 거듭
+// 요청하는 의도 신호'(prejudge ④ 반복 요청)로 보고 게이트를 열어 LLM 의사결정에 맡긴다
+// — Read Model 부적합(E 계열) 시나리오의 진입 경로.
 function isCatalogMissOnly(window: AnomalyLogWindow | null): boolean {
   if (window === null || window.rows.length === 0) {
     return false;
   }
   const anchor = window.rows.find((row) => row.isAnchor);
   if (anchor === undefined || anchor.action !== "insight.card.miss") {
+    return false;
+  }
+  const missCount = window.rows.filter(
+    (row) => row.action === "insight.card.miss",
+  ).length;
+  if (missCount >= 2) {
     return false;
   }
   return window.rows.every(
@@ -31,6 +40,9 @@ function enforceCoherentSelection(
   decision: AnalysisDecision,
 ): AnalysisDecision {
   const selected = new Set(decision.selected);
+  const additions: AnalysisDecision["selected"] = [];
+  const reasons: string[] = [];
+
   const buildsArtifact =
     selected.has("newReadModel") || selected.has("versionSwitch");
   const hasRecommendation =
@@ -38,12 +50,25 @@ function enforceCoherentSelection(
     selected.has("dataQualityRecommendation");
 
   if (buildsArtifact && !hasRecommendation) {
-    return {
-      selected: [...decision.selected, "recommendationDocs"],
-      reasoning: `${decision.reasoning} (정합성 불변식: 산출물 생성에는 권고 문서가 동반돼야 하므로 recommendationDocs 추가)`,
-    };
+    additions.push("recommendationDocs");
+    reasons.push("산출물 생성에는 권고 문서가 동반돼야 하므로 recommendationDocs 추가");
   }
-  return decision;
+
+  // 연구 명세: Docs 는 권고 + Read Model 생성 SQL + API Versioning 3요소를 항상 함께
+  // 포함한다. 신규 Read Model 은 신규 조회 경로(API)를 수반하므로 versionSwitch 동반을
+  // 결정론으로 보장한다(2026-07-14 실측: E 계열에서 LLM 이 확률적으로 누락).
+  if (selected.has("newReadModel") && !selected.has("versionSwitch")) {
+    additions.push("versionSwitch");
+    reasons.push("신규 Read Model 은 API 버전 변경이 동반돼야 하므로 versionSwitch 추가");
+  }
+
+  if (additions.length === 0) {
+    return decision;
+  }
+  return {
+    selected: [...decision.selected, ...additions],
+    reasoning: `${decision.reasoning} (정합성 불변식: ${reasons.join("; ")})`,
+  };
 }
 
 export async function decisionNode(state: typeof AnalysisState.State) {

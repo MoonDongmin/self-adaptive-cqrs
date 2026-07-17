@@ -31,7 +31,9 @@ export class InsightService {
           action: LogAction.INSIGHT_CARD_MISS,
           [LogContext.ENTITY_NAME]: entityName,
         },
-        "insight 카드 없음",
+        // 요청한 이름(사용자의 조회 의도)을 msg 에 실어, 로그 윈도우 행(msg 만 전달)에서도
+        // 분석 LLM 이 '무엇을 조회하려다 실패했는지'를 볼 수 있게 한다.
+        `insight 카드 없음: ${entityName}`,
       );
 
       return null;

@@ -23,7 +23,9 @@ export async function recommendationDocsNode(
     );
 
     return { outputs: { recommendationDocs } };
-  } catch {
+  } catch (error) {
+    // 강등이 문서 전체를 센티넬로 만들 수 있으므로 반드시 흔적을 남긴다(dataQualityNode 와 동일).
+    console.warn("[recommendationDocsNode] 생성/검증 실패로 강등:", String(error));
     return { outputs: {} };
   }
 }

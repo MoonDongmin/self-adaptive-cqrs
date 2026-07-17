@@ -4,6 +4,7 @@ import { ChatOpenAI } from '@langchain/openai';
 import type { z } from 'zod';
 import { ANALYSIS_CONFIG } from '@/analysis/analysis.config';
 import { contentToString, extractJson } from '@/shared/llm/llm-json';
+import { runExclusive } from '@/shared/llm/llm-serial-queue';
 
 // 코드가 담긴 큰 JSON 출력은 파싱/스키마 검증이 확률적으로 깨진다. 한 번 깨졌다고
 // 섹션을 통째로 비우면(§1 센티넬 + §2/§3 충실) 자기모순 Docs 가 되므로 1회 재시도한다.
@@ -26,7 +27,15 @@ export async function invokeNode<T>(
     // (2026-07-14 실측: 511/511 토큰이 전부 reasoning). sensor-screener·prejudge 와
     // 동일하게 LM Studio 의 reasoning_effort 매핑으로 thinking 을 끈다.
     modelKwargs: { reasoning_effort: "none" },
-    configuration: { baseURL: ANALYSIS_CONFIG.baseUrl },
+    // 요청 단위 타임아웃 — 미설정 시 서버 순단·요청 유실에 사이클이 영원히 매달린다
+    // (2026-07-14 실측: 동시 요청 시 LM Studio 가 한쪽을 응답 없이 유실). 재시도는
+    // LangChain 기본(6회) 그대로 두면 실패 표면화까지 시간이 과도해 2회로 제한한다.
+    timeout: ANALYSIS_CONFIG.timeoutMS,
+    maxRetries: 2,
+    configuration: {
+      baseURL: ANALYSIS_CONFIG.baseUrl,
+      timeout: ANALYSIS_CONFIG.timeoutMS,
+    },
   });
 
   const messages: BaseMessage[] = [
@@ -37,7 +46,8 @@ export async function invokeNode<T>(
   let lastError: unknown;
 
   for (let i = 0; i < MAX_ATTEMPTS; i++) {
-    const response = await model.invoke(messages);
+    // fan-out 된 생성기들이 동시에 서버를 치지 않게 직렬화(큐 대기가 타임아웃을 잠식하는 것 방지).
+    const response = await runExclusive(() => model.invoke(messages));
 
     try {
       return schema.parse(extractJson(contentToString(response.content)));

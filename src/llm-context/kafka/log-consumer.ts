@@ -68,18 +68,21 @@ export class LogConsumer implements OnModuleInit, OnModuleDestroy {
         continue;
       }
 
-      // 쓰기 측 적재(/insert) 요청은 read 측 Read Model 재생성 선판단 대상이 아니므로,
-      // 선판단(prejudge) LLM 을 아예 거치지 않도록 버퍼에서 통째로 제외한다.
-      //   (1) 도메인 로그(action=insert.*): 적재 실패 경고 등. level>=40 이어도 제외.
-      //   (2) 프레임워크 자동 요청 로그(req.url=/insert): "request completed" 등.
-      // 둘 다 빼야 insert POST 사이클에서 선판단이 한 번도 트리거되지 않는다.
+      // 쓰기 측 적재(/insert) 요청의 **정상 로그 홍수**(insert.file.ok, request completed 등)는
+      // 선판단(prejudge) LLM 을 아예 거치지 않도록 버퍼에서 제외한다.
+      // 단 level>=40 경고/오류(payload.schema.drift, insert.file.failed 등)는 통과시킨다 —
+      // 이들이 곧 payload-drift·zod-reject 이상 신호라, 전부 제외하면 해당 이상은
+      // 어떤 경로로도 분석(Docs 생성)에 도달하지 못한다(2026-07-15 실측: A1~A3 시나리오 불능).
       const action: string | null | undefined = parsed.data.action;
       const requestUrl: string | undefined = parsed.data.req?.url ?? undefined;
       const isInsertLog: boolean =
         (action?.startsWith("insert.") ?? false) ||
         (requestUrl?.startsWith("/insert") ?? false);
+      const isNoiseInsertLog: boolean =
+        isInsertLog &&
+        parsed.data.level < LOG_CONSUMER_CONFIG.errorLevelThreshold;
 
-      if (isInsertLog) {
+      if (isNoiseInsertLog) {
         filtered += 1;
         continue;
       }

@@ -8,10 +8,10 @@ import { ParsedFileName, parseToyDataFileName } from '@/insert/parser/toy-data-f
 import { EVENT_STORE_REPOSITORY, type EventStoreRepository } from '@/insert/repository/event-store.repository';
 import { LogAction, LogContext } from '@/shared/logger/logging-context';
 
-// const TOY_DATA_DIR: string = path.resolve(process.cwd(), "data/toy-data");
+// 평가 러너가 시나리오별 데이터 폴더를 바꿔 끼울 수 있게 env 로 연다(미설정 시 원본 toy-data).
 const TOY_DATA_DIR: string = path.resolve(
   process.cwd(),
-  "data/eval/layer1-detection",
+  process.env.TOY_DATA_DIRECTORY ?? "data/toy-data",
 );
 
 export type InsertFailure = { file: string; reason: string };

@@ -14,6 +14,7 @@ import {
   SENSOR_OBSERVER_PROMPT,
 } from '@/sensor-observer/sensor-observer.prompt';
 import { contentToString, extractJson } from '@/shared/llm/llm-json';
+import { runExclusive } from '@/shared/llm/llm-serial-queue';
 
 // 센서 값 관찰자 출력 = 이상 여부 + 사유 + 의심 scene. prejudge 와 동형의 싼 스키마.
 export const sensorObserverVerdictSchema = z.object({
@@ -172,12 +173,18 @@ async function invokeForVerdict(
   const messages = [new SystemMessage(system), new HumanMessage(userPrompt)];
 
   let maxTokens: number = OBSERVER_MAX_OUTPUT_TOKENS;
-  let response = await buildObserverModel(maxTokens).invoke(messages);
+  // 서버 전체 직렬화: 분석(35B)과 동시 요청이 겹치면 LM Studio 가 한쪽을 응답 없이
+  // 유실한다(2026-07-14 실측) — 모든 LLM 호출을 한 큐로 직렬화한다.
+  let response = await runExclusive(() =>
+    buildObserverModel(maxTokens).invoke(messages),
+  );
   // thinking 모델은 reasoning 토큰이 max_tokens 에 포함된다. 상한에 걸려 잘리면
   // content 가 비거나 JSON 이전에 끊긴다.
   if (finishReasonOf(response) === "length") {
     maxTokens *= 2;
-    response = await buildObserverModel(maxTokens).invoke(messages);
+    response = await runExclusive(() =>
+      buildObserverModel(maxTokens).invoke(messages),
+    );
     if (finishReasonOf(response) === "length") {
       throw new Error(
         `센서 관찰자 출력이 재시도 상한(max_tokens ${maxTokens})에서도 잘림 — ` +
@@ -190,10 +197,12 @@ async function invokeForVerdict(
   try {
     return sensorObserverVerdictSchema.parse(extractJson(rawText));
   } catch {
-    const repaired = await buildObserverModel(maxTokens).invoke([
-      new SystemMessage(VERDICT_REPAIR_PROMPT),
-      new HumanMessage(rawText),
-    ]);
+    const repaired = await runExclusive(() =>
+      buildObserverModel(maxTokens).invoke([
+        new SystemMessage(VERDICT_REPAIR_PROMPT),
+        new HumanMessage(rawText),
+      ]),
+    );
     return sensorObserverVerdictSchema.parse(
       extractJson(contentToString(repaired.content)),
     );
