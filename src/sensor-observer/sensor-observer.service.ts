@@ -121,6 +121,9 @@ export class SensorObserverService implements OnModuleInit, OnModuleDestroy {
   // 열린 에피소드(연속 이상 윈도우 누적). null = 이상 구간 아님.
   private episode: SensorAnomalyEpisode | null = null;
 
+  // 에피소드가 열린 뒤 관찰된 연속 정상 윈도우 수 — 마감 히스테리시스 카운터.
+  private normalWindowStreak: number = 0;
+
   // scene별 마지막 관측값의 윈도우 간 이월 — jump 비교가 윈도우(8건) 경계에 갇히지
   // 않게 한다. 이월이 없으면 급변 쌍이 경계에 갈릴 때 구조적으로 미탐이 된다.
   private jumpCarryOverByScene: Map<string, ScenePreviousValues> = new Map();
@@ -219,6 +222,7 @@ export class SensorObserverService implements OnModuleInit, OnModuleDestroy {
     );
 
     if (verdict.triggered) {
+      this.normalWindowStreak = 0;
       this.appendToEpisode(batch, verdict, baselineText);
       if (
         this.episode !== null &&
@@ -227,8 +231,17 @@ export class SensorObserverService implements OnModuleInit, OnModuleDestroy {
         await this.flushEpisode("에피소드 레코드 상한 도달");
       }
     } else if (this.episode !== null) {
-      // 정상 윈도우 = 이상 구간 종료. 누적 에피소드 전체를 한 번에 분석한다.
-      await this.flushEpisode("정상 윈도우 관찰(이상 구간 종료)");
+      // 정상 윈도우 = 이상 구간 종료 후보. 연속 정상이 히스테리시스 임계에 닿을 때만
+      // 마감한다 — 판정 흔들림 1회가 에피소드를 조각내는 것을 막는다(기본 1 = 즉시 마감).
+      this.normalWindowStreak++;
+      if (
+        this.normalWindowStreak >=
+        SENSOR_OBSERVER_CONFIG.episodeCloseNormalStreak
+      ) {
+        await this.flushEpisode(
+          `정상 윈도우 ${this.normalWindowStreak}회 연속 관찰(이상 구간 종료)`,
+        );
+      }
     }
 
     return verdict;
@@ -332,6 +345,7 @@ export class SensorObserverService implements OnModuleInit, OnModuleDestroy {
     const episode: SensorAnomalyEpisode | null = this.episode;
     // 분석 그래프가 실패해도 같은 에피소드를 재분석하지 않는다(기존 배치 유실 정책과 동일).
     this.episode = null;
+    this.normalWindowStreak = 0;
     if (episode === null) {
       return;
     }
@@ -387,7 +401,10 @@ export class SensorObserverService implements OnModuleInit, OnModuleDestroy {
     // 멈춰 탐지 자체가 지연·정체된다(2026-07-10 실측). 탐지와 서술을 분리해 분석은
     // 백그라운드로 보낸다. 실패 시 재분석하지 않는 기존 정책은 그대로다.
     void this.analyze(finding).catch((error: unknown) => {
-      this.logger.error(
+      // error(level>=40)로 찍으면 이 로그가 Kafka 로 재유입돼 prejudge → llm-context
+      // 분석을 재트리거하는 피드백 루프가 된다(2026-07-19 실측: A2 런 정체) —
+      // runLoop 실패 로그와 같은 사유로 info 로 남긴다.
+      this.logger.info(
         { [LogContext.REASON]: String(error) },
         "센서 이상 에피소드 분석 실패(백그라운드)",
       );

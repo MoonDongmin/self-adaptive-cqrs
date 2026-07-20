@@ -1,0 +1,37 @@
+{
+  "scenarioId": "A1-payload-drift",
+  "rep": 1,
+  "startedAt": "2026-07-15T00:40:28.357Z",
+  "expectsDocs": true,
+  "channel": "log",
+  "stagedCount": 27,
+  "insert": {
+    "inserted": 27,
+    "failed": []
+  },
+  "projection": {
+    "multimodalProcessed": 27,
+    "gripResultOk": true,
+    "gripResultProcessed": 27
+  },
+  "exitReason": "docs-collected",
+  "observedCount": 27,
+  "projectedCount": 27,
+  "events": [
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 1건 (payload.schema.drift)"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-07-15-094028-309269d1-ac83-437e-b7e8-88940a9d54fe.md",
+      "docsValid": true,
+      "docsValidationErrors": []
+    }
+  ],
+  "finishedAt": "2026-07-15T00:56:33.716Z",
+  "durationSeconds": 965,
+  "collectedDocs": [
+    "2026-07-15-094028-309269d1-ac83-437e-b7e8-88940a9d54fe.md"
+  ]
+}

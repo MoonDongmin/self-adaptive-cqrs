@@ -65,3 +65,28 @@ export const SENSOR_OBSERVER_LLM_ONLY_PROMPT: string = [
   '{ "triggered": boolean, "reason": string, "offendingSceneKeys": string[] }',
   "```",
 ].join("\n");
+
+// llm-only 2차 지목(pointing) 프롬프트. 1차가 이상으로 확정한 윈도우에 한해서만 실행되는
+// 지목 전용 재질의다 — 룰북 v3(단일 패스에 '전수 나열' 압박)가 정상 윈도우까지 작화를
+// 유발해 FPR 0→15.33% 로 붕괴했던 것(2026-07-14 실측)과 달리, 압박이 걸리는 이 단계는
+// 이미 이상으로 확정된 윈도우만 보므로 과잉 지목의 피해가 윈도우 내부로 한정된다.
+// 목적: strict 지목(offendingSceneKeys)을 끌어올려 에피소드 분석 입력의 '지목 scene 우선
+// 보존'(capAnalysisBatch)이 실제 이상 레코드를 살리게 하는 것.
+export const SENSOR_OBSERVER_LLM_ONLY_POINTING_PROMPT: string = [
+  "너는 센서 값 이상 관찰자의 2차 지목 단계다. 1차 판정이 이 윈도우를 이미 이상으로",
+  "확정했다 — 이상 여부를 다시 판정하지 마라. 네 임무는 위반 레코드의 전수 지목 하나뿐이다.",
+  "(R) 판정 룰북과 (B) 수기 베이스라인의 R1~R6 검사를 (A) 배치의 모든 레코드에 적용해",
+  "위반 레코드를 하나도 빠짐없이 나열해라. 위반을 하나 찾아도 멈추지 말고 마지막 레코드까지",
+  "검사한다. R6 급변 비교에는 (C) 이월 레코드도 선행 값으로 쓴다.",
+  "",
+  "오판 방지: 위반 주장 전 관측값과 경계값의 부등호가 참인지 재확인하고, 거짓이면 그 줄을",
+  "버려라. (R)·(B)에 없는 임계값을 발명하지 마라. 재검사에서 위반 레코드를 하나도 특정할",
+  "수 없으면 무리해서 만들지 말고 offendingSceneKeys 를 빈 배열로 내라.",
+  "",
+  "출력: 위반 레코드마다 정확히 한 줄(rule ID + sceneKey + 관측값 인용 + 부등호 비교),",
+  "그 뒤 ```json 코드블록 정확히 하나. offendingSceneKeys 에는 위반 레코드의 sceneKey 를",
+  "레코드 JSON 에서 글자 그대로 복사해 전부 담는다(발명·요약·수정 금지):",
+  "```json",
+  '{ "triggered": true, "reason": string, "offendingSceneKeys": string[] }',
+  "```",
+].join("\n");

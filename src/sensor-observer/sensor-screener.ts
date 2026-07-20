@@ -10,6 +10,7 @@ import {
   SensorBatchAnnotations,
 } from '@/sensor-observer/sensor-batch-annotator';
 import {
+  SENSOR_OBSERVER_LLM_ONLY_POINTING_PROMPT,
   SENSOR_OBSERVER_LLM_ONLY_PROMPT,
   SENSOR_OBSERVER_PROMPT,
 } from '@/sensor-observer/sensor-observer.prompt';
@@ -84,7 +85,46 @@ export async function observeSensorBatch(
     userPrompt,
   );
 
-  return mergeDeterministicFindings(llmVerdict, annotations);
+  return mergeDeterministicFindings(
+    {
+      ...llmVerdict,
+      offendingSceneKeys: resolveOffendingSceneKeysToBatch(
+        llmVerdict.offendingSceneKeys,
+        batch,
+      ),
+    },
+    annotations,
+  );
+}
+
+// LLM 이 재생성한 sceneKey 는 NFC 로 나오는 반면(토크나이저 특성 — 2026-07-13 층1
+// 채점기에서 실측) 배치 레코드의 sceneKey 는 macOS 파일명 유래의 NFD 다. 원문 문자열
+// 비교는 항상 불일치해 하류(에피소드 offendingSceneKeys dedupe, 분석 입력의 지목 scene
+// 우선 보존 capAnalysisBatch)가 조용히 무력화된다. 지목 키를 배치에 실재하는 레코드 키
+// 원형으로 복원하고, 배치에 없는 키는 버린다 — 룰북 출력 계약("레코드에서 글자 그대로
+// 복사, 발명 금지")의 런타임 강제이기도 하다.
+function resolveOffendingSceneKeysToBatch(
+  offendingSceneKeys: string[],
+  batch: SensorValueMessage[],
+): string[] {
+  const recordKeyByCanonical = new Map<string, string>();
+  for (const message of batch) {
+    recordKeyByCanonical.set(
+      message.sceneKey.normalize("NFC"),
+      message.sceneKey,
+    );
+  }
+
+  const resolved: string[] = [];
+  for (const sceneKey of offendingSceneKeys) {
+    const recordKey: string | undefined = recordKeyByCanonical.get(
+      sceneKey.normalize("NFC"),
+    );
+    if (recordKey !== undefined && !resolved.includes(recordKey)) {
+      resolved.push(recordKey);
+    }
+  }
+  return resolved;
 }
 
 // llm-only 관찰자에 주입하는 도메인 이상값 판정 룰북. 베이스라인(sensor-baseline.ts)과
@@ -131,8 +171,70 @@ export async function observeSensorBatchLLMOnly(
     "(A) 투영된 센서 값 배치 (globalSequence 순, JSON 한 줄당 한 레코드):",
     batch.map((message) => JSON.stringify(message)).join("\n"),
   );
+  const userPrompt: string = sections.join("\n");
 
-  return invokeForVerdict(system, sections.join("\n"));
+  const firstPass: SensorObserverVerdict = await invokeForVerdict(
+    system,
+    userPrompt,
+  );
+  const verdict: SensorObserverVerdict = {
+    ...firstPass,
+    offendingSceneKeys: resolveOffendingSceneKeysToBatch(
+      firstPass.offendingSceneKeys,
+      batch,
+    ),
+  };
+
+  if (!verdict.triggered || !LLM_ONLY_TWO_PASS_POINTING) {
+    return verdict;
+  }
+  return pointOffendingRecords(verdict, rulebookText, baselineText, userPrompt, batch);
+}
+
+// llm-only 2차 지목 스위치. 기본 켬 — 층1 룰북 v2 조건(단일 패스)의 재현이 필요한
+// 실행에서만 0 으로 끈다.
+const LLM_ONLY_TWO_PASS_POINTING: boolean =
+  process.env.SENSOR_OBSERVER_LLM_ONLY_TWO_PASS !== "0";
+
+// 2차 지목: 1차가 이상으로 확정한 윈도우에 한해 위반 레코드 전수 나열을 재질의한다.
+// 1차의 triggered 판정은 불변이고(2차에 기각 권한 없음) 지목 목록만 합집합으로 보강한다.
+// 2차 호출 실패는 윈도우 실패로 번지면 안 되므로(1차 판정은 이미 성립) 1차 verdict 로
+// 조용히 강등한다.
+async function pointOffendingRecords(
+  firstPassVerdict: SensorObserverVerdict,
+  rulebookText: string,
+  baselineText: string,
+  userPrompt: string,
+  batch: SensorValueMessage[],
+): Promise<SensorObserverVerdict> {
+  try {
+    const pointingSystem: string = [
+      SENSOR_OBSERVER_LLM_ONLY_POINTING_PROMPT,
+      rulebookText,
+      baselineText,
+    ].join("\n\n");
+    const pointing: SensorObserverVerdict = await invokeForVerdict(
+      pointingSystem,
+      userPrompt,
+    );
+    const pointedSceneKeys: string[] = resolveOffendingSceneKeysToBatch(
+      pointing.offendingSceneKeys,
+      batch,
+    );
+
+    return {
+      triggered: true,
+      reason:
+        pointedSceneKeys.length > 0 && pointing.reason.trim().length > 0
+          ? `${firstPassVerdict.reason} / [2차 지목] ${pointing.reason}`
+          : firstPassVerdict.reason,
+      offendingSceneKeys: [
+        ...new Set([...firstPassVerdict.offendingSceneKeys, ...pointedSceneKeys]),
+      ],
+    };
+  } catch {
+    return firstPassVerdict;
+  }
 }
 
 function buildObserverModel(maxTokens: number): ChatOpenAI {

@@ -107,6 +107,12 @@ export const recommendationDocsOutputSchema = z.object({
   consequencesPositive: z.array(z.string()).default([]), // Consequences(+)
   consequencesNegative: z.array(z.string()).default([]), // Consequences(−)
   nonGoals: z.array(z.string()).default([]), // 이 권고가 손대지 않는 범위
+  // 격리(containment) 계열 — 신규 Read Model 없이 권고 단독으로 끝나는 결함(poison
+  // event, zod 거절 등)에서도 연구 명세의 3요소(권고+SQL+API Versioning)를 채우기 위한
+  // 필드. containmentSql: 결함 데이터 격리·복구 SQL(근거 기반, 없으면 빈 문자열).
+  // apiVersionImpact: 이 조치의 API 버전 영향 서술(대개 '변경 없음'의 근거).
+  containmentSql: z.string().default(""),
+  apiVersionImpact: z.string().default(""),
 });
 export type RecommendationDocsOutput = z.infer<
   typeof recommendationDocsOutputSchema

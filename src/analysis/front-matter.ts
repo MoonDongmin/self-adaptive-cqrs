@@ -125,10 +125,16 @@ export function buildFrontMatter(input: {
   const { docId, generatedAt, window, outputs } = input;
   const versionSwitch = outputs.versionSwitch;
 
+  // §2 는 신규 DDL 또는 격리 SQL, §3 는 버전 교체 또는 버전 영향 서술로 채워진다
+  // (render.ts 의 섹션 렌더와 동일한 기준 — 격리 계열도 3요소가 실재하면 true).
+  const sqlSectionFilled =
+    outputs.newReadModel !== undefined ||
+    (outputs.recommendationDocs?.containmentSql ?? "").trim().length > 0;
+  const versioningSectionFilled =
+    versionSwitch !== undefined ||
+    (outputs.recommendationDocs?.apiVersionImpact ?? "").trim().length > 0;
   const sufficientEvidence =
-    hasRecommendation(outputs) &&
-    outputs.newReadModel !== undefined &&
-    versionSwitch !== undefined;
+    hasRecommendation(outputs) && sqlSectionFilled && versioningSectionFilled;
 
   return {
     docId,

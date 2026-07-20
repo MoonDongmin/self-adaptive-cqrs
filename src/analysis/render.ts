@@ -351,6 +351,17 @@ function renderSqlSection(outputs: GeneratedOutputs): string {
   const newReadModel = outputs.newReadModel;
 
   if (newReadModel === undefined) {
+    // 격리 계열: 신규 DDL 은 없지만 결함 데이터 격리 SQL 로 §2 를 채운다 —
+    // 연구 명세(Docs 3요소 항상 포함)의 격리 lane 대응.
+    const containmentSql = outputs.recommendationDocs?.containmentSql ?? "";
+    if (containmentSql.trim().length > 0) {
+      return [
+        heading,
+        HUMAN_GATE,
+        "### 격리(containment) SQL — 신규 Read Model DDL 불필요, 결함 데이터 무해화가 조치다",
+        codeBlock("sql", containmentSql),
+      ].join("\n\n");
+    }
     return [
       heading,
       sentinel("신규/변경 Read Model DDL을 뒷받침할 근거 부족"),
@@ -403,6 +414,12 @@ function renderApiVersioningSection(outputs: GeneratedOutputs): string {
   const versionSwitch = outputs.versionSwitch;
 
   if (versionSwitch === undefined) {
+    // 격리 계열: 버전 교체는 없지만 '버전 영향' 판단 자체가 산출물이다 —
+    // 대개 '변경 없음'의 근거 서술로 §3 를 채운다.
+    const apiVersionImpact = outputs.recommendationDocs?.apiVersionImpact ?? "";
+    if (apiVersionImpact.trim().length > 0) {
+      return [heading, "### 버전 영향", apiVersionImpact].join("\n\n");
+    }
     return [heading, sentinel("API 버전 변경을 뒷받침할 근거 부족")].join(
       "\n\n",
     );

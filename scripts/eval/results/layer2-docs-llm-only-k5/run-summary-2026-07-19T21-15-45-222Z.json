@@ -1,0 +1,9 @@
+[
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": 3,
+    "docs": 1,
+    "exitReason": "docs-collected",
+    "durationSeconds": 1356
+  }
+]

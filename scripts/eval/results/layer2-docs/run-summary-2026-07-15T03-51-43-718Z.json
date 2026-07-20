@@ -1,0 +1,9 @@
+[
+  {
+    "scenarioId": "E3-new-join-query",
+    "rep": 1,
+    "docs": 1,
+    "exitReason": "docs-collected",
+    "durationSeconds": 961
+  }
+]

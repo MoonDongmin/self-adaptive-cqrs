@@ -1,0 +1,19 @@
+[
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": "rep-1",
+    "file": "2026-07-15-094028-309269d1-ac83-437e-b7e8-88940a9d54fe.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true
+    },
+    "passRate": 1
+  }
+]

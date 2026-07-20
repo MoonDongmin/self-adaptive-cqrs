@@ -1,0 +1,189 @@
+[
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": "rep-1",
+    "file": "2026-07-15-094028-309269d1-ac83-437e-b7e8-88940a9d54fe.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true
+    },
+    "passRate": 1
+  },
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": "rep-2",
+    "file": "2026-07-15-125212-6ebcd91f-4ebf-4fef-8f11-35d8d530b773.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true
+    },
+    "passRate": 1
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": "rep-1",
+    "file": "2026-07-15-095633-2e9f773d-26e5-4f51-95f8-98847057c637.md",
+    "expectsDocs": true,
+    "verdict": "부분 통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": false,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": false,
+      "versioningFilled": false,
+      "grounding": true
+    },
+    "passRate": 0.5714285714285714
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": "rep-1",
+    "file": "2026-07-15-100759-7d7ad67b-00e6-4cad-9517-9a08505d4545.md",
+    "expectsDocs": true,
+    "verdict": "부분 통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": false,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": false,
+      "versioningFilled": false,
+      "grounding": true
+    },
+    "passRate": 0.5714285714285714
+  },
+  {
+    "scenarioId": "A4-physical-impossible",
+    "rep": "rep-1",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02006.md",
+    "expectsDocs": true,
+    "verdict": "부분 통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": false,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": false,
+      "grounding": true
+    },
+    "passRate": 0.7142857142857143
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": "rep-1",
+    "file": "2023-10-10-090000-반려동물용품_CR01_강아지공룡알장난감_02008.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true
+    },
+    "passRate": 1
+  },
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": "rep-1",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02010.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true
+    },
+    "passRate": 1
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": "rep-1",
+    "file": "2026-07-15-112533-55fa63bf-b3fd-46ab-8414-5cf89f50e24f.md",
+    "expectsDocs": true,
+    "verdict": "부분 통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": false,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": false,
+      "versioningFilled": false,
+      "grounding": true
+    },
+    "passRate": 0.5714285714285714
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": "rep-1",
+    "file": "2026-07-15-114611-96ca1932-9a72-41c2-a765-e08b01cefb2d.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true
+    },
+    "passRate": 1
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": "rep-1",
+    "file": "2026-07-15-121940-edf81375-f3f1-4524-bca6-bc1bdd67053d.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true
+    },
+    "passRate": 1
+  },
+  {
+    "scenarioId": "E3-new-join-query",
+    "rep": "rep-1",
+    "file": "2026-07-15-123542-bc3e26ab-a3e9-4b11-b50f-3c5f3a3117fd.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true
+    },
+    "passRate": 1
+  }
+]

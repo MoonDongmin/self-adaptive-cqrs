@@ -8,9 +8,12 @@ function codeBlock(language: string, source: string): string {
 
 export function renderSensorFinding(finding: SensorAnomalyFinding): string {
   return [
-    "## 센서 이상 배치 (관찰자 1차 판정)",
+    "## 센서 이상 배치 (관찰자 1차 판정 — 검증 전 가설)",
     `> 사유: ${finding.reason}`,
     `> 의심 sceneKey: ${finding.offendingSceneKeys.join(", ") || "-"}`,
+    "> 위 사유는 소형 1차 관찰자의 출력이라 인용 수치·부등호가 부정확할 수 있는 **가설**이다.",
+    "> 근거로 쓸 관측값·부등호는 반드시 아래 원시 레코드에서 재확인해 원문 그대로 인용하고,",
+    "> 원시 레코드에서 재확인되지 않는 1차 사유는 기각해라.",
     "",
     "### 투영된 센서 값 (JSON 한 줄당 한 레코드)",
     codeBlock("json", finding.batchText),

@@ -71,6 +71,35 @@ function enforceCoherentSelection(
   };
 }
 
+// 로그 경로 가드: dataQualityRecommendation 생성기는 센서 전용이라 sensorFinding 이
+// 없으면 조용히 빈 출력으로 강등된다(data-quality.node.ts). 그런데 LLM 은 로그 경로의
+// 데이터 품질성 결함(필드 누락 등)에서도 이 키를 고른다(2026-07-19 A3 실측) —
+// 정합성 검사는 이를 '권고 있음'으로 오인해 recommendationDocs 를 추가하지 않고,
+// 결과적으로 무결성 게이트가 문서 전체를 보류한다. 로그 경로에서는 결정론으로
+// recommendationDocs 로 치환한다.
+function substituteSensorOnlySelection(
+  decision: AnalysisDecision,
+  sensorFindingPresent: boolean,
+): AnalysisDecision {
+  if (
+    sensorFindingPresent ||
+    !decision.selected.includes("dataQualityRecommendation")
+  ) {
+    return decision;
+  }
+  const selected = decision.selected
+    .filter((kind) => kind !== "dataQualityRecommendation")
+    .concat(
+      decision.selected.includes("recommendationDocs")
+        ? []
+        : ["recommendationDocs" as const],
+    );
+  return {
+    selected,
+    reasoning: `${decision.reasoning} (로그 경로 가드: 센서 전용 dataQualityRecommendation → recommendationDocs 치환)`,
+  };
+}
+
 export async function decisionNode(state: typeof AnalysisState.State) {
   if (state.sensorFinding === null && isCatalogMissOnly(state.window)) {
     return {
@@ -101,5 +130,9 @@ export async function decisionNode(state: typeof AnalysisState.State) {
     analysisDecisionSchema,
   );
 
-  return { decision: enforceCoherentSelection(decision) };
+  return {
+    decision: enforceCoherentSelection(
+      substituteSensorOnlySelection(decision, state.sensorFinding !== null),
+    ),
+  };
 }

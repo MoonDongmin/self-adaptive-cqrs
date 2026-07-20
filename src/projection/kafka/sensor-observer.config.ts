@@ -15,6 +15,13 @@ export const SENSOR_OBSERVER_CONFIG = {
   maxEpisodeRecords: 64,
   // 열린 에피소드가 새 입력 없이 이 시간을 넘기면 스트림 중단(씬 종료)으로 보고 닫는다.
   episodeQuietTimeoutMS: 15 * 1000,
+  // 열린 에피소드를 닫는 데 필요한 연속 정상 윈도우 수(히스테리시스). 기본 1 = 정상
+  // 윈도우 1회에 즉시 마감(기존 동작). llm-only 처럼 판정이 흔들리는 모드에서는 2 로
+  // 올려, 이상 구간 한가운데의 오판(정상) 1회가 에피소드를 조각내 분석 컨텍스트를
+  // 파편화하는 것을 막는다.
+  episodeCloseNormalStreak: Number(
+    process.env.SENSOR_OBSERVER_EPISODE_CLOSE_NORMAL_STREAK ?? 1,
+  ),
   // 1차 판정 모드. hybrid = 결정론 4층 주석 + LLM 해석(기본). llm-only = 주석·게이트·
   // 강제 병합·결정론 폴백 없이 LLM 단독 판정 — 순수 LLM 탐지율 측정(ablation)용.
   judgeMode: (process.env.SENSOR_OBSERVER_JUDGE_MODE === "llm-only"
