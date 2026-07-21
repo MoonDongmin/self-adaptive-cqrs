@@ -34,12 +34,12 @@ export function renderAnomalyWindow(window: AnomalyLogWindow): string {
           .join(", ");
 
   const header =
-    "| time | level | action | correlation_id | msg |\n| --- | --- | --- | --- | --- |";
+    "| time | level | action | correlation_id | stream_id | attempt | global_seq | msg | detail |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- |";
 
   const body: string = window.rows
     .map((r: LogWindowRow) => {
       const mark = r.isAnchor ? " ← 트립 앵커" : "";
-      return `| ${time(r.time)} | ${r.level} | ${cell(r.action ?? "-")} | ${cell(r.correlationId ?? "-")} | ${cell(r.msg ?? "-")}${mark} |`;
+      return `| ${time(r.time)} | ${r.level} | ${cell(r.action ?? "-")} | ${cell(r.correlationId ?? "-")} | ${cell(r.streamId ?? "-")} | ${r.attemptNum ?? "-"} | ${r.globalSeq ?? "-"} | ${cell(r.msg ?? "-")}${mark} | ${cell(r.detail ?? "-")} |`;
     })
     .join("\n");
 
@@ -66,6 +66,44 @@ export function renderEvidenceContext(
   }
 
   return "";
+}
+
+// Insight 카드 mschema 의 Examples 값이 실측값으로 오인돼 격리 SQL·근거 인용에 오염되는
+// 것을 막는 경고문(2026-07-21 품질 감사: A2·A4·A5·A6 에서 예시 scene 00018 오인용 실측).
+// 카드 주입부마다 함께 렌더한다.
+// Examples 값을 분석 컨텍스트에서 아예 제거한다 — 경고문만으로는 모델이 예시 scene 을
+// 근거 sceneKey 로 복제하는 것을 막지 못했다(2026-07-21 A5/A6 실측: 측정값은 실측인데
+// sceneKey 전부가 예시값 00018). 컬럼 의미 서술은 보존되므로 스키마 이해에는 지장 없다.
+export function stripInsightCardExamples(cards: string): string {
+  return cards.replace(/,?\s*Examples: \[[^\]]*\]/g, "");
+}
+
+export const INSIGHT_CARDS_CAVEAT: string =
+  "> 주의: 위 카드의 `Examples:` 값(예: ...00018)은 스키마 형태를 보여주는 예시일 뿐, 이번 " +
+  "인시던트의 실측값이 아니다. 근거 인용과 SQL 리터럴(scene_key·파일명·correlation_id)에는 " +
+  "절대 사용하지 말고, 로그 윈도우/센서 배치에 실재하는 값만 써라.";
+
+// 확정된 신규 Read Model 설계를 후속 생성기(versionSwitch/recommendationDocs/dataQuality)
+// 컨텍스트로 주입한다 — 스키마 단일 소스. 생성기마다 스키마를 독립 창안해 섹션 간
+// 테이블·컬럼이 갈라지던 결함의 봉쇄 장치.
+export function renderConfirmedDesign(newReadModel: NewReadModelOutput): string {
+  const fields = newReadModel.fields
+    .map((field) => `  - ${field.name} ${field.dataType} — ${field.meaning}`)
+    .join("\n");
+
+  return [
+    "## 확정된 신규 Read Model 설계 — 그대로 재사용하라",
+    `- 테이블명: ${newReadModel.proposedName} · 키: ${newReadModel.keyColumns}`,
+    "- 필드:",
+    fields,
+    "- migrationSql:",
+    codeBlock("sql", newReadModel.migrationSql),
+    "",
+    "이 설계는 이미 확정되어 Docs §2(Read Model 생성 SQL)에 실린다. 신규 테이블·컬럼·타입을",
+    "지칭할 때는 반드시 위 이름·컬럼·타입을 그대로 쓰고, 같은 목적의 다른 테이블명이나 다른",
+    "컬럼 구성을 발명하지 마라. DDL·Drizzle 스키마·프로젝터 전체 코드도 재생성하지 마라 —",
+    "그것은 §2 산출물의 몫이다.",
+  ].join("\n");
 }
 
 export function renderRootCause(rootCause: RootCauseAnalysis): string {

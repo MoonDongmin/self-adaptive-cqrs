@@ -1,0 +1,38 @@
+{
+  "scenarioId": "E3-new-join-query",
+  "rep": 1,
+  "startedAt": "2026-07-21T07:00:27.475Z",
+  "expectsDocs": true,
+  "channel": "query",
+  "stagedCount": 30,
+  "insert": {
+    "inserted": 30,
+    "failed": []
+  },
+  "projection": {
+    "multimodalProcessed": 30,
+    "gripResultOk": true,
+    "gripResultProcessed": 30
+  },
+  "userQuery": "파지 결과와 해당 시도의 이미지·영상 경로를 한 화면에서 함께 보고 싶다.",
+  "exitReason": "docs-collected",
+  "observedCount": 30,
+  "projectedCount": 30,
+  "events": [
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 3건 (insight.card.miss)"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-07-21-160027-d6651f1e-b590-4fe5-8e74-499236607aa2.md",
+      "docsValid": true,
+      "docsValidationErrors": []
+    }
+  ],
+  "finishedAt": "2026-07-21T07:04:33.619Z",
+  "durationSeconds": 246,
+  "collectedDocs": [
+    "2026-07-21-160027-d6651f1e-b590-4fe5-8e74-499236607aa2.md"
+  ]
+}

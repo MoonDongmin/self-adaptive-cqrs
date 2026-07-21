@@ -1,7 +1,12 @@
 import { AnalysisState } from '@/analysis/analysis.state';
 import { invokeNode } from '@/analysis/nodes/invoke';
 import { DECISION_PROMPT } from '@/analysis/prompts';
-import { renderRootCause } from '@/analysis/render';
+import {
+  INSIGHT_CARDS_CAVEAT,
+  renderEvidenceContext,
+  renderRootCause,
+  stripInsightCardExamples,
+} from '@/analysis/render';
 import { renderSensorFinding } from '@/analysis/render-sensor';
 import { AnalysisDecision, analysisDecisionSchema } from '@/analysis/type/output.type';
 import type { AnomalyLogWindow } from '@/llm-context/llm-context.type';
@@ -32,6 +37,23 @@ function isCatalogMissOnly(window: AnomalyLogWindow | null): boolean {
       row.level < WINDOW_CONFIG.errorLevel ||
       row.action === "insight.card.miss",
   );
+}
+
+// 결정론 프리게이트 2: 트립 앵커가 적재 단계 zod 거절(insert.file.failed)이고 윈도우에
+// 투영 실패(projection.map.failed)가 없으면, 결함 이벤트는 event_store 에 아예 유입되지
+// 않았다 — Read Model 구조 문제가 아니라 원천 데이터 결함이므로 격리 권고 단독으로
+// 확정한다. 프롬프트 lane 지시만으로는 rootCause 의 '재생성' 프레이밍에 밀려 LLM 이
+// newReadModel 로 샌다(2026-07-21 gpt-4o-mini 실측 — decision 은 윈도우를 못 보므로
+// 앵커 action 기반 판단 자체가 불가능했다).
+export function isInsertRejection(window: AnomalyLogWindow | null): boolean {
+  if (window === null || window.rows.length === 0) {
+    return false;
+  }
+  const anchor = window.rows.find((row) => row.isAnchor);
+  if (anchor === undefined || anchor.action !== "insert.file.failed") {
+    return false;
+  }
+  return !window.rows.some((row) => row.action === "projection.map.failed");
 }
 
 // 정합성 불변식: newReadModel/versionSwitch(산출물 생성)를 골랐으면 권고 계열도 반드시
@@ -111,17 +133,37 @@ export async function decisionNode(state: typeof AnalysisState.State) {
     };
   }
 
+  if (state.sensorFinding === null && isInsertRejection(state.window)) {
+    return {
+      decision: {
+        selected: ["recommendationDocs" as const],
+        reasoning:
+          "적재 단계 zod 거절(insert.file.failed) — 결함 이벤트는 event_store 미유입이므로 " +
+          "Read Model 구조 문제가 아닌 원천 데이터 결함. 격리 권고 단독 (결정론 프리게이트)",
+      },
+    };
+  }
+
   const sensorSection: string[] =
     state.sensorFinding !== null
       ? ["", "## 센서 무결성 발견", renderSensorFinding(state.sensorFinding)]
       : [];
 
+  // 로그 윈도우를 함께 주입한다 — DECISION_PROMPT 의 lane 규칙(카드 miss 반복·조회 의도,
+  // 드리프트 newKeys 등)은 윈도우 표의 실측 행을 전제로 하는데, 요약된 rootCause 만으로는
+  // 카드 이름(=사용자 질의)·반복 횟수를 판단할 수 없어 '의도 없음' 오판이 난다
+  // (2026-07-21 gpt-4o-mini E3 실측).
+  const windowSection: string[] =
+    state.window !== null ? ["", renderEvidenceContext(state.window, null)] : [];
+
   const facts: string = [
     renderRootCause(state.rootCause!), // rootCause 노드 이후라 non-null
     ...sensorSection,
+    ...windowSection,
     "",
     "## 1. 도메인 스키마 (Insight Read DB)",
-    state.insightCards,
+    stripInsightCardExamples(state.insightCards),
+    INSIGHT_CARDS_CAVEAT,
   ].join("\n");
 
   const decision = await invokeNode(

@@ -1,0 +1,189 @@
+[
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": "rep-1",
+    "file": "2026-07-21-142205-c056056c-68ed-40af-97b7-f0b22f26a053.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true
+    },
+    "passRate": 1
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": "rep-1",
+    "file": "2026-07-21-134935-f594afee-9efc-427f-80b0-b2bd5d920266.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true
+    },
+    "passRate": 1
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": "rep-1",
+    "file": "2026-07-21-135222-e9b7b03b-7e65-4300-8d3e-b5f700700346.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true
+    },
+    "passRate": 1
+  },
+  {
+    "scenarioId": "A4-physical-impossible",
+    "rep": "rep-1",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02006.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true
+    },
+    "passRate": 1
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": "rep-1",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02008.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true
+    },
+    "passRate": 1
+  },
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": "rep-1",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02010.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true
+    },
+    "passRate": 1
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": "rep-1",
+    "file": "2026-07-21-142838-1a1227ca-777b-48c4-82c9-504a25ac0f48.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true
+    },
+    "passRate": 1
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": "rep-1",
+    "file": "2026-07-21-141107-639491a2-c76c-45b0-8f58-826dc5086084.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true
+    },
+    "passRate": 1
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": "rep-1",
+    "file": "2026-07-21-141450-38b0e794-df07-48da-8ef7-a8371f412f4a.md",
+    "expectsDocs": true,
+    "verdict": "부분 통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": false,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": false,
+      "versioningFilled": true,
+      "grounding": true
+    },
+    "passRate": 0.7142857142857143
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": "rep-1",
+    "file": "2026-07-21-141450-c7c238f1-9300-47ae-8f30-a2b3ae8683ac.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true
+    },
+    "passRate": 1
+  },
+  {
+    "scenarioId": "E3-new-join-query",
+    "rep": "rep-1",
+    "file": "2026-07-21-143124-5a0d69a3-6c22-4fdb-b761-14e76d4cb031.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true
+    },
+    "passRate": 1
+  }
+]

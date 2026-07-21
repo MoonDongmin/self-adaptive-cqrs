@@ -34,7 +34,14 @@ export interface LogWindowRow {
   level: number;
   action: string | null;
   correlationId: string | null;
+  streamId: string | null;
+  attemptNum: number | null;
+  globalSeq: number | null;
+  projectorName: string | null;
   msg: string | null;
+  // reason·file·eventId·newKeys 등 격리 SQL 의 근거가 되는 구조 필드를 합친 서술.
+  // 없으면 null — 분석 LLM 이 WHERE 절 리터럴을 지어내지 않도록 실측값을 노출한다.
+  detail: string | null;
   isAnchor: boolean;
 }
 

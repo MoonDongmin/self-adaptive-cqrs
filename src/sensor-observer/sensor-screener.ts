@@ -16,6 +16,7 @@ import {
 } from '@/sensor-observer/sensor-observer.prompt';
 import { contentToString, extractJson } from '@/shared/llm/llm-json';
 import { runExclusive } from '@/shared/llm/llm-serial-queue';
+import { thinkingControlKwargs } from '@/shared/llm/thinking-control';
 
 // 센서 값 관찰자 출력 = 이상 여부 + 사유 + 의심 scene. prejudge 와 동형의 싼 스키마.
 export const sensorObserverVerdictSchema = z.object({
@@ -251,7 +252,7 @@ function buildObserverModel(maxTokens: number): ChatOpenAI {
     // 시작해 max_tokens 전체를 reasoning 으로 소진한다(2026-07-13 실측: content 0자 +
     // finish=length → 2배 재시도 → 타임아웃 연쇄). LM Studio 가 reasoning_effort 를
     // thinking 스위치로 매핑하므로 none 으로 추론을 끈다(/no_think 는 qwen3.5 에서 무효).
-    modelKwargs: { reasoning_effort: "none" },
+    modelKwargs: thinkingControlKwargs(PREJUDGE_CONFIG.baseUrl),
     configuration: { baseURL: PREJUDGE_CONFIG.baseUrl },
   });
 }

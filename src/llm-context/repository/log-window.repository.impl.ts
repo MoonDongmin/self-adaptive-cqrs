@@ -14,17 +14,57 @@ interface RawRow {
   level: number;
   action: string | null;
   correlationId: string | null;
+  streamId: string | null;
+  attemptNum: number | null;
+  globalSeq: number | null;
+  projectorName: string | null;
+  reason: string | null;
+  file: string | null;
+  eventId: string | null;
+  newKeys: string | null;
   msg: string | null;
 }
 
+// stream_id/attempt_num/global_seq/reason 은 1급 컬럼, file/eventId/newKeys 는
+// payload jsonb 원본에만 있다. 이 값들이 빠지면 분석 LLM 이 격리 SQL 의 WHERE 절
+// 리터럴을 지어낸다(2026-07-21 품질 감사: A1~A3·B1 전 rep 의 SQL 환각 근원).
 const ROW_COLUMNS = {
   time: logEvents.time,
   logId: logEvents.logId,
   level: logEvents.level,
   action: logEvents.action,
   correlationId: logEvents.correlationId,
+  streamId: logEvents.streamId,
+  attemptNum: logEvents.attemptNum,
+  globalSeq: logEvents.globalSeq,
+  projectorName: logEvents.projectorName,
+  reason: logEvents.reason,
+  file: sql<string | null>`${logEvents.payload}->>'file'`,
+  eventId: sql<string | null>`${logEvents.payload}->>'eventId'`,
+  newKeys: sql<string | null>`${logEvents.payload}->>'newKeys'`,
   msg: logEvents.msg,
 } as const;
+
+// 격리 SQL 근거 필드를 표 한 칸으로 합친다. 값이 하나도 없으면 null.
+function buildDetail(row: RawRow): string | null {
+  const parts: string[] = [];
+  if (row.reason !== null) {
+    parts.push(`reason=${row.reason}`);
+  }
+  if (row.file !== null) {
+    parts.push(`file=${row.file}`);
+  }
+  if (row.eventId !== null) {
+    parts.push(`event_id=${row.eventId}`);
+  }
+  if (row.newKeys !== null) {
+    parts.push(`newKeys=${row.newKeys}`);
+  }
+  if (row.projectorName !== null) {
+    parts.push(`projector=${row.projectorName}`);
+  }
+  return parts.length > 0 ? parts.join(" · ") : null;
+}
 
 @Injectable()
 export class LogWindowRepositoryImpl implements LogWindowRepository {
@@ -147,7 +187,12 @@ export class LogWindowRepositoryImpl implements LogWindowRepository {
       level: r.level,
       action: r.action,
       correlationId: r.correlationId,
+      streamId: r.streamId,
+      attemptNum: r.attemptNum,
+      globalSeq: r.globalSeq,
+      projectorName: r.projectorName,
       msg: r.msg,
+      detail: buildDetail(r),
       isAnchor: r.logId === anchor.logId,
     }));
   }

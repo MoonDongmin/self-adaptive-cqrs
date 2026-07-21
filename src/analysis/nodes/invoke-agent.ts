@@ -7,6 +7,7 @@ import { ANALYSIS_CONFIG } from '@/analysis/analysis.config';
 import type { DiagnosisTools } from '@/analysis/tools/diagnosis-toolkit';
 import { contentToString, extractJson } from '@/shared/llm/llm-json';
 import { runExclusive } from '@/shared/llm/llm-serial-queue';
+import { thinkingControlKwargs } from '@/shared/llm/thinking-control';
 
 // 도구 왕복 상한: 증거 수집은 유한해야 한다. 상한 도달 시 수집분만으로 최종 판정을 강제한다.
 const MAX_TOOL_ROUNDS = 4;
@@ -42,7 +43,7 @@ export async function invokeAgentNode<T>(
     maxTokens: ANALYSIS_CONFIG.maxOutputTokens,
     // invoke.ts 와 동일 — qwen3.6 의 thinking 이 출력 상한을 잠식해 content 가
     // 비는 것을 막는다(2026-07-14 실측).
-    modelKwargs: { reasoning_effort: "none" },
+    modelKwargs: thinkingControlKwargs(ANALYSIS_CONFIG.baseUrl),
     // 요청 단위 타임아웃 + 재시도 상한 — invoke.ts 와 동일 사유(요청 유실 대비).
     timeout: ANALYSIS_CONFIG.timeoutMS,
     maxRetries: 2,

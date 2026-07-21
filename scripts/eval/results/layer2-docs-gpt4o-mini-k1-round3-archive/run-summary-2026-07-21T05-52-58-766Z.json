@@ -1,0 +1,9 @@
+[
+  {
+    "scenarioId": "A4-physical-impossible",
+    "rep": 1,
+    "docs": 1,
+    "exitReason": "docs-collected",
+    "durationSeconds": 280
+  }
+]

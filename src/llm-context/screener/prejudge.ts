@@ -4,6 +4,7 @@ import { type LogBatchRecord, type PrejudgeChecked, prejudgeCheckedSchema } from
 import { PREJUDGE_CONFIG } from '@/llm-context/screener/prejudge.config';
 import { contentToString, extractJson } from '@/shared/llm/llm-json';
 import { runExclusive } from '@/shared/llm/llm-serial-queue';
+import { thinkingControlKwargs } from '@/shared/llm/thinking-control';
 
 const SYSTEM_PROMPT: string = [
   "너는 로그 이상 1차 선별기다. 아래 (A) 최근 로그 원본(JSON 한 줄당 한 레코드)을",
@@ -78,7 +79,7 @@ export async function prejudge(
     // qwen3.5 계열은 하이브리드 thinking 모델이라 상한이 타이트하면 추론만 하다
     // content 0자로 잘린다(2026-07-13 실측: 1024 상한에서 재현 — sensor-screener 와
     // 동일 증상). LM Studio 가 reasoning_effort 를 thinking 스위치로 매핑하므로 끈다.
-    modelKwargs: { reasoning_effort: "none" },
+    modelKwargs: thinkingControlKwargs(PREJUDGE_CONFIG.baseUrl),
     configuration: {
       baseURL: PREJUDGE_CONFIG.baseUrl,
     },

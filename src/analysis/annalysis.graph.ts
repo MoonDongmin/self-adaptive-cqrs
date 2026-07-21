@@ -47,6 +47,14 @@ export function buildAnalysisGraph(toolkit: DiagnosisToolkit | null = null) {
         return "aggregate";
       }
 
+      // newReadModel 이 선택되면 설계를 먼저 확정한다 — 나머지 생성기는 확정된 설계를
+      // 컨텍스트로 주입받아 뒤 super-step 에서 실행된다(스키마 단일 소스). 병렬 fan-out 이
+      // 생성기마다 독립적으로 스키마를 즉흥 창안해 §1/§2/§3 이 서로 다른 테이블·컬럼을
+      // 가리키던 자기모순(2026-07-21 품질 감사: 전 시나리오 최다 빈도 결함)의 구조적 봉쇄.
+      if (picked.includes("newReadModel")) {
+        return ["genNewReadModel"];
+      }
+
       return picked.map((kind) => ROUTE[kind]);
     },
     [
@@ -62,10 +70,23 @@ export function buildAnalysisGraph(toolkit: DiagnosisToolkit | null = null) {
   graph.addEdge("genRecommendationDocs", "aggregate");
   // newReadModel 의 동반 스테이지: 매핑 명세는 방금 설계된 fields 를 봐야 하므로 fan-out 이
   // 아니라 genNewReadModel 뒤에 체인한다(decide 는 이 노드를 모른다 — OutputKind 아님).
-  // 다른 생성기보다 한 super-step 늦게 aggregate 에 도달해 aggregate 가 두 번 실행될 수
-  // 있으나, aggregate 는 LLM 미호출 결정론 조립 + report 채널 last-write-wins 라 무해하다.
   graph.addEdge("genNewReadModel", "genProjectionMapping");
-  graph.addEdge("genProjectionMapping", "aggregate");
+  // 설계·매핑 확정 후 남은 선택 생성기로 fan-out. 없으면 곧장 aggregate.
+  graph.addConditionalEdges(
+    "genProjectionMapping",
+    (state) => {
+      const remaining = (state.decision?.selected ?? []).filter(
+        (kind) => kind !== "newReadModel",
+      );
+
+      if (remaining.length === 0) {
+        return "aggregate";
+      }
+
+      return remaining.map((kind) => ROUTE[kind]);
+    },
+    ["genVersionSwitch", "genRecommendationDocs", "genDataQuality", "aggregate"],
+  );
   graph.addEdge("genDataQuality", "aggregate");
   graph.addEdge("aggregate", END);
 
