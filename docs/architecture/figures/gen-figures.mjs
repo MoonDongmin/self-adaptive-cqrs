@@ -361,7 +361,7 @@ function figure1() {
 
   // flows — observability
   f.arrow("pino->logdb", [A("PINO", "bottom", 0.25), A("LOGDB", "top", 0.5)], { start: "PINO", end: "LOGDB" });
-  f.arrow("pino->kafka1", [A("PINO", "bottom", 0.8), A("KAFKA1", "top", 0.5)], { start: "PINO", end: "KAFKA1", label: "warn 이상", labelSize: 11.5 });
+  f.arrow("pino->kafka1", [A("PINO", "bottom", 0.8), A("KAFKA1", "top", 0.5)], { start: "PINO", end: "KAFKA1", label: "info 이상", labelSize: 11.5 });
   f.arrow("run->kafka2", [A("RUN", "right", 0.5), A("KAFKA2", "left", 0.5)], { start: "RUN", end: "KAFKA2", label: "센서 값 발행", labelSize: 11.5 });
 
   // flows — into llm zone
@@ -419,7 +419,7 @@ function figure2() {
 
   f.zone("L1", 120, 190, 580, 400, "로그 레인");
   f.box("K1", 260, 230, 300, 50, "Kafka: log-events", { bg: COLOR.kafka, fontSize: 14 });
-  f.box("F1", 200, 330, 420, 64, "LogConsumer 필터\ninsert 경로 제외 · corr 없고 level<40 제외", { fontSize: 13 });
+  f.box("F1", 200, 330, 420, 64, "LogConsumer 필터\ninsert 경로 level<40 제외 · corr 없고 level<40 제외", { fontSize: 13 });
   f.diamond("P1", 230, 450, 360, 110, "Prejudge\n(소형 LLM · fail-open)", { bg: COLOR.llmCall, fontSize: 14 });
 
   f.zone("L2", 860, 190, 380, 400, "센서 레인");
@@ -450,8 +450,8 @@ function figure2() {
     "관찰 실패 시 requeue,\n3연속 실패 시 결정론 폴백 판정으로 강등 (폐기 아님)\njudgeMode: hybrid(기본) · llm-only(룰북 주입 ablation)",
     { fontSize: 11, color: "#868e96" });
 
-  f.box("D1", 320, 790, 290, 50, "llm-docs/…-analysis-⟨id⟩.md", { bg: COLOR.docs, fontSize: 13 });
-  f.box("D2", 650, 790, 260, 50, "llm-docs/…-dq-⟨id⟩.md", { bg: COLOR.docs, fontSize: 13 });
+  f.box("D1", 320, 790, 290, 50, "분석 Docs\n(docId: analysis-⟨corrId⟩)", { bg: COLOR.docs, fontSize: 12.5 });
+  f.box("D2", 650, 790, 260, 50, "데이터 품질 Docs\n(docId: dq-⟨sceneKey⟩)", { bg: COLOR.docs, fontSize: 12.5 });
   f.arrow("graph->d1", [A("GRAPH", "bottom", 0.3), A("D1", "top", 0.5)], { start: "GRAPH", end: "D1" });
   f.arrow("graph->d2", [A("GRAPH", "bottom", 0.7), A("D2", "top", 0.5)], { start: "GRAPH", end: "D2" });
 
@@ -517,13 +517,13 @@ function figure4() {
 
   f.text("title", 40, 15, "진단 에이전트 — 도구 사용 근본원인 분석 (ReAct 루프)", { fontSize: 22 });
 
-  f.box("IN", 40, 200, 250, 90, "입력 (push 컨텍스트)\n로그 윈도우 · Insight 카드\n· 센서 소견", { bg: COLOR.context, stroke: "#0ca678", fontSize: 13.5 });
+  f.box("IN", 40, 200, 250, 90, "입력 (push 컨텍스트)\n로그 윈도우 또는 센서 소견\n(Insight 카드는 도구로 pull)", { bg: COLOR.context, stroke: "#0ca678", fontSize: 13 });
   f.box("LLM", 380, 190, 280, 70, "LLM (tools bound,\ntemperature 0)", { bg: COLOR.llmCall, fontSize: 14.5 });
   f.diamond("DIA", 360, 330, 320, 100, "tool_calls 존재?\n(도구 왕복 ≤ 4회)", { fontSize: 13.5 });
   f.box("TK", 770, 310, 360, 120,
     "DiagnosisToolkit — 도구 5종\nsearch_logs (스택 상단 6프레임 발췌)\nlist_insight_cards · get_insight_card\nget_sensor_baseline\nread_source_code (경로 경계 검증)",
     { fontSize: 12.5 });
-  f.box("ZOD", 380, 520, 280, 70, "extractJson → zod 검증\n(re-ask ≤ 2회)", { fontSize: 14 });
+  f.box("ZOD", 380, 520, 280, 70, "extractJson → zod 검증\n(re-ask ≤ 1회)", { fontSize: 14 });
   f.box("OUT", 380, 660, 280, 84, "RootCauseAnalysis\nanomalyKind (open-set)\n+ diagnosisTrajectory", { bg: "#d0ebff", stroke: "#1971c2", fontSize: 13.5 });
 
   f.arrow("in->llm", [A("IN", "right", 0.5), A("LLM", "left", 0.5)], { start: "IN", end: "LLM" });
@@ -535,7 +535,7 @@ function figure4() {
   f.arrow("zod->llm", [A("ZOD", "left", 0.5), [310, 555], [310, 249], A("LLM", "left", 0.85)], { start: "ZOD", end: "LLM", dashed: true, label: "실패 —\n자기 오류 재제시\n(re-ask)", labelSize: 11 });
 
   f.text("note_limits", 40, 520,
-    "3중 상한 (무한 루프 ·\nContext Rot 차단):\n· 도구 왕복 ≤ 4회\n· 최종 re-ask ≤ 2회\n· 전체 LLM 호출 ≤ 8회 (안전핀)",
+    "3중 상한 (무한 루프 ·\nContext Rot 차단):\n· 도구 왕복 ≤ 4회\n· 최종 응답 시도 ≤ 2회 (re-ask 1회)\n· 전체 LLM 호출 ≤ 8회 (안전핀)",
     { fontSize: 12.5, color: "#495057" });
   f.text("note_traj", 770, 470,
     "궤적(diagnosisTrajectory)은 서비스 로그에만 기록\n— Docs 미포함 · 사후 LLM-as-Judge 평가 입력",
@@ -554,15 +554,15 @@ function figure5() {
 
   f.text("title", 40, 15, "산출물 — 단일 Docs 레이아웃 (U자형 배치)", { fontSize: 22 });
 
-  f.zone("DOC", 330, 70, 520, 810, "llm-docs/⟨날짜⟩-⟨시각⟩-⟨docId⟩.md", { fontSize: 15 });
+  f.zone("DOC", 330, 70, 520, 810, "llm-docs/⟨날짜⟩-⟨시각⟩-⟨corrId | sceneKey⟩.md", { fontSize: 15 });
 
   f.box("FM", 360, 130, 460, 64, "YAML front-matter\ndocId · sufficientEvidence · evidenceSources · API 델타", { bg: COLOR.storage, fontSize: 12.5 });
   f.box("H1B", 360, 214, 460, 58, "H1 + 한 문장 결론 (TL;DR)\n+ anomalyKind · 심각도", { bg: COLOR.docs, stroke: "#e03131", fontSize: 13.5 });
   f.box("EV", 360, 292, 460, 64, "근거 블록 (상단 고정)\n⟨logging_context⟩ · ⟨insight_read_db⟩ (M-Schema)", { bg: COLOR.storage, fontSize: 12.5 });
-  f.box("S1B", 360, 376, 460, 70, "① 권고 (Recommendation) — ADR 형식\nContext · Options(기각 대안 ≥1) · Decision · Consequences", { bg: "#d0ebff", stroke: "#1971c2", fontSize: 12 });
+  f.box("S1B", 360, 376, 460, 70, "① 권고 (Recommendation) — ADR 형식\nContext · Options(기각 대안) · Decision · Consequences", { bg: "#d0ebff", stroke: "#1971c2", fontSize: 12 });
   f.box("S2B", 360, 466, 460, 86, "② Read Model 생성 SQL\nCREATE TABLE + 인덱스 + 투영 매핑 명세\n+ Insight 카드 등록 INSERT (결정론 동봉)", { bg: "#d0ebff", stroke: "#1971c2", fontSize: 12 });
   f.box("S3B", 360, 572, 460, 64, "③ API Versioning — Keep a Changelog\nfrom→to · 마이그레이션 절차 · 롤백 조건", { bg: "#d0ebff", stroke: "#1971c2", fontSize: 12 });
-  f.box("OPT", 360, 656, 460, 56, "Optional — projectorCode 등\n(예산 부족 시 절삭되는 구획)", { dashed: true, fontSize: 12 });
+  f.box("OPT", 360, 656, 460, 56, "Optional — projectorCode 등\n(코어 토큰 집계 제외 · 절삭 가능 구획)", { dashed: true, fontSize: 12 });
   f.box("GR", 360, 732, 460, 64, "Guardrails (constraints) — 맨 끝\nv1 무손상 · PK 유지 · DDL은 인간 승인 후 실행", { bg: COLOR.docs, stroke: "#e03131", fontSize: 12 });
 
   const stack = ["FM", "H1B", "EV", "S1B", "S2B", "S3B", "OPT", "GR"];
@@ -661,6 +661,106 @@ function figure7() {
   f.save();
 }
 
+// ─────────────────── 그림 8 — Self-Adaptive Loop (발표용 가로 밴드) ───────────────────
+function figure8() {
+  const f = new Figure("fig8-self-adaptive-loop.excalidraw", { roughness: 0 });
+  const A = (id, side, t) => f.anchor(id, side, t);
+
+  f.text("title", 60, 22, "Self-Adaptive Loop — 두 컨텍스트 소스가 Docs를 만든다 (5초 폴링 주기)", { fontSize: 24 });
+  f.zone("BAND", 20, 62, 1970, 830, null, { bg: "#ffffff", stroke: "#1971c2" });
+
+  // ── 상단: 탐지 루프. 이상 신호는 '스트림'이지 Read DB 조회가 아니다 ──
+  f.box("SIG1", 60, 110, 310, 58, "① 애플리케이션 로그 (Write · Read)\npino(info 이상) → TCP socket", { stroke: "#e8590c", fontSize: 11.5 });
+  f.box("SIG2", 60, 186, 310, 58, "② 카드 드리프트 warn(40)\n무카드 Read Model 테이블", { stroke: "#e03131", fontSize: 11.5 });
+  f.box("SIG3", 60, 262, 310, 58, "③ 센서 값 스트림 (배치 8건)", { stroke: "#2f9e44", fontSize: 11.5 });
+
+  f.box("MQ", 420, 150, 160, 140, "Message Queue\n(Kafka)\n\nlog-events\nsensor-values", { bg: COLOR.kafka, fontSize: 12.5 });
+  f.box("P1", 630, 140, 300, 160, "1차 선별 (소형 LLM)\n\n① 결정론 프리게이트 level ≥ 40\n② Prejudge · Sensor Screener\n    (fail-open)", { bg: COLOR.llmCall, fontSize: 12 });
+  f.box("P2", 990, 140, 300, 160, "2차 분석\n\nLangGraph StateGraph\n+ Tool Calling 진단 에이전트", { bg: COLOR.llmCall, fontSize: 13 });
+
+  // ── 단일 산출물 Docs: 섹션 이름은 validate-docs.ts 의 계약과 일치시킨다 ──
+  f.box("DOCS", 1400, 110, 420, 290, null, { bg: COLOR.docs, stroke: "#e03131", strokeWidth: 2 });
+  f.text("DOCS_t", 1440, 130, "Docs — 단일 산출물 (.md)", { fontSize: 16, color: "#c92a2a" });
+  f.box("D1", 1430, 170, 360, 50, "1. 권고 (Recommendation)", { fontSize: 13.5 });
+  f.box("D2", 1430, 234, 360, 50, "2. Read Model 생성 SQL (DDL)", { fontSize: 13.5 });
+  f.box("D3", 1430, 298, 360, 50, "3. API Versioning", { fontSize: 13.5 });
+  f.text("DOCS_n", 1430, 362, "세 섹션 항상 포함 · front-matter · Guardrails\n코어 토큰 예산 8K (하드캡 20K)", { fontSize: 11.5, color: "#868e96" });
+
+  f.box("FB", 1420, 480, 380, 76, "Read Model 재생성 · Insight 카드 등록\n(인간 승인 게이트)", { bg: COLOR.human, fontSize: 12.5 });
+
+  // ── 하단: 본 연구의 핵심 — 두 DB 를 '의미 있는 컨텍스트'로 가공하는 계층 ──
+  f.zone("Z_CTX", 60, 400, 1250, 430, "LLM 컨텍스트 구축 — 본 연구의 핵심 기여 (두 소스에서 컨텍스트를 만든다)", { bg: COLOR.context, stroke: "#0ca678", fontSize: 17 });
+
+  f.box("PA", 100, 455, 560, 250, null, { bg: "#ffffff", stroke: "#0ca678", strokeWidth: 2 });
+  f.text("PA_h", 120, 472, "① Log DB (log_event) — 개발자 Logging", { fontSize: 14.5, color: "#0b7285" });
+  f.text("PA_b", 120, 505,
+    "커서 기반 증분 적재 (LogService)\n\n→ 이상 로그 윈도우 조립 (LogWindowRepository)\n    · 앵커: level ≥ 40 첫 에러 행\n    · 앵커 앞 20 / 뒤 20행 수집, 상한 80행\n    · 노이즈 프루닝 — 신호 앞 4 / 뒤 6줄만 유지\n       (LogSage arXiv:2506.03691)\n    · 최근 1시간 action × level 빈도 롤업",
+    { fontSize: 12 });
+  f.text("PA_f", 120, 660, "raw 로그 적재가 아니라 '무엇을 보여줄지' 고른 윈도우", { fontSize: 11, color: "#868e96" });
+
+  f.box("PB", 700, 455, 560, 250, null, { bg: "#ffffff", stroke: "#0ca678", strokeWidth: 2 });
+  f.text("PB_h", 720, 472, "② Insight Read DB (insight_entity · insight_field)", { fontSize: 14.5, color: "#0b7285" });
+  f.text("PB_b", 720, 505,
+    "도메인 어휘 카탈로그 — Read Model · Event 1개 = 카드 1장\n\n엔티티: kind · purpose · keyColumns · rowCount · refreshedAt\n필드: fieldName · dataType · meaning · example\n\n→ renderAllCards() 로 카드 세트를 마크다운 렌더\n→ LLM 이 '이 도메인에 무엇이 있는지' 아는 유일한 근거",
+    { fontSize: 12 });
+  f.text("PB_f", 720, 660, "카탈로그 자체가 드리프트 관찰 대상 — 무카드 테이블이 곧 신호 ②", { fontSize: 11, color: "#868e96" });
+
+  f.box("TL", 100, 730, 1160, 80, null, { bg: "#ffffff", stroke: "#1971c2", dashed: true });
+  f.text("TL_h", 120, 745, "진단 도구 5종 (pull · tool-calling)", { fontSize: 13, color: "#1971c2" });
+  f.text("TL_b", 120, 772,
+    "search_logs · list_insight_cards · get_insight_card · get_sensor_baseline · read_source_code\n→ 5종 중 3종이 위 두 DB 를 되짚는다 (push 로 받은 컨텍스트를 에이전트가 스스로 심화 조회)",
+    { fontSize: 11.5 });
+
+  // 신호 → MQ
+  f.arrow("s1->mq", [A("SIG1", "right", 0.5), A("MQ", "left", 0.2)], { start: "SIG1", end: "MQ", color: "#e8590c" });
+  f.arrow("s2->mq", [A("SIG2", "right", 0.5), A("MQ", "left", 0.5)], { start: "SIG2", end: "MQ", color: "#e03131" });
+  f.arrow("s3->mq", [A("SIG3", "right", 0.5), A("MQ", "left", 0.8)], { start: "SIG3", end: "MQ", color: "#2f9e44" });
+
+  // MQ → 1차 → 2차 → Docs
+  f.arrow("mq->p1", [A("MQ", "right", 0.5), A("P1", "left", 0.5)], { start: "MQ", end: "P1" });
+  f.arrow("p1->p2", [A("P1", "right", 0.5), A("P2", "left", 0.5)], { start: "P1", end: "P2" });
+  f.text("p1->p2_t", 908, 306, "triggered = true", { fontSize: 11.5, color: "#495057" });
+  f.arrow("p2->docs", [A("P2", "right", 0.5), A("DOCS", "left", 0.5)], { start: "P2", end: "DOCS" });
+
+  // 두 소스 → 2차 분석: push 주입(MQ 경유 아님) / 도구 → 두 소스: pull 심화 조회
+  f.arrow("pa->p2", [A("PA", "top", 0.9), A("P2", "bottom", 0.25)], { start: "PA", end: "P2", color: "#0ca678", strokeWidth: 2, label: "push", labelSize: 12, labelColor: "#0b7285" });
+  f.arrow("pb->p2", [A("PB", "top", 0.5), A("P2", "bottom", 0.6)], { start: "PB", end: "P2", color: "#0ca678", strokeWidth: 2, label: "push", labelSize: 12, labelColor: "#0b7285" });
+  f.arrow("p2->tl", [A("P2", "bottom", 0.95), [1345, 300], [1345, 770], A("TL", "right", 0.5)], { start: "P2", end: "TL", dashed: true, color: "#1971c2" });
+  f.text("p2->tl_t", 1352, 520, "pull\n(tool-calling)", { fontSize: 11.5, color: "#1971c2" });
+  f.arrow("tl->pa", [A("TL", "top", 0.2), A("PA", "bottom", 0.5)], { start: "TL", end: "PA", dashed: true, color: "#1971c2" });
+  f.arrow("tl->pb", [A("TL", "top", 0.75), A("PB", "bottom", 0.5)], { start: "TL", end: "PB", dashed: true, color: "#1971c2" });
+
+  // 폴링 리듬: 빈 배치면 5초 대기, 트립하면 즉시 재확인 (llm-context.service.ts)
+  f.arrow("poll", [A("P1", "top", 0.5), [780, 100], [500, 100], A("MQ", "top", 0.5)], { start: "P1", end: "MQ", dashed: true, color: "#868e96" });
+  f.text("poll_t", 560, 72, "빈 배치 → 5초 후 재폴링 · 트립 → 즉시 재확인", { fontSize: 11.5, color: "#868e96" });
+
+  // 자가 적응 폐루프: Docs → 인간 승인 → Read Model 교체 → 카탈로그 갱신 → 신호 해소
+  f.arrow("docs->fb", [A("DOCS", "bottom", 0.5), A("FB", "top", 0.5)], { start: "DOCS", end: "FB", dashed: true, color: "#e03131" });
+  f.text("docs->fb_t", 1625, 424, "인간 승인 후 DDL 적용", { fontSize: 11.5, color: "#e03131" });
+  f.arrow("fb->s2", [A("FB", "bottom", 0.3), [1534, 858], [36, 858], [36, 215], A("SIG2", "left", 0.5)], { start: "FB", end: "SIG2", dashed: true, color: "#e03131" });
+  f.text("fb->s2_t", 700, 834, "신호 해소 — 새 Read Model 은 카드로 등록되어 카탈로그가 다시 닫힌다", { fontSize: 11.5, color: "#e03131" });
+
+  // legend
+  f.box("LG1", 60, 920, 26, 18, null, { bg: COLOR.llmCall });
+  f.text("LG1_t", 94, 921, "LLM 호출", { fontSize: 12 });
+  f.box("LG2", 200, 920, 26, 18, null, { bg: COLOR.kafka });
+  f.text("LG2_t", 234, 921, "Kafka 토픽", { fontSize: 12 });
+  f.box("LG3", 350, 920, 26, 18, null, { bg: COLOR.context });
+  f.text("LG3_t", 384, 921, "컨텍스트 구축 계층", { fontSize: 12 });
+  f.box("LG4", 560, 920, 26, 18, null, { bg: COLOR.docs });
+  f.text("LG4_t", 594, 921, "산출물 Docs", { fontSize: 12 });
+  f.box("LG5", 720, 920, 26, 18, null, { bg: COLOR.human });
+  f.text("LG5_t", 754, 921, "인간 승인", { fontSize: 12 });
+  f.arrow("LG6", [[880, 929], [935, 929]], { color: "#0ca678", strokeWidth: 2 });
+  f.text("LG6_t2", 945, 921, "push 주입", { fontSize: 12 });
+  f.arrow("LG7", [[1060, 929], [1115, 929]], { dashed: true, color: "#1971c2" });
+  f.text("LG7_t2", 1125, 921, "pull 조회", { fontSize: 12 });
+  f.arrow("LG8", [[1240, 929], [1295, 929]], { dashed: true, color: "#e03131" });
+  f.text("LG8_t2", 1305, 921, "승인 게이트 · 폐루프", { fontSize: 12 });
+
+  f.save();
+}
+
 figure1();
 figure2();
 figure3();
@@ -668,4 +768,5 @@ figure4();
 figure5();
 figure6();
 figure7();
+figure8();
 console.log("done");

@@ -27,6 +27,12 @@
 파일은 장면번호 `02000~02999` 를 전역 중복 없이 할당하며, 파일명은 정상 파일과
 구별 불가능하다(`ANOMALY_` 같은 접두사 없음).
 
+> **한 줄 요약.** 현실에서 벌어질 수 있는 10가지 곤란한 상황(7개는 **나쁜 데이터**,
+> 3개는 **기존 Read Model 로 못 푸는 질문**)을 실행 중인 시스템에 하나씩 주입했을 때,
+> LLM 파이프라인이 매번 올바른 **진단 + SQL + API 버전** Docs 를 자동 생성하는지 각
+> 5회씩 검증하는 실험이다. 결과 폴더(`scripts/eval/results/layer2-docs-llm-only-k5/`)의
+> `A1-payload-drift` ~ `E3-new-join-query` 10개 하위 폴더가 이 10종에 1:1 대응한다.
+
 ## 2. 탐지 채널 — 시나리오가 LLM에 도달하는 3가지 경로
 
 같은 "이상"이라도 시스템에 들어가는 경로가 다르다. LLM 에 주입되는 컨텍스트 소스가
@@ -44,21 +50,31 @@
 
 ## 3. A그룹 — 데이터 품질 이상 (7종 × 5회 = 35런)
 
-| ID | 주입 이상 | 채널 | 이상 파일 수 |
-|---|---|---|---|
-| A1-payload-drift | 스키마 밖 신규 필드(`gripper_temperature`, `conveyor_speed`) 유입. 기존 zod 스키마는 통과·무시하므로 drift 감시 로그로만 드러난다 | 로그 | 2/27 |
-| A2-type-mismatch | `grip_succeed` 타입/도메인 위반(문자열 `"true"`, 도메인 밖 정수 `2`). JSON 자체는 유효하나 zod parse 실패 → `projection.map.failed` | 로그 | 2/27 |
-| A3-missing-field | 필수 필드(`grip_data`, `robot_tf`) 삭제 → zod 파싱 실패 | 로그 | 2/27 |
-| A4-physical-impossible | 값 하나만 봐도 물리적으로 불가능(깊이 z1 < 0, 이미지 밖 픽셀 xl = 2500) | 센서 | 2/27 |
-| A5-consistency-violation | `grip_succeed = 1`(성공) 맥락과 모순되는 센서 값 — 성공인데 잡을 수 없는 위치/깊이 | 센서 | 2/27 |
-| A6-depth-jump | 같은 scene 내 시도 01(정상) → 02(이상) 깊이 평균 급변(Δ > 0.10 m). 값 자체는 정상 분포 클러스터 안이라 physical/consistency 로는 걸리지 않음 — jump 전용 | 센서 | 1/26 |
-| B1-projection-map-failed | `objects` 빈 배열 → `GripResultProjector.map` 이 예외를 던져 투영 자체가 실패(poison) | 로그 | 2/27 |
+**검증 질문: 나쁜 데이터를 하나 심어놓으면 시스템이 자동으로 그것을 잡아내고 격리(A1만
+보강) Docs 를 내는가.** "주입 이상"이 무엇을 심었는지라면, "검증 목적"은 그것으로 무엇을
+테스트하는지다.
+
+| ID | 주입 이상 (무엇을 심었나) | 검증 목적 (무엇을 테스트하나) | 채널 | 이상 파일 수 |
+|---|---|---|---|---|
+| A1-payload-drift | 스키마 밖 신규 필드(`gripper_temperature`, `conveyor_speed`) 유입. 기존 zod 스키마는 통과·무시하므로 drift 감시 로그로만 드러난다 | 스키마 드리프트를 로그로 감지 → 신규 필드를 반영한 Read Model **보강** Docs | 로그 | 2/27 |
+| A2-type-mismatch | `grip_succeed` 타입/도메인 위반(문자열 `"true"`, 도메인 밖 정수 `2`). JSON 자체는 유효하나 zod parse 실패 → `projection.map.failed` | 타입/도메인 위반 감지 → 오염 데이터 **격리** Docs | 로그 | 2/27 |
+| A3-missing-field | 필수 필드(`grip_data`, `robot_tf`) 삭제 → zod 파싱 실패 | 필수 필드 누락 감지 → 격리 Docs | 로그 | 2/27 |
+| A4-physical-impossible | 값 하나만 봐도 물리적으로 불가능(깊이 z1 < 0, 이미지 밖 픽셀 xl = 2500) | 센서 관찰자가 단일 값의 물리 불가능성 감지 → 격리 Docs | 센서 | 2/27 |
+| A5-consistency-violation | `grip_succeed = 1`(성공) 맥락과 모순되는 센서 값(`robot_tf.translation[2]` 1.02 → 1.5 m) — 성공인데 잡을 수 없는 위치/깊이 | 개별 값은 정상이나 성공 맥락과의 **모순** 감지 → 격리 Docs | 센서 | 2/27 |
+| A6-depth-jump | 같은 scene 내 시도 01(정상) → 02(이상) 깊이 평균 급변(Δ > 0.10 m). 값 자체는 정상 분포 클러스터 안이라 physical/consistency 로는 걸리지 않음 — jump 전용 | physical/consistency 로 안 잡히는 **급변(추세 이상)**만 분리 감지 → 격리 Docs | 센서 | 1/26 |
+| B1-projection-map-failed | `objects` 빈 배열 → `GripResultProjector.map` 이 예외를 던져 투영 자체가 실패(poison) | 투영 실패(poison 이벤트) 감지 → 격리 Docs | 로그 | 2/27 |
 
 **기대 Docs 요지 (공통 구조).** 이상 원인 진단(권고 문서) + 격리(containment) SQL +
 API Versioning. A1 만 예외적으로 "격리"가 아니라 신규 필드를 반영한 **Read Model
 보강**(컬럼 추가 SQL + API 버전 변경)이 기대 산출물이다.
 
 ## 4. E그룹 — Read Model 재생성 (3종 × 5회 = 15런)
+
+**검증 질문: 기존 Read Model 로 답할 수 없는 조회 요청이 들어오면, 그것을 감지하고 새
+Read Model 설계 Docs 를 내는가.** A그룹과 달리 데이터가 나쁜 게 아니라 "질문이 기존
+모델과 안 맞는" 상황이다. 신호는 `GET /insight/cards/<질의>` 를 반복해도 카드가 계속
+miss 되는 것("기존 Read Model 로 답할 수 없는 조회 의도"). 아래 "기대 Read Model 요지"가
+곧 각 시나리오의 검증 목적이다.
 
 | ID | 배경 데이터 | 사용자 질의 | 기대 Read Model 요지 |
 |---|---|---|---|
