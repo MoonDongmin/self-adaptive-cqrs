@@ -12,6 +12,11 @@ import { renderSensorFinding } from "@/analysis/render-sensor";
 import { dataQualityRecommendationOutputSchema } from "@/analysis/type/output.type";
 import { looksLikeSql, validateSqlExecutable } from '@/analysis/validation/sql-validator';
 
+// §2 DDL 을 전제하는 §1 SQL 에 결정론으로 붙이는 실행 순서 주석. §1 이 문서에서 §2 보다
+// 앞에 렌더되므로, 이 표기가 없으면 사용자가 위에서부터 복붙하다 실패한다.
+const SQL_ORDER_PREREQUISITE_NOTE =
+  "-- 선행 조건: §2 'Read Model 생성 SQL'(DDL)을 먼저 적용한 뒤 실행한다.";
+
 // observedValue 그라운딩: 핵심은 '지어낸 숫자' 차단이므로 숫자 리터럴 단위로 검증한다.
 // 전체 문자열 exact-substring 은 LLM 이 값은 정확히 인용하고 포맷만 재구성해도
 // ("z1":0.066 → z1:0.066) 전량 탈락시킨다(2026-07-14 실측). 숫자가 없으면 기존
@@ -78,13 +83,33 @@ export async function dataQualityNode(state: typeof AnalysisState.State) {
       // fix/harden 옵션의 SQL 을 실DB(BEGIN/ROLLBACK)로 검증 — camelCase 컬럼·따옴표
       // 누락·없는 테이블(baseline_rules) 류를 재생성으로 잡는다(2026-07-21 3축 채점 실측).
       // contain 옵션과 containmentSql 은 어차피 아래에서 결정론 합성으로 확정되므로 제외.
+      // co-select 된 신규 모델의 DDL 을 선적용해, §2 CREATE 를 전제하는 fix SQL
+      // (v2 재투영·INSERT)이 단독 검증 오탐으로 기각되지 않게 한다(2026-07-21 A6 실측).
       async (candidate) => {
         const problems: string[] = [];
         for (const option of candidate.solutionOptions) {
-          if (option.phase === "contain" || !looksLikeSql(option.codeOrSql)) {
+          if (option.phase === "contain") {
             continue;
           }
-          const sqlError = await validateSqlExecutable(option.codeOrSql);
+          if (!looksLikeSql(option.codeOrSql)) {
+            // harden(베이스라인 규칙 추가)은 실행 가능한 SQL 로 강제한다. TS Drizzle 조각은
+            // 단독 컴파일 검증이 불가한 파편이라 복붙 품질을 보장할 수 없고, 검증을 그냥
+            // 건너뛰면 프롬프트 지시를 위반한 출력이 피드백 0 으로 문서에 실린다
+            // (2026-07-23 A4 실측: sql 펜스에 Drizzle 조각 → 검증기 syntax error).
+            // fix 는 프로젝터 TypeScript 패치가 정당한 형태이므로 허용한다.
+            if (option.phase === "harden") {
+              problems.push(
+                `[harden] "${option.title}" 의 codeOrSql 이 SQL 이 아니다 — 그대로 실행 가능한 ` +
+                  "SQL(예: ALTER TABLE ... ADD CONSTRAINT ... CHECK ...)만 허용된다. " +
+                  "Drizzle/TypeScript 조각을 넣지 말고 SQL 로 다시 출력하라.",
+              );
+            }
+            continue;
+          }
+          const sqlError = await validateSqlExecutable(
+            option.codeOrSql,
+            confirmedDesign?.migrationSql,
+          );
           if (sqlError !== null) {
             problems.push(
               `[${option.phase}] "${option.title}" 의 SQL 이 실제 DB 에서 실행 실패: ${sqlError}`,
@@ -93,6 +118,50 @@ export async function dataQualityNode(state: typeof AnalysisState.State) {
         }
         return problems;
       },
+    );
+
+    // 최종 위생: 재질의(re-ask)까지 소진하고도 실행 불가한 fix/harden SQL 은 문서에
+    // 싣지 않는다 — 접근/트레이드오프 서술은 남기되 '깨진 SQL 을 아는 채로 복붙시키는'
+    // 것만 차단한다(2026-07-23 A4-fix1 실측: json_extract harden SQL 을 검증기가
+    // 잡았으나 재질의가 타임아웃돼 마지막 불량 출력이 그대로 문서에 실림).
+    output.solutionOptions = await Promise.all(
+      output.solutionOptions.map(async (option) => {
+        if (option.phase === "contain" || !looksLikeSql(option.codeOrSql)) {
+          return option;
+        }
+        const residualSqlError = await validateSqlExecutable(
+          option.codeOrSql,
+          confirmedDesign?.migrationSql,
+        );
+        if (residualSqlError === null) {
+          // §2 DDL 선적용 시에만 성립하는 SQL(예: v2 테이블 대상 harden)은 실행 순서를
+          // 주석으로 명시한다 — §1 이 §2 보다 앞에 렌더되므로 문서를 위에서부터 따라 하면
+          // relation does not exist 로 실패한다(2026-07-23 fix1 sql-verification 실측:
+          // orderDependentBlocks). 단독 실행이 이미 성공하면 주석이 불필요하다.
+          if (
+            confirmedDesign !== undefined &&
+            !option.codeOrSql.includes(SQL_ORDER_PREREQUISITE_NOTE)
+          ) {
+            const standaloneSqlError = await validateSqlExecutable(
+              option.codeOrSql,
+            );
+            if (standaloneSqlError !== null) {
+              return {
+                ...option,
+                codeOrSql: [SQL_ORDER_PREREQUISITE_NOTE, option.codeOrSql].join(
+                  "\n",
+                ),
+              };
+            }
+          }
+          return option;
+        }
+        console.warn(
+          `[dataQualityNode] [${option.phase}] "${option.title}" SQL 이 재시도 후에도 실행 불가 — 코드 미게재:`,
+          residualSqlError,
+        );
+        return { ...option, codeOrSql: "" };
+      }),
     );
 
     // 사후검증: observedValue 가 배치/근거 텍스트에 실제로 존재하는 근거만 남긴다(환각 값 strip).

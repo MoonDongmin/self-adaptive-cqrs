@@ -27,10 +27,14 @@ async function validateNewReadModelOutput(
 
   // 키 컬럼은 fields 에 반드시 정의돼야 한다 — 빠지면 DDL 합성 시 '정의 안 된 컬럼을
   // PK 로 지정'하는 깨진 SQL 이 된다(2026-07-21 E1 실측). 스키마 자체 결함이므로 재생성 대상.
+  // 비교는 snake 정규화 후에 한다 — sceneKey 표기는 이름 결함(정규화로 수리)이지
+  // 키 컬럼 누락이 아니다. 표기 문제로 re-ask 를 소진하지 않는다(2026-07-23 A4 실측).
   const keyColumnNames = parseKeyColumnNames(output.keyColumns);
-  const fieldNames = new Set(output.fields.map((field) => field.name));
+  const fieldNames = new Set(
+    output.fields.map((field) => camelToSnakeCase(field.name)),
+  );
   const missingKeyColumns = keyColumnNames.filter(
-    (column) => !fieldNames.has(column),
+    (column) => !fieldNames.has(camelToSnakeCase(column)),
   );
   if (missingKeyColumns.length > 0) {
     problems.push(
@@ -71,6 +75,12 @@ function isMigrationSqlComplete(output: NewReadModelOutput): boolean {
   if (!sql.includes("CREATE TABLE") || !sql.includes(output.proposedName)) {
     return false;
   }
+  // PK/UNIQUE 없는 DDL 은 실행은 되지만 projector 의 onConflictDoUpdate(upsert 키)가
+  // 첫 투영에서 죽는다 — 실행 가능성 검증(BEGIN/ROLLBACK)이 못 잡는 설계 결함이다
+  // (2026-07-23 A5 실측: 컬럼 완전·snake_case 정상인데 PRIMARY KEY 절만 누락).
+  if (!/PRIMARY\s+KEY|UNIQUE/i.test(sql)) {
+    return false;
+  }
   return output.fields.every((field) => sql.includes(field.name));
 }
 
@@ -80,6 +90,23 @@ function parseKeyColumnNames(keyColumns: string): string[] {
     .split(",")
     .map((column) => column.trim())
     .filter((column) => column.length > 0);
+}
+
+// 로컬 27b-coder 는 fields.name 을 camelCase(sceneKey)로 내는 경향이 있다
+// (2026-07-23 A4 실측 3회: 키 컬럼 검증이 scene_key 를 못 찾아 재시도 소진 →
+// 폴백 DDL 에 sceneKey/scene_key 이중 컬럼). 컬럼명은 결정론 정규화로 확정한다.
+function camelToSnakeCase(name: string): string {
+  return name.replace(/([a-z0-9])([A-Z])/g, "$1_$2").toLowerCase();
+}
+
+function normalizeFieldNames(output: NewReadModelOutput): NewReadModelOutput {
+  return {
+    ...output,
+    fields: output.fields.map((field) => ({
+      ...field,
+      name: camelToSnakeCase(field.name),
+    })),
+  };
 }
 
 function synthesizeMigrationSql(output: NewReadModelOutput): string {
@@ -125,11 +152,13 @@ export async function newReadModelNode(state: typeof AnalysisState.State) {
   ].join("\n\n");
 
   try {
-    const newReadModel = await invokeNode(
-      rolePrompt,
-      facts,
-      newReadModelOutputSchema,
-      validateNewReadModelOutput,
+    const newReadModel = normalizeFieldNames(
+      await invokeNode(
+        rolePrompt,
+        facts,
+        newReadModelOutputSchema,
+        validateNewReadModelOutput,
+      ),
     );
 
     if (!isMigrationSqlComplete(newReadModel)) {

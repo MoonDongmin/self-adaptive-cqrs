@@ -31,7 +31,14 @@ export function looksLikeSql(text: string): boolean {
 }
 
 // 실행 가능하면 null, 실패하면 Postgres 에러 메시지를 반환한다.
-export async function validateSqlExecutable(sql: string): Promise<string | null> {
+// setupSql: 검증 대상이 전제하는 선행 DDL(예: co-select 된 신규 Read Model 의
+// migrationSql). 같은 트랜잭션에서 먼저 적용해 "§2 CREATE 뒤에 실행하면 유효한"
+// fix/harden SQL 이 단독 검증에서 오탐(relation does not exist)으로 기각되는 것을
+// 막는다(2026-07-21 A6 실측). setupSql 자체의 실패는 대상 SQL 의 결함이 아니므로 무시.
+export async function validateSqlExecutable(
+  sql: string,
+  setupSql?: string,
+): Promise<string | null> {
   const trimmed = sql.trim();
   if (trimmed.length === 0) {
     return null;
@@ -40,6 +47,13 @@ export async function validateSqlExecutable(sql: string): Promise<string | null>
   const client = await getPool().connect();
   try {
     await client.query("BEGIN");
+    if (setupSql !== undefined && setupSql.trim().length > 0) {
+      try {
+        await client.query(setupSql);
+      } catch {
+        // 선행 DDL 은 자기 노드(new-read-model)에서 이미 검증된다 — 여기서는 무시
+      }
+    }
     await client.query(trimmed);
     return null;
   } catch (error) {

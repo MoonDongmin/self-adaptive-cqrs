@@ -35,6 +35,23 @@ export const STANDING_CONSTRAINTS: ReadonlyArray<string> = [
   "Read Model 테이블명은 read_ 접두 스네이크 케이스",
 ];
 
+// NestJS 컨트롤러 코드 문자열에서 라우트("POST /경로")를 뽑는다. front-matter 의
+// affectedEndpoints 와 versionSwitch 라우트 일관성 검증이 같은 추출 규칙을 공유한다.
+export function extractEndpointsFromCode(code: string): string[] {
+  const pattern = /@(Post|Get|Put|Patch|Delete)\(\s*["'`]([^"'`]+)["'`]/g;
+  const endpoints = new Set<string>();
+
+  for (const match of code.matchAll(pattern)) {
+    const method = match[1];
+    const route = match[2];
+    if (method !== undefined && route !== undefined) {
+      endpoints.add(`${method.toUpperCase()} ${route}`);
+    }
+  }
+
+  return Array.from(endpoints);
+}
+
 // versionSwitch 코드 변경 스니펫에서 실제 라우트를 뽑는다(근거 있는 값만, 발명 금지).
 export function extractEndpoints(outputs: GeneratedOutputs): string[] {
   const versionSwitch = outputs.versionSwitch;
@@ -42,16 +59,10 @@ export function extractEndpoints(outputs: GeneratedOutputs): string[] {
     return [];
   }
 
-  const pattern = /@(Post|Get|Put|Patch|Delete)\(\s*["'`]([^"'`]+)["'`]/g;
   const endpoints = new Set<string>();
-
   for (const change of versionSwitch.codeChanges) {
-    for (const match of change.snippet.matchAll(pattern)) {
-      const method = match[1];
-      const route = match[2];
-      if (method !== undefined && route !== undefined) {
-        endpoints.add(`${method.toUpperCase()} ${route}`);
-      }
+    for (const endpoint of extractEndpointsFromCode(change.snippet)) {
+      endpoints.add(endpoint);
     }
   }
 

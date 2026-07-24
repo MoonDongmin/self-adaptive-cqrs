@@ -3,6 +3,7 @@ import { HumanMessage, SystemMessage } from '@langchain/core/messages';
 import { ChatOpenAI } from '@langchain/openai';
 import type { z } from 'zod';
 import { ANALYSIS_CONFIG } from '@/analysis/analysis.config';
+import { findHanCharacterProblems } from '@/analysis/validation/text-quality';
 import { contentToString, extractJson } from '@/shared/llm/llm-json';
 import { runExclusive } from '@/shared/llm/llm-serial-queue';
 import { thinkingControlKwargs } from '@/shared/llm/thinking-control';
@@ -12,6 +13,13 @@ import { thinkingControlKwargs } from '@/shared/llm/thinking-control';
 // 단 temperature 0 에서 동일 프롬프트 재전송은 같은 실패를 그대로 재현하므로(블라인드 재시도 무효),
 // 재시도 시에는 직전 응답 + 검증 에러를 대화에 누적해 모델이 자기 출력을 고치게 한다(re-ask).
 const MAX_ATTEMPTS = 2;
+
+// 전송 계층 실패(타임아웃·서버 순단)는 모델 출력 실패와 별개 예산으로 센다 — 실측상
+// 정상 서버에서 dataQuality 급 요청은 ~141초인데 서버 행/순단이 끼면 900초 타임아웃이
+// 연쇄돼 시도 2회가 전부 전송 실패로 증발, §1 이 통째로 강등된다(2026-07-24 A4 실측:
+// SQL 품질과 무관한 껍데기 문서). 전송 실패는 re-ask 와 달리 고칠 출력이 없는 확률적
+// 실패이므로 추가 재시도가 유효하다.
+const MAX_TRANSPORT_FAILURES = 3;
 
 // 의미 검증기: 형태(zod)는 통과했지만 내용이 깨진 출력(실행 불능 SQL, 컴파일 불능 코드)을
 // 잡는다. 문제 목록(빈 배열 = 통과)을 반환하면 invokeNode 가 같은 re-ask 루프로 오류를
@@ -53,10 +61,32 @@ export async function invokeNode<T>(
 
   let lastError: unknown;
   let lastSemanticallyInvalid: T | undefined;
+  let transportFailures = 0;
 
   for (let i = 0; i < MAX_ATTEMPTS; i++) {
     // fan-out 된 생성기들이 동시에 서버를 치지 않게 직렬화(큐 대기가 타임아웃을 잠식하는 것 방지).
-    const response = await runExclusive(() => model.invoke(messages));
+    let response: BaseMessage;
+    try {
+      response = await runExclusive(() => model.invoke(messages));
+    } catch (error) {
+      // 전송 계층 실패(타임아웃·서버 순단)는 파싱 실패와 달리 고칠 출력이 없으므로
+      // 같은 대화로 재시도만 한다. temperature 0 재전송 무효 원칙은 '모델이 낸 출력'에만
+      // 해당하고, 타임아웃은 서버 부하에 따른 확률적 실패라 재시도가 유효하다
+      // (2026-07-23 A4 실측: versionSwitch 타임아웃 1회로 필수 §3 가 통째로 소실 —
+      // 루프 밖에서 던져져 re-ask/폴백 어느 층도 작동하지 않았다).
+      // 전송 실패는 모델 출력 시도(MAX_ATTEMPTS)를 소모하지 않는다 — 별도 예산으로 세어,
+      // 서버 행 연쇄가 re-ask 기회까지 증발시키는 것을 막는다(2026-07-24 A4 실측).
+      lastError = error;
+      transportFailures++;
+      console.warn(
+        `[invokeNode] LLM 호출 실패(전송 ${transportFailures}/${MAX_TRANSPORT_FAILURES}):`,
+        String(error),
+      );
+      if (transportFailures < MAX_TRANSPORT_FAILURES) {
+        i--;
+      }
+      continue;
+    }
 
     let parsed: T;
     try {
@@ -76,11 +106,13 @@ export async function invokeNode<T>(
       continue;
     }
 
-    if (semanticValidate === undefined) {
-      return parsed;
-    }
-
-    const problems = await semanticValidate(parsed);
+    // 한자 혼입 검사는 노드 공통이다 — 로컬 모델이 한국어 산문에 且 류 한자를 섞는 오염은
+    // 어느 생성 노드에서든 발생하므로(2026-07-23 fix1 실측: dataQuality·versionSwitch 양쪽)
+    // 노드별 semanticValidate 가 아니라 이 공통 관문에서 잡는다.
+    const problems = [
+      ...findHanCharacterProblems(parsed),
+      ...(semanticValidate !== undefined ? await semanticValidate(parsed) : []),
+    ];
     if (problems.length === 0) {
       return parsed;
     }

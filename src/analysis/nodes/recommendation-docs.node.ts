@@ -199,6 +199,42 @@ export async function recommendationDocsNode(
       },
     );
 
+    // 최종 위생(dataQualityNode 와 동일 원칙): 재질의(re-ask)까지 소진하고도 실행 불가한
+    // SQL 은 문서에 싣지 않는다 — containmentSql 은 비워서 아래 결정론 합성이 대체하게
+    // 하고, 옵션 스니펫은 코드만 미게재한다(2026-07-23 A4-fix1 실측: 검증기가 잡은 불량
+    // SQL 이 재질의 타임아웃으로 그대로 문서에 실림 — 센서 lane 에서 확인된 경로).
+    if (
+      recommendationDocs.containmentSql.trim().length > 0 &&
+      looksLikeSql(recommendationDocs.containmentSql)
+    ) {
+      const residualError = await validateSqlExecutable(
+        recommendationDocs.containmentSql,
+      );
+      if (residualError !== null) {
+        console.warn(
+          "[recommendationDocsNode] containmentSql 이 재시도 후에도 실행 불가 — 비우고 결정론 합성에 위임:",
+          residualError,
+        );
+        recommendationDocs.containmentSql = "";
+      }
+    }
+    recommendationDocs.solutionOptions = await Promise.all(
+      recommendationDocs.solutionOptions.map(async (option) => {
+        if (!looksLikeSql(option.codeSnippet)) {
+          return option;
+        }
+        const residualError = await validateSqlExecutable(option.codeSnippet);
+        if (residualError === null) {
+          return option;
+        }
+        console.warn(
+          `[recommendationDocsNode] "${option.title}" SQL 이 재시도 후에도 실행 불가 — 코드 미게재:`,
+          residualError,
+        );
+        return { ...option, codeSnippet: "" };
+      }),
+    );
+
     // 격리 lane 의 §2 결정론 보장: LLM 이 containmentSql 을 비웠으면 윈도우 실측값으로
     // 합성한 격리 SQL 을 채운다(연구 명세 — Docs 3요소 항상 포함).
     if (recommendationDocs.containmentSql.trim().length === 0) {

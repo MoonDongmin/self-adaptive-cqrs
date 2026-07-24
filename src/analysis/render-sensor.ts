@@ -1,4 +1,5 @@
 import { DataQualityRecommendationOutput, SensorAnomalyFinding } from '@/analysis/type/output.type';
+import { looksLikeSql } from '@/analysis/validation/sql-validator';
 
 // render.ts 의 codeBlock 과 동일하나, render.ts ↔ render-sensor.ts 순환 import 를
 //피하려고 여기서 로컬로 둔다(이 파일은 render.ts 를 import 하지 않는다).
@@ -50,7 +51,14 @@ export function renderDataQualityRecommendation(
       ];
 
       if (option.codeOrSql.trim().length > 0) {
-        lines.push(codeBlock("sql", option.codeOrSql));
+        // fix 옵션은 SQL 대신 프로젝터 TypeScript 를 담기도 한다 — sql 펜스를 고정하면
+        // SQL 검증기와 독자 양쪽을 오도한다(2026-07-23 A4 실측). 내용으로 언어를 고른다.
+        lines.push(
+          codeBlock(
+            looksLikeSql(option.codeOrSql) ? "sql" : "typescript",
+            option.codeOrSql,
+          ),
+        );
       }
 
       return lines.join("\n");
