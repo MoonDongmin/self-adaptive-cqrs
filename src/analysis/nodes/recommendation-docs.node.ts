@@ -1,115 +1,31 @@
-import { AnalysisState } from '@/analysis/analysis.state';
-import { readSourceExamples } from '@/analysis/context/source-examples';
-import { isInsertRejection } from '@/analysis/nodes/decision.node';
-import { invokeNode } from '@/analysis/nodes/invoke';
-import { RECOMMENDATION_DOCS_PROMPT } from '@/analysis/prompts';
+import { AnalysisState } from "@/analysis/analysis.state";
+import { readSourceExamples } from "@/analysis/context/source-examples";
+import { isInsertRejection } from "@/analysis/nodes/decision.node";
+import {
+  isPoisonEventLane,
+  synthesizeFallbackRecommendation,
+  synthesizeNoIngressCheckSql,
+  synthesizePoisonContainmentSql,
+} from "@/analysis/nodes/fallback-recommendation";
+import { invokeNode } from "@/analysis/nodes/invoke";
+import { RECOMMENDATION_DOCS_PROMPT } from "@/analysis/prompts";
 import {
   INSIGHT_CARDS_CAVEAT,
   renderConfirmedDesign,
   renderEvidenceContext,
   renderRootCause,
   stripInsightCardExamples,
-} from '@/analysis/render';
-import { recommendationDocsOutputSchema } from '@/analysis/type/output.type';
-import { looksLikeSql, validateSqlExecutable } from '@/analysis/validation/sql-validator';
-import type { AnomalyLogWindow } from '@/llm-context/llm-context.type';
+} from "@/analysis/render";
+import { recommendationDocsOutputSchema } from "@/analysis/type/output.type";
+import {
+  looksLikeSql,
+  validateSqlExecutable,
+} from "@/analysis/validation/sql-validator";
 
-// 적재 거절(zod 거절) lane 의 무유입 검증 SQL 을 윈도우의 실측값에서 결정론으로 합성한다.
-// 프롬프트 지시만으로는 gpt-4o-mini 가 containmentSql 을 비우거나 기본값 주입을 권고하는
-// 것을 막지 못했다(2026-07-21 실측) — 이 lane 의 격리 SQL 은 로그 파일명에서 완전히
-// 유도 가능하므로 LLM 에 맡기지 않는다.
-// 파일명 형식: <카테고리>_<카메라>_<객체명>_<장면번호>_<시도번호>_<날짜>.json
-//   → scene_key = 마지막 두 세그먼트(시도·날짜) 앞까지, attempt_num = 뒤에서 두 번째.
-function synthesizeNoIngressCheckSql(
-  window: AnomalyLogWindow | null,
-): string | null {
-  if (window === null) {
-    return null;
-  }
-
-  const targets: string[] = [];
-  for (const row of window.rows) {
-    if (row.action !== "insert.file.failed" || row.detail === null) {
-      continue;
-    }
-    const fileMatch = row.detail.match(/file=(\S+)\.json/);
-    if (fileMatch === null) {
-      continue;
-    }
-    const segments = fileMatch[1].split("_");
-    if (segments.length < 3) {
-      continue;
-    }
-    const attemptNumber = Number(segments[segments.length - 2]);
-    if (!Number.isInteger(attemptNumber)) {
-      continue;
-    }
-    const sceneKey = segments.slice(0, segments.length - 2).join("_");
-    targets.push(`('grip-attempt:${sceneKey}', ${attemptNumber})`);
-  }
-
-  if (targets.length === 0) {
-    return null;
-  }
-
-  const unique = [...new Set(targets)];
-  return [
-    "-- 무유입 검증: zod 거절된 파일의 이벤트가 event_store 에 유입되지 않았음을 확인한다 (기대값 0)",
-    `SELECT count(*) AS rejected_event_count FROM event_store WHERE (stream_id, attempt_num) IN (${unique.join(", ")});`,
-  ].join("\n");
-}
-
-// 투영 실패(poison event) lane 의 커서 전진 SQL 을 윈도우 실측값에서 결정론으로 합성한다.
-// projection.map.failed 행의 detail 에 event_id 가 실린다(프로젝터가 구조 필드로 로깅).
-// 여러 poison 이 있으면 문장 하나 적용 → catch-up 재실행을 반복해야 사이의 정상
-// 이벤트가 스킵되지 않는다 — 주석으로 절차를 명시한다.
-function synthesizePoisonSkipSql(
-  window: AnomalyLogWindow | null,
-): string | null {
-  if (window === null) {
-    return null;
-  }
-
-  const projectorName =
-    window.rows.find((row) => row.projectorName !== null)?.projectorName ??
-    "grip-result-projector";
-
-  const eventIds: string[] = [];
-  for (const row of window.rows) {
-    if (row.action !== "projection.map.failed" || row.detail === null) {
-      continue;
-    }
-    const eventIdMatch = row.detail.match(/event_id=([0-9a-f-]{36})/);
-    if (eventIdMatch !== null) {
-      eventIds.push(eventIdMatch[1]);
-    }
-  }
-
-  const unique = [...new Set(eventIds)];
-  if (unique.length === 0) {
-    return null;
-  }
-
-  const statements = unique.map((eventId) =>
-    [
-      `UPDATE projection_cursor SET last_event_seq = GREATEST(last_event_seq, (SELECT global_seq FROM event_store WHERE event_id = '${eventId}')), updated_at = now()`,
-      `WHERE projector_name = '${projectorName}';`,
-    ].join("\n"),
-  );
-
-  return [
-    "-- poison 이벤트 건너뛰기: 결함 이벤트까지 커서를 전진시켜 투영을 재개한다.",
-    "-- poison 이 여럿이면 문장 하나 실행 → catch-up 재실행을 반복한다(사이의 정상 이벤트 보존).",
-    ...statements,
-  ].join("\n");
-}
-
-function isPoisonEventLane(window: AnomalyLogWindow | null): boolean {
-  if (window === null) {
-    return false;
-  }
-  return window.rows.some((row) => row.action === "projection.map.failed");
-}
+// projection_cursor 직접 조작 SQL 은 lane 불문 금지다 — 배치 트랜잭션 롤백으로 미투영된
+// 정상 이벤트를 영구 스킵시킨다(2026-07-29 품질 검토: B1 rep-1~4 실측, 상세는
+// fallback-recommendation.ts 의 synthesizePoisonContainmentSql 주석).
+const CURSOR_MANIPULATION_PATTERN = /update\s+projection_cursor/i;
 
 export async function recommendationDocsNode(
   state: typeof AnalysisState.State,
@@ -175,16 +91,31 @@ export async function recommendationDocsNode(
       // 실패 시 오류를 보여주며 재생성. 소진 시 아래 결정론 합성이 최종 보정한다.
       async (output) => {
         const problems: string[] = [];
+        if (CURSOR_MANIPULATION_PATTERN.test(output.containmentSql)) {
+          problems.push(
+            "containmentSql 이 projection_cursor 를 직접 조작한다 — 배치 롤백으로 미투영된 정상 " +
+              "이벤트가 영구 스킵되므로 금지. poison 이벤트 식별/검증 SELECT 로 대체하라.",
+          );
+        }
         if (
           output.containmentSql.trim().length > 0 &&
           looksLikeSql(output.containmentSql)
         ) {
           const sqlError = await validateSqlExecutable(output.containmentSql);
           if (sqlError !== null) {
-            problems.push(`containmentSql 이 실제 DB 에서 실행 실패: ${sqlError}`);
+            problems.push(
+              `containmentSql 이 실제 DB 에서 실행 실패: ${sqlError}`,
+            );
           }
         }
         for (const option of output.solutionOptions) {
+          if (CURSOR_MANIPULATION_PATTERN.test(option.codeSnippet)) {
+            problems.push(
+              `solutionOptions "${option.title}" 의 코드가 projection_cursor 를 직접 조작한다 — ` +
+                "미투영 정상 이벤트를 영구 스킵시키므로 금지. 프로젝터의 결함 이벤트 skip/dead-letter " +
+                "처리로 대체하라.",
+            );
+          }
           if (!looksLikeSql(option.codeSnippet)) {
             continue;
           }
@@ -220,6 +151,13 @@ export async function recommendationDocsNode(
     }
     recommendationDocs.solutionOptions = await Promise.all(
       recommendationDocs.solutionOptions.map(async (option) => {
+        // 재질의 소진 후에도 커서 조작 코드가 남았으면 미게재한다(위 validator 와 동일 근거).
+        if (CURSOR_MANIPULATION_PATTERN.test(option.codeSnippet)) {
+          console.warn(
+            `[recommendationDocsNode] "${option.title}" 이 재시도 후에도 projection_cursor 를 조작 — 코드 미게재`,
+          );
+          return { ...option, codeSnippet: "" };
+        }
         if (!looksLikeSql(option.codeSnippet)) {
           return option;
         }
@@ -235,18 +173,18 @@ export async function recommendationDocsNode(
       }),
     );
 
-    // 격리 lane 의 §2 결정론 보장: LLM 이 containmentSql 을 비웠으면 윈도우 실측값으로
-    // 합성한 격리 SQL 을 채운다(연구 명세 — Docs 3요소 항상 포함).
-    if (recommendationDocs.containmentSql.trim().length === 0) {
+    // 격리 lane 의 §2 는 항상 윈도우 실측값 결정론 합성으로 확정한다(센서 lane 의
+    // containmentSql 과 동일 원칙). 공백일 때만 합성하는 조건부 대체로는 부족했다 —
+    // LLM SQL 이 실행은 되지만 거절 레코드 2건 중 1건만 특정하는 부분 커버리지가
+    // A2·A3 전 rep 에서 반복됐다(2026-07-29 품질 검토). 대상 집합은 윈도우의
+    // insert.file.failed / projection.map.failed 행 전수에서만 유도한다.
+    {
       const synthesized = insertRejectionLane
         ? synthesizeNoIngressCheckSql(state.window)
         : isPoisonEventLane(state.window)
-          ? synthesizePoisonSkipSql(state.window)
+          ? synthesizePoisonContainmentSql(state.window)
           : null;
       if (synthesized !== null) {
-        console.warn(
-          "[recommendationDocsNode] containmentSql 공백 — 윈도우 실측값으로 결정론 합성",
-        );
         recommendationDocs.containmentSql = synthesized;
       }
     }
@@ -254,7 +192,27 @@ export async function recommendationDocsNode(
     return { outputs: { recommendationDocs } };
   } catch (error) {
     // 강등이 문서 전체를 센티넬로 만들 수 있으므로 반드시 흔적을 남긴다(dataQualityNode 와 동일).
-    console.warn("[recommendationDocsNode] 생성/검증 실패로 강등:", String(error));
+    console.warn(
+      "[recommendationDocsNode] 생성/검증 실패로 강등:",
+      String(error),
+    );
+
+    // 완전 강등 대신 결정론 최소 권고로 폴백한다 — 근거(트립 앵커)가 실재하는데 전 섹션이
+    // 센티넬로 보류되는 거짓 음성(2026-07-29 품질 검토: 51건 중 6건)을 근거 실린 부분
+    // 문서로 대체한다. 폴백조차 불가하면(인용할 근거 행 없음) 기존 강등 경로 유지.
+    const fallback = synthesizeFallbackRecommendation({
+      window: state.window,
+      sensorFinding: state.sensorFinding,
+      rootCause: state.rootCause!,
+      decision: state.decision,
+      insertRejectionLane,
+    });
+    if (fallback !== null) {
+      console.warn(
+        "[recommendationDocsNode] 결정론 폴백 권고로 대체(전 섹션 센티넬 방지)",
+      );
+      return { outputs: { recommendationDocs: fallback } };
+    }
     return { outputs: {} };
   }
 }

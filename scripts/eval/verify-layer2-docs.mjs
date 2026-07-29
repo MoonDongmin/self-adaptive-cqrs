@@ -10,6 +10,7 @@
 //   [결론] TL;DR 이 '조치 불필요'가 아닌가 (Docs 기대 시나리오 한정)
 //   [근거 부합] 시나리오별 앵커 문자열(이상 장면/필드/유형)이 본문에 실재하는가
 //   [산출 요소] §1 권고 비-센티넬 / §2 SQL / §3 API Versioning 채움 여부
+//   [텍스트 위생] 한자 혼입 없음 — 로컬 모델의 산문 오염("무손且" 류) 검출
 //
 // 사용: node scripts/eval/verify-layer2-docs.mjs [--results <dir>]
 
@@ -100,6 +101,11 @@ function checkDocs(scenarioId, markdown) {
   checks.grounding = groups.every((group) =>
     group.some((needle) => text.includes(normalize(needle))),
   );
+
+  // 한자 혼입 = 산문 오염(fix1 실측: 且 접속사 남발). 이 도메인 문서의 정상 텍스트
+  // (한글·코드·숫자)에는 CJK 한자 블록 문자가 등장할 일이 없다 — 오탐 없는 결정론 신호.
+  checks.hanCharacterFree =
+    !/[\u{3400}-\u{4DBF}\u{4E00}-\u{9FFF}\u{F900}-\u{FAFF}]/u.test(text);
 
   const keys = Object.keys(checks);
   const passed = keys.filter((key) => checks[key]).length;

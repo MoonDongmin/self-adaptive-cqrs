@@ -1,0 +1,9 @@
+[
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": 1,
+    "docs": 1,
+    "exitReason": "docs-collected",
+    "durationSeconds": 355
+  }
+]

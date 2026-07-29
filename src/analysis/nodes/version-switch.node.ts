@@ -1,20 +1,20 @@
-import { AnalysisState } from '@/analysis/analysis.state';
-import { readSourceExamples } from '@/analysis/context/source-examples';
-import { extractEndpointsFromCode } from '@/analysis/front-matter';
-import { invokeNode } from '@/analysis/nodes/invoke';
-import { VERSION_SWITCH_PROMPT } from '@/analysis/prompts';
+import { AnalysisState } from "@/analysis/analysis.state";
+import { readSourceExamples } from "@/analysis/context/source-examples";
+import { extractEndpointsFromCode } from "@/analysis/front-matter";
+import { invokeNode } from "@/analysis/nodes/invoke";
+import { VERSION_SWITCH_PROMPT } from "@/analysis/prompts";
 import {
   INSIGHT_CARDS_CAVEAT,
   renderConfirmedDesign,
   renderEvidenceContext,
   renderRootCause,
   stripInsightCardExamples,
-} from '@/analysis/render';
+} from "@/analysis/render";
 import {
   NewReadModelOutput,
   VersionSwitchOutput,
   versionSwitchOutputSchema,
-} from '@/analysis/type/output.type';
+} from "@/analysis/type/output.type";
 
 // LLM 생성이 끝내 실패해도(타임아웃·JSON 절단 재시도 소진) §3 를 비우지 않는 결정론 폴백.
 // 신규 Read Model 이 확정된 이상 'API 버전 변경 근거 부족'은 사실과 어긋난 자기모순이다
@@ -75,6 +75,25 @@ export async function versionSwitchNode(state: typeof AnalysisState.State) {
   // 이 노드는 배선(modifyFile)·전환 절차에 집중시킨다.
   const confirmedDesign = state.outputs.newReadModel;
 
+  // 확정 설계가 정의한 클래스명 — 배선 스니펫이 다른 변형(V2 접미 등)을 발명하면 문서 내
+  // 코드가 상호 모순으로 컴파일 불가가 된다(2026-07-29 품질 검토: 전 시나리오에서 문서
+  // 절반 이상 재현된 최다 빈도 결함). 프롬프트로 명시하고 아래 validator 로 강제한다.
+  const declaredClassNames: string[] =
+    confirmedDesign !== undefined
+      ? [
+          ...new Set(
+            [
+              confirmedDesign.projectorCode,
+              confirmedDesign.controllerWiring,
+            ].flatMap((source) =>
+              [...source.matchAll(/class\s+([A-Z][A-Za-z0-9]*)/g)].map(
+                (match) => match[1],
+              ),
+            ),
+          ),
+        ]
+      : [];
+
   const coSelectionNote: string[] =
     confirmedDesign !== undefined
       ? [
@@ -85,6 +104,12 @@ export async function versionSwitchNode(state: typeof AnalysisState.State) {
             "(1) 기존 서비스/컨트롤러/모듈에 신규 프로젝터를 배선하는 modifyFile 변경과",
             "(2) v1→v2 전환·컷오버 절차에 집중하라. 배선 코드가 호출하는 필드/클래스가",
             "실제로 위 설계의 신규 프로젝터를 가리키는지(기존 v1 프로젝터 재사용 금지) 확인하라.",
+            ...(declaredClassNames.length > 0
+              ? [
+                  `신규 클래스명은 정확히 ${declaredClassNames.map((name) => `\`${name}\``).join(", ")} 다 — ` +
+                    "V2 접미 등 다른 변형 이름을 발명하거나 import 하지 마라(컴파일 불가).",
+                ]
+              : []),
           ].join("\n"),
         ]
       : [];
@@ -126,12 +151,58 @@ export async function versionSwitchNode(state: typeof AnalysisState.State) {
           ];
         };
 
+  // 클래스명 정합 검증: 스니펫이 확정 설계에 없는 프로젝터 클래스명(V2 접미 변형 등)을
+  // 참조하면 재질의로 교정한다. 기존 v1 클래스와 Projector 인터페이스는 정당한 참조다.
+  const knownProjectorClassNames = new Set<string>([
+    ...declaredClassNames,
+    "GripResultProjector",
+    "MultiModalProjector",
+    "Projector",
+  ]);
+  const validateClassConsistency =
+    confirmedDesign === undefined || declaredClassNames.length === 0
+      ? undefined
+      : async (candidate: VersionSwitchOutput): Promise<string[]> => {
+          const unknownNames = new Set<string>();
+          for (const change of candidate.codeChanges) {
+            for (const match of change.snippet.matchAll(
+              /\b([A-Z][A-Za-z0-9]*Projector[A-Za-z0-9]*)\b/g,
+            )) {
+              if (!knownProjectorClassNames.has(match[1])) {
+                unknownNames.add(match[1]);
+              }
+            }
+          }
+          if (unknownNames.size === 0) {
+            return [];
+          }
+          return [
+            `codeChanges 스니펫이 정의되지 않은 프로젝터 클래스(${[...unknownNames].join(", ")})를 참조한다 — ` +
+              `확정 설계가 정의한 클래스명(${declaredClassNames.join(", ")})을 그대로 써라. ` +
+              "V2 접미 등 새 이름을 발명하면 문서 내 코드가 상호 모순으로 컴파일되지 않는다.",
+          ];
+        };
+
+  const validators = [
+    validateRouteConsistency,
+    validateClassConsistency,
+  ].filter((validator) => validator !== undefined);
+  const validateVersionSwitch =
+    validators.length === 0
+      ? undefined
+      : async (candidate: VersionSwitchOutput): Promise<string[]> =>
+          (
+            await Promise.all(
+              validators.map((validator) => validator(candidate)),
+            )
+          ).flat();
+
   try {
     const versionSwitch = await invokeNode(
       VERSION_SWITCH_PROMPT,
       facts,
       versionSwitchOutputSchema,
-      validateRouteConsistency,
+      validateVersionSwitch,
     );
 
     // 스키마 단일 소스 강제: newReadModel 설계가 확정된 경우, versionSwitch 가 같은

@@ -1,0 +1,123 @@
+[
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": "rep-1",
+    "file": "2026-07-21-163627-742b2850-c491-4c0d-a568-c34464912c85.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": "rep-1",
+    "file": "2026-07-21-164045-a966c5a1-8ee0-4261-9a7f-a92659fcd973.md",
+    "blocks": 1,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": "rep-1",
+    "file": "2026-07-21-164327-fe4fda2f-2c72-4a5b-a208-3557b7a2d3ab.md",
+    "blocks": 1,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A4-physical-impossible",
+    "rep": "rep-1",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02006.md",
+    "blocks": 6,
+    "failedBlocks": [
+      {
+        "index": 1,
+        "ok": false,
+        "error": "column \"grip3dpose\" of relation \"read_grip_result\" does not exist",
+        "sqlHead": "UPDATE read_grip_result SET grip3dPose = '{\"x1\":0.01,\"x2\":0.01,\"x3\":0.01,\"x4\":0.01,\"x5\":0.01,\"x6\":0.01,\"x7\":0.01,\"x8\":0."
+      },
+      {
+        "index": 2,
+        "ok": false,
+        "error": "relation \"sensor_value_baseline\" does not exist",
+        "sqlHead": "INSERT INTO sensor_value_baseline (rule, expected) VALUES ('grip3dPoseZ_depth', '[0.01, 0.30] m'), ('grip2dPose_withinIm"
+      }
+    ],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": "rep-1",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02008.md",
+    "blocks": 6,
+    "failedBlocks": [
+      {
+        "index": 2,
+        "ok": false,
+        "error": "operator does not exist: jsonb ->> numeric",
+        "sqlHead": "ALTER TABLE read_grip_result ADD CONSTRAINT gripSucceed_poseConsistency CHECK (grip_succeed = 1 AND (robot_tf->>'transla"
+      }
+    ],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": "rep-1",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02010.md",
+    "blocks": 6,
+    "failedBlocks": [
+      {
+        "index": 1,
+        "ok": false,
+        "error": "relation \"read_grip_result_v2\" does not exist",
+        "sqlHead": "INSERT INTO read_grip_result_v2 (scene_key, attempt_num, object_name, grip_succeed, gripper_type, occurred_at, grip_2d_p"
+      },
+      {
+        "index": 2,
+        "ok": false,
+        "error": "column \"grip3dpose\" does not exist",
+        "sqlHead": "ALTER TABLE read_grip_result ADD CONSTRAINT suddenJump_withinScene CHECK (ABS((grip3dPose->>'z1')::float - (grip3dPose->"
+      }
+    ],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": "rep-1",
+    "file": "2026-07-21-170500-82252271-7220-4b54-b655-0464eaee2f99.md",
+    "blocks": 1,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": "rep-1",
+    "file": "2026-07-21-174220-e7fa9bb6-36b6-4819-9419-ab73eaa7bacb.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": "rep-1",
+    "file": "2026-07-21-171315-7de49816-6b3e-4e0c-9bfc-b112f6fbd1eb.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": "rep-1",
+    "file": "2026-07-21-171315-d5dffed0-59c5-4366-b350-767f5815cedc.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "E3-new-join-query",
+    "rep": "rep-1",
+    "file": "2026-07-21-172028-5daa87b5-b524-4dc3-a137-d63571440b77.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  }
+]

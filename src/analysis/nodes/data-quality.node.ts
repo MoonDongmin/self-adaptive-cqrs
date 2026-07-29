@@ -7,10 +7,13 @@ import {
   renderConfirmedDesign,
   renderRootCause,
   stripInsightCardExamples,
-} from '@/analysis/render';
+} from "@/analysis/render";
 import { renderSensorFinding } from "@/analysis/render-sensor";
 import { dataQualityRecommendationOutputSchema } from "@/analysis/type/output.type";
-import { looksLikeSql, validateSqlExecutable } from '@/analysis/validation/sql-validator';
+import {
+  looksLikeSql,
+  validateSqlExecutable,
+} from "@/analysis/validation/sql-validator";
 
 // §2 DDL 을 전제하는 §1 SQL 에 결정론으로 붙이는 실행 순서 주석. §1 이 문서에서 §2 보다
 // 앞에 렌더되므로, 이 표기가 없으면 사용자가 위에서부터 복붙하다 실패한다.
@@ -21,7 +24,10 @@ const SQL_ORDER_PREREQUISITE_NOTE =
 // 전체 문자열 exact-substring 은 LLM 이 값은 정확히 인용하고 포맷만 재구성해도
 // ("z1":0.066 → z1:0.066) 전량 탈락시킨다(2026-07-14 실측). 숫자가 없으면 기존
 // 부분문자열 검사로 폴백. 경계 검사로 0.07 이 0.0711 내부에 매칭되는 것을 막는다.
-function isObservedValueGrounded(observedValue: string, facts: string): boolean {
+function isObservedValueGrounded(
+  observedValue: string,
+  facts: string,
+): boolean {
   const numberLiterals = observedValue.match(/-?\d+(?:\.\d+)?/g);
   if (numberLiterals === null || numberLiterals.length === 0) {
     return facts.includes(observedValue);
@@ -70,7 +76,16 @@ export async function dataQualityNode(state: typeof AnalysisState.State) {
     `## 도메인 스키마 (Insight Read DB)\n${stripInsightCardExamples(state.insightCards)}\n${INSIGHT_CARDS_CAVEAT}`,
     finding.baselineText,
     ...(confirmedDesign !== undefined
-      ? [renderConfirmedDesign(confirmedDesign)]
+      ? [
+          [
+            renderConfirmedDesign(confirmedDesign),
+            "",
+            `recommendedOption(권장안)은 위 확정 설계(\`${confirmedDesign.proposedName}\`)의 채택을 전제로`,
+            "서술해야 한다 — §2 DDL·§3 버저닝에 이 설계가 실리므로, 확정 설계를 기각하는(예: v1",
+            "프로젝터 수정만으로 충분) 권장안은 §1↔§2/§3 자기모순 문서가 된다(금지). v1 수정은",
+            "[fix] 옵션으로 함께 제시하되, 권장안 서술에는 확정 설계 채택이 포함돼야 한다.",
+          ].join("\n"),
+        ]
       : []),
     await readSourceExamples(),
   ].join("\n\n");
@@ -87,6 +102,22 @@ export async function dataQualityNode(state: typeof AnalysisState.State) {
       // (v2 재투영·INSERT)이 단독 검증 오탐으로 기각되지 않게 한다(2026-07-21 A6 실측).
       async (candidate) => {
         const problems: string[] = [];
+        // §1↔§2 정합: 확정 설계가 있으면 권장안 서술이 그 설계(테이블명)를 언급해야 한다.
+        // A5 전 rep 에서 권장안은 v1 fix 인데 §2/§3 는 기각했다는 v2 신설을 싣는 구조적
+        // 불일치가 재현됐다(2026-07-29 품질 검토) — 프롬프트 지시만으로는 확률적으로 뚫린다.
+        if (confirmedDesign !== undefined) {
+          const recommendedText = [
+            candidate.recommendedOption.title,
+            candidate.recommendedOption.reasoning,
+            candidate.recommendedOption.acceptedTradeoff,
+          ].join(" ");
+          if (!recommendedText.includes(confirmedDesign.proposedName)) {
+            problems.push(
+              `recommendedOption 이 확정 설계(${confirmedDesign.proposedName})를 언급하지 않는다 — ` +
+                "§2 DDL 에 이 설계가 실리므로, 권장안은 확정 설계 채택을 포함해 서술하라(자기모순 방지).",
+            );
+          }
+        }
         for (const option of candidate.solutionOptions) {
           if (option.phase === "contain") {
             continue;

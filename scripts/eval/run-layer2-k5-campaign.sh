@@ -8,6 +8,8 @@
 # 커버리지가 남는다. 이미 수집된 (시나리오, rep) 는 건너뛴다(중단 후 재실행 = 이어하기).
 #
 # 사용: bash scripts/eval/run-layer2-k5-campaign.sh [reps=5] [results-name=layer2-docs-llm-only-k5]
+#   CAMPAIGN_SCENARIOS="A1-payload-drift B1-projection-map-failed" 로 대상을 좁힐 수 있다
+#   (수정 검증용 부분 캠페인 — 미지정 시 기본 10종 전체).
 set -uo pipefail
 
 REPOSITORY_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
@@ -16,12 +18,10 @@ cd "$REPOSITORY_ROOT"
 TOTAL_REPS="${1:-5}"
 RESULTS_NAME="${2:-layer2-docs-llm-only-k5}"
 APP_LOG="$REPOSITORY_ROOT/scripts/eval/results/$RESULTS_NAME/app-campaign.log"
-SCENARIO_DIRECTORY_NAMES=(
-  "A1-payload-drift" "A2-type-mismatch" "A3-missing-field"
-  "A4-physical-impossible" "A5-consistency-violation" "A6-depth-jump"
-  "B1-projection-map-failed" "E1-new-column-query" "E2-new-aggregate-query"
-  "E3-new-join-query"
-)
+DEFAULT_SCENARIO_DIRECTORY_NAMES="A1-payload-drift A2-type-mismatch A3-missing-field \
+A4-physical-impossible A5-consistency-violation A6-depth-jump \
+B1-projection-map-failed E1-new-column-query E2-new-aggregate-query E3-new-join-query"
+read -r -a SCENARIO_DIRECTORY_NAMES <<< "${CAMPAIGN_SCENARIOS:-$DEFAULT_SCENARIO_DIRECTORY_NAMES}"
 
 mkdir -p "$REPOSITORY_ROOT/scripts/eval/results/$RESULTS_NAME"
 

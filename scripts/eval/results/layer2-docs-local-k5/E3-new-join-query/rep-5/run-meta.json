@@ -1,0 +1,52 @@
+{
+  "scenarioId": "E3-new-join-query",
+  "rep": 5,
+  "startedAt": "2026-07-27T23:23:26.657Z",
+  "expectsDocs": true,
+  "channel": "query",
+  "stagedCount": 30,
+  "insert": {
+    "inserted": 30,
+    "failed": []
+  },
+  "projection": {
+    "multimodalProcessed": 30,
+    "gripResultOk": true,
+    "gripResultProcessed": 30
+  },
+  "userQuery": "파지 결과와 해당 시도의 이미지·영상 경로를 한 화면에서 함께 보고 싶다.",
+  "exitReason": "docs-collected",
+  "observedCount": 30,
+  "projectedCount": 30,
+  "events": [
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 1건 (insight.card.miss)"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-07-28-082326-f12f539f-9ae8-4190-aa6b-18e87e9ba158.md",
+      "docsValid": true,
+      "docsValidationErrors": []
+    },
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 2건 (insight.card.miss)"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-07-28-082327-421ddc0d-a438-485d-aef6-efda5ac10edb.md",
+      "docsValid": false,
+      "docsValidationErrors": [
+        "근거 미매핑 인용: [corr:092e86e6-04fa-47e6-8efe-8cc6baf68e9d] 가 evidenceSources 에 없음",
+        "근거 미매핑 인용: [corr:092e86e6-04fa-47e6-8efe-8cc6baf68e9d] 가 evidenceSources 에 없음"
+      ]
+    }
+  ],
+  "finishedAt": "2026-07-28T00:01:03.242Z",
+  "durationSeconds": 2257,
+  "collectedDocs": [
+    "2026-07-28-082326-f12f539f-9ae8-4190-aa6b-18e87e9ba158.md",
+    "2026-07-28-082327-421ddc0d-a438-485d-aef6-efda5ac10edb.md"
+  ]
+}

@@ -1,0 +1,218 @@
+[
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": "rep-1",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_00061.md",
+    "expectsDocs": true,
+    "verdict": "부분 통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": false,
+      "hanCharacterFree": true
+    },
+    "passRate": 0.875
+  },
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": "rep-1",
+    "file": "2026-07-29-102222-aadd72c5-1303-4167-b2bb-4a45ce4e5bb7.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true,
+      "hanCharacterFree": true
+    },
+    "passRate": 1
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": "rep-1",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_00051.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true,
+      "hanCharacterFree": true
+    },
+    "passRate": 1
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": "rep-1",
+    "file": "2026-07-29-093304-91d11737-ba42-4c3d-aea9-86bdb447014d.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true,
+      "hanCharacterFree": true
+    },
+    "passRate": 1
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": "rep-1",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_00206.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true,
+      "hanCharacterFree": true
+    },
+    "passRate": 1
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": "rep-1",
+    "file": "2026-07-29-094056-c9af10ae-56c7-4382-80e8-d699b6ea72c0.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true,
+      "hanCharacterFree": true
+    },
+    "passRate": 1
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": "rep-1",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_00267.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true,
+      "hanCharacterFree": true
+    },
+    "passRate": 1
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": "rep-1",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02008.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true,
+      "hanCharacterFree": true
+    },
+    "passRate": 1
+  },
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": "rep-1",
+    "file": "2023-10-10-090000-반려동물용품_CR01_강아지공룡알장난감_00343.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true,
+      "hanCharacterFree": true
+    },
+    "passRate": 1
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": "rep-1",
+    "file": "2026-07-29-100703-8d970485-ffbe-4dc4-8c68-bdc6578529cb.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true,
+      "hanCharacterFree": true
+    },
+    "passRate": 1
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": "rep-1",
+    "file": "2023-09-23-090000-sensor.md",
+    "expectsDocs": true,
+    "verdict": "부분 통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": false,
+      "hanCharacterFree": true
+    },
+    "passRate": 0.875
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": "rep-1",
+    "file": "2026-07-29-103259-95b5709b-3b84-4bd0-8609-7b562a8923e6.md",
+    "expectsDocs": true,
+    "verdict": "통과",
+    "checks": {
+      "frontMatterPresent": true,
+      "sufficientEvidence": true,
+      "verdictNotNoAction": true,
+      "recommendationFilled": true,
+      "sqlFilled": true,
+      "versioningFilled": true,
+      "grounding": true,
+      "hanCharacterFree": true
+    },
+    "passRate": 1
+  }
+]

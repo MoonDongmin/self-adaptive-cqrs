@@ -123,6 +123,19 @@ export function validateDocs(markdown: string): DocsValidationResult {
     errors.push("sufficientEvidence:false 인데 센티넬이 없음");
   }
 
+  // 3-b) 거짓 음성 관측: 트립 앵커(근거)가 본문에 실재하는데 전 섹션이 센티넬이면
+  // "형태는 유효하나 내용이 성립하지 않는" 빈 문서다 — 종전 검증은 섹션 존재만 보고
+  // 이를 valid 로 통과시켰다(2026-07-29 품질 검토: 51건 중 6건, 전부 docsValid:true).
+  // 결정론 폴백이 대부분 막지만, 남는 경우를 경고로 표면화해 재실행 판단을 돕는다.
+  if (
+    frontMatter.sufficientEvidence === false &&
+    body.includes("← 트립 앵커")
+  ) {
+    warnings.push(
+      "거짓 음성 의심: 트립 앵커가 본문에 실재하는데 sufficientEvidence:false — 분석 재실행 권장",
+    );
+  }
+
   // 4) 본문 [corr:x]/[seq:n] 인용은 front-matter evidenceSources 앵커에 실재해야 함(rule 5).
   const anchors = new Set(frontMatter.evidenceAnchorIds);
   for (const match of body.matchAll(/\[(corr|seq):([^\]]+)\]/g)) {

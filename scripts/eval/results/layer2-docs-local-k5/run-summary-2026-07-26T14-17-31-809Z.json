@@ -1,0 +1,9 @@
+[
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": 1,
+    "docs": 1,
+    "exitReason": "docs-collected",
+    "durationSeconds": 2437
+  }
+]

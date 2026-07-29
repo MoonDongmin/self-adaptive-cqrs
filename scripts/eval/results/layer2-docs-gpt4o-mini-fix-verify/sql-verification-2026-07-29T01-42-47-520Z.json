@@ -1,0 +1,121 @@
+[
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": "rep-1",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_00061.md",
+    "blocks": 6,
+    "failedBlocks": [],
+    "orderDependentBlocks": [
+      {
+        "index": 2,
+        "ok": true,
+        "error": "relation \"read_grip_result_v2\" does not exist",
+        "sqlHead": "ALTER TABLE read_grip_result_v2 ADD CONSTRAINT robotTfTranslationZ_workspace CHECK ((robot_tf->'translation_3x1'->>2)::n",
+        "orderDependent": true
+      }
+    ]
+  },
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": "rep-1",
+    "file": "2026-07-29-102222-aadd72c5-1303-4167-b2bb-4a45ce4e5bb7.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": "rep-1",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_00051.md",
+    "blocks": 5,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": "rep-1",
+    "file": "2026-07-29-093304-91d11737-ba42-4c3d-aea9-86bdb447014d.md",
+    "blocks": 1,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": "rep-1",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_00206.md",
+    "blocks": 6,
+    "failedBlocks": [],
+    "orderDependentBlocks": [
+      {
+        "index": 1,
+        "ok": true,
+        "error": "relation \"read_grip_result_v2\" does not exist",
+        "sqlHead": "UPDATE read_grip_result_v2 SET grip_succeed = 0, grip_3d_pose = '{\"z1\":0.04152680546998776,\"z2\":0.07449983279013107,\"z3\"",
+        "orderDependent": true
+      },
+      {
+        "index": 2,
+        "ok": true,
+        "error": "relation \"read_grip_result_v2\" does not exist",
+        "sqlHead": "ALTER TABLE read_grip_result_v2 ADD CONSTRAINT check_grip3dPose_z CHECK ((grip_3d_pose->>'z1')::numeric BETWEEN 0.01 AND",
+        "orderDependent": true
+      }
+    ]
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": "rep-1",
+    "file": "2026-07-29-094056-c9af10ae-56c7-4382-80e8-d699b6ea72c0.md",
+    "blocks": 1,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": "rep-1",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_00267.md",
+    "blocks": 4,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": "rep-1",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02008.md",
+    "blocks": 5,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": "rep-1",
+    "file": "2023-10-10-090000-반려동물용품_CR01_강아지공룡알장난감_00343.md",
+    "blocks": 5,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": "rep-1",
+    "file": "2026-07-29-100703-8d970485-ffbe-4dc4-8c68-bdc6578529cb.md",
+    "blocks": 1,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": "rep-1",
+    "file": "2023-09-23-090000-sensor.md",
+    "blocks": 6,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": "rep-1",
+    "file": "2026-07-29-103259-95b5709b-3b84-4bd0-8609-7b562a8923e6.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  }
+]

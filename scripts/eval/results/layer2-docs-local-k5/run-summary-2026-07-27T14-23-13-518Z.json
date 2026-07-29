@@ -1,0 +1,9 @@
+[
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": 3,
+    "docs": 0,
+    "exitReason": "timeout",
+    "durationSeconds": 3602
+  }
+]

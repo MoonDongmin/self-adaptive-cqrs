@@ -1,0 +1,38 @@
+{
+  "scenarioId": "E2-new-aggregate-query",
+  "rep": 5,
+  "startedAt": "2026-07-28T11:48:49.858Z",
+  "expectsDocs": true,
+  "channel": "query",
+  "stagedCount": 30,
+  "insert": {
+    "inserted": 30,
+    "failed": []
+  },
+  "projection": {
+    "multimodalProcessed": 30,
+    "gripResultOk": true,
+    "gripResultProcessed": 30
+  },
+  "userQuery": "객체(object_name)별 파지 성공률을 한 번에 조회하고 싶다. 시도 수, 성공 수, 성공률이 필요하다.",
+  "exitReason": "docs-collected",
+  "observedCount": 30,
+  "projectedCount": 30,
+  "events": [
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 3건 (insight.card.miss)"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-07-28-204849-70d3d369-4702-4fd7-82c8-470f543c8eb2.md",
+      "docsValid": true,
+      "docsValidationErrors": []
+    }
+  ],
+  "finishedAt": "2026-07-28T12:14:36.600Z",
+  "durationSeconds": 1547,
+  "collectedDocs": [
+    "2026-07-28-204849-70d3d369-4702-4fd7-82c8-470f543c8eb2.md"
+  ]
+}

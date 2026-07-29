@@ -1,16 +1,19 @@
-import { AnalysisState } from '@/analysis/analysis.state';
-import { invokeNode } from '@/analysis/nodes/invoke';
-import { DECISION_PROMPT } from '@/analysis/prompts';
+import { AnalysisState } from "@/analysis/analysis.state";
+import { invokeNode } from "@/analysis/nodes/invoke";
+import { DECISION_PROMPT } from "@/analysis/prompts";
 import {
   INSIGHT_CARDS_CAVEAT,
   renderEvidenceContext,
   renderRootCause,
   stripInsightCardExamples,
-} from '@/analysis/render';
-import { renderSensorFinding } from '@/analysis/render-sensor';
-import { AnalysisDecision, analysisDecisionSchema } from '@/analysis/type/output.type';
-import type { AnomalyLogWindow } from '@/llm-context/llm-context.type';
-import { WINDOW_CONFIG } from '@/llm-context/repository/log-window.config';
+} from "@/analysis/render";
+import { renderSensorFinding } from "@/analysis/render-sensor";
+import {
+  AnalysisDecision,
+  analysisDecisionSchema,
+} from "@/analysis/type/output.type";
+import type { AnomalyLogWindow } from "@/llm-context/llm-context.type";
+import { WINDOW_CONFIG } from "@/llm-context/repository/log-window.config";
 
 // 결정론 프리게이트: 트립 앵커가 카탈로그 404(insight.card.miss)뿐이고 윈도우에 다른
 // 에러 신호가 없으면 LLM을 부르지 않고 '조치 불필요'로 확정한다. 프롬프트 지시만으로는
@@ -56,6 +59,60 @@ export function isInsertRejection(window: AnomalyLogWindow | null): boolean {
   return !window.rows.some((row) => row.action === "projection.map.failed");
 }
 
+// 행동 근거 신호: 결정론 프리게이트가 처리하지 않는 앵커 유형에서 LLM 이 빈 선택을 내면
+// 근거가 명백한데도 전 섹션 센티넬 문서가 된다(2026-07-29 품질 검토: 51건 중 6건 거짓
+// 음성 — 실패 rep 의 윈도우는 성공 rep 과 사실상 동일했다). 신호가 있으면 빈 선택을
+// 재질의로 교정하고, 소진 시 앵커 유형별 결정론 기본 lane 으로 폴백한다.
+function findActionableSignals(
+  window: AnomalyLogWindow | null,
+  sensorFindingPresent: boolean,
+): string[] {
+  const signals: string[] = [];
+  if (sensorFindingPresent) {
+    signals.push("센서 무결성 발견(이상 배치) 존재");
+  }
+  if (window !== null) {
+    if (window.rows.some((row) => row.action === "payload.schema.drift")) {
+      signals.push("payload.schema.drift(스키마가 모르는 신규 키 유입)");
+    }
+    if (window.rows.some((row) => row.action === "projection.map.failed")) {
+      signals.push("projection.map.failed(poison event 투영 실패)");
+    }
+    const missCount = window.rows.filter(
+      (row) => row.action === "insight.card.miss",
+    ).length;
+    if (missCount >= 2) {
+      signals.push(`insight.card.miss 반복 ${missCount}회(조회 의도 신호)`);
+    }
+  }
+  return signals;
+}
+
+// 재질의 소진 후에도 빈 선택이면 앵커 유형별 기본 lane 을 결정론으로 확정한다 —
+// DECISION_PROMPT 의 lane 규칙과 동일한 매핑이다(발명 없음).
+function fallbackSelectionForSignals(
+  window: AnomalyLogWindow | null,
+  sensorFindingPresent: boolean,
+  signals: string[],
+): AnalysisDecision {
+  const reasoning = `행동 근거(${signals.join("; ")})가 있는데 LLM 이 빈 선택을 반복 — 앵커 유형별 기본 lane 결정론 폴백`;
+
+  if (sensorFindingPresent) {
+    return {
+      selected: ["dataQualityRecommendation", "newReadModel", "versionSwitch"],
+      reasoning,
+    };
+  }
+  if (window?.rows.some((row) => row.action === "projection.map.failed")) {
+    return { selected: ["recommendationDocs"], reasoning };
+  }
+  // 드리프트/반복 카드 miss lane — 신규 Read Model 검토가 기본이다.
+  return {
+    selected: ["newReadModel", "recommendationDocs", "versionSwitch"],
+    reasoning,
+  };
+}
+
 // 정합성 불변식: newReadModel/versionSwitch(산출물 생성)를 골랐으면 권고 계열도 반드시
 // 함께 골라야 한다. 아니면 §1=INSUFFICIENT_EVIDENCE 인데 §2/§3 은 충실한 자기모순 문서가 된다.
 function enforceCoherentSelection(
@@ -73,7 +130,9 @@ function enforceCoherentSelection(
 
   if (buildsArtifact && !hasRecommendation) {
     additions.push("recommendationDocs");
-    reasons.push("산출물 생성에는 권고 문서가 동반돼야 하므로 recommendationDocs 추가");
+    reasons.push(
+      "산출물 생성에는 권고 문서가 동반돼야 하므로 recommendationDocs 추가",
+    );
   }
 
   // 연구 명세: Docs 는 권고 + Read Model 생성 SQL + API Versioning 3요소를 항상 함께
@@ -81,7 +140,9 @@ function enforceCoherentSelection(
   // 결정론으로 보장한다(2026-07-14 실측: E 계열에서 LLM 이 확률적으로 누락).
   if (selected.has("newReadModel") && !selected.has("versionSwitch")) {
     additions.push("versionSwitch");
-    reasons.push("신규 Read Model 은 API 버전 변경이 동반돼야 하므로 versionSwitch 추가");
+    reasons.push(
+      "신규 Read Model 은 API 버전 변경이 동반돼야 하므로 versionSwitch 추가",
+    );
   }
 
   if (additions.length === 0) {
@@ -154,7 +215,9 @@ export async function decisionNode(state: typeof AnalysisState.State) {
   // 카드 이름(=사용자 질의)·반복 횟수를 판단할 수 없어 '의도 없음' 오판이 난다
   // (2026-07-21 gpt-4o-mini E3 실측).
   const windowSection: string[] =
-    state.window !== null ? ["", renderEvidenceContext(state.window, null)] : [];
+    state.window !== null
+      ? ["", renderEvidenceContext(state.window, null)]
+      : [];
 
   const facts: string = [
     renderRootCause(state.rootCause!), // rootCause 노드 이후라 non-null
@@ -166,11 +229,34 @@ export async function decisionNode(state: typeof AnalysisState.State) {
     INSIGHT_CARDS_CAVEAT,
   ].join("\n");
 
-  const decision = await invokeNode(
+  const signals = findActionableSignals(
+    state.window,
+    state.sensorFinding !== null,
+  );
+
+  let decision = await invokeNode(
     DECISION_PROMPT,
     facts,
     analysisDecisionSchema,
+    signals.length === 0
+      ? undefined
+      : async (candidate) =>
+          candidate.selected.length > 0
+            ? []
+            : [
+                `행동 근거가 실재하는데 selected 가 비었다: ${signals.join("; ")}. ` +
+                  "해당 lane 규칙에 따라 필요한 조치를 선택하라 — '조치 불필요'는 이 근거들과 모순이다.",
+              ],
   );
+
+  if (decision.selected.length === 0 && signals.length > 0) {
+    decision = fallbackSelectionForSignals(
+      state.window,
+      state.sensorFinding !== null,
+      signals,
+    );
+    console.warn("[decisionNode] 빈 선택 재질의 소진 —", decision.reasoning);
+  }
 
   return {
     decision: enforceCoherentSelection(
