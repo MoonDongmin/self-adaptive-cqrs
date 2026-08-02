@@ -1,0 +1,45 @@
+{
+  "scenarioId": "E3-new-join-query",
+  "rep": 2,
+  "startedAt": "2026-07-30T15:31:29.887Z",
+  "expectsDocs": true,
+  "channel": "query",
+  "stagedCount": 30,
+  "insert": {
+    "inserted": 30,
+    "failed": []
+  },
+  "projection": {
+    "multimodalProcessed": 30,
+    "gripResultOk": true,
+    "gripResultProcessed": 30
+  },
+  "userQuery": "파지 결과와 해당 시도의 이미지·영상 경로를 한 화면에서 함께 보고 싶다.",
+  "exitReason": "docs-collected",
+  "observedCount": 30,
+  "projectedCount": 30,
+  "events": [
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 3건 (insight.card.miss)"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-07-31-003130-3fcfdf6b-c185-419b-938f-9b9efc908178.md",
+      "docsValid": false,
+      "docsValidationErrors": [
+        "근거 미매핑 인용: [corr:9499d308-34e8-415d-b6ec-2d0bb3359a4e] 가 evidenceSources 에 없음",
+        "근거 미매핑 인용: [corr:4edb4259-fcaa-4509-949c-bc6baa25cf67] 가 evidenceSources 에 없음",
+        "근거 미매핑 인용: [corr:4edb4259-fcaa-4509-949c-bc6baa25cf67] 가 evidenceSources 에 없음",
+        "근거 미매핑 인용: [corr:9499d308-34e8-415d-b6ec-2d0bb3359a4e] 가 evidenceSources 에 없음",
+        "근거 미매핑 인용: [corr:4edb4259-fcaa-4509-949c-bc6baa25cf67] 가 evidenceSources 에 없음",
+        "근거 미매핑 인용: [corr:4edb4259-fcaa-4509-949c-bc6baa25cf67] 가 evidenceSources 에 없음"
+      ]
+    }
+  ],
+  "finishedAt": "2026-07-30T16:38:22.528Z",
+  "durationSeconds": 4013,
+  "collectedDocs": [
+    "2026-07-31-003130-3fcfdf6b-c185-419b-938f-9b9efc908178.md"
+  ]
+}

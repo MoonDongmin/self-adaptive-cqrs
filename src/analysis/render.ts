@@ -382,6 +382,42 @@ function renderProjectionMapping(mapping: ProjectionMappingOutput): string {
   ].join("\n\n");
 }
 
+// 센서 레인 §2 결정론 합성: newReadModel 이 강등(전송 실패 등)돼도 sensorEvidence 의
+// 위반 레코드 좌표(scene_key/attempt_num/global_seq)는 결정론 사실이므로, 식별·검증
+// SELECT 를 합성해 §2 를 채운다. 분석을 연 센서 에피소드가 곧 증거인데 LLM 산출물
+// 부재만으로 문서 전체가 '증거 부족'으로 강등되는 자기모순을 막는다
+// (2026-08-02 k5 실측: A5 5reps 중 4회 — dataQuality §1 은 충실한데 §2 센티넬 → false).
+function synthesizeSensorVerificationSql(
+  sensorEvidence: ReadonlyArray<{
+    sceneKey: string;
+    attemptNumber: number;
+    globalSequence: number;
+  }>,
+): string {
+  const keyTuples = sensorEvidence
+    .map(
+      (item) => `  ('${item.sceneKey.replace(/'/g, "''")}', ${item.attemptNumber})`,
+    )
+    .join(",\n");
+  const globalSequences = sensorEvidence
+    .map((item) => item.globalSequence)
+    .join(", ");
+  return [
+    "-- 센서 무결성 위반 레코드 식별·검증 SELECT (sensorEvidence 결정론 합성 — 데이터 변경 없음)",
+    "-- ⚠ 격리/수정 DDL 은 아래 검증 결과를 확인한 뒤 인간 승인 하에 별도 실행한다.",
+    "SELECT scene_key, attempt_num, object_name, grip_succeed, occurred_at",
+    "FROM read_grip_result",
+    "WHERE (scene_key, attempt_num) IN (",
+    keyTuples,
+    ");",
+    "",
+    "-- 원천 이벤트 대조 (event_store 재처리/복구 앵커)",
+    "SELECT global_seq, stream_id, attempt_num, occurred_at",
+    "FROM event_store",
+    `WHERE global_seq IN (${globalSequences});`,
+  ].join("\n");
+}
+
 // §2 Read Model 생성 SQL: DDL(마이그레이션) + M-Schema 필드 튜플 + 투영 매핑 명세.
 // 프로젝터/배선/스키마 코드는 Optional 로.
 function renderSqlSection(outputs: GeneratedOutputs): string {
@@ -398,6 +434,16 @@ function renderSqlSection(outputs: GeneratedOutputs): string {
         HUMAN_GATE,
         "### 격리(containment) SQL — 신규 Read Model DDL 불필요, 결함 데이터 무해화가 조치다",
         codeBlock("sql", containmentSql),
+      ].join("\n\n");
+    }
+    const sensorEvidence =
+      outputs.dataQualityRecommendation?.sensorEvidence ?? [];
+    if (sensorEvidence.length > 0) {
+      return [
+        heading,
+        HUMAN_GATE,
+        "### 위반 레코드 식별·검증 SQL — 신규 DDL 대신 센서 근거 레코드의 실측 확인이 §2 조치다",
+        codeBlock("sql", synthesizeSensorVerificationSql(sensorEvidence)),
       ].join("\n\n");
     }
     return [

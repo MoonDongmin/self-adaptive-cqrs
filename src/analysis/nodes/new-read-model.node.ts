@@ -12,6 +12,10 @@ import {
   stripInsightCardExamples,
 } from "@/analysis/render";
 import {
+  synthesizeDrizzleSchema,
+  synthesizeProjectorCode,
+} from "@/analysis/nodes/typescript-synthesis";
+import {
   NewReadModelOutput,
   newReadModelOutputSchema,
 } from "@/analysis/type/output.type";
@@ -62,7 +66,12 @@ function findMissingZodExtensions(
   return [...driftKeys.keys()].filter(
     (key) =>
       fieldNames.has(camelToSnakeCase(key)) &&
-      !output.controllerWiring.includes(key),
+      // 키 이름의 단순 존재가 아니라 `<키>: z.…` 확장 코드의 실재를 요구한다 —
+      // includes(key) 는 키가 라우트·주석에만 등장해도 통과해서 확장 없는 문서가
+      // 새나갔다(2026-08-02 k5 실측: A1 rep-3 — 산문에는 z.coerce 언급, 배선 코드에는 부재).
+      !new RegExp(`["']?${key}["']?\\s*:\\s*z\\.`).test(
+        output.controllerWiring,
+      ),
   );
 }
 
@@ -138,8 +147,23 @@ async function validateNewReadModelOutput(
     );
   }
 
+  const compileError = await validateGeneratedTypeScriptOf(output);
+  if (compileError !== null) {
+    problems.push(
+      `drizzleSchema/projectorCode 를 실제 경로에 놓고 tsc 로 컴파일한 결과 실패:\n${compileError}`,
+    );
+  }
+
+  return problems;
+}
+
+// drizzleSchema/projectorCode 를 의도된 실제 경로에 놓고 컴파일하는 공통 진입점 —
+// 의미 검증(재질의 루프)과 합성 폴백 전후 검증이 같은 기준을 쓴다.
+async function validateGeneratedTypeScriptOf(
+  output: NewReadModelOutput,
+): Promise<string | null> {
   const kebabName = output.proposedName.replace(/_/g, "-");
-  const compileError = await validateGeneratedTypeScript(
+  return validateGeneratedTypeScript(
     [
       {
         relativePath: `src/shared/database/schema/service/${kebabName}.ts`,
@@ -152,13 +176,10 @@ async function validateNewReadModelOutput(
     ],
     [`export * from "./service/${kebabName}";`],
   );
-  if (compileError !== null) {
-    problems.push(
-      `drizzleSchema/projectorCode 를 실제 경로에 놓고 tsc 로 컴파일한 결과 실패:\n${compileError}`,
-    );
-  }
+}
 
-  return problems;
+function firstLineOf(text: string): string {
+  return text.split("\n")[0] ?? text;
 }
 
 // migrationSql 결정론 보장: LLM 이 DDL 컬럼 목록을 생략(`CREATE TABLE x (...)`)하거나
@@ -291,6 +312,28 @@ export async function newReadModelNode(state: typeof AnalysisState.State) {
         console.warn(
           "[newReadModelNode] 합성 migrationSql 도 실행 실패:",
           synthesizedSqlError,
+        );
+      }
+    }
+
+    // TS 결정론 보장: 재질의 소진 후에도 컴파일 불능이면 migrationSql 합성과 동형으로
+    // fields/keyColumns 에서 스키마·프로젝터를 템플릿 합성해 교체한다(2026-08-02 k5 실측:
+    // TS 실패 12건 중 9건이 numeric↔number 단일 유형 — 폴백 부재로 깨진 코드가 그대로 문서화).
+    const finalCompileError = await validateGeneratedTypeScriptOf(newReadModel);
+    if (finalCompileError !== null) {
+      console.warn(
+        "[newReadModelNode] 생성 TS 컴파일 불능 — fields 로부터 결정론 합성으로 교체:",
+        firstLineOf(finalCompileError),
+      );
+      newReadModel.drizzleSchema = synthesizeDrizzleSchema(newReadModel);
+      newReadModel.projectorCode = synthesizeProjectorCode(newReadModel);
+
+      const synthesizedCompileError =
+        await validateGeneratedTypeScriptOf(newReadModel);
+      if (synthesizedCompileError !== null) {
+        console.warn(
+          "[newReadModelNode] 합성 TS 도 컴파일 실패:",
+          synthesizedCompileError,
         );
       }
     }

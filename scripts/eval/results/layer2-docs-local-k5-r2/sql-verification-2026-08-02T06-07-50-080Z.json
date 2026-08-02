@@ -1,0 +1,394 @@
+[
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": "rep-1",
+    "file": "2026-07-30-174427-a9a4f6b3-af1d-4377-af8a-07564eb1d25c.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": "rep-2",
+    "file": "2026-07-30-032124-be35fa28-8c9b-4e92-9ebb-66e42dd660ef.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": "rep-3",
+    "file": "2026-07-31-013854-d9038e7c-5950-48df-933a-ddca67f7d3bd.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": "rep-4",
+    "file": "2026-07-31-055825-3417bd1b-b403-48eb-bea2-e7028115f59a.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": "rep-5",
+    "file": "2026-07-31-110145-acd29ed6-c855-4f2f-89e0-ec110e7b48df.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": "rep-1",
+    "file": "2026-07-29-175254-f6ad171d-c9ce-40b3-8729-1ed6513796db.md",
+    "blocks": 1,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": "rep-2",
+    "file": "2026-07-30-035717-ff3f0732-37e6-4ec2-96b0-39d098548e5c.md",
+    "blocks": 1,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": "rep-3",
+    "file": "2026-07-31-021406-9f0848d6-58f6-4d75-a92f-d7a30c80c8e5.md",
+    "blocks": 1,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": "rep-4",
+    "file": "2026-07-31-063715-4dff96a4-3202-4736-aea2-37965e1aa67d.md",
+    "blocks": 1,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": "rep-5",
+    "file": "2026-07-31-113121-27389757-df8c-4ffb-87e8-bda1e1206177.md",
+    "blocks": 1,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": "rep-1",
+    "file": "2026-07-29-181111-b4ffea36-3778-47a5-92dd-54e5c199d8e4.md",
+    "blocks": 1,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": "rep-2",
+    "file": "2026-07-30-041034-fcc8b99e-d1a9-4975-8fc2-f393058483d8.md",
+    "blocks": 1,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": "rep-3",
+    "file": "2026-07-31-022743-06604c0b-afe1-4943-a59b-4baaa2c7f2b9.md",
+    "blocks": 1,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": "rep-4",
+    "file": "2026-07-31-065017-d042d6de-ffeb-40b9-8a31-c365a0ba2b2a.md",
+    "blocks": 1,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": "rep-5",
+    "file": "2026-07-31-114337-64939c11-ce5d-48ac-8386-fa8f442f1535.md",
+    "blocks": 1,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": "rep-1",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02008.md",
+    "blocks": 0,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": "rep-2",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02008.md",
+    "blocks": 5,
+    "failedBlocks": [],
+    "orderDependentBlocks": [
+      {
+        "index": 1,
+        "ok": true,
+        "error": "relation \"read_grip_result_v2\" does not exist",
+        "sqlHead": "ALTER TABLE read_grip_result_v2 ADD CONSTRAINT check_grip_outlier_flag CHECK (grip_outlier_flag = CASE WHEN grip_succeed",
+        "orderDependent": true
+      }
+    ]
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": "rep-3",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02008.md",
+    "blocks": 0,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": "rep-4",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02008.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": "rep-5",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02008.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": "rep-1",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02010.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": "rep-2",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02010.md",
+    "blocks": 5,
+    "failedBlocks": [],
+    "orderDependentBlocks": [
+      {
+        "index": 1,
+        "ok": true,
+        "error": "relation \"read_grip_result_v2\" does not exist",
+        "sqlHead": "ALTER TABLE read_grip_result_v2 ADD CONSTRAINT chk_delta_z_consistency CHECK (grip_outlier_flag = 0 OR ABS(delta_z_m) <=",
+        "orderDependent": true
+      }
+    ]
+  },
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": "rep-4",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02010.md",
+    "blocks": 5,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": "rep-5",
+    "file": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02010.md",
+    "blocks": 5,
+    "failedBlocks": [],
+    "orderDependentBlocks": [
+      {
+        "index": 1,
+        "ok": true,
+        "error": "relation \"read_grip_result_v2\" does not exist",
+        "sqlHead": "ALTER TABLE read_grip_result_v2 ADD CONSTRAINT check_sudden_jump CHECK (grip_outlier_flag IN (0, 1));",
+        "orderDependent": true
+      }
+    ]
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": "rep-1",
+    "file": "2026-07-30-014100-b13f4fdb-1d65-459c-8a61-c7927e1f42f1.md",
+    "blocks": 1,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": "rep-2",
+    "file": "2026-07-30-073049-0ac3b40b-5609-467b-a74a-3d44a0dd874b.md",
+    "blocks": 1,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": "rep-3",
+    "file": "2026-07-30-100318-aec8cf9a-fd3c-41fe-9721-8f35c66ea28f.md",
+    "blocks": 1,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": "rep-4",
+    "file": "2026-07-30-111604-4d61f8d2-505a-485e-97bf-239bbf90bb28.md",
+    "blocks": 1,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": "rep-5",
+    "file": "2026-07-30-133242-0886032a-8408-4dd3-878d-736b27147112.md",
+    "blocks": 1,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": "rep-1",
+    "file": "2026-07-30-015004-ba4db5ac-6e20-42ea-8f88-7dbf886a3631.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": "rep-2",
+    "file": "2026-07-30-225932-2ae66c35-fa6d-49ec-b408-b9b22a2f2094.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": "rep-3",
+    "file": "2026-07-31-042057-0a453cf9-2efc-4976-992e-50db5e7cab5d.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": "rep-4",
+    "file": "2026-07-31-093735-eb143fb9-b3cd-4810-a7d8-bc6331c1df38.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": "rep-5",
+    "file": "2026-07-30-134309-921ebf14-a2fe-4cc9-a9b6-7eb55a71686b.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": "rep-1",
+    "file": "2026-07-30-022603-d32e2460-b067-4b79-97a8-026b393a92e2.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": "rep-2",
+    "file": "2026-07-30-233540-e295eea2-43cd-43d9-a685-2e273486e31e.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": "rep-2",
+    "file": "2026-07-30-233541-c0e8c934-ad03-4032-bebe-9e40bece0d09.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": "rep-3",
+    "file": "2026-07-31-045053-ecc1aaef-40fb-401c-b054-d0cdada53a4e.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": "rep-3",
+    "file": "2026-07-31-045054-c6ff595c-0fc9-496e-b384-56868dbaa02b.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": "rep-4",
+    "file": "2026-07-31-101023-f84367c8-1127-409b-ac17-c6ab1e44e74b.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": "rep-5",
+    "file": "2026-07-30-144022-9c8645c3-5ddd-44cb-9b30-9ff49e816945.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "E3-new-join-query",
+    "rep": "rep-1",
+    "file": "2026-07-30-025536-b9dbcf6a-7eb8-4cef-bd64-4789cb7f3350.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "E3-new-join-query",
+    "rep": "rep-2",
+    "file": "2026-07-31-003130-3fcfdf6b-c185-419b-938f-9b9efc908178.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "E3-new-join-query",
+    "rep": "rep-3",
+    "file": "2026-07-31-053332-d95610e3-e0b3-48d4-ab39-490b769dedb3.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "E3-new-join-query",
+    "rep": "rep-4",
+    "file": "2026-07-31-103624-47cf34a7-705b-4af9-aefd-eb28940dd4f9.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  },
+  {
+    "scenarioId": "E3-new-join-query",
+    "rep": "rep-5",
+    "file": "2026-07-30-150851-65e79da5-9a03-470e-aa93-66f422b6574f.md",
+    "blocks": 2,
+    "failedBlocks": [],
+    "orderDependentBlocks": []
+  }
+]

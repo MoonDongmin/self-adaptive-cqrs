@@ -1,0 +1,54 @@
+{
+  "scenarioId": "A2-type-mismatch",
+  "rep": 5,
+  "startedAt": "2026-07-30T02:47:27.018Z",
+  "expectsDocs": true,
+  "channel": "log",
+  "stagedCount": 27,
+  "insert": {
+    "inserted": 25,
+    "failed": [
+      {
+        "file": "반려동물용품_CR01_강아지공룡알장난감_02002_01_20230923.json",
+        "reason": "[\n  {\n    \"expected\": \"number\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"grip_succeed\"\n    ],\n    \"message\": \"Invalid input: expected number, received string\"\n  }\n]"
+      },
+      {
+        "file": "반려동물용품_CR01_강아지공룡알장난감_02003_01_20230923.json",
+        "reason": "[\n  {\n    \"origin\": \"number\",\n    \"code\": \"too_big\",\n    \"maximum\": 1,\n    \"inclusive\": true,\n    \"path\": [\n      \"grip_succeed\"\n    ],\n    \"message\": \"Too big: expected number to be <=1\"\n  }\n]"
+      }
+    ]
+  },
+  "projection": {
+    "multimodalProcessed": 25,
+    "gripResultOk": true,
+    "gripResultProcessed": 25
+  },
+  "exitReason": "docs-collected",
+  "observedCount": 8,
+  "projectedCount": 25,
+  "events": [
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 2건 (insert.file.failed)"
+    },
+    {
+      "action": "llm.analysis.failed",
+      "reason": "Error: 400 \"The number of tokens to keep from the initial prompt is greater than the context length (n_keep: 17609>= n_ctx: 8192). Try to load the model with a larger context length, or provide a shorter input.\""
+    },
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 1건 (-)"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-07-30-115138-background.md",
+      "docsValid": true,
+      "docsValidationErrors": []
+    }
+  ],
+  "finishedAt": "2026-07-30T02:55:17.328Z",
+  "durationSeconds": 470,
+  "collectedDocs": [
+    "2026-07-30-115138-background.md"
+  ]
+}

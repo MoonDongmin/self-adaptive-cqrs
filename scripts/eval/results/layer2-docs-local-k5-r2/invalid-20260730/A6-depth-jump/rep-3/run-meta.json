@@ -1,0 +1,37 @@
+{
+  "scenarioId": "A6-depth-jump",
+  "rep": 3,
+  "startedAt": "2026-07-30T00:54:36.003Z",
+  "expectsDocs": true,
+  "channel": "sensor",
+  "stagedCount": 26,
+  "insert": {
+    "inserted": 26,
+    "failed": []
+  },
+  "projection": {
+    "multimodalProcessed": 26,
+    "gripResultOk": true,
+    "gripResultProcessed": 26
+  },
+  "exitReason": "docs-collected",
+  "observedCount": 8,
+  "projectedCount": 26,
+  "events": [
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 1건 (-)"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-07-30-095903-background.md",
+      "docsValid": true,
+      "docsValidationErrors": []
+    }
+  ],
+  "finishedAt": "2026-07-30T01:02:46.318Z",
+  "durationSeconds": 490,
+  "collectedDocs": [
+    "2026-07-30-095903-background.md"
+  ]
+}

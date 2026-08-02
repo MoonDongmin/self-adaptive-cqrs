@@ -1,0 +1,46 @@
+{
+  "scenarioId": "E1-new-column-query",
+  "rep": 3,
+  "startedAt": "2026-07-30T01:08:25.064Z",
+  "expectsDocs": true,
+  "channel": "query",
+  "stagedCount": 27,
+  "insert": {
+    "inserted": 27,
+    "failed": []
+  },
+  "projection": {
+    "multimodalProcessed": 27,
+    "gripResultOk": true,
+    "gripResultProcessed": 27
+  },
+  "userQuery": "최근 적재 데이터에 gripper_temperature 필드가 들어오기 시작했다. 이 값을 시간대별로 조회하고 싶다. 현재 Read Model로 가능한가? 안 되면 어떻게 해야 하나?",
+  "exitReason": "docs-collected",
+  "observedCount": 8,
+  "projectedCount": 27,
+  "events": [
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 4건 (payload.schema.drift, insight.card.miss)"
+    },
+    {
+      "action": "llm.analysis.failed",
+      "reason": "Error: 400 \"The number of tokens to keep from the initial prompt is greater than the context length (n_keep: 19605>= n_ctx: 8192). Try to load the model with a larger context length, or provide a shorter input.\""
+    },
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 1건 (-)"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-07-30-101248-background.md",
+      "docsValid": true,
+      "docsValidationErrors": []
+    }
+  ],
+  "finishedAt": "2026-07-30T01:19:11.338Z",
+  "durationSeconds": 646,
+  "collectedDocs": [
+    "2026-07-30-101248-background.md"
+  ]
+}

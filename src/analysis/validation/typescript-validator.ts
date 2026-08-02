@@ -90,9 +90,35 @@ export async function validateGeneratedTypeScript(
             line.includes("src/shared/database/schema/index.ts"),
         );
       const report = relevant.length > 0 ? relevant.join("\n") : stdout;
-      return report.trim().length > 0 ? report.trim() : null;
+      return report.trim().length > 0
+        ? appendKnownFixHints(report.trim())
+        : null;
     }
   } finally {
     await fs.rm(workDirectory, { recursive: true, force: true });
   }
+}
+
+// 알려진 에러 시그니처 → 수정 규칙. 로컬 모델은 tsc 에러만 봐서는 같은 실수를
+// 반복해 re-ask 예산(2회)을 소진한다(2026-08-02 k5 실측: numeric↔number 불일치가
+// TS 실패 12건 중 9건 — 재질의가 한 번도 이 결함을 자가 교정하지 못했다).
+// 에러에 결정 규칙을 병기해야 재질의가 수렴한다.
+const KNOWN_FIX_HINTS: Array<{ pattern: RegExp; hint: string }> = [
+  {
+    pattern: /TS2322.*'number[^']*'.*'string[^']*'/,
+    hint:
+      "힌트: Drizzle numeric() 컬럼의 insert 타입은 string 이다 — 수치 측정값 컬럼은 " +
+      "drizzleSchema 에서 doublePrecision(\"col\") 로 선언하라(migrationSql 은 double precision).",
+  },
+  {
+    pattern: /TS2305.*drizzle-orm\/pg-core.*'sql'/,
+    hint: "힌트: sql 태그는 'drizzle-orm' 에서 import 하라 — 'drizzle-orm/pg-core' 에는 없다.",
+  },
+];
+
+function appendKnownFixHints(report: string): string {
+  const hints = KNOWN_FIX_HINTS.filter(({ pattern }) =>
+    pattern.test(report),
+  ).map(({ hint }) => hint);
+  return hints.length > 0 ? `${report}\n${hints.join("\n")}` : report;
 }

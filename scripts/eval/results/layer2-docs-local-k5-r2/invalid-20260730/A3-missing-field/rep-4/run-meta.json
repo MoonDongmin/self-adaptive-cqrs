@@ -1,0 +1,54 @@
+{
+  "scenarioId": "A3-missing-field",
+  "rep": 4,
+  "startedAt": "2026-07-30T01:50:03.427Z",
+  "expectsDocs": true,
+  "channel": "log",
+  "stagedCount": 27,
+  "insert": {
+    "inserted": 25,
+    "failed": [
+      {
+        "file": "반려동물용품_CR01_강아지공룡알장난감_02004_01_20230923.json",
+        "reason": "[\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"grip_data\"\n    ],\n    \"message\": \"Invalid input: expected object, received undefined\"\n  }\n]"
+      },
+      {
+        "file": "반려동물용품_CR01_강아지공룡알장난감_02005_01_20230923.json",
+        "reason": "[\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"robot_tf\"\n    ],\n    \"message\": \"Invalid input: expected object, received undefined\"\n  }\n]"
+      }
+    ]
+  },
+  "projection": {
+    "multimodalProcessed": 25,
+    "gripResultOk": true,
+    "gripResultProcessed": 25
+  },
+  "exitReason": "docs-collected",
+  "observedCount": 8,
+  "projectedCount": 25,
+  "events": [
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 2건 (insert.file.failed)"
+    },
+    {
+      "action": "llm.analysis.failed",
+      "reason": "Error: 400 \"The number of tokens to keep from the initial prompt is greater than the context length (n_keep: 17350>= n_ctx: 8192). Try to load the model with a larger context length, or provide a shorter input.\""
+    },
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 1건 (-)"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-07-30-105418-background.md",
+      "docsValid": true,
+      "docsValidationErrors": []
+    }
+  ],
+  "finishedAt": "2026-07-30T01:57:23.720Z",
+  "durationSeconds": 440,
+  "collectedDocs": [
+    "2026-07-30-105418-background.md"
+  ]
+}

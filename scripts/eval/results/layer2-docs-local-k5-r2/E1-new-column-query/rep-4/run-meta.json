@@ -1,0 +1,38 @@
+{
+  "scenarioId": "E1-new-column-query",
+  "rep": 4,
+  "startedAt": "2026-07-31T00:37:35.596Z",
+  "expectsDocs": true,
+  "channel": "query",
+  "stagedCount": 27,
+  "insert": {
+    "inserted": 27,
+    "failed": []
+  },
+  "projection": {
+    "multimodalProcessed": 27,
+    "gripResultOk": true,
+    "gripResultProcessed": 27
+  },
+  "userQuery": "최근 적재 데이터에 gripper_temperature 필드가 들어오기 시작했다. 이 값을 시간대별로 조회하고 싶다. 현재 Read Model로 가능한가? 안 되면 어떻게 해야 하나?",
+  "exitReason": "docs-collected",
+  "observedCount": 27,
+  "projectedCount": 27,
+  "events": [
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 4건 (payload.schema.drift, insight.card.miss)"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-07-31-093735-eb143fb9-b3cd-4810-a7d8-bc6331c1df38.md",
+      "docsValid": true,
+      "docsValidationErrors": []
+    }
+  ],
+  "finishedAt": "2026-07-31T01:09:52.250Z",
+  "durationSeconds": 1937,
+  "collectedDocs": [
+    "2026-07-31-093735-eb143fb9-b3cd-4810-a7d8-bc6331c1df38.md"
+  ]
+}

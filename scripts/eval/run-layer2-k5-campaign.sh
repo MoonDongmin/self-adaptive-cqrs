@@ -42,6 +42,7 @@ start_app() {
   SENSOR_OBSERVER_ANALYSIS_DISABLED=0 \
   LLM_CONTEXT_ANALYSIS_DISABLED=0 \
   SENSOR_OBSERVER_EPISODE_CLOSE_NORMAL_STREAK=2 \
+  ANALYSIS_LLM_TIMEOUT_MS=1800000 \
   npm run start >> "$APP_LOG" 2>&1 &
   for i in $(seq 1 36); do
     if [ "$(curl -s -o /dev/null -w "%{http_code}" --max-time 2 http://localhost:3000/insight/cards)" = "200" ]; then
@@ -79,7 +80,7 @@ for rep in $(seq 1 "$TOTAL_REPS"); do
       continue
     fi
 
-    EVAL_DOC_TIMEOUT_MS=3600000 node scripts/eval/run-layer2-docs.mjs \
+    EVAL_DOC_TIMEOUT_MS=7200000 node scripts/eval/run-layer2-docs.mjs \
       --scenarios "$scenarioPrefix" --reps "$rep" --start-rep "$rep" \
       --results-name "$RESULTS_NAME"
     echo "[k5] ━━ $scenarioDirectoryName rep-$rep 종료 ($(date '+%H:%M:%S'))"
