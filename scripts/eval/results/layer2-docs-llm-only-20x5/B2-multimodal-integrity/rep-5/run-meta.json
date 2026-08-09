@@ -1,0 +1,37 @@
+{
+  "scenarioId": "B2-multimodal-integrity",
+  "rep": 5,
+  "startedAt": "2026-08-06T23:41:11.390Z",
+  "expectsDocs": true,
+  "channel": "log",
+  "stagedCount": 27,
+  "insert": {
+    "inserted": 27,
+    "failed": []
+  },
+  "projection": {
+    "multimodalProcessed": 27,
+    "gripResultOk": true,
+    "gripResultProcessed": 27
+  },
+  "exitReason": "docs-collected",
+  "observedCount": 27,
+  "projectedCount": 27,
+  "events": [
+    {
+      "action": "sensor.episode.closed",
+      "reason": "무입력 24689ms — 스트림 중단(씬 종료)으로 간주"
+    },
+    {
+      "action": "sensor.analysis.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2023-10-10-090000-반려동물용품_CR01_강아지공룡알장난감_00431.md",
+      "docsValid": null,
+      "docsValidationErrors": []
+    }
+  ],
+  "finishedAt": "2026-08-07T00:59:55.387Z",
+  "durationSeconds": 4724,
+  "collectedDocs": [
+    "2023-10-10-090000-반려동물용품_CR01_강아지공룡알장난감_00431.md"
+  ]
+}

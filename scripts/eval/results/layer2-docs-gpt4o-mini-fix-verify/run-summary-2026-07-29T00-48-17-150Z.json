@@ -1,9 +1,0 @@
-[
-  {
-    "scenarioId": "A3-missing-field",
-    "rep": 1,
-    "docs": 2,
-    "exitReason": "docs-collected",
-    "durationSeconds": 440
-  }
-]

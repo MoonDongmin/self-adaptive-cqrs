@@ -1,9 +1,0 @@
-[
-  {
-    "scenarioId": "A5-consistency-violation",
-    "rep": 3,
-    "docs": 1,
-    "exitReason": "docs-collected",
-    "durationSeconds": 475
-  }
-]

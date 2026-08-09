@@ -1,0 +1,24 @@
+{
+  "scenarioId": "F5-all-normal",
+  "rep": 1,
+  "startedAt": "2026-08-04T14:35:55.004Z",
+  "expectsDocs": false,
+  "channel": "none",
+  "stagedCount": 30,
+  "insert": {
+    "inserted": 30,
+    "failed": []
+  },
+  "projection": {
+    "multimodalProcessed": 30,
+    "gripResultOk": true,
+    "gripResultProcessed": 30
+  },
+  "exitReason": "clean-no-docs",
+  "observedCount": 30,
+  "projectedCount": 30,
+  "events": [],
+  "finishedAt": "2026-08-04T14:42:20.320Z",
+  "durationSeconds": 385,
+  "collectedDocs": []
+}

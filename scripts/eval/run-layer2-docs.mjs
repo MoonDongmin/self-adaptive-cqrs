@@ -39,7 +39,8 @@ const LOG_FILE_PATH = path.join(REPOSITORY_ROOT, "src", "shared", "logger", "log
 // 기존 hybrid 결과와 분리 보관한다 — 같은 시나리오/rep 경로가 겹치면 덮어써진다.
 let RESULTS_DIRECTORY = path.join(SCRIPT_DIRECTORY, "results", "layer2-docs");
 
-// Docs 를 산출해야 하는 시나리오와 채널. F2/F5 는 미생성이 정답.
+// Docs 를 산출해야 하는 시나리오와 채널. F2/F3/F5 는 미생성이 정답.
+// A7~A10/B2/E4/E5/F3 은 확장 8종(generate-additional-layer23-scenarios.mjs).
 const SCENARIOS = {
   "A1-payload-drift": { expectsDocs: true, channel: "log" },
   "A2-type-mismatch": { expectsDocs: true, channel: "log" },
@@ -47,11 +48,19 @@ const SCENARIOS = {
   "A4-physical-impossible": { expectsDocs: true, channel: "sensor" },
   "A5-consistency-violation": { expectsDocs: true, channel: "sensor" },
   "A6-depth-jump": { expectsDocs: true, channel: "sensor" },
+  "A7-grip-depth-underflow": { expectsDocs: true, channel: "sensor" },
+  "A8-translation-x-violation": { expectsDocs: true, channel: "sensor" },
+  "A9-non-integer-id": { expectsDocs: true, channel: "log" },
+  "A10-null-intrinsic-param": { expectsDocs: true, channel: "log" },
   "B1-projection-map-failed": { expectsDocs: true, channel: "log" },
+  "B2-multimodal-integrity": { expectsDocs: true, channel: "log" },
   "E1-new-column-query": { expectsDocs: true, channel: "query" },
   "E2-new-aggregate-query": { expectsDocs: true, channel: "query" },
   "E3-new-join-query": { expectsDocs: true, channel: "query" },
+  "E4-time-series-query": { expectsDocs: true, channel: "query" },
+  "E5-failure-ranking-query": { expectsDocs: true, channel: "query" },
   "F2-normal-retry": { expectsDocs: false, channel: "none" },
+  "F3-subthreshold-jump": { expectsDocs: false, channel: "none" },
   "F5-all-normal": { expectsDocs: false, channel: "none" },
 };
 

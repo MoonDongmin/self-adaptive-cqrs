@@ -1,9 +1,0 @@
-[
-  {
-    "scenarioId": "B1-projection-map-failed",
-    "rep": 4,
-    "docs": 0,
-    "exitReason": "no-docs-timeout",
-    "durationSeconds": 1125
-  }
-]

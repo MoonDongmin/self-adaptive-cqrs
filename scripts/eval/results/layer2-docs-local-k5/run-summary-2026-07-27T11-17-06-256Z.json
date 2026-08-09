@@ -1,9 +1,0 @@
-[
-  {
-    "scenarioId": "A3-missing-field",
-    "rep": 2,
-    "docs": 0,
-    "exitReason": "timeout",
-    "durationSeconds": 3602
-  }
-]

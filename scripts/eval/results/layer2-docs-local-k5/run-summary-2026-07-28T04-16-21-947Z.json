@@ -1,9 +1,0 @@
-[
-  {
-    "scenarioId": "A2-type-mismatch",
-    "rep": 5,
-    "docs": 1,
-    "exitReason": "docs-collected",
-    "durationSeconds": 755
-  }
-]

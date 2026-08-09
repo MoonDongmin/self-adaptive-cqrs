@@ -1,0 +1,37 @@
+{
+  "scenarioId": "B1-projection-map-failed",
+  "rep": 5,
+  "startedAt": "2026-08-08T08:49:12.234Z",
+  "expectsDocs": true,
+  "channel": "log",
+  "stagedCount": 27,
+  "insert": {
+    "inserted": 27,
+    "failed": []
+  },
+  "projection": {
+    "multimodalProcessed": 27,
+    "gripResultOk": false,
+    "gripResultProcessed": null
+  },
+  "exitReason": "docs-collected",
+  "observedCount": 0,
+  "projectedCount": 0,
+  "events": [
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 3건 (projection.map.failed, db.error, -)"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-08-08-174912-a4ba4a43-6c14-4ac0-8539-7312a5640c3f.md",
+      "docsValid": true,
+      "docsValidationErrors": []
+    }
+  ],
+  "finishedAt": "2026-08-08T08:57:42.571Z",
+  "durationSeconds": 510,
+  "collectedDocs": [
+    "2026-08-08-174912-a4ba4a43-6c14-4ac0-8539-7312a5640c3f.md"
+  ]
+}

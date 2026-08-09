@@ -1,0 +1,9 @@
+[
+  {
+    "scenarioId": "F2-normal-retry",
+    "rep": 4,
+    "docs": 0,
+    "exitReason": "clean-no-docs",
+    "durationSeconds": 440
+  }
+]

@@ -253,3 +253,34 @@ E 계열 낙오 분석의 런 간 오염(→ 런 단위 앱 재기동 격리로 
 run-meta 50 + verification). 개선 반복 단계의 중간 수집물은
 `scripts/eval/results/layer2-docs-llm-only/` — 룰북 버전·코드 수정 시점이 런마다
 섞여 있어 정량 표에는 쓰지 않는다(rule 엔지니어링 사례 연구 재료).
+
+## 10. 확장 20종 본평가 (2026-08-03 시작, 20종 × k5 = 100런)
+
+층2 파이프라인 수정(07-24, llm judge 성능 개선) 검증 후, 시나리오를 12종 → **20종**으로
+확장해 100런 본평가를 재실행한다. 신규 8종은
+`scripts/eval/generate-additional-layer23-scenarios.mjs` 가 기존 계약(파일명 규칙·
+manifest 스키마·장면번호 02018~ 전역 무중복)대로 결정론 생성했고, 변이의 유효성은
+실제 zod 스키마(`toyDataSchema.safeParse`)와 결정론 주석기(`annotateSensorBatch`)에
+직접 넣어 오프라인 사전 검증했다(A7·A8 발동 ✓ / A9·A10 거부 ✓ / F3 완전 침묵 ✓).
+
+| ID | 채널 | 주입 이상 | 기존 미커버 영역 |
+|---|---|---|---|
+| A7-grip-depth-underflow | 센서 | 성공 맥락 z1~z8 전부 0.01m 미만(1/20 축소) | R5 깊이 "하한"(A5 는 상한만). **초안은 R4(회전행렬) 위반이었으나 llm-only 9B 가 반사행렬(det=−1)·영행렬(det=0)·스케일 ×10 을 전부 정상 판정(스모크 2회 실측, `sensor.observe.skipped`) — R4 는 CHECK 서면화가 없는 암산 룰이라 llm-only 사각지대라는 부정적 발견.** §9-1 의 '암산 검사 실패' 교훈 재확인이자 hybrid 필요성의 추가 근거. R4 검증은 결정론 주석이 있는 hybrid 조건의 후속 과제로 남긴다 |
+| A8-translation-x-violation | 센서 | 성공 맥락 translation X=1.2 / Y=0.20 | R5 의 X/Y축(A5 는 Z축·깊이 상한만) |
+| A9-non-integer-id | 로그 | objects[0].id=1.5, num_keypoints=2.5 | zod `.int()` 제약 위반 |
+| A10-null-intrinsic-param | 로그 | cody/fx → null | null 비허용 필드(codx 만 nullable 인 비대칭) |
+| B2-multimodal-integrity | 로그 | 모달 파일명 attempt/scene 불일치 | `projection.integrity.violation` 레인(B1 poison 과 다름) |
+| E4-time-series-query | 질의 | 일자별 성공률 추이 질의 | 시계열 집계 Read Model |
+| E5-failure-ranking-query | 질의 | 실패 상위 객체 랭킹 질의 | 정렬/랭킹 Read Model |
+| F3-subthreshold-jump | 대조군 | 재시도 씬 깊이 Δ=+0.07 (< R6 임계 0.10) | 임계 경계 오탐 측정 — §9-3-4 후속 과제 |
+
+**결과.** 2026-08-09 완료 — 100/100런 수집(생성률 100%, 대조군 오탐 0), 문서 전항목통과
+87/100(감점 13건 전부 한자 혼입 단일 사유), SQL 블록 240/250(96%) 실행 가능.
+상세 분석: `docs/evaluation/layer2-docs-20x5-results.md`.
+
+**실행 프로토콜.** `scripts/eval/results/layer2-docs-llm-only-20x5/run-wrapper.sh` —
+(1) 신규 중 리스크 큰 3종(B2·A7·E4) × rep-1 스모크 → (2) Docs 수집 게이트(실패 시
+전체 중단) → (3) 20종 × k5 캠페인(런마다 앱 재기동 + Kafka 정리, 이어하기 지원) →
+(4) `verify-layer2-docs` + `verify-layer2-sql` 자동 채점 → `verify-summary.md`.
+조건은 §9 와 동일(llm-only + 로컬 LLM). 대조군 3종(F2·F3·F5)도 이번엔 같은 캠페인에
+포함해 100런 = Docs 기대 17종 × 5 + 대조군 3종 × 5 로 구성한다.

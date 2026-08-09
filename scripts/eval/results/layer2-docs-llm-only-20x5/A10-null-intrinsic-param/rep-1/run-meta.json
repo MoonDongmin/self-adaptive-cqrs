@@ -1,0 +1,57 @@
+{
+  "scenarioId": "A10-null-intrinsic-param",
+  "rep": 1,
+  "startedAt": "2026-08-07T04:01:27.506Z",
+  "expectsDocs": true,
+  "channel": "log",
+  "stagedCount": 27,
+  "insert": {
+    "inserted": 25,
+    "failed": [
+      {
+        "file": "반려동물용품_CR01_강아지공룡알장난감_02024_01_20230923.json",
+        "reason": "[\n  {\n    \"expected\": \"number\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"camera_info\",\n      \"camera_intrinsic_param\",\n      \"cody\"\n    ],\n    \"message\": \"Invalid input: expected number, received null\"\n  }\n]"
+      },
+      {
+        "file": "반려동물용품_CR01_강아지공룡알장난감_02025_01_20230923.json",
+        "reason": "[\n  {\n    \"expected\": \"number\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"camera_info\",\n      \"camera_intrinsic_param\",\n      \"fx\"\n    ],\n    \"message\": \"Invalid input: expected number, received null\"\n  }\n]"
+      }
+    ]
+  },
+  "projection": {
+    "multimodalProcessed": 25,
+    "gripResultOk": true,
+    "gripResultProcessed": 25
+  },
+  "exitReason": "docs-collected",
+  "observedCount": 25,
+  "projectedCount": 25,
+  "events": [
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 2건 (insert.file.failed)"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-08-07-130127-793e30bf-2228-4906-9827-d418ed43a3a0.md",
+      "docsValid": true,
+      "docsValidationErrors": []
+    },
+    {
+      "action": "sensor.episode.closed",
+      "reason": "정상 윈도우 2회 연속 관찰(이상 구간 종료)"
+    },
+    {
+      "action": "sensor.analysis.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2023-10-10-090000-반려동물용품_CR01_강아지공룡알장난감_00340.md",
+      "docsValid": null,
+      "docsValidationErrors": []
+    }
+  ],
+  "finishedAt": "2026-08-07T05:40:19.493Z",
+  "durationSeconds": 5932,
+  "collectedDocs": [
+    "2023-10-10-090000-반려동물용품_CR01_강아지공룡알장난감_00340.md",
+    "2026-08-07-130127-793e30bf-2228-4906-9827-d418ed43a3a0.md"
+  ]
+}

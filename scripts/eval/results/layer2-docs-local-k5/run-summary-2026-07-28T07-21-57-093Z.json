@@ -1,9 +1,0 @@
-[
-  {
-    "scenarioId": "E1-new-column-query",
-    "rep": 4,
-    "docs": 0,
-    "exitReason": "timeout",
-    "durationSeconds": 3602
-  }
-]

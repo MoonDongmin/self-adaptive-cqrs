@@ -1,0 +1,9 @@
+[
+  {
+    "scenarioId": "A9-non-integer-id",
+    "rep": 4,
+    "docs": 2,
+    "exitReason": "docs-collected",
+    "durationSeconds": 5497
+  }
+]

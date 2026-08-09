@@ -1,0 +1,9 @@
+[
+  {
+    "scenarioId": "E5-failure-ranking-query",
+    "rep": 5,
+    "docs": 1,
+    "exitReason": "docs-collected",
+    "durationSeconds": 1262
+  }
+]

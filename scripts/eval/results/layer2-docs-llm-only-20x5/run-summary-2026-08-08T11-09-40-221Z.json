@@ -1,0 +1,9 @@
+[
+  {
+    "scenarioId": "E4-time-series-query",
+    "rep": 2,
+    "docs": 1,
+    "exitReason": "docs-collected",
+    "durationSeconds": 1367
+  }
+]

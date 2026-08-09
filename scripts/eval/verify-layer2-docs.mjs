@@ -32,10 +32,17 @@ const GROUNDING = {
   "A4-physical-impossible": [["회전행렬", "rotation", "직교", "det", "깊이", "음수", "픽셀"]],
   "A5-consistency-violation": [["consistency", "정합", "일관성", "workspace", "성공"]],
   "A6-depth-jump": [["jump", "급변", "Δ", "델타"]],
+  "A7-grip-depth-underflow": [["깊이", "depth", "zmin", "minz"], ["0.01", "하한", "성공", "모순", "consistency"]],
+  "A8-translation-x-violation": [["translation", "워크스페이스", "workspace", "작업 범위", "작업범위", "작업 영역", "작업영역"]],
+  "A9-non-integer-id": [["zod", "타입", "type"], ["정수", "int", "1.5"]],
+  "A10-null-intrinsic-param": [["cody", "fx", "intrinsic", "카메라", "camera"], ["null", "누락", "missing"]],
   "B1-projection-map-failed": [["projection.map.failed", "투영", "poison", "매핑 실패"]],
+  "B2-multimodal-integrity": [["integrity", "정합", "불일치", "파일명", "file_name", "filename"], ["multimodal", "read_multimodal", "모달"]],
   "E1-new-column-query": [["gripper_temperature"]],
   "E2-new-aggregate-query": [["성공률", "집계", "aggregate", "GROUP BY", "group by"]],
   "E3-new-join-query": [["멀티모달", "multimodal", "조인", "JOIN", "join", "통합"]],
+  "E4-time-series-query": [["일자별", "일별", "날짜별", "시계열", "추이", "date_trunc", "DATE"]],
+  "E5-failure-ranking-query": [["실패", "fail"], ["상위", "순위", "랭킹", "rank", "ORDER BY", "order by"]],
 };
 
 function normalize(text) {

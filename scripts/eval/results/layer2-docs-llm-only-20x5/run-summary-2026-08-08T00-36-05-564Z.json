@@ -1,0 +1,9 @@
+[
+  {
+    "scenarioId": "B2-multimodal-integrity",
+    "rep": 3,
+    "docs": 0,
+    "exitReason": "timeout",
+    "durationSeconds": 7927
+  }
+]

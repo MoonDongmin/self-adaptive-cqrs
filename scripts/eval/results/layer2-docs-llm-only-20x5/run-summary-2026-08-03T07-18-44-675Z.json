@@ -1,0 +1,9 @@
+[
+  {
+    "scenarioId": "A7-rotation-matrix-invalid",
+    "rep": 1,
+    "docs": 0,
+    "exitReason": "no-docs-timeout",
+    "durationSeconds": 310
+  }
+]

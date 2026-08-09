@@ -1,0 +1,37 @@
+{
+  "scenarioId": "A5-consistency-violation",
+  "rep": 2,
+  "startedAt": "2026-08-04T17:25:05.268Z",
+  "expectsDocs": true,
+  "channel": "sensor",
+  "stagedCount": 27,
+  "insert": {
+    "inserted": 27,
+    "failed": []
+  },
+  "projection": {
+    "multimodalProcessed": 27,
+    "gripResultOk": true,
+    "gripResultProcessed": 27
+  },
+  "exitReason": "docs-collected",
+  "observedCount": 27,
+  "projectedCount": 27,
+  "events": [
+    {
+      "action": "sensor.episode.closed",
+      "reason": "무입력 15002ms — 스트림 중단(씬 종료)으로 간주"
+    },
+    {
+      "action": "sensor.analysis.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02008.md",
+      "docsValid": null,
+      "docsValidationErrors": []
+    }
+  ],
+  "finishedAt": "2026-08-04T18:00:08.296Z",
+  "durationSeconds": 2103,
+  "collectedDocs": [
+    "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02008.md"
+  ]
+}

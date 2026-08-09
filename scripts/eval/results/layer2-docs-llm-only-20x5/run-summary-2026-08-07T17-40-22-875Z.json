@@ -1,0 +1,9 @@
+[
+  {
+    "scenarioId": "A4-physical-impossible",
+    "rep": 3,
+    "docs": 0,
+    "exitReason": "timeout",
+    "durationSeconds": 8050
+  }
+]
