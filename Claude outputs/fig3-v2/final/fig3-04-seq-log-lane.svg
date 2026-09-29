@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1318" height="943" viewBox="0 0 1318 943" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">
+<defs><marker id="m222222" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#222222"/></marker><marker id="m555" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#555"/></marker></defs>
+<rect width="1318" height="943" fill="#ffffff"/>
+<line x1="110" y1="78" x2="110" y2="923" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="232" y1="78" x2="232" y2="923" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="354" y1="78" x2="354" y2="923" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="476" y1="78" x2="476" y2="923" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="598" y1="78" x2="598" y2="923" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="720" y1="78" x2="720" y2="923" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="842" y1="78" x2="842" y2="923" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="964" y1="78" x2="964" y2="923" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="1086" y1="78" x2="1086" y2="923" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="1208" y1="78" x2="1208" y2="923" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<rect x="1080" y="749" width="12" height="26" fill="#e8edf3" stroke="#33557a" stroke-width="1.2"/>
+<rect x="592" y="320" width="12" height="549" fill="#e8edf3" stroke="#33557a" stroke-width="1.2"/>
+<rect x="292" y="162" width="978" height="727" fill="none" stroke="#333" stroke-width="1"/>
+<path d="M292,162 h40.68 v14 l-6,6 h-34.68 z" fill="#eeeeee" stroke="#333" stroke-width="1"/>
+<text x="299" y="176" font-size="10.5" font-weight="700" fill="#222">loop</text>
+<text x="340.68" y="176" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">[5초 폴링 (트립 시 즉시)]</text>
+<rect x="548" y="518" width="710" height="349" fill="none" stroke="#333" stroke-width="1"/>
+<path d="M548,518 h35.01 v14 l-6,6 h-29.009999999999998 z" fill="#eeeeee" stroke="#333" stroke-width="1"/>
+<text x="555" y="532" font-size="10.5" font-weight="700" fill="#222">opt</text>
+<text x="591.01" y="532" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">[triggered]</text>
+<rect x="548" y="328" width="222" height="176" fill="none" stroke="#333" stroke-width="1"/>
+<path d="M548,328 h35.01 v14 l-6,6 h-29.009999999999998 z" fill="#eeeeee" stroke="#333" stroke-width="1"/>
+<text x="555" y="342" font-size="10.5" font-weight="700" fill="#222">alt</text>
+<text x="591.01" y="342" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">[level ≥ 40 레코드 존재 — 결정론 프리게이트]</text>
+<line x1="548" y1="404" x2="770" y2="404" stroke="#333" stroke-width="1" stroke-dasharray="5 4"/>
+<text x="556" y="418" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">[경고 이상 없음]</text>
+<rect x="60.795" y="30" width="98.41" height="42" rx="4" fill="#eef2f7" stroke="#33557a" stroke-width="1.4"/>
+<text x="110" y="48" text-anchor="middle" font-size="11" fill="#33557a" font-weight="600">관리 대상 서비스</text>
+<text x="110" y="63" text-anchor="middle" font-size="9.5" fill="#556">Pino Logger</text>
+<rect x="194.45499999999998" y="30" width="75.09" height="42" rx="4" fill="#eef2f7" stroke="#33557a" stroke-width="1.4"/>
+<text x="232" y="48" text-anchor="middle" font-size="11" fill="#33557a" font-weight="600">fluent-bit</text>
+<text x="232" y="63" text-anchor="middle" font-size="9.5" fill="#556">TCP :5170</text>
+<rect x="318.0" y="30" width="72" height="42" rx="4" fill="#e7f4ec" stroke="#2e7d4f" stroke-width="1.4"/>
+<text x="354" y="48" text-anchor="middle" font-size="11" fill="#2e6b45" font-weight="600">Kafka</text>
+<text x="354" y="63" text-anchor="middle" font-size="9.5" fill="#556">log-events</text>
+<rect x="431.19" y="30" width="89.62000000000002" height="42" rx="4" fill="#eef2f7" stroke="#33557a" stroke-width="1.4"/>
+<text x="476" y="48" text-anchor="middle" font-size="11" fill="#33557a" font-weight="600">LogConsumer</text>
+<text x="476" y="63" text-anchor="middle" font-size="9.5" fill="#556">llm-context 모듈</text>
+<rect x="535.21" y="30" width="125.57999999999998" height="42" rx="4" fill="#eef2f7" stroke="#33557a" stroke-width="1.4"/>
+<text x="598" y="48" text-anchor="middle" font-size="11" fill="#33557a" font-weight="600">LLMContextService</text>
+<text x="598" y="63" text-anchor="middle" font-size="9.5" fill="#556">로그 레인</text>
+<rect x="684.0" y="30" width="72" height="42" rx="4" fill="#fff8e8" stroke="#a0812f" stroke-width="1.4"/>
+<text x="720" y="48" text-anchor="middle" font-size="11" fill="#8a6d1f" font-weight="600">Prejudge</text>
+<text x="720" y="63" text-anchor="middle" font-size="9.5" fill="#556">소형 LLM</text>
+<rect x="774.59" y="30" width="134.82" height="42" rx="4" fill="#f3f4f6" stroke="#777777" stroke-width="1.4"/>
+<text x="842" y="48" text-anchor="middle" font-size="11" fill="#444444" font-weight="600">LogWindowRepository</text>
+<text x="842" y="63" text-anchor="middle" font-size="9.5" fill="#556">Log DB · log_event</text>
+<rect x="912.1" y="30" width="103.79999999999998" height="42" rx="4" fill="#f3f4f6" stroke="#777777" stroke-width="1.4"/>
+<text x="964" y="48" text-anchor="middle" font-size="11" fill="#444444" font-weight="600">InsightService</text>
+<text x="964" y="63" text-anchor="middle" font-size="9.5" fill="#556">Insight Read DB</text>
+<rect x="1037.07" y="30" width="97.85999999999999" height="42" rx="4" fill="#fff8e8" stroke="#a0812f" stroke-width="1.4"/>
+<text x="1086" y="48" text-anchor="middle" font-size="11" fill="#8a6d1f" font-weight="600">AnalysisGraph</text>
+<text x="1086" y="63" text-anchor="middle" font-size="9.5" fill="#556">LangGraph</text>
+<rect x="1172.0" y="30" width="72" height="42" rx="4" fill="#fbeef0" stroke="#a04050" stroke-width="1.4"/>
+<text x="1208" y="48" text-anchor="middle" font-size="11" fill="#8c3444" font-weight="600">llm-docs/</text>
+<text x="1208" y="63" text-anchor="middle" font-size="9.5" fill="#556">파일 시스템</text>
+<polyline points="116,102 226,102" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="171.0" y="97" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">JSON 로그 (TCP, 전 수준)</text>
+<polyline points="238,132 348,132" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="293.0" y="127" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">produce</text>
+<polyline points="470,196 360,196" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="415.0" y="191" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">poll(≤ 500건)</text>
+<polyline points="360,226 470,226" fill="none" stroke="#555" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#m555)"/>
+<text x="415.0" y="221" text-anchor="middle" font-size="10.5" fill="#555" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">records[]</text>
+<path d="M482,256 h26 v22 h-26" fill="none" stroke="#222222" stroke-width="1.3"/>
+<polyline points="508,278 484,278" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="514" y="260" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">필터: 정상 적재 로그 · corr ID 없는 info 제외</text>
+<polyline points="482,298 592,298" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="537.0" y="293" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">batch</text>
+<path d="M604,362 h26 v22 h-26" fill="none" stroke="#222222" stroke-width="1.3"/>
+<polyline points="630,384 606,384" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="636" y="366" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">triggered = true, tripIds = 해당 corr ID (LLM 미호출)</text>
+<polyline points="604,436 714,436" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="659.0" y="431" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">prejudge(원본 JSON 행 그대로)</text>
+<polyline points="714,466 604,466" fill="none" stroke="#555" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#m555)"/>
+<text x="659.0" y="461" text-anchor="middle" font-size="10.5" fill="#555" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">{ triggered, reason, tripCorrelationIds }  · fail-open</text>
+<polyline points="604,552 836,552" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="720.0" y="547" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">buildWindow(tripIds)</text>
+<path d="M848,582 h26 v22 h-26" fill="none" stroke="#222222" stroke-width="1.3"/>
+<polyline points="874,604 850,604" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="880" y="586" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">앵커(첫 level ≥ 40) ±20행 → 신호 행 앞4/뒤6 프루닝</text>
+<text x="880" y="599" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">→ 80행 상한 · 앵커 이전 1h 빈도 롤업</text>
+<polyline points="836,637 604,637" fill="none" stroke="#555" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#m555)"/>
+<text x="720.0" y="632" text-anchor="middle" font-size="10.5" fill="#555" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">AnomalyLogWindow</text>
+<polyline points="604,667 958,667" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="781.0" y="662" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">renderAllCards()</text>
+<polyline points="958,697 604,697" fill="none" stroke="#555" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#m555)"/>
+<text x="781.0" y="692" text-anchor="middle" font-size="10.5" fill="#555" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">M-Schema 카드 전량</text>
+<polyline points="604,727 1080,727" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="842.0" y="722" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">invoke({ window, insightCards, docId: analysis-&lt;corrId&gt; })</text>
+<polyline points="1080,757 604,757" fill="none" stroke="#555" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#m555)"/>
+<text x="842.0" y="752" text-anchor="middle" font-size="10.5" fill="#555" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">{ report, diagnosisTrajectory }</text>
+<polyline points="604,787 1202,787" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="903.0" y="782" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">write &lt;날짜&gt;-&lt;시각&gt;-&lt;docId&gt;.md</text>
+<path d="M604,817 h26 v22 h-26" fill="none" stroke="#222222" stroke-width="1.3"/>
+<polyline points="630,839 606,839" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="636" y="821" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">validateDocs → 결과·궤적은 info 로그로만 (재트립 방지)</text>
+</svg>

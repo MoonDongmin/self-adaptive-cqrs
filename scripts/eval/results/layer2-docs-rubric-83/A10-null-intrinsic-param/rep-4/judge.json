@@ -1,0 +1,22 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 5,
+  "completeness": 5,
+  "unsupportedClaims": [
+    "Zod 스키마 파일 경로(src/insert/dto/toy-data.dto.ts)는 제공된 자료에 명시되지 않음"
+  ],
+  "rationale": "groundedness: 인용된 필드명(cody, fx), 에러 경로, 파일명, correlation_id가 제공 로그와 정확히 일치함. diagnosisAccuracy: cody/fx null 유입에 따른 Zod 검증 실패 및 배치/투영 처리 흐름이 정답 요지와 완벽히 일치함. actionability: 제공된 검증 SQL이 자동 검증에서 성공했으며, v1 무손상 제약과 정답 요지의 'null 유입 추적' 의도에 부합함. completeness: 권고, SQL, API 버저닝 세 요소가 모두 포함되어 있으며 상호 모순 없이 일관되게 서술됨.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 18891,
+    "completion_tokens": 3398,
+    "total_tokens": 22289,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3192
+    }
+  },
+  "latencyMs": 105885,
+  "judgedAt": "2026-09-14T00:41:56.903Z"
+}

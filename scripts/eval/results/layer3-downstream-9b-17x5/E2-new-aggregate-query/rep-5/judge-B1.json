@@ -1,0 +1,23 @@
+{
+  "groundedness": 1,
+  "diagnosisAccuracy": 1,
+  "sqlCorrectness": 4,
+  "versioningQuality": 1,
+  "unsupportedClaims": [
+    "T1에서 read_grip_result에 attempt_num 필드가 존재하지 않는다고 주장",
+    "T1에서 stream_id가 object_name을 포함하지 않아 그룹화 불가하다고 주장"
+  ],
+  "rationale": "T1에서 제공된 스키마에 명시된 attempt_num 존재 여부와 stream_id 구조를 반대로 서술하여 groundedness(1)와 diagnosisAccuracy(1)가 낮음. 정답 요지의 핵심인 '시도 단위 1:1 테이블이므로 집계 Read Model 부재'를 놓침. T2/T3 SQL은 문법 및 집계 로직이 정확하나(Correctness 4), CQRS 관점에서 원본 테이블 직접 집계는 성능상 비권장됨. T4는 자료 부족을 이유로 구체적 마이그레이션 절차를 제시하지 않고 일반론으로 회피하여(Versioning 1) 점수 낮음.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 4436,
+    "completion_tokens": 3366,
+    "total_tokens": 7802,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3144
+    }
+  },
+  "latencyMs": 70093,
+  "judgedAt": "2026-09-11T14:19:12.714Z"
+}

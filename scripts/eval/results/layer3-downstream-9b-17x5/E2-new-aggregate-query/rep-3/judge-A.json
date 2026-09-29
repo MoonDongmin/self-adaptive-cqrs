@@ -1,0 +1,22 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 5,
+  "versioningQuality": 4,
+  "unsupportedClaims": [
+    "T4에서 기존 엔드포인트를 /v1/로 변경하라고 제안했으나 자료에서는 신규 라우트 POST /object-success-rate 추가만 명시됨"
+  ],
+  "rationale": "groundedness는 모든 식별자, 로그 레벨, SQL 구조가 자료에서 직접 추출되어 지어낸 값이 없어 5점이다. diagnosisAccuracy는 T1이 정답 요지와 정확히 일치하여 누락된 집계 Read Model과 1:1 테이블 구조를 원인으로 정확히 지적해 5점이다. sqlCorrectness는 T2가 자료의 DDL과 카탈로그 등록 SQL을 그대로 따랐고, T3 백필 쿼리가 원본 테이블을 건드리지 않고 집계하여 신규 테이블에 채우는 논리가 정확해 5점이다. versioningQuality는 병행 운영과 컷오버 절차를 구체적으로 서술했으나, 자료의 'human-in-the-loop' 승인 게이트 누락과 기존 엔드포인트 변경 제안이 자료와 상충되어 4점이다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 13793,
+    "completion_tokens": 4448,
+    "total_tokens": 18241,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4191
+    }
+  },
+  "latencyMs": 113493,
+  "judgedAt": "2026-09-11T14:12:46.509Z"
+}

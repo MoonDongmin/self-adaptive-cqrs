@@ -12,9 +12,11 @@ import {
   stripInsightCardExamples,
 } from "@/analysis/render";
 import {
+  countUnresolvedMappings,
   synthesizeDrizzleSchema,
   synthesizeProjectorCode,
 } from "@/analysis/nodes/typescript-synthesis";
+import { toyDataSchema } from "@/insert/dto/toy-data.dto";
 import {
   NewReadModelOutput,
   newReadModelOutputSchema,
@@ -105,6 +107,32 @@ function appendZodExtensionWiring(
   ].join("\n");
 }
 
+// projectorCode 가 이벤트 payload 에 실재하지 않는 키를 읽으면 그 컬럼은 컴파일·실행
+// 모두 통과하면서 영원히 null 로 채워진다(2026-08-09 100런 품질 리뷰: E4 rep-2/3 의
+// payload["date_key"] 류 — 집계 테이블이 통째로 무의미해지는 조용한 실패). 접근하는
+// 최상위 키가 적재 스키마(ToyDataDto) 또는 drift 유입 키에 실재하는지 결정론 검증한다.
+function findUnknownPayloadKeys(
+  projectorCode: string,
+  driftKeys: Map<string, string>,
+): string[] {
+  const knownTopLevelKeys = new Set([
+    ...Object.keys(toyDataSchema.shape),
+    ...driftKeys.keys(),
+  ]);
+  // `payload.foo` / `payload?.foo` / `payload["foo"]` 의 첫 세그먼트만 본다 —
+  // 중첩 경로(payload.grip_data.…)는 첫 세그먼트가 실재하면 tsc 가 나머지를 검증한다.
+  const accessPattern =
+    /(?<![A-Za-z0-9_$])payload(?:\??\.([A-Za-z_$][A-Za-z0-9_$]*)|\[["']([^"'\]]+)["']\])/g;
+  const unknownKeys = new Set<string>();
+  for (const match of projectorCode.matchAll(accessPattern)) {
+    const key = match[1] ?? match[2];
+    if (key !== undefined && !knownTopLevelKeys.has(key)) {
+      unknownKeys.add(key);
+    }
+  }
+  return [...unknownKeys];
+}
+
 // 생성 산출물의 의미 검증: migrationSql 은 실DB(BEGIN/ROLLBACK)로, drizzleSchema/
 // projectorCode 는 임시 트리 tsc 로 "그대로 실행/컴파일되는가"를 확인하고, 실패 시
 // 오류를 모델에 보여주며 재생성시킨다(2026-07-21 3축 채점: 축2 전멸의 대응).
@@ -144,6 +172,40 @@ async function validateNewReadModelOutput(
     problems.push(
       `keyColumns 의 ${missingKeyColumns.join(", ")} 가 fields 목록에 정의되지 않았다 — ` +
         "모든 키 컬럼을 fields 에 (이름·타입·의미와 함께) 포함해 다시 출력하라.",
+    );
+  }
+
+  // DDL 테이블명과 ORM 테이블명이 어긋나면 부속 코드를 복사한 개발자가 서로 다른
+  // 테이블을 만들게 된다(2026-08-09 100런 품질 리뷰: E3·E5 의 _v1/_v2 접미사 누락 4건).
+  const pgTableName = output.drizzleSchema.match(
+    /pgTable\(\s*["']([^"']+)["']/,
+  )?.[1];
+  if (pgTableName !== undefined && pgTableName !== output.proposedName) {
+    problems.push(
+      `drizzleSchema 의 pgTable 테이블명("${pgTableName}")이 proposedName("${output.proposedName}")과 다르다 — ` +
+        "DDL 이 만드는 테이블과 ORM 이 참조하는 테이블이 어긋난다. 두 이름을 동일하게 맞춰라.",
+    );
+  }
+
+  const unknownPayloadKeys = findUnknownPayloadKeys(
+    output.projectorCode,
+    driftKeys,
+  );
+  if (unknownPayloadKeys.length > 0) {
+    problems.push(
+      `projectorCode 가 이벤트 payload 에 존재하지 않는 키를 읽는다: ${unknownPayloadKeys.join(", ")}. ` +
+        `실제 payload 최상위 키는 ${Object.keys(toyDataSchema.shape).join(", ")} 이고 ` +
+        "센서 값은 grip_data.grip_3d_pose.z1 처럼 중첩 경로다. DB 컬럼명을 payload 키로 쓰지 마라 — " +
+        "집계·파생 컬럼은 이벤트 값에서 계산해야 한다(예: total_attempts 는 행마다 1 을 증분).",
+    );
+  }
+
+  // Postgres upsert 의 excluded 는 함수가 아니고 컬럼명은 snake_case 다 — camelCase
+  // 참조는 두 번째 이벤트(충돌 시점)부터 런타임 오류를 낸다(E4 rep-5·E2 rep-4 실측).
+  if (/excluded\s*\(|excluded\.[a-z_$]*[A-Z]/.test(output.projectorCode)) {
+    problems.push(
+      "projectorCode 의 upsert 에서 excluded 참조가 잘못됐다 — excluded 는 함수가 아니며 " +
+        "컬럼명은 snake_case 다. drizzle 에선 sql 템플릿으로 `테이블.컬럼 + row 값` 증분 패턴을 쓰라.",
     );
   }
 
@@ -316,17 +378,37 @@ export async function newReadModelNode(state: typeof AnalysisState.State) {
       }
     }
 
-    // TS 결정론 보장: 재질의 소진 후에도 컴파일 불능이면 migrationSql 합성과 동형으로
-    // fields/keyColumns 에서 스키마·프로젝터를 템플릿 합성해 교체한다(2026-08-02 k5 실측:
-    // TS 실패 12건 중 9건이 numeric↔number 단일 유형 — 폴백 부재로 깨진 코드가 그대로 문서화).
+    // TS 결정론 보장: 재질의 소진 후에도 컴파일 불능이거나 payload 키가 실재하지 않으면
+    // migrationSql 합성과 동형으로 fields/keyColumns 에서 스키마·프로젝터를 템플릿 합성해
+    // 교체한다(2026-08-02 k5 실측: TS 실패 12건 중 9건이 numeric↔number 단일 유형.
+    // 2026-08-09 100런 품질 리뷰: 존재하지 않는 payload 키 접근은 컴파일을 통과하므로
+    // 컴파일 검사만으로는 못 잡는다 — 의미 검증과 같은 기준으로 교체를 판단한다).
     const finalCompileError = await validateGeneratedTypeScriptOf(newReadModel);
-    if (finalCompileError !== null) {
+    const finalUnknownPayloadKeys = findUnknownPayloadKeys(
+      newReadModel.projectorCode,
+      driftKeys,
+    );
+    if (finalCompileError !== null || finalUnknownPayloadKeys.length > 0) {
       console.warn(
-        "[newReadModelNode] 생성 TS 컴파일 불능 — fields 로부터 결정론 합성으로 교체:",
-        firstLineOf(finalCompileError),
+        "[newReadModelNode] 생성 TS 결함 — fields 로부터 결정론 합성으로 교체:",
+        finalCompileError !== null
+          ? firstLineOf(finalCompileError)
+          : `존재하지 않는 payload 키 접근: ${finalUnknownPayloadKeys.join(", ")}`,
       );
       newReadModel.drizzleSchema = synthesizeDrizzleSchema(newReadModel);
-      newReadModel.projectorCode = synthesizeProjectorCode(newReadModel);
+      newReadModel.projectorCode = synthesizeProjectorCode(
+        newReadModel,
+        new Set(driftKeys.keys()),
+      );
+
+      const unresolvedMappingCount = countUnresolvedMappings(
+        newReadModel.projectorCode,
+      );
+      if (unresolvedMappingCount > 0) {
+        console.warn(
+          `[newReadModelNode] 합성 프로젝터에 매핑 미해결 컬럼 ${unresolvedMappingCount}개 — 문서의 TODO 주석 확인 필요`,
+        );
+      }
 
       const synthesizedCompileError =
         await validateGeneratedTypeScriptOf(newReadModel);

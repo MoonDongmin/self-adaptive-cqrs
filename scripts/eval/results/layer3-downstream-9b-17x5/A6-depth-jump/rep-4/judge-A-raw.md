@@ -1,0 +1,3 @@
+
+
+{"groundedness": 3, "diagnosisAccuracy": 4, "sqlCorrectness": 2, "versioningQuality": 5, "unsupportedClaims": ["T1에서 z축 평균값을 0.0526m/0.1626m로 인용했으나, 이는 자료의 grip3dPose.z8 값이며 실제 평균(~0.060m/~0.170m)이 아님.", "T3 SQL은 PostgreSQL 문법 오류가 있으며, v1 테이블에 존재하지 않는 컬럼을 UPDATE하여 'v1 자산 무손상' 제약과 정답 요지(신독 v2)에 위배됨."], "rationale": "T1은 문제와 원인을 정확히 진단했으나, 평균값 대신 z8 값을 인용하는 수치 오류가 있어 diagnosisAccuracy 4점. T2는 자료의 contain 전략 SQL을 제시했으나 정답 요지에서는 v2 플래그링을 권장하므로 4점. T3 SQL은 문법 오류가 있고 v1 스키마 변경을 시도하여 sqlCorrectness 2점. T4는 additive migration, 병행 운영, human-in-the-loop 컷오버를 정확히 서술하여 5점. T1의 수치 오류와 T3의 근거 없는 SQL 구현으로 groundedness는 3점."}

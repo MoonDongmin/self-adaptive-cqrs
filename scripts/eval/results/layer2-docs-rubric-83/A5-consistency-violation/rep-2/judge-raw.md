@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 5, "completeness": 5, "unsupportedClaims": [], "rationale": "groundedness: 인용 sceneKey, 필드명, 수치(1.5m, 0.398m) 및 검증 범위가 로그 원문과 정확히 일치하며 가설/원문 구분도 명확함. diagnosisAccuracy: 정답 요지의 'grip_succeed=1 맥락과 센서 값 모순' 및 'Read Model 보강/격리, v1 무손상' 조치와 완벽히 일치함. actionability: 자동 검증 결과(실행/컴파일 성공)를 바탕으로 하며, v1 테이블을 건드리지 않고 신규 v2 DDL과 격리 DELETE SQL로 요구사항을 충족함. completeness: 권고, Read Model DDL, API 버저닝 세 요소가 모두 포함되며 테이블명·필드명·라우트가 문서 전반에서 일관되게 매칭됨."}

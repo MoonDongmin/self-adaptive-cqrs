@@ -1,0 +1,38 @@
+{
+  "scenarioId": "E5-failure-ranking-query",
+  "rep": 1,
+  "startedAt": "2026-08-14T02:13:22.929Z",
+  "expectsDocs": true,
+  "channel": "query",
+  "stagedCount": 30,
+  "insert": {
+    "inserted": 30,
+    "failed": []
+  },
+  "projection": {
+    "multimodalProcessed": 30,
+    "gripResultOk": true,
+    "gripResultProcessed": 30
+  },
+  "userQuery": "파지 실패가 가장 많은 객체 상위 목록을 조회하고 싶다. 객체별 실패 수와 실패율을 순위대로 보고 싶다.",
+  "exitReason": "docs-collected",
+  "observedCount": 30,
+  "projectedCount": 30,
+  "events": [
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 3건 (insight.card.miss)"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-08-14-111323-ad97f0d9-9104-443d-940b-686fc20a2274.md",
+      "docsValid": true,
+      "docsValidationErrors": []
+    }
+  ],
+  "finishedAt": "2026-08-14T02:39:09.170Z",
+  "durationSeconds": 1546,
+  "collectedDocs": [
+    "2026-08-14-111323-ad97f0d9-9104-443d-940b-686fc20a2274.md"
+  ]
+}

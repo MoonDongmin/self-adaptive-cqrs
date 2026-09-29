@@ -1,0 +1,24 @@
+{
+  "groundedness": 4,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 1,
+  "versioningQuality": 2,
+  "unsupportedClaims": [
+    "T3 SQL에서 read_grip_result에 missing_field 컬럼 존재 가정",
+    "T4에서 REST API URL 버전화(/v1) 방식 제시 (자료 미제공)",
+    "T2에서 Zod 검증 실패 시 Read Model에 잔존 레코드 존재 가정 (ES 원칙과 상충)"
+  ],
+  "rationale": "T1은 정답 요지의 Zod 파싱 실패 및 적재 거부 원인을 정확히 매칭하여 5점. T2 SQL은 ES 검증-투영 분리 원칙상 불필요한 DELETE를 포함하나 문법적 오류는 적음. T3 SQL은 제공 스키마에 없는 missing_field 컬럼을 참조하고 하드코딩 CTE로 집계 요구사항을 왜곡하여 1점. T4는 정답 요지의 검증 로그 보강 및 스키마 안내 조치를 누르고 일반 REST API 버전 관리론으로 회피하여 2점.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 12648,
+    "completion_tokens": 4373,
+    "total_tokens": 17021,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4139
+    }
+  },
+  "latencyMs": 106662,
+  "judgedAt": "2026-09-11T11:48:16.467Z"
+}

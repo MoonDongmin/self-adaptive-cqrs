@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 2,
+  "completeness": 3,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용된 장면 키, 시도 번호, z좌표 값 및 Δ=0.11m 계산 결과가 [자료]의 원시 로그와 정확히 일치하며, 파일 경로 인용도 실재 파일 또는 신규 제안 범위 내에 있어 근거 충실도가 높다. diagnosisAccuracy: 정답 요지의 동일 장면 시도 1→2 깊이 급변(Δ>0.10m), 센서/데이터 오염 판정, v2 Read Model 도입 및 v1 무손상 권고를 정확히 반영하여 진단 정확도가 높다. actionability: 프로젝트터 코드에서 DDL의 NOT NULL 컬럼(grip_outlier_flag)에 null을 할당해 적재 실패를 유발하며, CHECK 제약이 이상 행의 삽입을 차단하도록 설계되어 플래그링 목적과 모순된다. 또한 v1 무손상 권고와 배치되는 DELETE SQL을 즉시 격리 조치로 명시해 실행 시 기존 자산이 손상된다. completeness: 세 요소가 모두 수록되었으나, DDL의 NOT NULL 제약과 ORM 스키마의 notNull 누락이 불일치하며, CHECK 제약 설계와 플래그링 목표가 상충하고 v1 삭제 SQL이 권고와 충돌하여 내부 정합성이 떨어진다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 18546,
+    "completion_tokens": 4908,
+    "total_tokens": 23454,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4599
+    }
+  },
+  "latencyMs": 129552,
+  "judgedAt": "2026-09-14T06:33:27.854Z"
+}

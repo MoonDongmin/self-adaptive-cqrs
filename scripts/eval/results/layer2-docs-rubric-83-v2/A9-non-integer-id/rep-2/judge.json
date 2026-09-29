@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 2,
+  "completeness": 2,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용한 Zod 에러 경로, 파일명, correlation_id 등 모든 데이터가 [자료] 로그에 정확히 일치함. diagnosisAccuracy: 정답 요지와 동일하게 Zod .int() 위반(number vs int)으로 필드(id, num_keypoints) 적재가 거부된 원인과 메커니즘을 정확히 진단함. actionability: 정답 요지에서 요구한 Read Model/검증 로그 보강 DDL이 누락되고 검증용 SELECT만 제공되어 실제 문제 해결(보강)을 수행할 수 없음. completeness: 권고 절이 '결정론 폴백'·'재실행 권장'으로 명시된 대체 스텁이며, API 버저닝 절이 실질적으로 비어 있고 TL;DR의 '보강' 의도와 SQL 절의 'DDL 불필요'가 모순됨.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 19328,
+    "completion_tokens": 2737,
+    "total_tokens": 22065,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2510
+    }
+  },
+  "latencyMs": 90749,
+  "judgedAt": "2026-09-14T06:58:16.423Z"
+}

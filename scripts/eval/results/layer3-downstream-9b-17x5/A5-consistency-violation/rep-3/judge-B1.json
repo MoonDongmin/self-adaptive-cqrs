@@ -1,0 +1,24 @@
+{
+  "groundedness": 3,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 1,
+  "versioningQuality": 1,
+  "unsupportedClaims": [
+    "robotTfTranslation z는 로봇 기반 위치이며 그리퍼 Z를 더해야 절대 높이가 됨",
+    "워크스페이스/그리퍼 범위 정의가 필요함 (자료에 이미 명시)",
+    "새로운 Read Model 테이블 생성이 필수임"
+  ],
+  "rationale": "T1은 정답 요지와 일치해 진단 정확도 5점. 그러나 T2 SQL에서 grip_3d_pose(JSONB 객체)를 배열로 처리해 문법 오류가 발생하며, 자료에 없는 절대 높이 계산 가정을 적용해 groundedness와 sqlCorrectness를 낮춤. T4는 v1 무손상 요구사항에 대한 구체적 절차를 제시하지 않고 회피해 versioningQuality 1점. 전반적으로 근거 없는 계산 로직과 SQL 오류가 핵심 점수를 제약함.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 12569,
+    "completion_tokens": 3860,
+    "total_tokens": 16429,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3654
+    }
+  },
+  "latencyMs": 74458,
+  "judgedAt": "2026-09-11T12:19:46.748Z"
+}

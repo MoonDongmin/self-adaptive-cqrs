@@ -1,0 +1,23 @@
+{
+  "groundedness": 3,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 1,
+  "versioningQuality": 5,
+  "unsupportedClaims": [
+    "v1 테이블(read_grip_result)에 ALTER TABLE로 컬럼 추가 및 UPDATE 수행 방안",
+    "JSONB 필드에 LAG 윈도우 함수 적용 문법"
+  ],
+  "rationale": "T1은 자료의 로그와 정답 요지를 정확히 인용해 문제 원인을 진단했으나, T2/T3에서 명시된 'v1 자산 무손상' 제약을 위반하며 v1 테이블을 ALTER하는 방안을 제시했다. 또한 PostgreSQL JSONB와 윈도우 함수를 혼용한 SQL 문법은 실행 불가능하며 자료의 v2 Read Model 설계와도 맞지 않아 sqlCorrectness는 1점이다. T4는 자료의 API 버전화 및 병행 운영 절차를 정확히 서술하여 5점이다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 13763,
+    "completion_tokens": 3609,
+    "total_tokens": 17372,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3417
+    }
+  },
+  "latencyMs": 94334,
+  "judgedAt": "2026-09-11T12:33:23.619Z"
+}

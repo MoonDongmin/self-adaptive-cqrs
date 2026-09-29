@@ -1,0 +1,3 @@
+
+
+{"groundedness":3,"diagnosisAccuracy":5,"sqlCorrectness":2,"versioningQuality":1,"unsupportedClaims":["T3 SQL의 underscore 기반 경계 추출 로직이 scene_key 내 다중 underscore로 인해 실제 데이터에서 오동작함","T4의 /v2 엔드포인트 신규 생성은 자료의 '변경 없음' 및 'v1 자산 무손상' 제약과 직접 충돌함"],"rationale":"T1은 로그와 정답 요지를 정확히 매칭해 문제 원인을 명확히 진단하여 5점. T2는 자료의 격리 SQL을 정확히 인용해 문제를 해결하므로 5점. T3은 scene_key 내 underscore를 고려하지 않은 문자열 파싱 로직을 SQL에 적용해 논리적 오류가 있으며 실제 조회 시 오동작할 가능성이 높아 2점. T4는 자료의 'API 엔드포인트 변경 없음' 및 '무손상' 제약을 무시하고 불필요한 v2 경로 생성을 제안해 제약 위반으로 1점."}

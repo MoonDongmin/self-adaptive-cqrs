@@ -1,0 +1,22 @@
+{
+  "groundedness": 4,
+  "diagnosisAccuracy": 5,
+  "actionability": 3,
+  "completeness": 5,
+  "unsupportedClaims": [
+    "기존 GripResultProjector의 내부 파일 경로(src/projection/projector/grip-result.projector.ts) 및 매핑 로직 상세 기술은 제공된 [자료]에 포함되지 않음."
+  ],
+  "rationale": "groundedness: 로그 ID와 Read Model 스키마는 자료와 정확히 일치하나, 기존 프로젝트터의 내부 파일 경로 및 로직 상세는 자료에 명시되지 않음. diagnosisAccuracy: 정답 요지의 시계열 집계 부재 진단과 신규 Read Model 신설, API v2 병행 권고를 정확히 반영함. actionability: PostgreSQL에서 유효하지 않은 double_precision 타입 사용으로 SQL 실패가 발생(자동 검증 결과 일치)하여 소폭 수정 후 실행 가능함. completeness: 권고, DDL SQL, API 버저닝 세 요소가 모두 포함되며 테이블명 및 버전 관리 방향이 문서 전반에서 일관되게 유지됨.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 11868,
+    "completion_tokens": 3543,
+    "total_tokens": 15411,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3310
+    }
+  },
+  "latencyMs": 89601,
+  "judgedAt": "2026-09-14T02:31:03.528Z"
+}

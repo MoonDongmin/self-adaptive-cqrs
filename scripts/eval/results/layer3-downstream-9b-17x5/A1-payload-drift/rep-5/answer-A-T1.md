@@ -1,0 +1,1 @@
+시스템은 `payload.schema.drift` 로그 (level 40) 를 통해 payload 에 `conveyor_speed` 와 `gripper_temperature` 라는 신규 키가 유입되었으나, 기존 `read_grip_result` Read Model 스키마에 해당 필드가 정의되지 않아 적재 시 필드가 유실되는 스키마 드리프트 문제를 감지했습니다. 이는 `toyDataSchema` 기반의 기존 투영 로직이 새로운 환경 변수를 처리하지 못해 발생했으며, 결과적으로 `read_grip_result` 테이블의 데이터 불완전성이 초래될 수 있습니다.

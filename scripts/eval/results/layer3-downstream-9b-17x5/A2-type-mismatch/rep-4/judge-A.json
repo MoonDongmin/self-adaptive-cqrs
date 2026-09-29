@@ -1,0 +1,23 @@
+{
+  "groundedness": 4,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 1,
+  "versioningQuality": 5,
+  "unsupportedClaims": [
+    "T3 설명에서 원본 파일명 `_02003`을 `_00023`으로 잘못 표기",
+    "T3 SQL이 실제 로그/테이블을 조회하지 않고 정적 값을 하드코딩한 더미 쿼리임"
+  ],
+  "rationale": "T1 진단과 T2 격리 SQL은 자료 및 정답 요지와 정확히 일치하며 v1 무손상 제약을 잘 준수함. T4 버전 관리 절차도 인간 승인 및 경로 불변 요구사항을 구체적으로 반영하여 만점. 반면 T3 SQL은 실제 데이터 소스를 조회하거나 집계하지 않고 정적 값을 하드코딩한 더미 쿼리로, 질문의 집계 요구를 충족하지 못해 낮은 점수. T3 설명 중 파일명 오타(`_00023`)도 근거 미비로 간주.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 12041,
+    "completion_tokens": 3112,
+    "total_tokens": 15153,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2892
+    }
+  },
+  "latencyMs": 80466,
+  "judgedAt": "2026-09-11T11:33:47.401Z"
+}

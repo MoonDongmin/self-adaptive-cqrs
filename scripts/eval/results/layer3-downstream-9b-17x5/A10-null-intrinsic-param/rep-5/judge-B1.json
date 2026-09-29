@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 3,
+  "versioningQuality": 1,
+  "unsupportedClaims": [],
+  "rationale": "groundedness는 T1~T4 모두 제공된 로그와 스키마 정보만 정확히 인용했으며, T4에서 자료 부재를 정직하게 명시해 추측을 배제함. diagnosisAccuracy는 T1에서 Zod 검증 실패 원인과 null 유입, Read Model 누락 영향도를 정답 요지와 완벽히 일치시킴. sqlCorrectness는 T2 쿼리가 적절하나, T3에서 '집계' 요구사항에 대해 DB에 데이터가 없음에도 하드코딩된 상수 반환 SQL만 제시해 실제 집계 로직을 구현하지 못함. versioningQuality는 T4에서 v1 호환 절차에 대해 자료 부재를 이유로 답변을 회피하여 구체적 마이그레이션 절차를 전혀 제시하지 않음.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 12397,
+    "completion_tokens": 3527,
+    "total_tokens": 15924,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3318
+    }
+  },
+  "latencyMs": 89111,
+  "judgedAt": "2026-09-11T11:22:51.704Z"
+}

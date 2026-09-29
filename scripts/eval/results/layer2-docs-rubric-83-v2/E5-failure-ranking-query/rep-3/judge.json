@@ -1,0 +1,23 @@
+{
+  "groundedness": 4,
+  "diagnosisAccuracy": 5,
+  "actionability": 2,
+  "completeness": 4,
+  "unsupportedClaims": [
+    "PostgreSQL에 `double_precision` 타입은 존재하지 않으며 표준은 `DOUBLE PRECISION` 또는 `REAL`임",
+    "upsert 절의 `excluded.value`는 유효한 SQL/Drizzle 문법이 아님(실제 컬럼명 또는 `excluded.total_count` 사용 필요)"
+  ],
+  "rationale": "groundedness: 로그 및 스키마 필드 인용은 정확하나, 생성된 DDL의 `double_precision` 타입명은 PostgreSQL 표준이 아니므로 감점. diagnosisAccuracy: 정답 요지의 집계 Read Model 부재 진단 및 신규 테이블/버전 관리 방향과 완벽히 일치. actionability: DDL 타입 오류로 실행 불가이며, upsert 로직의 `excluded.value`는 유효한 문법이 아니므로 그대로 적용 시 적재 및 집계 연산이 실패함. completeness: 권고, SQL, API 버저닝 세 요소가 모두 포함되고 구조적 일관성을 유지하나, 코드 내 식별자 및 문법 오류로 미세한 완성도 저하.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 13557,
+    "completion_tokens": 4388,
+    "total_tokens": 17945,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4126
+    }
+  },
+  "latencyMs": 111285,
+  "judgedAt": "2026-09-14T09:29:14.593Z"
+}

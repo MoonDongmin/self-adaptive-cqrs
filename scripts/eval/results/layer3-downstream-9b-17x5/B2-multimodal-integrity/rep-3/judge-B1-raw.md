@@ -1,0 +1,3 @@
+
+
+{"groundedness": 3, "diagnosisAccuracy": 5, "sqlCorrectness": 1, "versioningQuality": 1, "unsupportedClaims": ["T2/T3 SQL에서 scene_id 추출을 위해 '_02027' 길이 등 고정값 가정", "T2에서 정답 요지의 'v1 무손상' 원칙에 위배되는 DELETE 삭제 전략 제시", "T4에서 자료 부족을 이유로 v1 클라이언트 보호 절차 미제시"], "rationale": "T1은 로그의 정합성 위반 코드와 불일치 내용을 정확히 식별해 정답 요지와 일치하므로 5점. T2는 PostgreSQL 문법 오류가 있으며 무손상 원칙에 위배되는 삭제 쿼리를 제시해 1점. T3 SQL은 scene_id 추출에 고정값을 가정해 실제 실행 시 오류가 발생하므로 1점. T4는 자료 부족을 이유로 v1 호환 절차를 제시하지 않아 1점."}

@@ -1,0 +1,23 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 5,
+  "completeness": 5,
+  "unsupportedClaims": [
+    "src/insert/dto/toy-data.dto.ts",
+    "GripResultProjector.map()"
+  ],
+  "rationale": "groundedness: 인용된 필드 경로, 파일명, Zod 오류 메시지가 제공 로그와 정확히 일치함. diagnosisAccuracy: 정수 타입 유입으로 인한 Zod .int() 거절 원인 및 v1 무손상 조치 방향이 정답 요지와 완벽히 일치함. actionability: 제공된 격리 검증 SQL이 자동 검증 결과에서 성공 실행되었으며 기존 자산 변경 없이 추적/무해화 목적을 달성함. completeness: 권고, 검증 SQL, API 버저닝 세 요소가 모두 포함되어 있으며 서로 모순 없이 일관된 구조를 가짐.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 18761,
+    "completion_tokens": 3704,
+    "total_tokens": 22465,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3516
+    }
+  },
+  "latencyMs": 111363,
+  "judgedAt": "2026-09-14T01:45:43.792Z"
+}

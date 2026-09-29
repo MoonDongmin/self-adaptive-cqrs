@@ -1,0 +1,1 @@
+(1) toy-data 배치 적재 중 2 개의 파일이 Zod 검증으로 인해 거부 (reject) 되었고, 해당 파일들은 이벤트 스토어에 적재되지 않았습니다. (2) 원인으로는 `objects[0].id` 필드가 `number` 타입 (부호부 실수) 이 유입되어 `zod` 의 `int` 기대값과 충돌했으며, `human_annotation_grasp[0].num_keypoints` 필드 역시 `number` 타입 유입으로 인해 같은 이유로 검증 실패했습니다.

@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 5, "completeness": 5, "unsupportedClaims": [], "rationale": "groundedness: 인용된 로그 correlation_id, 필드명(object_name, grip_succeed) 및 스키마 구조가 [자료]와 정확히 일치함. diagnosisAccuracy: 기존 row-level Read Model의 집계/순위 한계를 정확히 지적하며 정답 요지와 완벽하게 일치함. actionability: 자동 검증 결과(실행/컴파일 성공)를 반영하며 기존 v1 자산을 손상시키지 않고 신규 집계 테이블과 API를 추가해 요구사항을 충족함. completeness: 권고, DDL/SQL, API 버저닝 세 요소가 모두 포함되며 테이블명·타입·버전 정보가 문서 전반에서 일관되게 사용됨."}

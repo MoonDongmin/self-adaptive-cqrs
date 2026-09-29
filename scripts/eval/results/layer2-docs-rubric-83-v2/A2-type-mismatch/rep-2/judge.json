@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 2,
+  "completeness": 3,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용된 로그, 필드명(Zod 에러 경로), 파일 경로가 [자료] 및 저장소 확인 결과와 정확히 일치한다. diagnosisAccuracy: grip_succeed의 타입/범위 위반으로 인한 Zod 거부 원인을 정확히 진단했으며, 정답 요지의 유형·위치·처리 단계와 일치한다. actionability: 정답 요지가 거부 건 추적을 위한 Read Model/로그 보강을 요구하지만, Docs는 검증용 SELECT만 제공하고 DDL 생성을 거부하여 추적 기능 보강 요구를 충족하지 못한다. completeness: TL;DR에서 '보강한다'고 명시했으나 실제 SQL 절에서는 '신규 DDL 불필요'라고 기술하여 권고와 실행 SQL 간 모순이 발생한다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 21110,
+    "completion_tokens": 2803,
+    "total_tokens": 23913,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2607
+    }
+  },
+  "latencyMs": 96143,
+  "judgedAt": "2026-09-14T04:58:49.908Z"
+}

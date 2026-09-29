@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="600" viewBox="0 0 1060 600" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">
+<defs><marker id="m33557a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#33557a"/></marker></defs>
+<rect width="1060" height="600" fill="#ffffff"/>
+<rect x="30" y="40" width="230" height="150" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="42" y="90.0" text-anchor="start" font-size="13" font-weight="700" fill="#33557a">애플리케이션 Pino 로거</text>
+<text x="42" y="106.0" text-anchor="start" font-size="10.5" fill="#556">규약 ① 행위명(action) 사전</text>
+<text x="42" y="120.5" text-anchor="start" font-size="10.5" fill="#556">규약 ② correlation ID 전파</text>
+<text x="42" y="135.0" text-anchor="start" font-size="10.5" fill="#556">규약 ③ 이상 신호 = level ≥ 40</text>
+<text x="42" y="149.5" text-anchor="start" font-size="10.5" fill="#556">규약 ④ 파이프라인 자기 로그 = info</text>
+<rect x="300" y="30" width="730" height="130" rx="14" fill="#fafbfc" stroke="#999" stroke-width="1.2" stroke-dasharray="7 5"/>
+<text x="318" y="54" font-size="13" font-weight="600" fill="#777">경로 A — 실시간 선별 (배치 단위)</text>
+<rect x="330" y="78" width="130" height="54" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="395.0" y="101.5" text-anchor="middle" font-size="12" font-weight="700" fill="#33557a">TCP 소켓</text>
+<text x="395.0" y="116.5" text-anchor="middle" font-size="10" fill="#556">pino-socket</text>
+<rect x="490" y="78" width="130" height="54" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="555.0" y="101.5" text-anchor="middle" font-size="12" font-weight="700" fill="#33557a">수집기</text>
+<text x="555.0" y="116.5" text-anchor="middle" font-size="10" fill="#556">fluent-bit :5170</text>
+<rect x="650" y="78" width="150" height="54" rx="10" fill="#e7f4ec" stroke="#2e7d4f" stroke-width="1.6"/>
+<text x="725.0" y="101.5" text-anchor="middle" font-size="12" font-weight="700" fill="#2e6b45">Kafka · log-events</text>
+<text x="725.0" y="116.5" text-anchor="middle" font-size="10" fill="#556">전 수준 수신</text>
+<rect x="830" y="70" width="180" height="70" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="920.0" y="94.5" text-anchor="middle" font-size="12" font-weight="700" fill="#33557a">로그 레인 1차 선별</text>
+<text x="920.0" y="109.5" text-anchor="middle" font-size="10" fill="#556">5초 폴링 · ≤500건 배치</text>
+<text x="920.0" y="123.5" text-anchor="middle" font-size="10" fill="#556">필터 → 프리게이트 → 선판단</text>
+<polyline points="260,105 330,105" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<polyline points="460,105 490,105" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<polyline points="620,105 650,105" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<polyline points="800,105 830,105" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<rect x="300" y="185" width="730" height="130" rx="14" fill="#fafbfc" stroke="#999" stroke-width="1.2" stroke-dasharray="7 5"/>
+<text x="318" y="209" font-size="13" font-weight="600" fill="#777">경로 B — 이력 조회 (앵커 기준 전후 맥락)</text>
+<rect x="330" y="234" width="130" height="54" rx="65.0" ry="12" fill="#f3f4f6" stroke="#777777" stroke-width="1.5"/>
+<ellipse cx="395.0" cy="235" rx="65.0" ry="7" fill="#f3f4f6" stroke="#777777" stroke-width="1.5"/>
+<text x="395.0" y="259.5" text-anchor="middle" font-size="13" font-weight="700" fill="#444444">log.json</text>
+<text x="395.0" y="275.5" text-anchor="middle" font-size="11" fill="#556">파일 전송</text>
+<rect x="490" y="226" width="150" height="62" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="565.0" y="246.5" text-anchor="middle" font-size="12" font-weight="700" fill="#33557a">로그 수집 서비스</text>
+<text x="565.0" y="261.5" text-anchor="middle" font-size="10" fill="#556">1초 주기 tail</text>
+<text x="565.0" y="275.5" text-anchor="middle" font-size="10" fill="#556">바이트 커서 · 1000행 청크</text>
+<rect x="670" y="226" width="160" height="70" rx="80.0" ry="12" fill="#f3f4f6" stroke="#777777" stroke-width="1.5"/>
+<ellipse cx="750.0" cy="227" rx="80.0" ry="7" fill="#f3f4f6" stroke="#777777" stroke-width="1.5"/>
+<text x="750.0" y="253.0" text-anchor="middle" font-size="13" font-weight="700" fill="#444444">Log DB · log_event</text>
+<text x="750.0" y="269.0" text-anchor="middle" font-size="10" fill="#556">TimescaleDB hypertable</text>
+<text x="750.0" y="283.0" text-anchor="middle" font-size="10" fill="#556">1급 컬럼 + payload jsonb</text>
+<rect x="860" y="226" width="150" height="62" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="935.0" y="246.5" text-anchor="middle" font-size="12" font-weight="700" fill="#33557a">search_logs 도구</text>
+<text x="935.0" y="261.5" text-anchor="middle" font-size="10" fill="#556">진단 에이전트 pull</text>
+<text x="935.0" y="275.5" text-anchor="middle" font-size="10" fill="#556">≤40행 · 스택 6줄</text>
+<polyline points="260,130 280,130 280,257 330,257" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<polyline points="460,257 490,257" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<polyline points="640,257 670,257" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<polyline points="860,257 830,257" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#m33557a)"/>
+<rect x="30" y="340" width="1000" height="235" rx="14" fill="#fafbfc" stroke="#999" stroke-width="1.2" stroke-dasharray="7 5"/>
+<text x="48" y="364" font-size="13" font-weight="600" fill="#777">이상 로그 윈도우 조립 (분석 그래프 push 입력)</text>
+<rect x="50" y="380" width="140" height="64" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="120.0" y="401.5" text-anchor="middle" font-size="12" font-weight="700" fill="#33557a">① 궤적 조회</text>
+<text x="120.0" y="416.5" text-anchor="middle" font-size="10" fill="#556">트립 correlation ID</text>
+<text x="120.0" y="430.5" text-anchor="middle" font-size="10" fill="#556">의 전체 로그</text>
+<rect x="212" y="380" width="140" height="64" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="282.0" y="401.5" text-anchor="middle" font-size="12" font-weight="700" fill="#33557a">② 앵커 결정</text>
+<text x="282.0" y="416.5" text-anchor="middle" font-size="10" fill="#556">첫 level ≥ 40 행</text>
+<text x="282.0" y="430.5" text-anchor="middle" font-size="10" fill="#556">(없으면 최신 오류)</text>
+<polyline points="190,412 212,412" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<rect x="374" y="380" width="140" height="64" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="444.0" y="401.5" text-anchor="middle" font-size="12" font-weight="700" fill="#33557a">③ 전후 20행</text>
+<text x="444.0" y="416.5" text-anchor="middle" font-size="10" fill="#556">앵커 이전 20</text>
+<text x="444.0" y="430.5" text-anchor="middle" font-size="10" fill="#556">이후 20</text>
+<polyline points="352,412 374,412" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<rect x="536" y="380" width="140" height="64" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="606.0" y="401.5" text-anchor="middle" font-size="12" font-weight="700" fill="#33557a">④ 잡음 제거</text>
+<text x="606.0" y="416.5" text-anchor="middle" font-size="10" fill="#556">신호 행 앞 4 · 뒤 6</text>
+<text x="606.0" y="430.5" text-anchor="middle" font-size="10" fill="#556">만 유지</text>
+<polyline points="514,412 536,412" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<rect x="698" y="380" width="140" height="64" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="768.0" y="401.5" text-anchor="middle" font-size="12" font-weight="700" fill="#33557a">⑤ 80행 상한</text>
+<text x="768.0" y="416.5" text-anchor="middle" font-size="10" fill="#556">앵커 중심</text>
+<text x="768.0" y="430.5" text-anchor="middle" font-size="10" fill="#556">절단</text>
+<polyline points="676,412 698,412" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<rect x="860" y="380" width="140" height="64" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="930.0" y="401.5" text-anchor="middle" font-size="12" font-weight="700" fill="#33557a">⑥ 빈도 롤업</text>
+<text x="930.0" y="416.5" text-anchor="middle" font-size="10" fill="#556">앵커 이전 1시간</text>
+<text x="930.0" y="430.5" text-anchor="middle" font-size="10" fill="#556">action·level별 건수</text>
+<polyline points="838,412 860,412" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<polyline points="750,296 750,380" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<text x="758" y="340" text-anchor="start" font-size="10" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">Log DB 조회</text>
+<polyline points="920,140 920,165 1018,165 1018,328 120,328 120,380" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<text x="1004" y="250" text-anchor="middle" font-size="10" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" transform="rotate(-90 1004 250)">트립 correlation ID</text>
+<rect x="50" y="462" width="960" height="98" rx="8" fill="#ffffff" stroke="#bbb" stroke-width="1"/>
+<text x="60" y="480" text-anchor="start" font-size="10" fill="#333" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">| time | level | action | correlation_id | stream_id | attempt | global_seq | msg | detail |</text>
+<text x="60" y="498" text-anchor="start" font-size="10" fill="#555" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">| 23:36:28.9 | 30 | insight.card.request | 8898f75e | — | — | — | GET /insight/cards/… | — |</text>
+<text x="60" y="515" text-anchor="start" font-size="10" fill="#9a4522" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">| 23:36:29.8 | 40 | insight.card.miss | 8898f75e | — | — | — | insight 카드 없음: 객체별 파지 성공률을 한 번에 조회하고 싶다  ← 트립 앵커 | — |</text>
+<text x="60" y="532" text-anchor="start" font-size="10" fill="#555" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">| 23:36:29.9 | 30 | request completed | 8898f75e | — | — | — | GET 200 | — |</text>
+<text x="60" y="549" text-anchor="start" font-size="10" fill="#555" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">&gt; 빈도: 최근 1h — insight.card.miss(level 40) 3회 · …</text>
+<text x="1000" y="553" text-anchor="end" font-size="10" fill="#777" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">9열 표 · 상세 열 = reason · file · event_id · newKeys 합성</text>
+<rect x="40" y="581" width="18" height="13" rx="3" fill="#eef2f7" stroke="#33557a" stroke-width="1.2"/>
+<text x="64" y="592" font-size="11" fill="#555">결정론 코드</text>
+<rect x="141.88" y="581" width="18" height="13" rx="3" fill="#f3f4f6" stroke="#777777" stroke-width="1.2"/>
+<text x="165.88" y="592" font-size="11" fill="#555">저장소·파일</text>
+<rect x="243.76" y="581" width="18" height="13" rx="3" fill="#e7f4ec" stroke="#2e7d4f" stroke-width="1.2"/>
+<text x="267.76" y="592" font-size="11" fill="#555">Kafka 토픽</text>
+<line x1="345.31" y1="588" x2="371.31" y2="588" stroke="#33557a" stroke-width="1.6"/>
+<text x="377.31" y="592" font-size="11" fill="#555">자동 흐름</text>
+<line x1="444.74" y1="588" x2="470.74" y2="588" stroke="#33557a" stroke-width="1.6" stroke-dasharray="5 3"/>
+<text x="476.74" y="592" font-size="11" fill="#555">pull 조회</text>
+</svg>

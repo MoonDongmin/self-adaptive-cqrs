@@ -1,0 +1,228 @@
+---
+docId: analysis-ac26991b-9f8d-4831-b386-957e1b997958
+generatedAt: 2026-08-11T19:40:49.012Z
+targetReadModel: read_grip_result
+sqlDialect: postgres
+sufficientEvidence: true
+apiVersion:
+  from: null
+  to: null
+  affectedEndpoints: []
+evidenceSources:
+  - { origin: developer-logging, anchorId: "ac26991b-9f8d-4831-b386-957e1b997958" }
+constraints:
+  - "v1 자산(테이블/엔드포인트/프로젝터 name) 무손상"
+  - "PK (scene_key, attempt_num) 유지"
+  - "TypeScript any 금지"
+  - "식별자 전체 단어"
+  - "DDL 실행·API 컷오버는 인간 승인 후에만 (human-in-the-loop)"
+  - "Read Model 테이블명은 read_ 접두 스네이크 케이스"
+---
+
+# Self-Adaptive CQRS Docs — read_grip_result
+
+> 결론(TL;DR): `read_grip_result`을(를) 보강한다 — toy-data 적재(batch) 중 2건의 파일에서 grip_succeed 필드 값이 이벤트 스키마(GripAttemptRecorded)를 위배하여 적재 검증 실패(insert.file.failed)가 발생. 나머지 파일과 후속 투영은 정상 진행. (이상 유형: 이벤트 스키마 위배(Payload Type Mismatch) · 심각도: warning)
+
+<logging_context>
+
+## 이상 로그 맥락 (±N 윈도우)
+> 빈도: 최근 1h — `insert.request`(level 30) 1회, `insert.file.failed`(level 40) 1회, `insert.batch.start`(level 30) 1회, `log.delete.request`(level 30) 1회, `log.delete.done`(level 30) 1회, `insert.file.ok`(level 20) 50회, `insight.cards.request`(level 30) 2회, `-`(level 30) 3회, `insight.card.rendered`(level 20) 6회, `-`(level 20) 8회.
+
+| time | level | action | correlation_id | stream_id | attempt | global_seq | msg | detail |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 19:40:46.563 | 30 | insert.request | ac26991b-9f8d-4831-b386-957e1b997958 | - | - | - | Insert Event Store 요청 수신 | - |
+| 19:40:46.564 | 30 | insert.batch.start | ac26991b-9f8d-4831-b386-957e1b997958 | - | - | - | Toy-Data 적재 시작 | - |
+| 19:40:46.569 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00051 | 2 | 1 | 이벤트 append | - |
+| 19:40:46.569 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00051 | 2 | 1 | 파일 적재 성공 | file=반려동물용품_CR01_강아지공룡알장난감_00051_02_20230923.json |
+| 19:40:46.570 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00055 | 3 | 2 | 이벤트 append | - |
+| 19:40:46.570 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00055 | 3 | 2 | 파일 적재 성공 | file=반려동물용품_CR01_강아지공룡알장난감_00055_03_20230923.json |
+| 19:40:46.571 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00056 | 2 | 3 | 이벤트 append | - |
+| 19:40:46.571 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00056 | 2 | 3 | 파일 적재 성공 | file=반려동물용품_CR01_강아지공룡알장난감_00056_02_20230923.json |
+| 19:40:46.572 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00059 | 2 | 4 | 이벤트 append | - |
+| 19:40:46.572 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00059 | 2 | 4 | 파일 적재 성공 | file=반려동물용품_CR01_강아지공룡알장난감_00059_02_20230923.json |
+| 19:40:46.573 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00061 | 3 | 5 | 이벤트 append | - |
+| 19:40:46.573 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00061 | 3 | 5 | 파일 적재 성공 | file=반려동물용품_CR01_강아지공룡알장난감_00061_03_20230923.json |
+| 19:40:46.574 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00071 | 3 | 6 | 이벤트 append | - |
+| 19:40:46.574 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00071 | 3 | 6 | 파일 적재 성공 | file=반려동물용품_CR01_강아지공룡알장난감_00071_03_20230923.json |
+| 19:40:46.575 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00072 | 1 | 7 | 이벤트 append | - |
+| 19:40:46.575 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00072 | 1 | 7 | 파일 적재 성공 | file=반려동물용품_CR01_강아지공룡알장난감_00072_01_20230923.json |
+| 19:40:46.576 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00079 | 2 | 9 | 이벤트 append | - |
+| 19:40:46.576 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00074 | 3 | 8 | 이벤트 append | - |
+| 19:40:46.576 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00074 | 3 | 8 | 파일 적재 성공 | file=반려동물용품_CR01_강아지공룡알장난감_00074_03_20230923.json |
+| 19:40:46.576 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00079 | 2 | 9 | 파일 적재 성공 | file=반려동물용품_CR01_강아지공룡알장난감_00079_02_20230923.json |
+| 19:40:46.577 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00080 | 2 | 10 | 이벤트 append | - |
+| 19:40:46.577 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00080 | 2 | 10 | 파일 적재 성공 | file=반려동물용품_CR01_강아지공룡알장난감_00080_02_20230923.json |
+| 19:40:46.578 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00097 | 1 | 11 | 이벤트 append | - |
+| 19:40:46.578 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00097 | 1 | 11 | 파일 적재 성공 | file=반려동물용품_CR01_강아지공룡알장난감_00097_01_20230923.json |
+| 19:40:46.579 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00100 | 2 | 12 | 이벤트 append | - |
+| 19:40:46.579 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00100 | 2 | 12 | 파일 적재 성공 | file=반려동물용품_CR01_강아지공룡알장난감_00100_02_20230923.json |
+| 19:40:46.580 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00103 | 1 | 13 | 파일 적재 성공 | file=반려동물용품_CR01_강아지공룡알장난감_00103_01_20230923.json |
+| 19:40:46.580 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00103 | 1 | 13 | 이벤트 append | - |
+| 19:40:46.580 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00103 | 2 | 14 | 이벤트 append | - |
+| 19:40:46.580 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00103 | 2 | 14 | 파일 적재 성공 | file=반려동물용품_CR01_강아지공룡알장난감_00103_02_20230923.json |
+| 19:40:46.581 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00106 | 1 | 15 | 이벤트 append | - |
+| 19:40:46.581 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00106 | 1 | 15 | 파일 적재 성공 | file=반려동물용품_CR01_강아지공룡알장난감_00106_01_20230923.json |
+| 19:40:46.582 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00108 | 2 | 16 | 이벤트 append | - |
+| 19:40:46.582 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00108 | 2 | 16 | 파일 적재 성공 | file=반려동물용품_CR01_강아지공룡알장난감_00108_02_20230923.json |
+| 19:40:46.583 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00109 | 1 | 17 | 파일 적재 성공 | file=반려동물용품_CR01_강아지공룡알장난감_00109_01_20230923.json |
+| 19:40:46.583 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00109 | 1 | 17 | 이벤트 append | - |
+| 19:40:46.584 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00112 | 3 | 19 | 이벤트 append | - |
+| 19:40:46.584 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00110 | 3 | 18 | 이벤트 append | - |
+| 19:40:46.584 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00110 | 3 | 18 | 파일 적재 성공 | file=반려동물용품_CR01_강아지공룡알장난감_00110_03_20230923.json |
+| 19:40:46.584 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00112 | 3 | 19 | 파일 적재 성공 | file=반려동물용품_CR01_강아지공룡알장난감_00112_03_20230923.json |
+| 19:40:46.585 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00117 | 3 | 20 | 이벤트 append | - |
+| 19:40:46.585 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00117 | 3 | 20 | 파일 적재 성공 | file=반려동물용품_CR01_강아지공룡알장난감_00117_03_20230923.json |
+| 19:40:46.586 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00121 | 2 | 22 | 이벤트 append | - |
+| 19:40:46.586 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00120 | 2 | 21 | 이벤트 append | - |
+| 19:40:46.586 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00120 | 2 | 21 | 파일 적재 성공 | file=반려동물용품_CR01_강아지공룡알장난감_00120_02_20230923.json |
+| 19:40:46.586 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00121 | 2 | 22 | 파일 적재 성공 | file=반려동물용품_CR01_강아지공룡알장난감_00121_02_20230923.json |
+| 19:40:46.587 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00133 | 1 | 23 | 이벤트 append | - |
+| 19:40:46.587 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00133 | 1 | 23 | 파일 적재 성공 | file=반려동물용품_CR01_강아지공룡알장난감_00133_01_20230923.json |
+| 19:40:46.588 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00133 | 2 | 24 | 이벤트 append | - |
+| 19:40:46.588 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00133 | 2 | 24 | 파일 적재 성공 | file=반려동물용품_CR01_강아지공룡알장난감_00133_02_20230923.json |
+| 19:40:46.589 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00134 | 1 | 25 | 파일 적재 성공 | file=반려동물용품_CR01_강아지공룡알장난감_00134_01_20230923.json |
+| 19:40:46.589 | 20 | insert.file.ok | ac26991b-9f8d-4831-b386-957e1b997958 | grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00134 | 1 | 25 | 이벤트 append | - |
+| 19:40:46.589 | 40 | insert.file.failed | ac26991b-9f8d-4831-b386-957e1b997958 | - | - | - | toy-data 파일 적재 실패 ← 트립 앵커 | reason=[   {     "expected": "number",     "code": "invalid_type",     "path": [       "grip_succeed"     ],     "message": "Invalid input: expected number, received string"   } ] · file=반려동물용품_CR01_강아지공룡알장난감_02002_01_20230923.json |
+| 19:40:46.590 | 40 | insert.file.failed | ac26991b-9f8d-4831-b386-957e1b997958 | - | - | - | toy-data 파일 적재 실패 | reason=[   {     "origin": "number",     "code": "too_big",     "maximum": 1,     "inclusive": true,     "path": [       "grip_succeed"     ],     "message": "Too big: expected number to be <=1"   } ] · file=반려동물용품_CR01_강아지공룡알장난감_02003_01_20230923.json |
+| 19:40:46.590 | 30 | insert.batch.done | ac26991b-9f8d-4831-b386-957e1b997958 | - | - | - | toy-data 적재 완료 | - |
+| 19:40:46.591 | 30 | - | ac26991b-9f8d-4831-b386-957e1b997958 | - | - | - | request completed | - |
+| 19:40:46.593 | 30 | projection.request | a60f2102-3814-4f3e-b87d-c0ed9f9b5c1c | - | - | - | projection 요청 수신 | - |
+| 19:40:46.595 | 20 | - | a60f2102-3814-4f3e-b87d-c0ed9f9b5c1c | - | - | - | 커서 조회 | projector=multimodal-projector |
+| 19:40:46.595 | 30 | projection.start | a60f2102-3814-4f3e-b87d-c0ed9f9b5c1c | - | - | - | catch-up 시작 | projector=multimodal-projector |
+| 19:40:46.596 | 20 | - | a60f2102-3814-4f3e-b87d-c0ed9f9b5c1c | - | - | - | 이벤트 조회 | - |
+| 19:40:46.597 | 20 | projection.event.mapped | a60f2102-3814-4f3e-b87d-c0ed9f9b5c1c | - | 2 | 1 | 이벤트 매핑 | projector=multimodal-projector |
+| 19:40:46.598 | 20 | projection.event.mapped | a60f2102-3814-4f3e-b87d-c0ed9f9b5c1c | - | 2 | 3 | 이벤트 매핑 | projector=multimodal-projector |
+
+</logging_context>
+
+<insight_read_db>
+
+## ReadModel: read_grip_result
+
+용도: 장면별 로봇 파지 결과 조회 (성공여부·포즈·그리퍼)
+
+키: (scene_key, attempt_num)
+
+```mschema
+# Table: read_grip_result
+[
+(scene_key:varchar, 장면 식별 키 = {카테고리}_{카메라코드}_{객체명}_{장면번호} (stream_id에서 'grip-attempt:' 제거), Primary Key, Examples: [반려동물용품_CR01_강아지공룡알장난감_00018]),
+(attempt_num:smallint, 같은 장면 내 파지 시도 번호 (파일명의 시도번호), Primary Key, Examples: [1]),
+(object_name:varchar, 파지 대상 객체명 (payload.objects[0].class_name), Examples: [강아지공룡알장난감]),
+(grip_succeed:smallint, 파지 성공 여부 (0=실패, 1=성공), Examples: [1]),
+(gripper_type:varchar(16), 그리퍼 종류 (현재 적재는 finger 고정, 흡착형은 suction), Examples: [finger]),
+(occurred_at:timestamptz, 데이터 촬영 일자 (파일명 날짜에서 도출), Examples: [2023-09-23T00:00:00Z]),
+(grip_2d_pose:jsonb, 2D 파지점 (핑거: xl,xr,yl,yr / 흡착: x,y), Examples: [{"xl":0,"xr":0,"yl":0,"yr":0}]),
+(grip_3d_pose:jsonb, 3D 파지점 (핑거: x1..z8 24좌표 / 흡착: x,y,z,roll,pitch,yaw,penetrate), Examples: [{"x1":10.2,"y1":3.1,"z1":-100.0, "...":"...", "z8":-90.5}]),
+(robot_tf:jsonb, 로봇 변환행렬 (rotation_3x3 9개 + translation_3x1 3개), Examples: [{"rotation_3x3":[1,0,0,0,1,0,0,0,1],"translation_3x1":[0,0,0]}]),
+(human_annotation_grasp:jsonb, 휴먼 어노테이션 파지 영역 (핑거: keypoints 2점), Examples: [[{"annotation_type":"keypoints","id":1,"annotation_points":[120,330,140,360],"num_keypoints":2}]]),
+(stream_id:varchar, ES 스트림 ID ("grip-attempt:" + scene_key) — 추적 키, Examples: [grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00018]),
+(global_seq:bigint, 투영 출처 이벤트의 ES 전역 시퀀스 — 추적 키, Examples: [1024])
+]
+```
+
+## ReadModel: read_multimodal
+
+용도: 장면별 2D이미지·비디오 미디어 링크 조회
+
+키: (scene_key, attempt_num)
+
+```mschema
+# Table: read_multimodal
+[
+(scene_key:varchar, 장면 식별 키 (read_grip_result와 동일 규칙), Primary Key, Examples: [반려동물용품_CR01_강아지공룡알장난감_00018]),
+(attempt_num:smallint, 같은 장면 내 파지 시도 번호, Primary Key, Examples: [1]),
+(occurred_at:timestamptz, 데이터 촬영 일자, Examples: [2023-09-23T00:00:00Z]),
+(image_2d_file_name:varchar, 원천 2D 이미지 파일명 (payload.2D_image_file_name), Examples: [반려동물용품_CR01_강아지공룡알장난감_00018_01_20230923.jpg]),
+(image_2d_uri:text, 2D 이미지 저장 위치 URI (현재 projector가 null로 둠 — 추후 매핑)),
+(video_file_name:varchar, 원천 비디오 파일명 (시도번호 자리가 항상 00 — 한 비디오 N:1로 여러 시도가 공유), Examples: [반려동물용품_CR01_강아지공룡알장난감_00018_00_20230923.mp4]),
+(video_uri:text, 비디오 저장 위치 URI (현재 projector가 null로 둠 — 추후 매핑)),
+(stream_id:varchar, ES 스트림 ID — 추적 키, Examples: [grip-attempt:반려동물용품_CR01_강아지공룡알장난감_00018]),
+(global_seq:bigint, 투영 출처 이벤트의 ES 전역 시퀀스 — 추적 키, Examples: [1024])
+]
+```
+
+</insight_read_db>
+
+## 1. 권고 (Recommendation)
+
+### Status
+proposed
+
+### Context (근거)
+- (level 40, `insert.file.failed`) toy-data 파일 적재 실패 ← 트립 앵커 · file=반려동물용품_CR01_강아지공룡알장난감_02002_01_20230923.json [corr:ac26991b-9f8d-4831-b386-957e1b997958] → 원천 파일의 grip_succeed 필드 누락/타입 위반 [corr:ac26991b-9f8d-4831-b386-957e1b997958] [corr:ac26991b-9f8d-4831-b386-957e1b997958]
+- (level 40, `insert.file.failed`) toy-data 파일 적재 실패 · file=반려동물용품_CR01_강아지공룡알장난감_02003_01_20230923.json [corr:ac26991b-9f8d-4831-b386-957e1b997958] → 원천 파일의 grip_succeed 필드 누락/타입 위반 [corr:ac26991b-9f8d-4831-b386-957e1b997958] [corr:ac26991b-9f8d-4831-b386-957e1b997958]
+- GripAttemptRecorded Insight 카드의 grip_succeed:number 정의와 src/insert/dto/toy-data.dto.ts 의 z.number().int().min(0).max(1) 검증 로직이 일치하나, 적재 단계 Zod 거절(insert.file.failed)은 원천 파일의 필드 타입/치 범위 위배로 Read Model 구조는 정상이다. [corr:ac26991b-9f8d-4831-b386-957e1b997958]
+- insert.file.failed 발생 시 event_store 미유입이므로 read_grip_result 및 read_multimodal 테이블의 커서/행 상태는 무해화되지, 결함 데이터는 적재 단계 차단된 원천 파일만 해당된다. [corr:ac26991b-9f8d-4831-b386-957e1b997958]
+- GripResultProjector.map 의 toyDataSchema.parse(event.payload) 는 미유입 이벤트가 도달하지 않아 투영 실패(poison event) 발생을 배제, 시스템의 intended Zod 방어 동작이 정지 상태이므로 Read Model 보강은 결함 격리 권고만 해당된다. [corr:ac26991b-9f8d-4831-b386-957e1b997958]
+
+### Decision Drivers
+- System Integrity (Zod rejection as intended defense)
+- Source Data Fidelity (preserve original defect for correction request)
+- Operational Overhead (minimize DB/Code changes)
+
+### Considered Options
+#### sourceDataCorrection
+- 접근: 유지 Zod 거절 + 원천 파일 수정 요청
+- 제안 필드: toyDataSchema, insertService
+- 트레이드오프: Zero code risk, preserves integrity, requires external workflow
+```typescript
+(existing toyDataSchema validation remains unchanged)
+```
+
+#### noInflowVerification
+- 접근: 무유입 검증 SQL 추가
+- 제안 필드: eventStoreReaderRepository
+- 트레이드오프: Adds DB overhead, confirms boundary correctly
+```typescript
+SELECT count(*) FROM event_store WHERE stream_id = 'grip-attempt:02002' AND attempt_num = 1; -- 기대값 0
+```
+
+#### schemaRelaxation
+- 접근: zod coerce/optional 화
+- 제안 필드: toyDataSchema
+- 트레이드오프: Violates defector value harmless principle, masks source defects, fails Driver System Integrity
+```typescript
+(기각 대안)
+```
+
+### Decision Outcome
+sourceDataCorrection
+
+### Consequences
+- (+) Maintains strict payload validation
+- (+) Prevents poisoned Read Model state
+- (+) Clear audit trail for data correction
+- (−) Requires external workflow for file correction
+- (−) Batch processing pauses until corrected (acceptable per lane)
+
+### Non-Goals
+- Modifying Zod schema to coerce defaults
+- Altering projector logic to skip failed events
+- Creating new tracking tables
+
+## 2. Read Model 생성 SQL (Read Model DDL)
+
+> 실행 게이트: 아래 변경은 인간 승인 후에만 적용한다 (human-in-the-loop).
+
+### 격리(containment) SQL — 신규 Read Model DDL 불필요, 결함 데이터 무해화가 조치다
+
+```sql
+-- 무유입 검증: zod 거절된 파일의 이벤트가 event_store 에 유입되지 않았음을 확인한다 (기대값 0)
+SELECT count(*) AS rejected_event_count FROM event_store WHERE (stream_id, attempt_num) IN (('grip-attempt:반려동물용품_CR01_강아지공룡알장난감_02002', 1), ('grip-attempt:반려동물용품_CR01_강아지공룡알장난감_02003', 1));
+```
+
+## 3. API Versioning
+
+### 버전 영향
+
+변 변경 없음. 스키마와 엔드포인트가 불변이며, Zod 검증 로직(toyDataSchema)이 그대로 유지되어 적재 단계의 방어 동작은 시스템 의도된 정지 상태이므로 외부 버전 호환이 필요하지.
+
+## Guardrails (constraints)
+
+- v1 자산(테이블/엔드포인트/프로젝터 name) 무손상
+- PK (scene_key, attempt_num) 유지
+- TypeScript any 금지
+- 식별자 전체 단어
+- DDL 실행·API 컷오버는 인간 승인 후에만 (human-in-the-loop)
+- Read Model 테이블명은 read_ 접두 스네이크 케이스

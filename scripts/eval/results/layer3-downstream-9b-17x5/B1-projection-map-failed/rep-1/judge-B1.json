@@ -1,0 +1,24 @@
+{
+  "groundedness": 2,
+  "diagnosisAccuracy": 3,
+  "sqlCorrectness": 1,
+  "versioningQuality": 2,
+  "unsupportedClaims": [
+    "T2 INSERT문의 hardcoded 값들(scene_key, object_name, pose 등)은 로그에 존재하지 않는 가상의 데이터임",
+    "T1에서 배치 트랜잭션 전체 롤백으로 정상 이벤트까지 미투영된다는 핵심 원인을 누락함",
+    "T3 쿼리는 Read Model에 이미 존재하는 레코드 수를 세는 것이지 미투영 이벤트를 조회하지 않음"
+  ],
+  "rationale": "T1은 결함 원인은 정확히 짚었으나 배치 트랜잭션 롤백으로 정상 이벤트까지 미투영된다는 핵심 메커니즘을 누락해 3점. T2는 ES/CQRS 원칙에 위배되는 수동 DB 패치와 로그에 없는 가짜 데이터 삽입을 제안해 근거 부족과 SQL 오류로 1점. T3은 미투영 이벤트를 조회하지 않고 기존 Read Model 레코드만 집계하는 잘못된 쿼리. T4는 자료 부족을 이유로 구체적인 v1 호환 절차를 제시하지 않고 일반론에 그쳐 2점.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 8956,
+    "completion_tokens": 2915,
+    "total_tokens": 11871,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2655
+    }
+  },
+  "latencyMs": 72068,
+  "judgedAt": "2026-09-11T13:26:03.855Z"
+}

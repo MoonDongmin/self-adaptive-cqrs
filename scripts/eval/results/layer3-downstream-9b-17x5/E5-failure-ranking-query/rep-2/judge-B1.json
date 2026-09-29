@@ -1,0 +1,22 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 2,
+  "versioningQuality": 5,
+  "unsupportedClaims": [
+    "insight.card.hit 이벤트 (자료 로그에 미등재)"
+  ],
+  "rationale": "T1 진단은 기존 Read Model의 집계/랭킹 부재 문제를 정확히 지적하여 정답 요지와 일치한다. T2/T3 SQL은 WHERE grip_succeed=0으로 필터링한 후 분모에 COUNT(grip_succeed)를 사용해 실패율이 항상 100%로 계산되는 논리적 오류가 있으며, 정답 요지가 명시한 사전 집계 Read Model 신설 원칙을 무시하고 온디맨드 쿼리로 해결하려 해 CQRS 아키텍처에 부적합하다. T4는 v2 경로 분리, 병행 운영, 백필 SQL, 이벤트 핸들러 설계 등 정답 요지의 조치 사항을 구체적이고 실행 가능한 절차로 완벽히 구현했다. 자료에 insight.card.hit 로그가 존재하지 않아 해당 언급은 근거 부족이다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 5770,
+    "completion_tokens": 3573,
+    "total_tokens": 9343,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3355
+    }
+  },
+  "latencyMs": 77198,
+  "judgedAt": "2026-09-11T14:51:22.617Z"
+}

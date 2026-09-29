@@ -1,0 +1,1 @@
+사용자가 '파지 실패가 가장 많은 객체 상위 목록'과 '실패 수, 실패율 순위'를 조회했으나, `read_object_failure_stats_v1` 테이블이 존재하지 않아 조회가 실패했습니다. 이는 `insight.card.miss` 로그에서 확인되듯, `object_name` 단위로 실패 수와 실패율을 집계하는 필드 (`failure_count`, `failure_rate`) 가 기존 `read_grip_result` 테이블에 없기 때문입니다. 기존 Read Model 은 `object_name` 과 `grip_succeed` 만 저장하므로, GROUP BY 와 집계 연산 없이 순위 정렬을 수행할 수 없는 구조적 결함이 원인입니다.

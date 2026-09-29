@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 5,
+  "completeness": 5,
+  "unsupportedClaims": [],
+  "rationale": "인용된 장면 키, 센서 수치(1.5m, 0.398m), 허용 범위([0.95,1.15], [0.01,0.3]) 및 Read Model 스키마 필드가 [자료] 로그와 정확히 일치하여 근거 충실성(5)을 만족한다. 정합성 위반 유형(poseConsistency_Violation), 모순 지점(gripSucceed=1 vs 물리적 범위 이탈), 처리 단계(Read Model 보강/격리)가 [정답 요지]와 완벽히 일치하여 진단 정확성(5)을 만족한다. 생성된 v2 DDL, Drizzle ORM 매핑, 프로젝터 로직이 실행 검증(4/4 통과)을 거쳤으며 NOT NULL 제약과 upsert 식별자 매칭이 정확하고 기존 v1 테이블 구조를 건드리지 않아 실행 가능성(5)을 만족한다. 권고, DDL/SQL, API 버저닝 세 요소가 상세히 기술되어 테이블명·클래스명·라우트명·컬럼 타입이 문서 내외에서 일관되게 매칭되어 완결성(5)을 만족한다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 23707,
+    "completion_tokens": 4610,
+    "total_tokens": 28317,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4306
+    }
+  },
+  "latencyMs": 133708,
+  "judgedAt": "2026-09-14T06:22:40.176Z"
+}

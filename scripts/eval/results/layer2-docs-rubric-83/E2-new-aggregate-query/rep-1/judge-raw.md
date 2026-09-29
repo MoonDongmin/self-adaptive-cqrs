@@ -1,0 +1,3 @@
+
+
+{"groundedness":5,"diagnosisAccuracy":5,"actionability":3,"completeness":5,"unsupportedClaims":[],"rationale":"groundedness: 인용된 로그, 스키마, 필드명 등이 [자료]와 정확히 일치하며 허위 수치가 없음. diagnosisAccuracy: 정답 요지와 동일하게 기존 1:1 테이블의 한계를 정확히 지적하고 object_name 기반 집계 Read Model 신설 및 API v2 병행을 진단함. actionability: 자동 검증 결과에서 'doubleprecision' 타입 오류가 발생하며, 성공률(upsert 시)이 단순 합산 로직으로 구현되어 의도한 누적 비율 산출과 다름. 오탈자 및 로직 수정 후 실행 가능하나 즉시 적용 시 오류 발생. completeness: 권고, SQL DDL, API 버저닝 세 요소가 모두 포함되며 테이블명·필드명·라우트명이 문서 전반에서 일관되게 사용됨."}

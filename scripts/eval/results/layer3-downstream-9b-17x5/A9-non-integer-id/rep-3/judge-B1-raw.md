@@ -1,0 +1,3 @@
+
+
+{"groundedness": 2, "diagnosisAccuracy": 5, "sqlCorrectness": 4, "versioningQuality": 2, "unsupportedClaims": ["T4에서 원본 데이터가 아닌 더미 값(grip_succeed=0, pose='[]')으로 ReadModel에 INSERT하여 복구하라고 제안함", "T4에서 자료에 없는 API 버전 경로 변경 및 신구 병행 운영을 일반론으로 제시함", "T4에서 정답 요지의 핵심인 '클라이언트 정수화 권고' 및 'v1 무손상' 조치 누락"], "rationale": "T1은 로그의 Zod 검증 오류와 정수 타입 불일치를 정확히 진단하여 정답 요지와 일치함(5점). T2/T3 SQL은 제공된 ReadModel 스키마를 활용해 누락 건을 식별하고 위반 필드를 추출하는 논리가 정확하나, 로그 테이블 스키마 부재로 인해 값을 하드코딩한 점은 제한적임(4점). T4는 정답 요지의 핵심인 '클라이언트 정수화 권고'와 'v1 무손상'을 누락하고, 자료에 없는 더미 데이터 DB 삽입 및 일반적인 API 버전화 전략을 제시하여 근거 부족과 위험한 조치 포함(2점). 전반적으로 T1/T2/T3는 우수하나 T4의 근거 없는 주장으로 인해 groundedness와 versioningQuality가 감점됨."}

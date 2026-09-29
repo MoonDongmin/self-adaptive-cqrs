@@ -1,0 +1,3 @@
+
+
+{"groundedness": 3, "diagnosisAccuracy": 5, "sqlCorrectness": 1, "versioningQuality": 1, "unsupportedClaims": ["read_grip_anomaly 테이블 및 컬럼 존재 가정", "grip_3d_pose를 JSON 배열로 간주한 jsonb_array_elements_text 사용", "robotTfTranslation Z값을 Base Position으로 해석하여 Gripper Z와 더하는 좌표계 오해"], "rationale": "T1은 로그 수치와 정합성 위반 문제를 정확히 매칭하여 높은 점수. T2/T3 SQL은 제공된 JSONB 객체 스키마와 호환되지 않는 함수를 사용하고, 로그가 이미 절대 좌표 위반을 명시함에도 Base+Gripper를 더하는 오해를 반영해 실행 불가. 정답 요지의 Read Model 보강 방향과 달리 새 테이블 생성을 제안했으며, T4는 v1 무손상 요구사항에 대해 답변 회피로 최저 점수."}

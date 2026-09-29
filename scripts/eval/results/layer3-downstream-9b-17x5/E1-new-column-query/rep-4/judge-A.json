@@ -1,0 +1,23 @@
+{
+  "groundedness": 4,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 5,
+  "versioningQuality": 3,
+  "unsupportedClaims": [
+    "T3 백필 SQL에서 event_store 테이블 직접 참조 (자료에 명시된 스키마 없음)",
+    "T4 컷오버 단계에서 API 경로 변경 주장과 기존 v1 클라이언트 유지 주장 간 논리적 충돌"
+  ],
+  "rationale": "T1~T3는 자료의 로그, 스키마, 권장안을 정확히 반영했으나 T3에서 event_store 직접 조회를 가정했고 T4의 라우팅 설명에 모순이 있어 4점. 진단은 정답 요지와 로그 근거가 정확히 일치하여 5점. SQL은 자료 DDL과 완벽 매칭되며 집계/백필 로직이 ES 관례에 맞게 정확히 작성되어 5점. 버전링은 병행 운영 개념은 포함했으나 자료의 핵심 제약인 human-in-the-loop 승인 누락과 라우팅 단계 내 논리적 모순으로 3점.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 20239,
+    "completion_tokens": 4005,
+    "total_tokens": 24244,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3779
+    }
+  },
+  "latencyMs": 119950,
+  "judgedAt": "2026-09-11T14:01:42.184Z"
+}

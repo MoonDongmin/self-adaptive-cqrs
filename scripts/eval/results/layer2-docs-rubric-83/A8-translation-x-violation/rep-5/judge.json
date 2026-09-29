@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 5,
+  "completeness": 5,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용된 장면 키, translation 값(X=1.2, Y=0.2), workspace 범위 및 gripSucceed 상태가 원본 JSON 및 로그와 정확히 일치한다. diagnosisAccuracy: 정답 요지의 '파지 성공 but translation 작업영역 이탈' 원인과 'v1 무손상 + 플래그 Read Model 보강/격리' 조치 방향이 정확히 일치한다. actionability: 자동 검증 결과에서 SQL 및 코드 모두 성공했으며, 기존 v1 테이블을 손상시키지 않고 격리 SQL과 신규 DDL로 요구사항을 충족한다. completeness: 권고, Read Model 생성 SQL, API 버저닝 세 요소가 모두 포함되어 있으며 테이블명·버전 관리·무손상 원칙이 문서 전반에서 일관되게 적용되었다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 17962,
+    "completion_tokens": 2737,
+    "total_tokens": 20699,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2536
+    }
+  },
+  "latencyMs": 80367,
+  "judgedAt": "2026-09-14T01:40:17.837Z"
+}

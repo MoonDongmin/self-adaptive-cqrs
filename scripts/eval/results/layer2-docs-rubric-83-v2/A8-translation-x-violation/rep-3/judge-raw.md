@@ -1,0 +1,3 @@
+
+
+{"groundedness": 4, "diagnosisAccuracy": 5, "actionability": 3, "completeness": 5, "unsupportedClaims": ["src/shared/database/schema/service/read-grip-result-v2.ts (저장소 파일 확인 결과 실재하지 않는 파일로 명시됨)"], "rationale": "groundedness: 인용 수치·장면 번호는 자료와 정확히 일치하나, 저장소에 실재하지 않는 read-grip-result-v2.ts 파일을 수정 대상으로 인용하여 감점. diagnosisAccuracy: 정답 요지의 파지 성공 맥락, translation 축 작업 영역 위반, v1 무손상 보강 방안과 진단 및 해결책이 정확히 일치. actionability: v2 Read Model 보강 및 API 추가 설계는 타당하나, 즉시 격리 SQL에서 기존 v1 테이블(read_grip_result)에 DELETE를 수행하여 'v1 무손상' 제약과 정답 요지에 위배됨. completeness: 권고, DDL, API 버저닝 세 요소가 모두 포함되며 테이블명·컬럼 매핑·라우트 경로가 서로 일관되게 기술됨."}

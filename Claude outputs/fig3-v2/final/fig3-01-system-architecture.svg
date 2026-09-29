@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">
+<defs></defs>
+<rect width="1200" height="760" fill="#ffffff"/>
+<rect x="30" y="40" width="200" height="64" rx="10" fill="#f1ecf8" stroke="#6a4ba0" stroke-width="1.6"/>
+<text x="130.0" y="68.8" text-anchor="middle" font-size="13.5" font-weight="700" fill="#5b3f8a">운영자 · 개발자</text>
+<text x="130.0" y="85.2" text-anchor="middle" font-size="11" fill="#556">HTTP 클라이언트 · 파지 시도 JSON</text>
+<text x="130" y="122" text-anchor="middle" font-size="9" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">POST /insert · /projection</text>
+<text x="130" y="135" text-anchor="middle" font-size="9" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">GET /insight/cards/:name</text>
+<polyline points="230,72 260,72" fill="none" stroke="#444" stroke-width="1.3"/>
+<text x="245" y="64" text-anchor="middle" font-size="9" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">HTTP</text>
+<path d="M260,34 h920 v390 h-920 z" fill="#ffffff" stroke="#222222" stroke-width="1.4"/>
+<path d="M260,34 l10,-10 h920 l-10,10 z" fill="#e9edf2" stroke="#222222" stroke-width="1.4"/>
+<path d="M1180,34 l10,-10 v390 l-10,10 z" fill="#d5dbe3" stroke="#222222" stroke-width="1.4"/>
+<text x="272" y="52" text-anchor="start" font-size="12" fill="#223" font-weight="600">NestJS 애플리케이션 (Node.js · TypeScript)</text>
+<text x="272" y="66" text-anchor="start" font-size="9.5" fill="#556">단일 프로세스 · 기능 모듈 · Drizzle ORM · nestjs-pino</text>
+<rect x="280" y="78" width="880" height="108" rx="14" fill="#fafbfc" stroke="#999" stroke-width="1.2" stroke-dasharray="7 5"/>
+<text x="298" y="102" font-size="13" font-weight="600" fill="#777">관리 대상 시스템 — 이벤트 소싱·CQRS</text>
+<rect x="295" y="108" width="200" height="66" fill="#ffffff" stroke="#8b95a3" stroke-width="1.5"/>
+<rect x="473" y="114" width="14" height="16" fill="#fff" stroke="#8b95a3" stroke-width="1"/>
+<rect x="469" y="117" width="8" height="4" fill="#fff" stroke="#8b95a3" stroke-width="1"/>
+<rect x="469" y="123" width="8" height="4" fill="#fff" stroke="#8b95a3" stroke-width="1"/>
+<text x="305" y="124" text-anchor="start" font-size="9.5" fill="#667">«module»</text>
+<text x="305" y="140" text-anchor="start" font-size="12" fill="#333333" font-weight="600">InsertModule</text>
+<line x1="295" y1="148" x2="495" y2="148" stroke="#8b95a3" stroke-width="0.8"/>
+<text x="305" y="160" text-anchor="start" font-size="9" fill="#334">InsertService · DriftDetector</text>
+<text x="305" y="173" text-anchor="start" font-size="9" fill="#334">EventStoreRepository</text>
+<rect x="512" y="108" width="200" height="66" fill="#ffffff" stroke="#8b95a3" stroke-width="1.5"/>
+<rect x="690" y="114" width="14" height="16" fill="#fff" stroke="#8b95a3" stroke-width="1"/>
+<rect x="686" y="117" width="8" height="4" fill="#fff" stroke="#8b95a3" stroke-width="1"/>
+<rect x="686" y="123" width="8" height="4" fill="#fff" stroke="#8b95a3" stroke-width="1"/>
+<text x="522" y="124" text-anchor="start" font-size="9.5" fill="#667">«module»</text>
+<text x="522" y="140" text-anchor="start" font-size="12" fill="#333333" font-weight="600">ProjectionModule</text>
+<line x1="512" y1="148" x2="712" y2="148" stroke="#8b95a3" stroke-width="0.8"/>
+<text x="522" y="160" text-anchor="start" font-size="9" fill="#334">CatchUpRunner · Projector ×2</text>
+<text x="522" y="173" text-anchor="start" font-size="9" fill="#334">SensorValuePublisher</text>
+<rect x="729" y="108" width="200" height="66" fill="#ffffff" stroke="#8b95a3" stroke-width="1.5"/>
+<rect x="907" y="114" width="14" height="16" fill="#fff" stroke="#8b95a3" stroke-width="1"/>
+<rect x="903" y="117" width="8" height="4" fill="#fff" stroke="#8b95a3" stroke-width="1"/>
+<rect x="903" y="123" width="8" height="4" fill="#fff" stroke="#8b95a3" stroke-width="1"/>
+<text x="739" y="124" text-anchor="start" font-size="9.5" fill="#667">«module»</text>
+<text x="739" y="140" text-anchor="start" font-size="12" fill="#333333" font-weight="600">InsightModule</text>
+<line x1="729" y1="148" x2="929" y2="148" stroke="#8b95a3" stroke-width="0.8"/>
+<text x="739" y="160" text-anchor="start" font-size="9" fill="#334">InsightService · Renderer</text>
+<text x="739" y="173" text-anchor="start" font-size="9" fill="#334">CardDriftObserver · Seed</text>
+<rect x="946" y="108" width="200" height="66" fill="#ffffff" stroke="#8b95a3" stroke-width="1.5"/>
+<rect x="1124" y="114" width="14" height="16" fill="#fff" stroke="#8b95a3" stroke-width="1"/>
+<rect x="1120" y="117" width="8" height="4" fill="#fff" stroke="#8b95a3" stroke-width="1"/>
+<rect x="1120" y="123" width="8" height="4" fill="#fff" stroke="#8b95a3" stroke-width="1"/>
+<text x="956" y="124" text-anchor="start" font-size="9.5" fill="#667">«module»</text>
+<text x="956" y="140" text-anchor="start" font-size="12" fill="#333333" font-weight="600">LogModule</text>
+<line x1="946" y1="148" x2="1146" y2="148" stroke="#8b95a3" stroke-width="0.8"/>
+<text x="956" y="160" text-anchor="start" font-size="9" fill="#334">LogService (log.json tail)</text>
+<text x="956" y="173" text-anchor="start" font-size="9" fill="#334">LogEvent/CursorRepository</text>
+<rect x="280" y="200" width="880" height="128" rx="14" fill="#fffdf6" stroke="#c9b27a" stroke-width="1.2" stroke-dasharray="7 5"/>
+<text x="298" y="224" font-size="13" font-weight="600" fill="#777">관리 시스템 — LLM 영역 (본 연구)</text>
+<rect x="295" y="232" width="250" height="84" fill="#ffffff" stroke="#8b95a3" stroke-width="1.5"/>
+<rect x="523" y="238" width="14" height="16" fill="#fff" stroke="#8b95a3" stroke-width="1"/>
+<rect x="519" y="241" width="8" height="4" fill="#fff" stroke="#8b95a3" stroke-width="1"/>
+<rect x="519" y="247" width="8" height="4" fill="#fff" stroke="#8b95a3" stroke-width="1"/>
+<text x="305" y="248" text-anchor="start" font-size="9.5" fill="#667">«module»</text>
+<text x="305" y="264" text-anchor="start" font-size="12" fill="#333333" font-weight="600">LlmContextModule</text>
+<line x1="295" y1="272" x2="545" y2="272" stroke="#8b95a3" stroke-width="0.8"/>
+<text x="305" y="284" text-anchor="start" font-size="9" fill="#334">LogConsumer (Kafka) · Prejudge</text>
+<text x="305" y="297" text-anchor="start" font-size="9" fill="#334">LLMContextService · LogWindowRepository</text>
+<text x="305" y="310" text-anchor="start" font-size="9" fill="#334">DIAGNOSIS_TOOLKIT provider</text>
+<rect x="565" y="232" width="250" height="84" fill="#ffffff" stroke="#8b95a3" stroke-width="1.5"/>
+<rect x="793" y="238" width="14" height="16" fill="#fff" stroke="#8b95a3" stroke-width="1"/>
+<rect x="789" y="241" width="8" height="4" fill="#fff" stroke="#8b95a3" stroke-width="1"/>
+<rect x="789" y="247" width="8" height="4" fill="#fff" stroke="#8b95a3" stroke-width="1"/>
+<text x="575" y="248" text-anchor="start" font-size="9.5" fill="#667">«module»</text>
+<text x="575" y="264" text-anchor="start" font-size="12" fill="#333333" font-weight="600">SensorObserverModule</text>
+<line x1="565" y1="272" x2="815" y2="272" stroke="#8b95a3" stroke-width="0.8"/>
+<text x="575" y="284" text-anchor="start" font-size="9" fill="#334">SensorValueConsumer · Annotator</text>
+<text x="575" y="297" text-anchor="start" font-size="9" fill="#334">SensorScreener · SensorObserverService</text>
+<text x="575" y="310" text-anchor="start" font-size="9" fill="#334">DIAGNOSIS_TOOLKIT provider</text>
+<rect x="835" y="232" width="310" height="84" fill="#fff8e8" stroke="#a0812f" stroke-width="1.5"/>
+<rect x="1123" y="238" width="14" height="16" fill="#fff" stroke="#a0812f" stroke-width="1"/>
+<rect x="1119" y="241" width="8" height="4" fill="#fff" stroke="#a0812f" stroke-width="1"/>
+<rect x="1119" y="247" width="8" height="4" fill="#fff" stroke="#a0812f" stroke-width="1"/>
+<text x="845" y="248" text-anchor="start" font-size="9.5" fill="#667">«library»</text>
+<text x="845" y="264" text-anchor="start" font-size="12" fill="#8a6d1f" font-weight="600">analysis/ (순수 라이브러리)</text>
+<line x1="835" y1="272" x2="1145" y2="272" stroke="#a0812f" stroke-width="0.8"/>
+<text x="845" y="284" text-anchor="start" font-size="9" fill="#334">buildAnalysisGraph(toolkit) — LangGraph</text>
+<text x="845" y="297" text-anchor="start" font-size="9" fill="#334">nodes · prompts · validation · render</text>
+<text x="845" y="310" text-anchor="start" font-size="9" fill="#334">DiagnosisToolkit (도구 5종)</text>
+<rect x="280" y="342" width="880" height="74" rx="14" fill="#f4f6f9" stroke="#999" stroke-width="1.2" stroke-dasharray="7 5"/>
+<text x="298" y="366" font-size="13" font-weight="600" fill="#777">공유 인프라 (@Global)</text>
+<rect x="295" y="354" width="330" height="56" fill="#ffffff" stroke="#8b95a3" stroke-width="1.5"/>
+<rect x="603" y="360" width="14" height="16" fill="#fff" stroke="#8b95a3" stroke-width="1"/>
+<rect x="599" y="363" width="8" height="4" fill="#fff" stroke="#8b95a3" stroke-width="1"/>
+<rect x="599" y="369" width="8" height="4" fill="#fff" stroke="#8b95a3" stroke-width="1"/>
+<text x="305" y="370" text-anchor="start" font-size="9.5" fill="#667">«module»</text>
+<text x="305" y="386" text-anchor="start" font-size="12" fill="#333333" font-weight="600">AppLoggerModule</text>
+<line x1="295" y1="394" x2="625" y2="394" stroke="#8b95a3" stroke-width="0.8"/>
+<text x="305" y="406" text-anchor="start" font-size="9" fill="#334">Pino: 콘솔 · 파일(log.json) · TCP 소켓</text>
+<rect x="645" y="354" width="330" height="56" fill="#ffffff" stroke="#8b95a3" stroke-width="1.5"/>
+<rect x="953" y="360" width="14" height="16" fill="#fff" stroke="#8b95a3" stroke-width="1"/>
+<rect x="949" y="363" width="8" height="4" fill="#fff" stroke="#8b95a3" stroke-width="1"/>
+<rect x="949" y="369" width="8" height="4" fill="#fff" stroke="#8b95a3" stroke-width="1"/>
+<text x="655" y="370" text-anchor="start" font-size="9.5" fill="#667">«module»</text>
+<text x="655" y="386" text-anchor="start" font-size="12" fill="#333333" font-weight="600">DrizzleModule</text>
+<line x1="645" y1="394" x2="975" y2="394" stroke="#8b95a3" stroke-width="0.8"/>
+<text x="655" y="406" text-anchor="start" font-size="9" fill="#334">PostgreSQL 커넥션 · 스키마 배럴</text>
+<path d="M30,530 h220 v110 h-220 z" fill="#ffffff" stroke="#222222" stroke-width="1.4"/>
+<path d="M30,530 l10,-10 h220 l-10,10 z" fill="#e9edf2" stroke="#222222" stroke-width="1.4"/>
+<path d="M250,530 l10,-10 v110 l-10,10 z" fill="#d5dbe3" stroke="#222222" stroke-width="1.4"/>
+<text x="42" y="548" text-anchor="start" font-size="12" fill="#223" font-weight="600">파일 시스템</text>
+<text x="42" y="562" text-anchor="start" font-size="9.5" fill="#556">data/ · logs/log.json · llm-docs/</text>
+<text x="45" y="580" text-anchor="start" font-size="9.5" fill="#334">입력 JSON · 로그 파일</text>
+<text x="45" y="596" text-anchor="start" font-size="9.5" fill="#334">단일 Docs(.md) 산출물</text>
+<path d="M270,530 h260 v110 h-260 z" fill="#ffffff" stroke="#222222" stroke-width="1.4"/>
+<path d="M270,530 l10,-10 h260 l-10,10 z" fill="#e9edf2" stroke="#222222" stroke-width="1.4"/>
+<path d="M530,530 l10,-10 v110 l-10,10 z" fill="#d5dbe3" stroke="#222222" stroke-width="1.4"/>
+<text x="282" y="548" text-anchor="start" font-size="12" fill="#223" font-weight="600">TimescaleDB (PostgreSQL 17)</text>
+<text x="282" y="562" text-anchor="start" font-size="9.5" fill="#556">Docker · 단일 인스턴스</text>
+<text x="285" y="580" text-anchor="start" font-size="9.5" fill="#334">event_store · projection_cursor</text>
+<text x="285" y="596" text-anchor="start" font-size="9.5" fill="#334">read_grip_result · read_multimodal</text>
+<text x="285" y="612" text-anchor="start" font-size="9.5" fill="#334">log_event(hypertable) · log_cursor · insight_*</text>
+<path d="M550,530 h340 v110 h-340 z" fill="#ffffff" stroke="#222222" stroke-width="1.4"/>
+<path d="M550,530 l10,-10 h340 l-10,10 z" fill="#e9edf2" stroke="#222222" stroke-width="1.4"/>
+<path d="M890,530 l10,-10 v110 l-10,10 z" fill="#d5dbe3" stroke="#222222" stroke-width="1.4"/>
+<text x="562" y="548" text-anchor="start" font-size="12" fill="#223" font-weight="600">Kafka KRaft ×3 + fluent-bit</text>
+<text x="562" y="562" text-anchor="start" font-size="9.5" fill="#556">Docker · log-events · sensor-values</text>
+<text x="565" y="580" text-anchor="start" font-size="9.5" fill="#334">fluent-bit: TCP :5170 수신 → log-events 발행</text>
+<text x="565" y="596" text-anchor="start" font-size="9.5" fill="#334">브로커 3노드 · 컨슈머 그룹 (5초 폴링)</text>
+<path d="M910,530 h270 v110 h-270 z" fill="#ffffff" stroke="#222222" stroke-width="1.4"/>
+<path d="M910,530 l10,-10 h270 l-10,10 z" fill="#e9edf2" stroke="#222222" stroke-width="1.4"/>
+<path d="M1180,530 l10,-10 v110 l-10,10 z" fill="#d5dbe3" stroke="#222222" stroke-width="1.4"/>
+<text x="922" y="548" text-anchor="start" font-size="12" fill="#223" font-weight="600">LM Studio (로컬 LLM)</text>
+<text x="922" y="562" text-anchor="start" font-size="9.5" fill="#556">Mac Studio · OpenAI 호환 API</text>
+<text x="925" y="580" text-anchor="start" font-size="9.5" fill="#334">1차 선별: qwen3.5-9b</text>
+<text x="925" y="596" text-anchor="start" font-size="9.5" fill="#334">분석: qwen3.6-27b 계열</text>
+<text x="925" y="612" text-anchor="start" font-size="9.5" fill="#334">temperature 0 · 직렬 큐 · 외부 전송 없음</text>
+<polyline points="330,410 330,450 140,450 140,520" fill="none" stroke="#444" stroke-width="1.3" stroke-dasharray="6 4"/>
+<text x="235" y="444" text-anchor="middle" font-size="9" fill="#444" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">파일 I/O (log.json · llm-docs/)</text>
+<polyline points="760,410 760,470 400,470 400,520" fill="none" stroke="#444" stroke-width="1.3"/>
+<text x="560" y="464" text-anchor="middle" font-size="9" fill="#444" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">PostgreSQL 프로토콜 (Drizzle)</text>
+<polyline points="600,410 600,520" fill="none" stroke="#444" stroke-width="1.3"/>
+<text x="594" y="505" text-anchor="end" font-size="9" fill="#444" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">TCP 로그 → fluent-bit</text>
+<polyline points="635,328 635,342" fill="none" stroke="#444" stroke-width="1.3"/>
+<polyline points="635,416 635,520" fill="none" stroke="#444" stroke-width="1.3"/>
+<text x="641" y="505" text-anchor="start" font-size="9" fill="#444" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">consume</text>
+<polyline points="990,316 990,520" fill="none" stroke="#444" stroke-width="1.3"/>
+<text x="996" y="505" text-anchor="start" font-size="9" fill="#444" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">OpenAI 호환 HTTP (LLM 호출)</text>
+<text x="600" y="700" text-anchor="middle" font-size="10" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">관리 대상 시스템(상단 모듈)은 변경 없이 로그·데이터로만 관리 시스템(LLM 영역)과 연결되며, 모든 LLM 호출은 로컬 LM Studio로만 향한다</text>
+</svg>

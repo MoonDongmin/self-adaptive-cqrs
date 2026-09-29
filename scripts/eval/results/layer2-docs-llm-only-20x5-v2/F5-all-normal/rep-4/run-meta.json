@@ -1,0 +1,33 @@
+{
+  "scenarioId": "F5-all-normal",
+  "rep": 4,
+  "startedAt": "2026-08-13T03:05:53.706Z",
+  "expectsDocs": false,
+  "channel": "none",
+  "stagedCount": 30,
+  "insert": {
+    "inserted": 30,
+    "failed": []
+  },
+  "projection": {
+    "multimodalProcessed": 30,
+    "gripResultOk": true,
+    "gripResultProcessed": 30
+  },
+  "exitReason": "clean-no-docs",
+  "observedCount": 30,
+  "projectedCount": 30,
+  "events": [
+    {
+      "action": "llm.analysis.failed",
+      "reason": "Error: 선판단 출력이 max_tokens(1024)에서 잘림 — content 길이 2194. PREJUDGE_MAX_OUTPUT_TOKENS 상향 필요."
+    },
+    {
+      "action": "llm.analysis.failed",
+      "reason": "Error: 선판단 출력이 max_tokens(1024)에서 잘림 — content 길이 2074. PREJUDGE_MAX_OUTPUT_TOKENS 상향 필요."
+    }
+  ],
+  "finishedAt": "2026-08-13T03:16:44.115Z",
+  "durationSeconds": 650,
+  "collectedDocs": []
+}

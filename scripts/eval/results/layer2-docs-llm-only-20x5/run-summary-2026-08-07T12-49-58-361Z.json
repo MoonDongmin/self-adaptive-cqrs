@@ -1,9 +1,0 @@
-[
-  {
-    "scenarioId": "E4-time-series-query",
-    "rep": 2,
-    "docs": 0,
-    "exitReason": "timeout",
-    "durationSeconds": 7224
-  }
-]

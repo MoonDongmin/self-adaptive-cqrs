@@ -1,0 +1,3 @@
+
+
+{"groundedness": 4, "diagnosisAccuracy": 5, "sqlCorrectness": 2, "versioningQuality": 5, "unsupportedClaims": ["T3 백필 SQL에서 자료에 존재하지 않는 event_store 테이블 및 컬럼 구조를 가정함", "PostgreSQL JSONB 배열 추출 문법 (payload->...)->'0'::double precision이 구문 오류이며 자료에 없음"], "rationale": "T1 진단과 T2 DDL, T4 버전 관리 절차는 자료의 로그, 스키마, 제약조건을 정확히 반영하여 높은 점수. T3의 백필 SQL은 자료에 없는 event_store 테이블을 가정하고 PostgreSQL JSONB 배열 추출 문법이 구문 오류이므로 sqlCorrectness와 groundedness에서 감점. T4는 병행 운영과 human-in-the-loop 절차를 명확히 서술하여 버전 관리 기준을 충족함."}

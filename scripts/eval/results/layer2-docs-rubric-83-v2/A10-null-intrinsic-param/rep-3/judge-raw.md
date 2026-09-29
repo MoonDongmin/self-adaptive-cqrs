@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 2, "completeness": 3, "unsupportedClaims": ["toyDataSchema.cody, toyDataSchema.fx (제공된 소스 코드 발췌에서는 cameraIntrinsicSchema로 정의되어 있음)"], "rationale": "groundedness: 인용된 로그, 필드명(cody/fx), Zod 실패 메시지 및 소스 코드 경로가 [자료]와 정확히 일치한다. diagnosisAccuracy: null 유입으로 인한 Zod 검증 실패 원인과 발생 위치(필드, 처리 단계)를 정확히 진단하였다. actionability: 정답 요지에서 요구하는 'null 유입 추적 Read Model 보강'을 누락하고 격리 확인용 SELECT만 제시하여 실제 문제 해결 및 추적 조치로 이어지지 않는다. completeness: TL;DR과 권고에서 'Read Model 보강'을 명시했으나 SQL 절에서는 'DDL 불필요'라며 검증 쿼리만 제공해 요소 간 모순이 발생하며, API 버저닝 절에 오타가 있다."}

@@ -1,0 +1,24 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 4,
+  "versioningQuality": 5,
+  "unsupportedClaims": [
+    "T1에서 'POST /grip-result-with-media 엔드포인트 호출'로 진단했으나 자료 로그는 insight.card.request 발생을 기록함",
+    "T3 백필 SQL에서 read_grip_result 테이블에 존재하지 않는 image_2d_file_name 컬럼을 참조함",
+    "T4에서 API 경로에 /v1/ 접두사를 추가했으나 자료는 /projection/grip-result 만 명시"
+  ],
+  "rationale": "T1은 자료 로그와 정답 요지의 분리된 Read Model 원인 분석이 정확히 일치해 5점. T2는 자료에 명시된 DDL 및 Insight 등록 SQL을 그대로 적용해 5점. T3의 핵심 조회 SELECT 문은 정답이나 백필 INSERT에서 존재하지 않는 컬럼을 참조하는 SQL 오류가 있어 4점. T4는 병행 운영, 컷오버, human-in-the-loop 승인 및 롤백 절차를 자료 제약조건에 맞게 구체적으로 서술해 5점.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 14241,
+    "completion_tokens": 4804,
+    "total_tokens": 19045,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4562
+    }
+  },
+  "latencyMs": 121742,
+  "judgedAt": "2026-09-11T14:29:09.646Z"
+}

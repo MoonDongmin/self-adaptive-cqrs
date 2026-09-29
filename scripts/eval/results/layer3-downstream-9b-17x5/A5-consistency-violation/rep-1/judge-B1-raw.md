@@ -1,0 +1,3 @@
+
+
+{"groundedness": 3, "diagnosisAccuracy": 5, "sqlCorrectness": 2, "versioningQuality": 1, "unsupportedClaims": ["grip_3d_pose를 JSON 배열로 간주해 jsonb_array_elements_text 함수 사용", "read_grip_anomaly 테이블 및 하드코딩된 워크스페이스/그리퍼 설정 컬럼 임의 설계", "v1 API 스키마 정보 부족으로 T4 수행 불가 주장"], "rationale": "T1은 자료의 경고와 원시 값을 정확히 매칭해 정답 요지의 문제·원인을 완벽히 진단했다(5점). 그러나 T2/T3 SQL은 정답 요지의 'Read Model 보강' 지시를 무시하고 새 테이블을 생성했으며, grip_3d_pose JSONB 객체를 배열 함수로 파싱하는 문법 오류와 하드코딩된 설정값으로 실행 가능성이 낮다(2점). T4는 v1 무손상 원칙에 부합하는 구체적인 버전 경로·병행 운영·마이그레이션 절차를 제시하지 않고 '자료 부족'으로 회피해 실무 적용이 불가능하다(1점). 전반적으로 T2/T3에서 자료에 없는 스키마와 함수를 임의로 설계해 근거 기반성도 훼손했다(3점)."}

@@ -1,0 +1,3 @@
+
+
+{"groundedness": 4, "diagnosisAccuracy": 5, "sqlCorrectness": 1, "versioningQuality": 5, "unsupportedClaims": [], "rationale": "T1은 자료의 로그와 파일명을 정확히 인용하여 null 유입 및 Zod 검증 실패 원인을 정답 요지와 일치하게 진단(5)했으며, T2는 격리 검증 SQL로 자료와 정확히 매칭됨. 그러나 T3에서 필드명별 집계 요구사항에 대해 T2 SQL을 그대로 복사·붙여넣기하여 질문을 미수행했으므로 sqlCorrectness는 1로 감점. T4는 자료의 Decision Outcome과 제약사항을 반영해 DDL/API 변경 없이 무유입 검증만 수행한다는 구체적 v1 호환 절차를 제시(5)함. 전반적으로 사실 기반은 정확하나(T4), T3의 복사 오류가 전체 품질을 제한함."}

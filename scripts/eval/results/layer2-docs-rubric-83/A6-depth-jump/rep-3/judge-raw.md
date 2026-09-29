@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 3, "completeness": 5, "unsupportedClaims": [], "rationale": "groundedness: 인용된 장면 키, 시도 번호, Z좌표 값 및 Δ=0.110m 급변 수치가 [자료]의 원시 로그와 정확히 일치하며 근거 없는 주장은 없음. diagnosisAccuracy: 정답 요지의 핵심(동장 시도 간 Δ>0.10m 급변, 값은 물리 범위 내, v2 Read Model로 변화량 계산·플래그, v1 무손상)을 정확히 반영함. actionability: PostgreSQL DDL에서 doublePrecision은 유효한 타입명이 아니며 공백이 필요한 DOUBLE PRECISION이어야 함. 자동 검증 결과의 실패 원인이므로 소폭 수정 후 실행 가능하나 그대로 적용 시 실패함. completeness: 권고, Read Model DDL/매핑, API 버저닝 세 요소가 모두 포함되며 테이블명·프로젝터·라우트 간 일관성이 유지됨."}

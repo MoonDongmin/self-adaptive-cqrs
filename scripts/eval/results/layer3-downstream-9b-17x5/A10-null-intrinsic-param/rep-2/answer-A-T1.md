@@ -1,0 +1,1 @@
+toy-data 파일 적재 중 `camera_info.camera_intrinsic_param` 내의 `cody` 및 `fx` 필드가 `null` 값으로 유입되어 Zod 스키마의 `expected number` 검증에 실패 (`invalid_type`) 하였습니다. 이로 인해 `insert.file.failed` 로그가 발생하며, 해당 필드 누락으로 인해 생성된 이벤트는 event_store 에 저장되지 않고 배치 트랜잭션은 성공 파일만 정상 처리되었습니다. 결과적으로 `read_grip_result` 및 `read_multimodal` 같은 Read Model 에는 해당 장면의 파지 결과 데이터가 반영되지 않아 데이터 무결성 손실이 발생했습니다.

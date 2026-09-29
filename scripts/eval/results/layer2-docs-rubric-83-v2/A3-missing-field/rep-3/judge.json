@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 2,
+  "completeness": 3,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용된 로그, 파일명, Zod 경로 및 소스 코드 구조가 모두 [자료]와 저장소 확인 결과와 정확히 일치한다. diagnosisAccuracy: 필수 필드 누락에 따른 Zod 파싱 실패 및 적재 거절 원인을 정확히 진단했으며, 정답 요지의 v1 무손상 및 원천 데이터 수정 권고와 완전히 일치한다. actionability: 정답 요지에서 요구한 Read Model/검증 로그 보강을 위한 실제 DDL이나 코드 변경안을 제시하지 않고 검증용 SELECT 쿼리만 제공하여 rubric (8)항에 따라 감점한다. completeness: 권고, SQL, API 버저닝 세 요소가 모두 존재하지만, TL;DR에서 '보강한다'고 명시한 반면 SQL 절에서는 '신규 DDL 불필요'라고 하여 서로 모순되며 rubric (2)항에 따라 감점한다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 21483,
+    "completion_tokens": 3950,
+    "total_tokens": 25433,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3711
+    }
+  },
+  "latencyMs": 122378,
+  "judgedAt": "2026-09-14T05:57:36.420Z"
+}

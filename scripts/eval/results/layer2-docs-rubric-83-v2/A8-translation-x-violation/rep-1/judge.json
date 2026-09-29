@@ -1,0 +1,22 @@
+{
+  "groundedness": 3,
+  "diagnosisAccuracy": 5,
+  "actionability": 4,
+  "completeness": 5,
+  "unsupportedClaims": [
+    "`src/shared/database/schema/service/read-grip-result-v2.ts` 파일이 저장소 확인 결과 실재하지 않음에도 코드 블록과 수정 대상으로 인용함."
+  ],
+  "rationale": "groundedness: 핵심 관측값과 장면 번호는 정확하나, 파일 확인 결과 실재하지 않는 v2 스키마 파일을 수정 대상으로 인용하여 근거 충실성이 떨어짐. diagnosisAccuracy: 정답 요지의 원인(translation 범위를 벗어난 물리적 모순), 조치 방향(v2 보강, v1 무손상)과 완벽히 일치. actionability: 기각한 격리 조치(DELETE)를 즉시 실행 SQL로 별도 수록하여 내부 일관성이 다소 떨어지며, CHECK 제약식 괄호 생략으로 인한 SQL 해석 모호함이 존재. completeness: 권고, DDL, API 버저닝 세 요소가 모두 포함되며 테이블명·라우트·스키마 간 참조가 일치하고 누락 없이 완결됨.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 21063,
+    "completion_tokens": 5321,
+    "total_tokens": 26384,
+    "completion_tokens_details": {
+      "reasoning_tokens": 5079
+    }
+  },
+  "latencyMs": 148811,
+  "judgedAt": "2026-09-14T06:46:34.367Z"
+}

@@ -1,0 +1,22 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 3,
+  "versioningQuality": 1,
+  "unsupportedClaims": [
+    "T4에서 v1 API 관련 자료 부재를 이유로 답변을 거부함 (정답 요지에서는 클라이언트 타입 정규화 권고 및 v1 무손상 조치 요구)"
+  ],
+  "rationale": "groundedness는 자료의 로그와 스키마만 정확히 인용하고 근거 없는 추측을 배제하여 5점. diagnosisAccuracy는 T1에서 Zod 검증 실패 및 grip_succeed 필드의 타입/도메인 위반 원인을 정답 요지와 정확히 매칭하여 5점. sqlCorrectness는 T2 검증 로직은 타당하나 CTE 구조가 불필요하게 복잡하고, T3는 집계 질문임에도 파일명 기준으로 GROUP BY하여 집계의 의미를 상실해 3점. versioningQuality는 정답 요지에서 요구하는 클라이언트 타입 정규화 권고 및 v1 무손상 구체적 절차를 제시하지 않고 자료 부재를 이유로 답변을 거부해 1점.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 12774,
+    "completion_tokens": 3130,
+    "total_tokens": 15904,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2890
+    }
+  },
+  "latencyMs": 82807,
+  "judgedAt": "2026-09-11T11:35:10.212Z"
+}

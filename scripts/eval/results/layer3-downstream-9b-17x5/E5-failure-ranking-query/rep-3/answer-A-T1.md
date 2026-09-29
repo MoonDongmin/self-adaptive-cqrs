@@ -1,0 +1,1 @@
+사용자가 `POST /grip-failure-stats` 엔드포인트를 호출하여 파지 실패가 가장 많은 객체 상위 목록 (실패 수 및 실패율 순위) 을 조회했으나, 기존 Read Model 에는 해당 집계 데이터가 존재하지 않아 조회 요청이 실패했습니다. 이는 `read_grip_result` 테이블이 원본 기록 (Record) 으로만 설계되어 `object_name` 에 따른 실패 수 (`grip_succeed` 필드 기준) 와 실패율 (`fail_count / total_count`) 을 GROUP BY 로 산출할 수 없으며, `insight.card.miss` 로그에서 "insight 카드 없음"이 반복적으로 발생했기 때문입니다.

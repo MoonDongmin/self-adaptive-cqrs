@@ -1,0 +1,24 @@
+{
+  "scenarioId": "F2-normal-retry",
+  "rep": 4,
+  "startedAt": "2026-08-13T02:49:44.827Z",
+  "expectsDocs": false,
+  "channel": "none",
+  "stagedCount": 30,
+  "insert": {
+    "inserted": 30,
+    "failed": []
+  },
+  "projection": {
+    "multimodalProcessed": 30,
+    "gripResultOk": true,
+    "gripResultProcessed": 30
+  },
+  "exitReason": "clean-no-docs",
+  "observedCount": 30,
+  "projectedCount": 30,
+  "events": [],
+  "finishedAt": "2026-08-13T02:56:55.152Z",
+  "durationSeconds": 430,
+  "collectedDocs": []
+}

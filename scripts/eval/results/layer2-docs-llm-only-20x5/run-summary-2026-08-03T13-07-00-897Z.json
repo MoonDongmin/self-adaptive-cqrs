@@ -1,9 +1,0 @@
-[
-  {
-    "scenarioId": "A8-translation-x-violation",
-    "rep": 1,
-    "docs": 0,
-    "exitReason": "timeout",
-    "durationSeconds": 7313
-  }
-]

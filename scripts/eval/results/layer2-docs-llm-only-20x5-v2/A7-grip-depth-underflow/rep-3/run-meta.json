@@ -1,0 +1,59 @@
+{
+  "scenarioId": "A7-grip-depth-underflow",
+  "rep": 3,
+  "startedAt": "2026-08-12T00:18:59.880Z",
+  "expectsDocs": true,
+  "channel": "sensor",
+  "stagedCount": 27,
+  "insert": {
+    "inserted": 27,
+    "failed": []
+  },
+  "projection": {
+    "multimodalProcessed": 27,
+    "gripResultOk": true,
+    "gripResultProcessed": 27
+  },
+  "exitReason": "docs-collected",
+  "observedCount": 27,
+  "projectedCount": 27,
+  "events": [
+    {
+      "action": "sensor.episode.closed",
+      "reason": "무입력 15002ms — 스트림 중단(씬 종료)으로 간주"
+    },
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "HTTP 404 에러 발생 (요청 충족 실패)"
+    },
+    {
+      "action": "sensor.analysis.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02018.md",
+      "docsValid": null,
+      "docsValidationErrors": []
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-08-12-093547-891cf814-a8d4-4f89-bd60-93ad94c33b75.md",
+      "docsValid": false,
+      "docsValidationErrors": [
+        "근거 미매핑 인용: [corr:-] 가 evidenceSources 에 없음",
+        "근거 미매핑 인용: [corr:-] 가 evidenceSources 에 없음"
+      ]
+    },
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "요청 충족 실패: 모든 요청이 404 상태 코드로 종료되어 리소스가 존재하지 않거나 처리되지 않았습니다."
+    },
+    {
+      "action": "llm.analysis.failed",
+      "reason": "Error: 에이전트 루프가 최종 출력 없이 호출 상한에 도달"
+    }
+  ],
+  "finishedAt": "2026-08-12T01:49:22.298Z",
+  "durationSeconds": 5422,
+  "collectedDocs": [
+    "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02018.md",
+    "2026-08-12-093547-891cf814-a8d4-4f89-bd60-93ad94c33b75.md"
+  ]
+}

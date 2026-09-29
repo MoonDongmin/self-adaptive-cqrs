@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 5,
+  "versioningQuality": 4,
+  "unsupportedClaims": [],
+  "rationale": "groundedness는 모든 테이블명, 컬럼, 키 구조 및 로그 메시지가 [자료]와 정확히 일치하여 만점. diagnosisAccuracy는 분리된 Read Model로 인한 통합 조회 불가 문제를 [정답 요지]와 동일하게 정확히 진단함. sqlCorrectness는 기존 스키마를 변경하지 않고 공유 PK로 조인하는 쿼리로 요청을 정확히 해결함. versioningQuality는 버전 경로, 병행 운영, 백필, 컷오버 절차를 구체적으로 제시했으나, 단계3 SQL에서 이미 조인된 테이블을 중복 조인하는 기술적 모순과 '승인' 절차 누락으로 1점 감점.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 5447,
+    "completion_tokens": 3635,
+    "total_tokens": 9082,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3448
+    }
+  },
+  "latencyMs": 77492,
+  "judgedAt": "2026-09-11T14:30:27.141Z"
+}

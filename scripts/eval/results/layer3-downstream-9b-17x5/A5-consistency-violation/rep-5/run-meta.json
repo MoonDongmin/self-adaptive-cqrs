@@ -1,0 +1,76 @@
+{
+  "scenarioId": "A5-consistency-violation",
+  "rep": 5,
+  "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02008.md",
+  "sourceDocsDirectory": "scripts/eval/results/layer2-docs-llm-only-20x5-v2",
+  "userQuery": null,
+  "model": "qwen/qwen3.5-9b",
+  "temperature": 0,
+  "maxTokens": 8192,
+  "answers": {
+    "B1-T1": {
+      "finishReason": "stop",
+      "promptTokens": 5834,
+      "completionTokens": 279,
+      "latencyMs": 6105,
+      "contextBytes": 9415,
+      "answeredAt": "2026-09-11T07:07:07.584Z"
+    },
+    "B1-T2": {
+      "finishReason": "stop",
+      "promptTokens": 5855,
+      "completionTokens": 3234,
+      "latencyMs": 60009,
+      "contextBytes": 9415,
+      "answeredAt": "2026-09-11T07:08:07.594Z"
+    },
+    "B1-T3": {
+      "finishReason": "stop",
+      "promptTokens": 9124,
+      "completionTokens": 2616,
+      "latencyMs": 49355,
+      "contextBytes": 9415,
+      "answeredAt": "2026-09-11T07:08:56.950Z"
+    },
+    "B1-T4": {
+      "finishReason": "stop",
+      "promptTokens": 5826,
+      "completionTokens": 107,
+      "latencyMs": 2910,
+      "contextBytes": 9415,
+      "answeredAt": "2026-09-11T07:08:59.861Z"
+    },
+    "A-T1": {
+      "finishReason": "stop",
+      "promptTokens": 13784,
+      "completionTokens": 579,
+      "latencyMs": 56334,
+      "contextBytes": 32257,
+      "answeredAt": "2026-09-11T07:09:56.200Z"
+    },
+    "A-T2": {
+      "finishReason": "stop",
+      "promptTokens": 13805,
+      "completionTokens": 528,
+      "latencyMs": 11919,
+      "contextBytes": 32257,
+      "answeredAt": "2026-09-11T07:10:08.120Z"
+    },
+    "A-T3": {
+      "finishReason": "stop",
+      "promptTokens": 14367,
+      "completionTokens": 1610,
+      "latencyMs": 34097,
+      "contextBytes": 32257,
+      "answeredAt": "2026-09-11T07:10:42.219Z"
+    },
+    "A-T4": {
+      "finishReason": "stop",
+      "promptTokens": 13776,
+      "completionTokens": 1897,
+      "latencyMs": 37685,
+      "contextBytes": 32257,
+      "answeredAt": "2026-09-11T07:11:19.906Z"
+    }
+  }
+}

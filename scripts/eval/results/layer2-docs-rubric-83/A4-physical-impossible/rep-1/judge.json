@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 5,
+  "completeness": 5,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용된 장면 키(02006, 02007), 전역 시퀀스(26, 27), 이상 측정값(z1=-0.05, xl=2500)이 [자료]의 원문 로그와 정확히 일치함. diagnosisAccuracy: 정답 요지의 물리 불가능 값(z1<0, xl>1920) 감지, v2 별도 테이블/플래그로 격리 권고, 기존 v1 무손상 유지가 모두 정확히 반영됨. actionability: 자동 검증 결과(4/4 실행·컴파일 성공)를 바탕으로 신규 DDL이 의도대로 v2 격리 테이블을 생성하며 기존 read_grip_result를 ALTER/DROP하지 않음. completeness: 권고문, Read Model 생성 SQL(DDL/Insight 등록), API 버저닝(v1→v2 신규 라우트 추가) 세 요소가 모두 포함되며 테이블명·스키마·라우트 간 일관성이 완벽함.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 32016,
+    "completion_tokens": 2391,
+    "total_tokens": 34407,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2122
+    }
+  },
+  "latencyMs": 113830,
+  "judgedAt": "2026-09-14T01:03:58.228Z"
+}

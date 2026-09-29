@@ -1,0 +1,3 @@
+
+
+{"groundedness": 2, "diagnosisAccuracy": 5, "actionability": 3, "completeness": 3, "unsupportedClaims": ["src/insert/dto/toy-data.dto.ts의 cameraIntrinsicSchema 정의 및 cody/fx Zod 타입 명시", "src/projection/projector/multimodal.projector.ts의 map() 메서드 동작 설명"], "rationale": "groundedness: Docs가 [자료]에 존재하지 않는 TypeScript 파일 경로 및 스키마 정의를 인용하여 근거를 보강했으나 이는 지어낸 주장임. diagnosisAccuracy: cody/fx 필드 null 유입으로 인한 Zod 검증 실패 및 부분 거부 현상을 정답 요지와 정확히 일치하게 진단함. actionability: 제공된 SQL은 실행에 성공하나 Read Model 생성 DDL이 아닌 검증용 SELECT 쿼리이며 요구된 Read Model 구축 목적을 직접 수행하지 못함. completeness: 권고, SQL, API 버저닝 섹션이 모두 존재하나 SQL 항목이 Read Model 생성을 명시적으로 거부하고 격리 쿼리로 대체하여 요구 사항과 일부 어긂."}

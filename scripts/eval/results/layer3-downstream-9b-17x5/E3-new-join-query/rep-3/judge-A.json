@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 5,
+  "versioningQuality": 5,
+  "unsupportedClaims": [],
+  "rationale": "groundedness는 엔지니어의 모든 주장과 SQL, 절차가 제공된 [자료]의 로그, 스키마, 권장사항과 정확히 일치하여 외부 추측이나 지어낸 값이 전혀 없다. diagnosisAccuracy는 [정답 요지]의 핵심 문제(분할 Read Model로 인한 단일 뷰 부재)와 원인(로그의 insight.card.miss 패턴)을 정확히 매칭했다. sqlCorrectness는 T2 DDL이 자료와 동일하며, T3 백필 및 조회 쿼리가 기존 테이블의 PK 조인과 요청 컬럼을 정확히 반영해 CQRS 백필 패턴을 완벽히 수행한다. versioningQuality는 v1 무손상, additive 변경, human-in-the-loop 승인 및 병행 운영 순서를 자료의 마이그레이션 가이드라인에 정확히 부합하여 즉시 실행 가능한 절차를 제시했다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 13092,
+    "completion_tokens": 3153,
+    "total_tokens": 16245,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2925
+    }
+  },
+  "latencyMs": 85381,
+  "judgedAt": "2026-09-11T14:25:52.191Z"
+}

@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 2, "completeness": 3, "unsupportedClaims": [], "rationale": "groundedness: 인용된 로그 레벨, 필드 경로(objects[0].id 등), Zod 오류 메시지 및 DTO 스키마가 [자료]와 정확히 일치한다. diagnosisAccuracy: 정수 필드 소수 유입에 따른 Zod .int() 검증 거절 및 적재 차단 메커니즘을 [정답 요지]와 정확히 매칭하여 진단했다. actionability: 정답 요지에서 요구하는 Read Model 보강 SQL이 누락되고 검증용 SELECT만 수록되어 있어 실제 모델 보강 및 문제 해결을 실행할 수 없다. completeness: 권고, SQL, API 버저닝 세 요소는 모두 존재하지만 TL;DR에서 '보강한다'고 명시한 반면 SQL 절에서는 'DDL 불필요'라고 기술하여 권고와 실제 코드 간에 모순이 발생한다."}

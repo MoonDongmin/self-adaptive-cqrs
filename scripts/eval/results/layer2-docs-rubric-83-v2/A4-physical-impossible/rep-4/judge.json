@@ -1,0 +1,23 @@
+{
+  "groundedness": 3,
+  "diagnosisAccuracy": 5,
+  "actionability": 2,
+  "completeness": 3,
+  "unsupportedClaims": [
+    "저장소 확인 결과 실재하지 않는 파일 'src/shared/database/schema/service/read-grip-outlier-v2.ts'를 변경 대상으로 인용함",
+    "권고에서 contain(DELETE) 전략을 기각하면서도 즉시 격리 SQL에 동일한 DELETE 문을 포함하여 모순됨"
+  ],
+  "rationale": "groundedness는 핵심 위반 값(02006 z1=-0.05, 02007 xl=2500)은 정확히 인용했으나 실재하지 않는 파일 경로를 변경 대상으로 명시하여 감점. diagnosisAccuracy는 정답 요지의 위반 필드, 원인(프로젝터 검증 누락), 해결 방향(v2 플래그 격리)과 정확히 일치. actionability는 기각한 DELETE를 SQL에 포함해 v1 무손상 제약을 위반하고, 플래그 컬럼에 null/TODO를 넣어 실제 적재 시 DDL과 충돌함. completeness는 권고와 SQL 간 DELETE 기각/포함 모순, 코드 내 클래스명 불일치(GripOutlierV2Projector vs GripOutlierProjector), DDL과 ORM nullability 차이로 일관성이 떨어짐.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34500,
+    "completion_tokens": 4008,
+    "total_tokens": 38508,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3725
+    }
+  },
+  "latencyMs": 130654,
+  "judgedAt": "2026-09-14T06:11:52.793Z"
+}

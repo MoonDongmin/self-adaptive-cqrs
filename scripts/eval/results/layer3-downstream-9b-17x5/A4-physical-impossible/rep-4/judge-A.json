@@ -1,0 +1,22 @@
+{
+  "groundedness": 4,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 3,
+  "versioningQuality": 5,
+  "unsupportedClaims": [
+    "T2 SQL INSERT 문에서 Seq 26의 xl_raw 값으로 -0.05를 기재했으나, 제공 자료상 해당 레코드의 실제 xl 값은 686.577임."
+  ],
+  "rationale": "groundedness는 시퀀스 번호, 위반 값, 테이블명, API 경로를 정확히 인용했으나 T2 INSERT 문에 데이터 치환 오류가 있어 감점. diagnosisAccuracy는 Seq 26(z1≤0)과 Seq 27(xl>1920)의 물리적 위반 사실과 checkIntegrity 누락 원인을 정답 요지와 완벽히 매칭하여 5점. sqlCorrectness는 DDL이 PK 및 read_ 접두 규칙을 준수하고 T3 쿼리가 플래그 기반 필터링으로 질문을 정확히 해결하나, T2 INSERT의 명백한 값 오류로 strict 기준 3점 부여. versioningQuality는 v1 엔드포인트 무손상 유지, 신규 v2 라우트 분리, 인간 승인 게이트 포함 백필/컷오버 절차를 구체적으로 서술하여 즉시 실행 가능한 수준으로 5점.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 21807,
+    "completion_tokens": 3519,
+    "total_tokens": 25326,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3237
+    }
+  },
+  "latencyMs": 111687,
+  "judgedAt": "2026-09-11T12:06:42.563Z"
+}

@@ -1,0 +1,76 @@
+{
+  "scenarioId": "E3-new-join-query",
+  "rep": 5,
+  "sourceDocument": "2026-08-15-100958-7ec0d044-5f61-427a-ac34-f2bdbafd80a1.md",
+  "sourceDocsDirectory": "scripts/eval/results/layer2-docs-llm-only-20x5-v2",
+  "userQuery": "파지 결과와 해당 시도의 이미지·영상 경로를 한 화면에서 함께 보고 싶다.",
+  "model": "qwen/qwen3.5-9b",
+  "temperature": 0,
+  "maxTokens": 8192,
+  "answers": {
+    "B1-T1": {
+      "finishReason": "stop",
+      "promptTokens": 2600,
+      "completionTokens": 259,
+      "latencyMs": 12776,
+      "contextBytes": 4866,
+      "answeredAt": "2026-09-11T09:26:06.883Z"
+    },
+    "B1-T2": {
+      "finishReason": "stop",
+      "promptTokens": 2621,
+      "completionTokens": 271,
+      "latencyMs": 6686,
+      "contextBytes": 4866,
+      "answeredAt": "2026-09-11T09:26:13.571Z"
+    },
+    "B1-T3": {
+      "finishReason": "stop",
+      "promptTokens": 2919,
+      "completionTokens": 265,
+      "latencyMs": 7688,
+      "contextBytes": 4866,
+      "answeredAt": "2026-09-11T09:26:21.261Z"
+    },
+    "B1-T4": {
+      "finishReason": "stop",
+      "promptTokens": 2592,
+      "completionTokens": 1486,
+      "latencyMs": 27969,
+      "contextBytes": 4866,
+      "answeredAt": "2026-09-11T09:26:49.231Z"
+    },
+    "A-T1": {
+      "finishReason": "stop",
+      "promptTokens": 11166,
+      "completionTokens": 116,
+      "latencyMs": 37840,
+      "contextBytes": 31369,
+      "answeredAt": "2026-09-11T09:27:27.074Z"
+    },
+    "A-T2": {
+      "finishReason": "stop",
+      "promptTokens": 11187,
+      "completionTokens": 1042,
+      "latencyMs": 20676,
+      "contextBytes": 31369,
+      "answeredAt": "2026-09-11T09:27:47.751Z"
+    },
+    "A-T3": {
+      "finishReason": "stop",
+      "promptTokens": 12256,
+      "completionTokens": 300,
+      "latencyMs": 10134,
+      "contextBytes": 31369,
+      "answeredAt": "2026-09-11T09:27:57.887Z"
+    },
+    "A-T4": {
+      "finishReason": "stop",
+      "promptTokens": 11158,
+      "completionTokens": 905,
+      "latencyMs": 17882,
+      "contextBytes": 31369,
+      "answeredAt": "2026-09-11T09:28:15.770Z"
+    }
+  }
+}

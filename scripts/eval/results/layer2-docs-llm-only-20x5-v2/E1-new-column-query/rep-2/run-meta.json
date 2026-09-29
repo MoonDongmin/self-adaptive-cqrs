@@ -1,0 +1,51 @@
+{
+  "scenarioId": "E1-new-column-query",
+  "rep": 2,
+  "startedAt": "2026-08-11T15:18:28.670Z",
+  "expectsDocs": true,
+  "channel": "query",
+  "stagedCount": 27,
+  "insert": {
+    "inserted": 27,
+    "failed": []
+  },
+  "projection": {
+    "multimodalProcessed": 27,
+    "gripResultOk": true,
+    "gripResultProcessed": 27
+  },
+  "userQuery": "최근 적재 데이터에 gripper_temperature 필드가 들어오기 시작했다. 이 값을 시간대별로 조회하고 싶다. 현재 Read Model로 가능한가? 안 되면 어떻게 해야 하나?",
+  "exitReason": "docs-collected",
+  "observedCount": 27,
+  "projectedCount": 27,
+  "events": [
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 4건 (payload.schema.drift, insight.card.miss)"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-08-12-001828-3d8cd69e-27ca-499f-b59c-6f6cb37e1f91.md",
+      "docsValid": true,
+      "docsValidationErrors": []
+    },
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "HTTP 상태 코드 404 (요청 충족 실패) 로 정상 응답 (2xx) 이 아님"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-08-12-003944-0b8839db-c632-4c40-a33a-0a16dad29c9c.md",
+      "docsValid": false,
+      "docsValidationErrors": [
+        "근거 미매핑 인용: [corr:-] 가 evidenceSources 에 없음"
+      ]
+    }
+  ],
+  "finishedAt": "2026-08-11T16:22:21.440Z",
+  "durationSeconds": 3833,
+  "collectedDocs": [
+    "2026-08-12-001828-3d8cd69e-27ca-499f-b59c-6f6cb37e1f91.md",
+    "2026-08-12-003944-0b8839db-c632-4c40-a33a-0a16dad29c9c.md"
+  ]
+}

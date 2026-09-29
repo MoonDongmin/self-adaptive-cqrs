@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 5, "completeness": 5, "unsupportedClaims": [], "rationale": "groundedness: 인용된 로그 시점, correlation_id, 스키마 필드 및 메시지 내용이 [자료]와 정확히 일치함. diagnosisAccuracy: 정답 요지의 '일자별 집계 Read Model 부재' 진단과 '신설+백필, API v2 병행' 해결책이 정확히 매칭됨. actionability: 자동 검증 결과 SQL 실행 및 코드 컴파일이 모두 성공했으며, 기존 v1 자산 훼손 없이 신규 집계 테이블과 라우트를 추가하여 요구 사항을 충족함. completeness: 권고, DDL/SQL, API 버저닝 세 요소가 모두 포함되며 테이블명·라우트·프로젝터명이 문서 전반에서 일관되게 사용됨."}

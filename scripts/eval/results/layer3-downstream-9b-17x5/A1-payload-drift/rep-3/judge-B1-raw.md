@@ -1,0 +1,3 @@
+
+
+{"groundedness": 2, "diagnosisAccuracy": 5, "sqlCorrectness": 2, "versioningQuality": 4, "unsupportedClaims": ["로그의 insert.file.ok 횟수를 54회로 잘못 기재 (실제 27건)", "read_grip_result 스키마에 없는 'payload' 컬럼을 가정함", "'raw_event_stream' 테이블 인용 (자료 미등재)", "SUBSTRING(stream_id, 12)로 'grip-attempt:' 제거 시 인덱스 오류 (실제 길이 13자)"], "rationale": "T1은 정답 요지와 문제·원인이 정확히 일치하나 로그 건수 오류가 있음. T2/T3 SQL은 제공된 Read Model 스키마에 없는 컬럼을 가정하고 자료 미등재 테이블을 참조하며 문자열 처리 오류가 있어 실행 및 검증이 불가능함. T4는 v1 테이블 불변, API 버전 분리, 병행 운영 등 핵심 절차를 잘 서술했으나 예시 SQL에서 추가적인 가정을 섞어 엄격성 기준에 미흡함."}

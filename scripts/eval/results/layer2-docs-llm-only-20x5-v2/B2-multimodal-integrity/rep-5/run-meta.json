@@ -1,0 +1,49 @@
+{
+  "scenarioId": "B2-multimodal-integrity",
+  "rep": 5,
+  "startedAt": "2026-08-15T06:23:25.384Z",
+  "expectsDocs": true,
+  "channel": "log",
+  "stagedCount": 27,
+  "insert": {
+    "inserted": 27,
+    "failed": []
+  },
+  "projection": {
+    "multimodalProcessed": 27,
+    "gripResultOk": true,
+    "gripResultProcessed": 27
+  },
+  "exitReason": "timeout",
+  "observedCount": 27,
+  "projectedCount": 27,
+  "events": [
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 2건 (projection.integrity.violation)"
+    },
+    {
+      "action": "llm.analysis.failed",
+      "reason": "TimeoutError: Request timed out."
+    },
+    {
+      "action": "sensor.episode.closed",
+      "reason": "무입력 4125543ms — 스트림 중단(씬 종료)으로 간주"
+    },
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 1건 (-)"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-08-15-163847-background.md",
+      "docsValid": true,
+      "docsValidationErrors": []
+    }
+  ],
+  "finishedAt": "2026-08-15T08:23:28.519Z",
+  "durationSeconds": 7203,
+  "collectedDocs": [
+    "2026-08-15-163847-background.md"
+  ]
+}

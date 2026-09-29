@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 1,
+  "versioningQuality": 1,
+  "unsupportedClaims": [],
+  "rationale": "T1은 자료의 z1=-0.05 값을 정확히 인용하여 정답 요지와 문제·원인이 일치하므로 5점이다. T2·T3 SQL은 PostgreSQL 문법상 jsonb_array_elements_text를 단일 키 추출에 잘못 사용해 실행 불가이며, 정답 요지에서 요구한 'v2 Read Model 생성 및 CHECK 제약, v1 무손상' 아키텍처 조치를 완전히 무시하여 1점이다. T4는 v1 보호 절차에 대한 구체적 방안을 제시하지 않아 1점이나, 자료 부재를 정직하게 명시하여 근거 기반 점수를 유지한다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 16870,
+    "completion_tokens": 3078,
+    "total_tokens": 19948,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2899
+    }
+  },
+  "latencyMs": 91225,
+  "judgedAt": "2026-09-11T11:59:12.483Z"
+}

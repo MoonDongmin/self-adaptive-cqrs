@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 4, "completeness": 5, "unsupportedClaims": [], "rationale": "groundedness: 인용된 로그, 스키마 정의, PK 키가 [자료]와 정확히 일치하며 근거 없는 주장은 없음. diagnosisAccuracy: 정답 요지와 동일하게 분할 Read Model 문제를 정확히 진단하고 (scene_key, attempt_num) 기준 신규 통합 테이블 신설을 제안함. actionability: insight_field INSERT SQL의 문자열 이스케이프 오류('''' 사용)로 인해 소폭 수정이 필요하나, 전체 투영 로직과 upsert 구조는 실행 가능함. completeness: 권고, DDL/매핑 SQL, API 버저닝 세 요소가 모두 포함되며 테이블명·라우트·클래스명이 문서 전반에 걸쳐 일관되게 매칭됨."}

@@ -1,0 +1,22 @@
+{
+  "groundedness": 4,
+  "diagnosisAccuracy": 5,
+  "actionability": 2,
+  "completeness": 3,
+  "unsupportedClaims": [
+    "src/shared/database/schema/service/read-grip-outlier-v2.ts 파일 경로 인용 (저장소에 실재하지 않음)"
+  ],
+  "rationale": "groundedness: 핵심 위반 값(z1=-0.05, xl=2500)과 장면 번호는 자료와 정확히 일치하나, 저장소에 존재하지 않는 파일 경로를 코드 수정 대상으로 인용함. diagnosisAccuracy: 정답 요지와 동일하게 물리적/이미지 경계 위반 원인을 정확히 진단했으며, v1 무손상 및 플래그 격리 방향이 일치함. actionability: DDL에서 NOT NULL DEFAULT 0으로 정의한 플래그 컬럼을 TypeScript 코드에서 null로 할당하여 실제 적재 시 실패하며, 기각한 DELETE 조치를 즉시 격리 SQL로 포함해 설계와 상충됨. completeness: TL;DR 대상 테이블이 read_grip_result이나 DDL은 read_grip_outlier_v2를 생성해 불일치하며, ORM 스키마의 notNull 설정이 DDL과 매칭되지 않음.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 34500,
+    "completion_tokens": 4565,
+    "total_tokens": 39065,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4303
+    }
+  },
+  "latencyMs": 168202,
+  "judgedAt": "2026-09-14T06:04:43.022Z"
+}

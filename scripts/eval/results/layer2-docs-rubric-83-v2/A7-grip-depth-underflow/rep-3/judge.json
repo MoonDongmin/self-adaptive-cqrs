@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 3,
+  "completeness": 4,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용된 장면 키, z값(0.00823... 등), 스키마 필드 및 파일 경로가 모두 [자료]와 저장소 확인 결과와 정확히 일치한다. diagnosisAccuracy: 정답 요지의 '성공 맥락에서 z1~z8 하한 위반으로 정합성 위배' 및 'v1 무손 Read Model 보강/격리' 조치와 진단·해결책이 완벽히 일치한다. actionability: SQL 및 프로젝트터 로직은 정상이나, projection.service.ts 수정 코드에서 CatchUpAllResult 타입에 신규 필드를 누락하고 catchUpAll() 반환값도 수정하지 않아 컴파일 오류를 유발한다. 소폭 수정 시 해결 가능하나 즉시 실행은 불가하다. completeness: 권고, DDL, API 버저닝 세 요소가 모두 구성되었으나, TL;DR에서 'read_grip_result 재생성'이라고 명시했으나 실제 설계는 신규 테이블(v2) 추가 방식으로 v1을 보존하는 방식이라 문서 내 미세한 불일치가 있다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 24254,
+    "completion_tokens": 4931,
+    "total_tokens": 29185,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4660
+    }
+  },
+  "latencyMs": 138409,
+  "judgedAt": "2026-09-14T06:39:54.156Z"
+}

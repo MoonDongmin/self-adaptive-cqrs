@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "sqlCorrectness": 5, "versioningQuality": 5, "unsupportedClaims": [], "rationale": "groundedness: 모든 답변은 제공된 로그, 스키마, 제약조건을 정확히 참조하여 구성되었다. event_store 미존재 검증과 insert.file.failed 로그 기반 추론은 자료의 사실 관계와 일치하며, 외부 데이터나 존재하지 않는 테이블을 인용하지 않았다. diagnosisAccuracy: T1은 정답 요지와 동일하게 cody/fx 필드 null 유입이 Zod 검증 실패를 유발하고 ES append를 차단하는 원인을 정확히 진단했다. 배치 트랜잭션 롤백 부재 및 Read Model 미생성 사실도 자료의 로그 맥락과 일치한다. sqlCorrectness: T2는 자료에서 제시한 격리 SQL과 동일하게 event_store의 무유입을 검증하는 쿼리를 작성했다. T3는 거부된 이벤트가 ES에 존재하지 않는다는 전제 하에 필드명별 집계 로직을 CTE로 구현하여 질문에 정확히 부응하며, 기존 테이블을 변경하거나 불필요한 DDL을 생성하지 않아 제약조건을 준수했다. versioningQuality: T4는 v1 자산 무손상 제약과 인간 승인 프로세스를 명시적으로 반영하여 No-op 절차를 제시했다. DDL/API 변경 금지, 원천 데이터 수정 요청, 승인 기록 등 구체적인 실행 단계가 포함되어 v1 클라이언트 보호에 직접적으로 기여한다."}

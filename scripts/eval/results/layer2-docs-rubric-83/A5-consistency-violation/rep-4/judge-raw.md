@@ -1,0 +1,3 @@
+
+
+{"groundedness":5,"diagnosisAccuracy":5,"actionability":5,"completeness":5,"unsupportedClaims":[],"rationale":"groundedness: 인용된 장면 키(02008, 02009), 센서 값(1.5m, 0.398m), 허용 범위([0.95,1.15], [0.01,0.3]) 및 모순 논리 모두 원본 로그와 정확히 일치함. diagnosisAccuracy: 정답 요지의 'grip_succeed=1과 물리적 범위 불일치(정합성 위반)' 진단 및 'v2 플래그 보강/격리, v1 무손상' 조치 방향과 완벽히 부합함. actionability: 자동 검증 결과(실행/컴파일 성공)를 바탕으로, v1 테이블을 건드리지 않고 신규 v2 테이블 생성 및 이상 행 삭제(SQL)로 격리/보강 요구사항을 충족하며 의도와 다른 동작이 없음. completeness: 권고문, Read Model DDL(read_grip_result_v2), API 버저닝(v1→v2) 세 요소가 모두 포함되며 테이블명·라우트·제약 조건이 문서 전반에서 일관되게 사용됨."}

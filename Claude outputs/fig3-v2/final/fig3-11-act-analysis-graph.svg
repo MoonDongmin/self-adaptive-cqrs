@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="900" viewBox="0 0 1000 900" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">
+<defs><marker id="m222222" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#222222"/></marker></defs>
+<rect width="1000" height="900" fill="#ffffff"/>
+<rect x="30" y="20" width="470" height="860" fill="#fffdf6" stroke="#888" stroke-width="1"/>
+<rect x="30" y="20" width="470" height="26" fill="#e9edf2" stroke="#888" stroke-width="1"/>
+<text x="265.0" y="38" text-anchor="middle" font-size="12" fill="#333" font-weight="600">LLM 판단 (확률적)</text>
+<rect x="500" y="20" width="470" height="860" fill="#fafbfc" stroke="#888" stroke-width="1"/>
+<rect x="500" y="20" width="470" height="26" fill="#e9edf2" stroke="#888" stroke-width="1"/>
+<text x="735.0" y="38" text-anchor="middle" font-size="12" fill="#333" font-weight="600">결정론 코드 (게이트 · 검증 · 합성 · 조립)</text>
+<circle cx="735" cy="70" r="9" fill="#222222"/>
+<rect x="635" y="92" width="200" height="44" rx="12" fill="#ffffff" stroke="#8b95a3" stroke-width="1.6"/>
+<text x="735.0" y="110.5" text-anchor="middle" font-size="11.5" font-weight="700" fill="#333333">입력 상태 구성</text>
+<text x="735.0" y="125.0" text-anchor="middle" font-size="9.5" fill="#556">window | sensorFinding · insightCards</text>
+<polyline points="735,79 735,92" fill="none" stroke="#222222" stroke-width="1.4" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<rect x="145" y="92" width="240" height="44" rx="12" fill="#fff8e8" stroke="#a0812f" stroke-width="1.6"/>
+<text x="265.0" y="110.5" text-anchor="middle" font-size="11.5" font-weight="700" fill="#8a6d1f">analyzeRootCause — 진단 에이전트</text>
+<text x="265.0" y="125.0" text-anchor="middle" font-size="9.5" fill="#556">ReAct · 도구 5종 · anomalyKind(open-set)</text>
+<polyline points="635,114 385,114" fill="none" stroke="#222222" stroke-width="1.4" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<rect x="625" y="170" width="220" height="44" rx="12" fill="#ffffff" stroke="#8b95a3" stroke-width="1.6"/>
+<text x="735.0" y="188.5" text-anchor="middle" font-size="11.5" font-weight="700" fill="#333333">decide 프리게이트</text>
+<text x="735.0" y="203.0" text-anchor="middle" font-size="9.5" fill="#556">card.miss 1회 단독 · 적재 거절 단독</text>
+<polyline points="265,136 265,192 625,192" fill="none" stroke="#222222" stroke-width="1.4" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<path d="M735.0,232 L815,260.0 L735.0,288 L655,260.0 z" fill="#ffffff" stroke="#222222" stroke-width="1.4"/>
+<text x="735.0" y="264.0" text-anchor="middle" font-size="10.5" fill="#222" font-weight="600">프리게이트 확정?</text>
+<polyline points="735,214 735,232" fill="none" stroke="#222222" stroke-width="1.4" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<rect x="165" y="240" width="200" height="44" rx="12" fill="#fff8e8" stroke="#a0812f" stroke-width="1.6"/>
+<text x="265.0" y="258.5" text-anchor="middle" font-size="11.5" font-weight="700" fill="#8a6d1f">decide — LLM 조치 선택</text>
+<text x="265.0" y="273.0" text-anchor="middle" font-size="9.5" fill="#556">닫힌 enum 4종 · ≤3 · 재요청</text>
+<polyline points="655,260 365,260" fill="none" stroke="#222222" stroke-width="1.4" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="615" y="254" text-anchor="middle" font-size="10" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">아니오</text>
+<rect x="625" y="310" width="220" height="44" rx="12" fill="#ffffff" stroke="#8b95a3" stroke-width="1.6"/>
+<text x="735.0" y="328.5" text-anchor="middle" font-size="11.5" font-weight="700" fill="#333333">불변식 적용 · 앵커별 폴백</text>
+<text x="735.0" y="343.0" text-anchor="middle" font-size="9.5" fill="#556">산출물 ⇒ 권고 · newReadModel ⇒ versionSwitch</text>
+<polyline points="265,284 265,332 625,332" fill="none" stroke="#222222" stroke-width="1.4" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<path d="M735.0,372 L825,400.0 L735.0,428 L645,400.0 z" fill="#ffffff" stroke="#222222" stroke-width="1.4"/>
+<text x="735.0" y="404.0" text-anchor="middle" font-size="10.5" fill="#222" font-weight="600">newReadModel 포함?</text>
+<polyline points="735,354 735,372" fill="none" stroke="#222222" stroke-width="1.4" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<rect x="165" y="380" width="200" height="44" rx="12" fill="#fff8e8" stroke="#a0812f" stroke-width="1.6"/>
+<text x="265.0" y="398.5" text-anchor="middle" font-size="11.5" font-weight="700" fill="#8a6d1f">genNewReadModel</text>
+<text x="265.0" y="413.0" text-anchor="middle" font-size="9.5" fill="#556">설계 · DDL · Drizzle · Projector</text>
+<polyline points="645,400 365,400" fill="none" stroke="#222222" stroke-width="1.4" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="605" y="394" text-anchor="middle" font-size="10" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">예</text>
+<rect x="625" y="440" width="220" height="44" rx="12" fill="#ffffff" stroke="#8b95a3" stroke-width="1.6"/>
+<text x="735.0" y="458.5" text-anchor="middle" font-size="11.5" font-weight="700" fill="#333333">의미 검증 ③ · 결정론 합성 ⑤</text>
+<text x="735.0" y="473.0" text-anchor="middle" font-size="9.5" fill="#556">실DB BEGIN→ROLLBACK · tsc · 키 실재</text>
+<polyline points="265,424 265,462 625,462" fill="none" stroke="#222222" stroke-width="1.4" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<rect x="165" y="480" width="200" height="44" rx="12" fill="#fff8e8" stroke="#a0812f" stroke-width="1.6"/>
+<text x="265.0" y="498.5" text-anchor="middle" font-size="11.5" font-weight="700" fill="#8a6d1f">genProjectionMapping</text>
+<text x="265.0" y="513.0" text-anchor="middle" font-size="9.5" fill="#556">이벤트 → 컬럼 매핑 명세</text>
+<polyline points="625,484 605,484 605,502 365,502" fill="none" stroke="#222222" stroke-width="1.4" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<rect x="625" y="530" width="220" height="44" rx="12" fill="#ffffff" stroke="#8b95a3" stroke-width="1.6"/>
+<text x="735.0" y="548.5" text-anchor="middle" font-size="11.5" font-weight="700" fill="#333333">grounding ④ · 확정 설계 렌더링</text>
+<text x="735.0" y="563.0" text-anchor="middle" font-size="9.5" fill="#556">fields · 카드 원문 대조 → renderConfirmedDesign</text>
+<polyline points="265,524 265,552 625,552" fill="none" stroke="#222222" stroke-width="1.4" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<rect x="60" y="600" width="410" height="5" fill="#222222"/>
+<polyline points="735,574 735,588 265,588 265,600" fill="none" stroke="#222222" stroke-width="1.4" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="675" y="583" text-anchor="middle" font-size="10" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">확정 설계 주입</text>
+<polyline points="825,400 865,400 865,588 265,588" fill="none" stroke="#222222" stroke-width="1.4" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="870" y="560" text-anchor="middle" font-size="9" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">아니오 (선택 생성기 병렬)</text>
+<polyline points="125,605 125,626" fill="none" stroke="#222222" stroke-width="1.4" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<rect x="60" y="626" width="130" height="46" rx="12" fill="#fff8e8" stroke="#a0812f" stroke-width="1.6"/>
+<text x="125.0" y="644.9" text-anchor="middle" font-size="9.6" font-weight="700" fill="#8a6d1f">genRecommendationDocs</text>
+<text x="125.0" y="657.5" text-anchor="middle" font-size="8.8" fill="#556">ADR · 격리 SQL</text>
+<polyline points="125,672 125,694" fill="none" stroke="#222222" stroke-width="1.4" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<polyline points="263,605 263,626" fill="none" stroke="#222222" stroke-width="1.4" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<rect x="198" y="626" width="130" height="46" rx="12" fill="#fff8e8" stroke="#a0812f" stroke-width="1.6"/>
+<text x="263.0" y="644.9" text-anchor="middle" font-size="9.6" font-weight="700" fill="#8a6d1f">genVersionSwitch</text>
+<text x="263.0" y="657.5" text-anchor="middle" font-size="8.8" fill="#556">v1 무손상 · Changelog</text>
+<polyline points="263,672 263,694" fill="none" stroke="#222222" stroke-width="1.4" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<polyline points="401,605 401,626" fill="none" stroke="#222222" stroke-width="1.4" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<rect x="336" y="626" width="130" height="46" rx="12" fill="#fff8e8" stroke="#a0812f" stroke-width="1.6"/>
+<text x="401.0" y="644.9" text-anchor="middle" font-size="9.6" font-weight="700" fill="#8a6d1f">genDataQuality</text>
+<text x="401.0" y="657.5" text-anchor="middle" font-size="8.8" fill="#556">센서 레인 전용</text>
+<polyline points="401,672 401,694" fill="none" stroke="#222222" stroke-width="1.4" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<rect x="60" y="694" width="410" height="5" fill="#222222"/>
+<text x="480" y="612" text-anchor="start" font-size="9" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">fork</text>
+<text x="480" y="706" text-anchor="start" font-size="9" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">join</text>
+<rect x="625" y="740" width="220" height="50" rx="12" fill="#ffffff" stroke="#8b95a3" stroke-width="1.6"/>
+<text x="735.0" y="761.5" text-anchor="middle" font-size="11.5" font-weight="700" fill="#333333">aggregate — 결정론 조립</text>
+<text x="735.0" y="776.0" text-anchor="middle" font-size="9.5" fill="#556">무결성 게이트 ⑥ · 렌더링 · validateDocs ⑦</text>
+<polyline points="265,699 265,765 625,765" fill="none" stroke="#222222" stroke-width="1.4" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<polyline points="815,260 925,260 925,765 845,765" fill="none" stroke="#222222" stroke-width="1.4" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="930" y="660" text-anchor="middle" font-size="9" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">예 (조치 확정 · LLM 미호출)</text>
+<circle cx="735" cy="830" r="10" fill="#fff" stroke="#222222" stroke-width="1.5"/>
+<circle cx="735" cy="830" r="6" fill="#222222"/>
+<polyline points="735,790 735,820" fill="none" stroke="#222222" stroke-width="1.4" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="755" y="836" text-anchor="start" font-size="10" fill="#8c3444" font-weight="600" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">Docs (.md)</text>
+</svg>

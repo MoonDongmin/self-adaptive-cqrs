@@ -1,0 +1,25 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 2,
+  "completeness": 3,
+  "unsupportedClaims": [
+    "MultiModalProjector.checkIntegrity",
+    "ProjectionService",
+    "CatchUpRunner",
+    "PoisonEventError"
+  ],
+  "rationale": "groundedness: 로그·스키마·파일명 등 핵심 데이터가 자료와 정확히 일치하나 프로젝트 내부 클래스명은 제공된 자료에 없음. diagnosisAccuracy: 파일명 메타데이터 불일치와 정합성 검사 누수 원인을 정확히 특정하여 정답 요지와 일치함. actionability: 격리(플래그/검증 테이블) 요구에 따라 DDL이나 UPDATE SQL이 필요하나 검증용 SELECT만 수록하여 실행 및 해결 가능성이 낮음. completeness: 세 섹션이 존재하나 SQL 절이 격리/생성 쿼리가 아닌 단순 조회이며, 코드 보강 권고와 DB 격리 요구가 상충하여 완결성이 떨어짐.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 12243,
+    "completion_tokens": 5030,
+    "total_tokens": 17273,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4815
+    }
+  },
+  "latencyMs": 120055,
+  "judgedAt": "2026-09-14T07:13:57.343Z"
+}

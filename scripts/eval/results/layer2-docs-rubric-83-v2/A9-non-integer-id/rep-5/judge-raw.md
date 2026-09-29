@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 2, "completeness": 2, "unsupportedClaims": [], "rationale": "groundedness: 인용된 로그 레벨, 필드 경로(objects.0.id, human_annotation_grasp.0.num_keypoints), 파일명, 에러 메시지가 [자료]와 정확히 일치한다. diagnosisAccuracy: 정답 요지의 Zod .int() 위반, 필드 위치, 적재 검증 단계 진단이 정확히 일치한다. actionability: 정답 요지가 Read Model/검증 로그 보강을 요구하나 Docs는 검증용 SELECT만 제공하고 DDL 불필요로 명시하여 실행 가능한 조치나 보강 코드를 누락했다. completeness: TL;DR의 '보강한다'와 SQL 절의 'DDL 불필요'가 모순되며, 권고 절이 '결정론 폴백/재실행 권장'이라는 스텁으로 작성되어 세 요소의 완결성과 일관성이 떨어진다."}

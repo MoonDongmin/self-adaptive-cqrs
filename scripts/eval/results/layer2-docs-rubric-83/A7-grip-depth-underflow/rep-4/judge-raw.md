@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 4, "completeness": 5, "unsupportedClaims": [], "rationale": "groundedness: 인용된 sceneKey, z1~z8 수치, 로그 경고문이 제공된 자료와 정확히 일치함. diagnosisAccuracy: 정답 요지의 성공/하한위반 모순, 원인(프로젝터 정합성 검증 누락), 조치 방향과 완벽히 일치함. actionability: SQL 실행은 성공했으나 격리 DELETE문이 _02019를 누락했고, 제공된 TS 코드 컴파일이 실패함. v1 무손상 원칙은 준수함. completeness: 권고, SQL, API 버저닝 세 요소가 모두 포함되며 테이블명·라우트·프로젝터 간 일관성 유지."}

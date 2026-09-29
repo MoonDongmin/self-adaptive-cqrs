@@ -1,0 +1,3 @@
+
+
+{"groundedness": 3, "diagnosisAccuracy": 5, "sqlCorrectness": 4, "versioningQuality": 2, "unsupportedClaims": ["이벤트 스토어 기존 이벤트 덮어쓰기/업데이트 주장", "T1/T2 새 Read Model 생성 권고와 T4 기존 테이블 ALTER 제안 간 모순"], "rationale": "진단(T1)은 로그의 schema drift와 Read Model 미비 문제를 정답 요지와 정확히 일치해 5점이다. SQL(T2/T3)은 새 테이블 생성과 시간대별 평균 집계 쿼리가 요청 조건을 충족하나, T3에서 CREATE TABLE을 중복 서술하는 실수가 있어 4점이다. 버전 관리(T4)는 ES의 불변성 원칙을 무시한 이벤트 덮어쓰기 주장과 T1/T2와의 모순으로 인해 2점이다. 전반적으로 자료 기반 분석은 양호하나 아키텍처 원칙 위반과 서술 실수가 있어 groundedness는 3점이다."}

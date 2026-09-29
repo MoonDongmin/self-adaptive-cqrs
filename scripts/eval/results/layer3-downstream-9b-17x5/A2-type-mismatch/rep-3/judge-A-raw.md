@@ -1,0 +1,3 @@
+
+
+{"groundedness": 4, "diagnosisAccuracy": 5, "sqlCorrectness": 2, "versioningQuality": 3, "unsupportedClaims": ["T3에서 자료에 정의되지 않은 'insight_logs' 테이블을 가정함", "T3의 'jsonb_path_text' 함수는 PostgreSQL 표준 문법이 아님"], "rationale": "T1은 자료의 로그와 정답 요지의 타입/도메인 위배 원인을 정확히 진단해 5점. T2는 자료의 격리 검증 SQL을 정확히 인용해 5점. T3은 존재하지 않는 테이블과 유효하지 않은 JSONB 함수를 사용하며 집계 로직이 부실해 2점. T4는 v1 무변경 원칙을 따랐으나 구체적인 버전 경로 및 컷오버 절차가 생략되어 3점."}

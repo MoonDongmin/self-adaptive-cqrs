@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 3,
+  "completeness": 4,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용된 로그 타임스탬프, 상관ID, 스키마 필드 및 제약조건이 [자료]와 정확히 일치한다. diagnosisAccuracy: 정답 요지의 집계 Read Model 신설 및 API v2 병행 방안과 진단이 완벽히 일치한다. actionability: SQL의 doublePrecision 타입 오타(공백 누락)로 인해 자동 검증에서 실패했으며, 소폭 수정 후 해결 가능하나 즉시 실행 불가하다. completeness: 세 핵심 요소가 모두 포함되었으나, 코드 블록의 중복 및 버전 교체 표시 방식이 다소 혼란스럽다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 12978,
+    "completion_tokens": 3148,
+    "total_tokens": 16126,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2974
+    }
+  },
+  "latencyMs": 84557,
+  "judgedAt": "2026-09-14T02:19:12.974Z"
+}

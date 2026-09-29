@@ -1,0 +1,3 @@
+
+
+{"groundedness": 3, "diagnosisAccuracy": 5, "sqlCorrectness": 1, "versioningQuality": 1, "unsupportedClaims": ["grip_3d_pose를 JSONB 배열로 오인하여 jsonb_array_elements_text 사용", "정답 요지의 'v1 무손상' 원칙을 위반하며 기존 테이블에 ALTER TABLE 제안", "T4에서 v1 보호 절차를 제시하지 않고 자료 부재를 이유로 회피"], "rationale": "T1은 자료의 수치와 정답 요지의 모순 지점을 정확히 진단하여 높은 점수. 그러나 T2 SQL은 기존 Read Model을 직접 수정(ALTER)하여 정답 요지의 'v1 무손상' 원칙을 위반하며, JSONB 객체를 배열로 오인하는 문법적 오류가 반복되어 실행 불가. T3도 동일한 flawed SQL에 의존하여 유효하지 않음. T4는 구체적인 v1 보호 절차를 제시하지 않고 자료 부재를 이유로 회피함."}

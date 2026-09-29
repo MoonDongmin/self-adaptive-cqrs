@@ -1,0 +1,23 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 2,
+  "completeness": 4,
+  "unsupportedClaims": [
+    "PostgreSQL에서 유효하지 않은 타입 'doublePrecision' 사용 (올바른 표기는 'DOUBLE PRECISION')",
+    "upsert 내 failure_rate 계산 시 bigint 간 나눗셈으로 인해 0 또는 1만 반환되는 정수 나눗셈 오류"
+  ],
+  "rationale": "groundedness: 로그, 스키마 필드, 파일 경로 등 모든 인용이 [자료]와 정확히 일치함. diagnosisAccuracy: 정답 요지와 동일하게 기존 Read Model의 집계 부재를 정확히 진단하고 신규 테이블 신설을 제안함. actionability: PostgreSQL에서 bigint 간 나눗셈은 0 또는 1만 반환하므로 failure_rate 계산이 무의미하며, DDL의 doublePrecision은 유효한 PG 타입이 아님. 자동 검증 결과에서도 실패하여 수정 없이는 실제 적재와 요구 충족이 불가능함. completeness: 권고, SQL, API 버저닝 세 요소가 모두 포함되고 구조적으로 일치하나, DDL과 ORM 간 타입 표기 일관성은 유지했으나 실제 DB 실행을 고려하지 않은 유효성 오류로 사소한 불일치 존재.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 14898,
+    "completion_tokens": 4389,
+    "total_tokens": 19287,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4108
+    }
+  },
+  "latencyMs": 114269,
+  "judgedAt": "2026-09-14T09:25:23.682Z"
+}

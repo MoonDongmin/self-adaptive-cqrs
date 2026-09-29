@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 5,
+  "completeness": 5,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용된 이벤트 ID, 로그 레벨, 스키마 필드 및 소스 코드 경로가 [자료]와 정확히 일치하며 지어낸 값이 없음. diagnosisAccuracy: 빈 objects 배열로 인한 map 예외, 배치 롤백 및 정상 이벤트 유실 원인을 [정답 요지]와 완벽하게 매칭하여 진단함. actionability: 신규 DDL 불필요를 명시하고 격리/검증용 SELECT만 제공하여 기존 테이블을 손상시키지 않으며, 재실행 검증 절차를 직접 지원함. completeness: 권고, SQL(검증용), API 버저닝 세 요소가 모두 포함되어 있으며 서로 모순 없이 [정답 요지]의 조치 방향과 일치함.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 12336,
+    "completion_tokens": 3797,
+    "total_tokens": 16133,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3598
+    }
+  },
+  "latencyMs": 95510,
+  "judgedAt": "2026-09-14T07:05:18.392Z"
+}

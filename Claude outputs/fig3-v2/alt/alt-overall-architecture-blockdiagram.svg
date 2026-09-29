@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="880" viewBox="0 0 1120 880" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">
+<defs><marker id="m2e7d4f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2e7d4f"/></marker><marker id="m33557a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#33557a"/></marker><marker id="ma04050" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#a04050"/></marker></defs>
+<rect width="1120" height="880" fill="#ffffff"/>
+<rect x="20" y="20" width="1080" height="170" rx="14" fill="#fafbfc" stroke="#999" stroke-width="1.2" stroke-dasharray="7 5"/>
+<text x="38" y="44" font-size="13" font-weight="600" fill="#777">기존 이벤트 소싱·CQRS 영역 (관리 대상 시스템)</text>
+<rect x="50" y="78" width="130" height="62" rx="65.0" ry="12" fill="#f3f4f6" stroke="#777777" stroke-width="1.5"/>
+<ellipse cx="115.0" cy="79" rx="65.0" ry="7" fill="#f3f4f6" stroke="#777777" stroke-width="1.5"/>
+<text x="115.0" y="107.5" text-anchor="middle" font-size="13" font-weight="700" fill="#444444">파지 시도 JSON</text>
+<text x="115.0" y="123.5" text-anchor="middle" font-size="11" fill="#556">Physical AI 데이터</text>
+<rect x="215" y="62" width="175" height="86" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="302.5" y="86.8" text-anchor="middle" font-size="13.5" font-weight="700" fill="#33557a">적재 서비스</text>
+<text x="302.5" y="103.2" text-anchor="middle" font-size="11" fill="#556">파일명 파싱 · JSON 파싱</text>
+<text x="302.5" y="118.2" text-anchor="middle" font-size="11" fill="#556">드리프트 감지 → zod 검증</text>
+<text x="302.5" y="133.2" text-anchor="middle" font-size="11" fill="#556">이벤트 append (멱등)</text>
+<rect x="425" y="74" width="140" height="72" rx="70.0" ry="12" fill="#f3f4f6" stroke="#777777" stroke-width="1.5"/>
+<ellipse cx="495.0" cy="75" rx="70.0" ry="7" fill="#f3f4f6" stroke="#777777" stroke-width="1.5"/>
+<text x="495.0" y="101.0" text-anchor="middle" font-size="13" font-weight="700" fill="#444444">Event Store</text>
+<text x="495.0" y="117.0" text-anchor="middle" font-size="11" fill="#556">event_store</text>
+<text x="495.0" y="132.0" text-anchor="middle" font-size="11" fill="#556">append-only</text>
+<rect x="600" y="62" width="175" height="86" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="687.5" y="86.8" text-anchor="middle" font-size="13.5" font-weight="700" fill="#33557a">캐치업 실행기</text>
+<text x="687.5" y="103.2" text-anchor="middle" font-size="11" fill="#556">커서 기반 500건 배치</text>
+<text x="687.5" y="118.2" text-anchor="middle" font-size="11" fill="#556">프로젝터 map/upsert</text>
+<text x="687.5" y="133.2" text-anchor="middle" font-size="11" fill="#556">정합성 검사</text>
+<rect x="810" y="66" width="150" height="86" rx="75.0" ry="12" fill="#f3f4f6" stroke="#777777" stroke-width="1.5"/>
+<ellipse cx="885.0" cy="67" rx="75.0" ry="7" fill="#f3f4f6" stroke="#777777" stroke-width="1.5"/>
+<text x="885.0" y="100.0" text-anchor="middle" font-size="13" font-weight="700" fill="#444444">Read Models</text>
+<text x="885.0" y="116.0" text-anchor="middle" font-size="11" fill="#556">read_grip_result</text>
+<text x="885.0" y="131.0" text-anchor="middle" font-size="11" fill="#556">read_multimodal</text>
+<rect x="985" y="62" width="100" height="86" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="1035.0" y="94.2" text-anchor="middle" font-size="12.5" font-weight="700" fill="#33557a">조회 API</text>
+<text x="1035.0" y="109.8" text-anchor="middle" font-size="10.5" fill="#556">Insight 카드</text>
+<text x="1035.0" y="124.2" text-anchor="middle" font-size="10.5" fill="#556">조회 요구</text>
+<polyline points="180,105 215,105" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<polyline points="390,105 425,105" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<polyline points="565,105 600,105" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<polyline points="775,105 810,105" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<polyline points="960,105 985,105" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<text x="1035" y="52" text-anchor="middle" font-size="10" fill="#777" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">▼ 사용자·개발자</text>
+<rect x="20" y="215" width="1080" height="160" rx="14" fill="#fafbfc" stroke="#999" stroke-width="1.2" stroke-dasharray="7 5"/>
+<text x="38" y="239" font-size="13" font-weight="600" fill="#777">관측 백본</text>
+<polyline points="60,262 1060,262" fill="none" stroke="#33557a" stroke-width="4" stroke-linejoin="round"/>
+<text x="330" y="254" text-anchor="start" font-size="10.5" fill="#33557a" font-weight="600" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">Pino 구조화 로그 레일 (이상 신호 = level ≥ 40)</text>
+<polyline points="302,148 302,258" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<polyline points="640,148 640,258" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<polyline points="1035,148 1035,258" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<text x="310" y="168" text-anchor="start" font-size="10" fill="#556" font-weight="600" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">S1·S2 (warn)</text>
+<text x="310" y="182" text-anchor="start" font-size="9.5" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">payload.schema.drift · insert.file.failed</text>
+<text x="648" y="168" text-anchor="start" font-size="10" fill="#556" font-weight="600" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">S3·S4 (error)</text>
+<text x="648" y="182" text-anchor="start" font-size="9.5" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">projection.map.failed · integrity.violation</text>
+<text x="1027" y="168" text-anchor="end" font-size="10" fill="#556" font-weight="600" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">S6 (warn)</text>
+<text x="1027" y="182" text-anchor="end" font-size="9.5" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">insight.card.miss</text>
+<rect x="120" y="290" width="190" height="62" rx="10" fill="#e7f4ec" stroke="#2e7d4f" stroke-width="1.6"/>
+<text x="215.0" y="310.2" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2e6b45">Kafka · log-events</text>
+<text x="215.0" y="326.8" text-anchor="middle" font-size="11" fill="#556">TCP → fluent-bit → 브로커</text>
+<text x="215.0" y="341.8" text-anchor="middle" font-size="11" fill="#556">실시간 배치 선별 입력</text>
+<polyline points="215,262 215,290" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<rect x="560" y="290" width="200" height="62" rx="10" fill="#e7f4ec" stroke="#2e7d4f" stroke-width="1.6"/>
+<text x="660.0" y="310.2" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2e6b45">Kafka · sensor-values</text>
+<text x="660.0" y="326.8" text-anchor="middle" font-size="11" fill="#556">커밋 후 센서 값 발행 (S8)</text>
+<text x="660.0" y="341.8" text-anchor="middle" font-size="11" fill="#556">값은 오류가 아님 → 별도 토픽</text>
+<rect x="713" y="255" width="14" height="14" fill="#ffffff"/>
+<polyline points="720,148 720,290" fill="none" stroke="#2e7d4f" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m2e7d4f)"/>
+<text x="728" y="282" text-anchor="start" font-size="10" fill="#2e7d4f" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">S8 (로그 규약 우회)</text>
+<rect x="870" y="290" width="200" height="62" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="970.0" y="310.2" text-anchor="middle" font-size="13.5" font-weight="700" fill="#33557a">카드 드리프트 관찰자</text>
+<text x="970.0" y="326.8" text-anchor="middle" font-size="11" fill="#556">60초 주기 · 테이블 − 카드 diff</text>
+<text x="970.0" y="341.8" text-anchor="middle" font-size="11" fill="#556">S5 insight.card.drift (warn)</text>
+<polyline points="970,290 970,262" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<polyline points="60,262 60,700 95,700" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<text x="52" y="520" text-anchor="middle" font-size="10" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" transform="rotate(-90 52 520)">파일 tail (1초) → Log DB 적재</text>
+<rect x="20" y="400" width="1080" height="260" rx="14" fill="#fffdf6" stroke="#c9b27a" stroke-width="1.2" stroke-dasharray="7 5"/>
+<text x="38" y="424" font-size="13" font-weight="600" fill="#777">LLM 영역 (관리 시스템, 본 연구)</text>
+<text x="215" y="448" text-anchor="middle" font-size="11.5" fill="#33557a" font-weight="600" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">로그 레인</text>
+<rect x="120" y="458" width="190" height="40" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="215.0" y="474.5" text-anchor="middle" font-size="12" font-weight="700" fill="#33557a">필터 · 결정론 프리게이트</text>
+<text x="215.0" y="489.5" text-anchor="middle" font-size="10" fill="#556">level ≥ 40 → 즉시 트립</text>
+<rect x="120" y="506" width="190" height="44" rx="10" fill="#fff8e8" stroke="#a0812f" stroke-width="1.6"/>
+<text x="215.0" y="524.5" text-anchor="middle" font-size="12" font-weight="700" fill="#8a6d1f">선판단 — 소형 LLM</text>
+<text x="215.0" y="539.5" text-anchor="middle" font-size="10" fill="#556">fail-open · 원본 JSON 행</text>
+<rect x="120" y="558" width="190" height="44" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="215.0" y="576.5" text-anchor="middle" font-size="12" font-weight="700" fill="#33557a">이상 로그 윈도우 조립</text>
+<text x="215.0" y="591.5" text-anchor="middle" font-size="10" fill="#556">앵커 ±20행 · 프루닝 · 80행</text>
+<polyline points="215,352 215,458" fill="none" stroke="#2e7d4f" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m2e7d4f)"/>
+<polyline points="215,498 215,506" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<polyline points="215,550 215,558" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<text x="660" y="448" text-anchor="middle" font-size="11.5" fill="#33557a" font-weight="600" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">센서 레인</text>
+<rect x="560" y="458" width="200" height="40" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="660.0" y="474.5" text-anchor="middle" font-size="12" font-weight="700" fill="#33557a">4층 결정론 주석 + 룰북</text>
+<text x="660.0" y="489.5" text-anchor="middle" font-size="10" fill="#556">physical·consistency·jump·stat</text>
+<rect x="560" y="506" width="200" height="44" rx="10" fill="#fff8e8" stroke="#a0812f" stroke-width="1.6"/>
+<text x="660.0" y="524.5" text-anchor="middle" font-size="12" font-weight="700" fill="#8a6d1f">스크리너 — 소형 LLM</text>
+<text x="660.0" y="539.5" text-anchor="middle" font-size="10" fill="#556">hybrid: 주석 없으면 미호출</text>
+<rect x="560" y="558" width="200" height="44" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="660.0" y="576.5" text-anchor="middle" font-size="12" font-weight="700" fill="#33557a">에피소드 누적</text>
+<text x="660.0" y="591.5" text-anchor="middle" font-size="10" fill="#556">사건당 1회 승급 · ≤16건</text>
+<polyline points="660,352 660,458" fill="none" stroke="#2e7d4f" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m2e7d4f)"/>
+<polyline points="660,498 660,506" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<polyline points="660,550 660,558" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<rect x="340" y="452" width="190" height="158" rx="10" fill="#fff8e8" stroke="#a0812f" stroke-width="1.6"/>
+<text x="435.0" y="491.5" text-anchor="middle" font-size="13" font-weight="700" fill="#8a6d1f">분석 그래프</text>
+<text x="435.0" y="507.5" text-anchor="middle" font-size="10.5" fill="#556">LangGraph StateGraph</text>
+<text x="435.0" y="522.0" text-anchor="middle" font-size="10.5" fill="#556"></text>
+<text x="435.0" y="536.5" text-anchor="middle" font-size="10.5" fill="#556">① 진단 에이전트 (LLM+도구)</text>
+<text x="435.0" y="551.0" text-anchor="middle" font-size="10.5" fill="#556">② 의사결정 (게이트+LLM+불변식)</text>
+<text x="435.0" y="565.5" text-anchor="middle" font-size="10.5" fill="#556">③ 생성기 (LLM, 선확정 체인)</text>
+<text x="435.0" y="580.0" text-anchor="middle" font-size="10.5" fill="#556">④ 검증·합성·조립 (결정론)</text>
+<polyline points="310,580 340,580" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<polyline points="560,580 530,580" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<text x="325" y="572" text-anchor="middle" font-size="9.5" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">invoke</text>
+<text x="545" y="572" text-anchor="middle" font-size="9.5" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">invoke</text>
+<rect x="870" y="452" width="200" height="158" rx="10" fill="#fbeef0" stroke="#a04050" stroke-width="1.6"/>
+<text x="970.0" y="484.2" text-anchor="middle" font-size="13" font-weight="700" fill="#8c3444">단일 Docs (.md)</text>
+<text x="970.0" y="500.2" text-anchor="middle" font-size="10.5" fill="#556">llm-docs/&lt;날짜&gt;-&lt;시각&gt;-&lt;docId&gt;.md</text>
+<text x="970.0" y="514.8" text-anchor="middle" font-size="10.5" fill="#556"></text>
+<text x="970.0" y="529.2" text-anchor="middle" font-size="10.5" fill="#556">① 권고 문서 (ADR)</text>
+<text x="970.0" y="543.8" text-anchor="middle" font-size="10.5" fill="#556">② Read Model 생성 SQL (DDL)</text>
+<text x="970.0" y="558.2" text-anchor="middle" font-size="10.5" fill="#556">    + 투영 매핑 · 카드 INSERT</text>
+<text x="970.0" y="572.8" text-anchor="middle" font-size="10.5" fill="#556">③ API Versioning</text>
+<text x="970.0" y="587.2" text-anchor="middle" font-size="10.5" fill="#556">문서 계약 검증</text>
+<polyline points="530,470 545,470 545,428 970,428 970,452" fill="none" stroke="#a04050" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#ma04050)"/>
+<text x="760" y="422" text-anchor="middle" font-size="10" fill="#a04050" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">aggregate → 단일 Docs 렌더링 (LLM 미호출)</text>
+<rect x="20" y="685" width="1080" height="115" rx="14" fill="#f4f8f5" stroke="#8fb39a" stroke-width="1.2" stroke-dasharray="7 5"/>
+<text x="38" y="709" font-size="13" font-weight="600" fill="#777">LLM 컨텍스트 소스 — push(파이프라인 주입) · pull(진단 에이전트 도구 조회)</text>
+<rect x="95" y="723" width="190" height="60" rx="95.0" ry="12" fill="#f3f4f6" stroke="#777777" stroke-width="1.5"/>
+<ellipse cx="190.0" cy="724" rx="95.0" ry="7" fill="#f3f4f6" stroke="#777777" stroke-width="1.5"/>
+<text x="190.0" y="751.5" text-anchor="middle" font-size="13" font-weight="700" fill="#444444">Log DB</text>
+<text x="190.0" y="767.5" text-anchor="middle" font-size="11" fill="#556">log_event (TimescaleDB)</text>
+<rect x="340" y="723" width="190" height="60" rx="95.0" ry="12" fill="#f3f4f6" stroke="#777777" stroke-width="1.5"/>
+<ellipse cx="435.0" cy="724" rx="95.0" ry="7" fill="#f3f4f6" stroke="#777777" stroke-width="1.5"/>
+<text x="435.0" y="751.5" text-anchor="middle" font-size="13" font-weight="700" fill="#444444">Insight Read DB</text>
+<text x="435.0" y="767.5" text-anchor="middle" font-size="11" fill="#556">insight_entity · insight_field</text>
+<rect x="580" y="723" width="190" height="60" rx="95.0" ry="12" fill="#f3f4f6" stroke="#777777" stroke-width="1.5"/>
+<ellipse cx="675.0" cy="724" rx="95.0" ry="7" fill="#f3f4f6" stroke="#777777" stroke-width="1.5"/>
+<text x="675.0" y="751.5" text-anchor="middle" font-size="13" font-weight="700" fill="#444444">소스 코드 · 베이스라인</text>
+<text x="675.0" y="767.5" text-anchor="middle" font-size="11" fill="#556">src/ 발췌 · 룰북 .md</text>
+<rect x="870" y="718" width="200" height="62" rx="10" fill="#f1ecf8" stroke="#6a4ba0" stroke-width="1.6"/>
+<text x="970.0" y="745.8" text-anchor="middle" font-size="13.5" font-weight="700" fill="#5b3f8a">인간 승인 게이트</text>
+<text x="970.0" y="762.2" text-anchor="middle" font-size="11" fill="#556">DDL 실행 · 카드 등록 · API 컷오버</text>
+<polyline points="190,715 190,602" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<text x="198" y="660" text-anchor="start" font-size="10" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">윈도우 (push)</text>
+<polyline points="300,715 300,640 400,640 400,610" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#m33557a)"/>
+<text x="350" y="633" text-anchor="middle" font-size="10" fill="#33557a" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">search_logs (pull)</text>
+<polyline points="435,715 435,610" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<text x="443" y="690" text-anchor="start" font-size="10" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">전체 카드 M-Schema (push)</text>
+<polyline points="520,715 520,610" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#m33557a)"/>
+<text x="528" y="660" text-anchor="start" font-size="10" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">get_insight_card (pull)</text>
+<polyline points="640,715 640,650 500,650 500,610" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#m33557a)"/>
+<text x="600" y="680" text-anchor="start" font-size="10" fill="#33557a" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">read_source_code · get_sensor_baseline (pull)</text>
+<polyline points="970,610 970,718" fill="none" stroke="#a04050" stroke-width="1.6" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#ma04050)"/>
+<text x="978" y="665" text-anchor="start" font-size="10" fill="#a04050" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">승인 후 적용</text>
+<polyline points="970,780 970,818 435,818 435,783" fill="none" stroke="#a04050" stroke-width="1.6" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#ma04050)"/>
+<text x="700" y="834" text-anchor="middle" font-size="10" fill="#a04050" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">카드 등록 → 다음 분석 컨텍스트에 신규 Read Model 편입 (카탈로그 폐쇄 루프)</text>
+<polyline points="1070,749 1088,749 1088,40 885,40 885,58" fill="none" stroke="#a04050" stroke-width="1.6" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#ma04050)"/>
+<text x="1000" y="34" text-anchor="end" font-size="10" fill="#a04050" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">Read Model 재생성 — DDL 적용 · 프로젝터 배선 (v1 무손상)</text>
+<rect x="40" y="857" width="18" height="13" rx="3" fill="#eef2f7" stroke="#33557a" stroke-width="1.2"/>
+<text x="64" y="868" font-size="11" fill="#555">결정론 코드</text>
+<rect x="141.88" y="857" width="18" height="13" rx="3" fill="#fff8e8" stroke="#a0812f" stroke-width="1.2"/>
+<text x="165.88" y="868" font-size="11" fill="#555">LLM 호출</text>
+<rect x="234.19" y="857" width="18" height="13" rx="3" fill="#e7f4ec" stroke="#2e7d4f" stroke-width="1.2"/>
+<text x="258.19" y="868" font-size="11" fill="#555">Kafka 토픽</text>
+<rect x="335.74" y="857" width="18" height="13" rx="3" fill="#f3f4f6" stroke="#777777" stroke-width="1.2"/>
+<text x="359.74" y="868" font-size="11" fill="#555">저장소</text>
+<rect x="413.09000000000003" y="857" width="18" height="13" rx="3" fill="#fbeef0" stroke="#a04050" stroke-width="1.2"/>
+<text x="437.09000000000003" y="868" font-size="11" fill="#555">Docs 산출물</text>
+<rect x="519.1500000000001" y="857" width="18" height="13" rx="3" fill="#f1ecf8" stroke="#6a4ba0" stroke-width="1.2"/>
+<text x="543.1500000000001" y="868" font-size="11" fill="#555">인간 승인</text>
+<line x1="610.58" y1="864" x2="636.58" y2="864" stroke="#33557a" stroke-width="1.6"/>
+<text x="642.58" y="868" font-size="11" fill="#555">자동 흐름 · push</text>
+<line x1="744.6600000000001" y1="864" x2="770.6600000000001" y2="864" stroke="#33557a" stroke-width="1.6" stroke-dasharray="5 3"/>
+<text x="776.6600000000001" y="868" font-size="11" fill="#555">pull 도구 조회</text>
+<line x1="871.4800000000001" y1="864" x2="897.4800000000001" y2="864" stroke="#a04050" stroke-width="1.6" stroke-dasharray="5 3"/>
+<text x="903.4800000000001" y="868" font-size="11" fill="#555">승인 후 적용</text>
+</svg>

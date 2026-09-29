@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 4, "completeness": 5, "unsupportedClaims": [], "rationale": "groundedness: 인용된 장면 키, 센서 수치(0.00823..., 0.00528... 등), 스키마 필드, 파일 경로가 [자료]와 정확히 일치하며 근거 없는 주장은 없음. diagnosisAccuracy: 정답 요지의 'gripSucceed=1과 z<0.01m 모순'을 정확히 진단했으며, jsonb 검증 한계와 의미적 정합성 검사 누락이라는 근본원인 분석이 타당함. actionability: v2 Read Model DDL, Projector, API 배선 코드가 완결되어 실행 가능하나, 기각한 'contain(DELETE 격리)' 조치를 '즉시 격리 SQL'로 병기하여 의도와 상충되는 부분이 있어 감점. completeness: 권고, DDL, API 버저닝 세 요소가 모두 포함되며 테이블명·컬럼명·라우트·ORM 매핑이 서로 일관되게 기술됨."}

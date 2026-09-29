@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 3, "completeness": 4, "unsupportedClaims": [], "rationale": "groundedness: 인용된 로그 레벨, 필드명(grip_data/robot_tf), 파일명 및 상관관계ID가 [자료]의 로깅 컨텍스트와 소스 코드에서 정확히 일치함. diagnosisAccuracy: 정답 요지와 동일하게 필수 필드 누락에 의한 Zod 파싱 실패 및 적재 거절 원인을 정확히 진단하고, v1 무손상 원칙을 준수함. actionability: 정답 요지에서 요구하는 'Read Model/검증 로그 보강'을 위한 실제 DDL 또는 추적 구조 SQL이 누락되고 검증용 SELECT만 제공되어 요구 충족에 한계가 있음. completeness: 권고, SQL, API 버저닝 세 요소가 모두 포함되었으나 Read Model 생성 SQL 절에 실제 DDL이 아닌 검증 쿼리만 있어 구조적 요구사항과 미세하게 어긋남."}

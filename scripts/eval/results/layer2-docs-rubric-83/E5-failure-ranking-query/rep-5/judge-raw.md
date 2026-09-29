@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 5, "completeness": 5, "unsupportedClaims": [], "rationale": "groundedness: 인용된 로그 ID·메시지 및 스키마 필드명이 [자료]와 정확히 일치함. diagnosisAccuracy: 기존 Read Model의 행 단위 원천 데이터 한계와 집계/순위 부재 문제를 정확히 진단하여 [정답 요지]와 완전히 일치함. actionability: 자동 검증 결과에서 SQL 실행 및 코드 컴파일이 모두 성공했으며, 기존 v1 테이블을 건드리지 않고 신규 집계 테이블과 프로젝터로 additive 방식으로 문제를 해결할 수 있음. completeness: 권고, DDL/매핑 SQL, API 버저닝 세 요소가 모두 포함되어 있으며, 테이블명·컬럼·라우트 경로 등 전역에서 일관되게 사용됨."}

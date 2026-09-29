@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1018" viewBox="0 0 1500 1018" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">
+<defs><marker id="m222222" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#222222"/></marker><marker id="m555" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#555"/></marker></defs>
+<rect width="1500" height="1018" fill="#ffffff"/>
+<line x1="110" y1="78" x2="110" y2="998" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="270" y1="78" x2="270" y2="998" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="430" y1="78" x2="430" y2="998" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="590" y1="78" x2="590" y2="998" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="750" y1="78" x2="750" y2="998" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="910" y1="78" x2="910" y2="998" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="1070" y1="78" x2="1070" y2="998" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="1230" y1="78" x2="1230" y2="998" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="1390" y1="78" x2="1390" y2="998" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<rect x="1224" y="794" width="12" height="26" fill="#e8edf3" stroke="#33557a" stroke-width="1.2"/>
+<rect x="744" y="278" width="12" height="616" fill="#e8edf3" stroke="#33557a" stroke-width="1.2"/>
+<rect x="368" y="162" width="1084" height="752" fill="none" stroke="#333" stroke-width="1"/>
+<path d="M368,162 h40.68 v14 l-6,6 h-34.68 z" fill="#eeeeee" stroke="#333" stroke-width="1"/>
+<text x="375" y="176" font-size="10.5" font-weight="700" fill="#222">loop</text>
+<text x="416.68" y="176" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">[5초 폴링 · 윈도우 8건]</text>
+<rect x="700" y="620" width="740" height="272" fill="none" stroke="#333" stroke-width="1"/>
+<path d="M700,620 h35.01 v14 l-6,6 h-29.009999999999998 z" fill="#eeeeee" stroke="#333" stroke-width="1"/>
+<text x="707" y="634" font-size="10.5" font-weight="700" fill="#222">opt</text>
+<text x="743.01" y="634" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">[triggered]</text>
+<rect x="700" y="388" width="420" height="218" fill="none" stroke="#333" stroke-width="1"/>
+<path d="M700,388 h35.01 v14 l-6,6 h-29.009999999999998 z" fill="#eeeeee" stroke="#333" stroke-width="1"/>
+<text x="707" y="402" font-size="10.5" font-weight="700" fill="#222">alt</text>
+<text x="743.01" y="402" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">[주석 없음 — hybrid]</text>
+<line x1="700" y1="464" x2="1120" y2="464" stroke="#333" stroke-width="1" stroke-dasharray="5 4"/>
+<text x="708" y="478" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">[주석 있음]</text>
+<rect x="712" y="696" width="716" height="174" fill="none" stroke="#333" stroke-width="1"/>
+<path d="M712,696 h35.01 v14 l-6,6 h-29.009999999999998 z" fill="#eeeeee" stroke="#333" stroke-width="1"/>
+<text x="719" y="710" font-size="10.5" font-weight="700" fill="#222">opt</text>
+<text x="755.01" y="710" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">[에피소드 닫힘 — 정상 윈도우 N회 · 15초 무입력 · 64건]</text>
+<rect x="60.410000000000004" y="30" width="99.17999999999999" height="42" rx="4" fill="#eef2f7" stroke="#33557a" stroke-width="1.4"/>
+<text x="110" y="48" text-anchor="middle" font-size="11" fill="#33557a" font-weight="600">CatchUpRunner</text>
+<text x="110" y="63" text-anchor="middle" font-size="9.5" fill="#556">projection 모듈</text>
+<rect x="199.62" y="30" width="140.76" height="42" rx="4" fill="#eef2f7" stroke="#33557a" stroke-width="1.4"/>
+<text x="270" y="48" text-anchor="middle" font-size="11" fill="#33557a" font-weight="600">SensorValuePublisher</text>
+<text x="270" y="63" text-anchor="middle" font-size="9.5" fill="#556">best-effort</text>
+<rect x="390.6525" y="30" width="78.69500000000002" height="42" rx="4" fill="#e7f4ec" stroke="#2e7d4f" stroke-width="1.4"/>
+<text x="430" y="48" text-anchor="middle" font-size="11" fill="#2e6b45" font-weight="600">Kafka</text>
+<text x="430" y="63" text-anchor="middle" font-size="9.5" fill="#556">sensor-values</text>
+<rect x="522.59" y="30" width="134.82" height="42" rx="4" fill="#eef2f7" stroke="#33557a" stroke-width="1.4"/>
+<text x="590" y="48" text-anchor="middle" font-size="11" fill="#33557a" font-weight="600">SensorValueConsumer</text>
+<text x="590" y="63" text-anchor="middle" font-size="9.5" fill="#556">sensor-observer 모듈</text>
+<rect x="676.65" y="30" width="146.7" height="42" rx="4" fill="#eef2f7" stroke="#33557a" stroke-width="1.4"/>
+<text x="750" y="48" text-anchor="middle" font-size="11" fill="#33557a" font-weight="600">SensorObserverService</text>
+<text x="750" y="63" text-anchor="middle" font-size="9.5" fill="#556">센서 레인</text>
+<rect x="839.62" y="30" width="140.76" height="42" rx="4" fill="#eef2f7" stroke="#33557a" stroke-width="1.4"/>
+<text x="910" y="48" text-anchor="middle" font-size="11" fill="#33557a" font-weight="600">SensorBatchAnnotator</text>
+<text x="910" y="63" text-anchor="middle" font-size="9.5" fill="#556">4층 결정론 주석</text>
+<rect x="1018.1" y="30" width="103.79999999999998" height="42" rx="4" fill="#fff8e8" stroke="#a0812f" stroke-width="1.4"/>
+<text x="1070" y="48" text-anchor="middle" font-size="11" fill="#8a6d1f" font-weight="600">SensorScreener</text>
+<text x="1070" y="63" text-anchor="middle" font-size="9.5" fill="#556">소형 LLM</text>
+<rect x="1181.07" y="30" width="97.85999999999999" height="42" rx="4" fill="#fff8e8" stroke="#a0812f" stroke-width="1.4"/>
+<text x="1230" y="48" text-anchor="middle" font-size="11" fill="#8a6d1f" font-weight="600">AnalysisGraph</text>
+<text x="1230" y="63" text-anchor="middle" font-size="9.5" fill="#556">LangGraph</text>
+<rect x="1354.0" y="30" width="72" height="42" rx="4" fill="#fbeef0" stroke="#a04050" stroke-width="1.4"/>
+<text x="1390" y="48" text-anchor="middle" font-size="11" fill="#8c3444" font-weight="600">llm-docs/</text>
+<text x="1390" y="63" text-anchor="middle" font-size="9.5" fill="#556">파일 시스템</text>
+<polyline points="116,102 264,102" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="190.0" y="97" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">publishSensorValues(rows) — 커밋 후</text>
+<polyline points="276,132 424,132" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="350.0" y="127" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">produce (실패해도 투영 유지)</text>
+<polyline points="584,196 436,196" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="510.0" y="191" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">poll(8)</text>
+<polyline points="436,226 584,226" fill="none" stroke="#555" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#m555)"/>
+<text x="510.0" y="221" text-anchor="middle" font-size="10.5" fill="#555" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">SensorValueMessage[]</text>
+<polyline points="596,256 744,256" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="670.0" y="251" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">observe(batch)</text>
+<polyline points="756,286 904,286" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="830.0" y="281" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">annotate(batch)</text>
+<path d="M916,316 h26 v22 h-26" fill="none" stroke="#222222" stroke-width="1.3"/>
+<polyline points="942,338 918,338" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="948" y="320" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">physical · consistency (확정) / jump (LLM 판단) / stat (참고)</text>
+<polyline points="904,358 756,358" fill="none" stroke="#555" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#m555)"/>
+<text x="830.0" y="353" text-anchor="middle" font-size="10.5" fill="#555" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">주석 ⚠ 목록</text>
+<path d="M756,422 h26 v22 h-26" fill="none" stroke="#222222" stroke-width="1.3"/>
+<polyline points="782,444 758,444" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="788" y="426" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">정상 확정 (LLM 미호출)</text>
+<polyline points="756,496 1064,496" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="910.0" y="491" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">screen(batch + 주석 + 룰북·베이스라인)</text>
+<polyline points="1064,526 756,526" fill="none" stroke="#555" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#m555)"/>
+<text x="910.0" y="521" text-anchor="middle" font-size="10.5" fill="#555" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">{ triggered, offendingSceneKeys, reason }</text>
+<path d="M756,556 h26 v22 h-26" fill="none" stroke="#222222" stroke-width="1.3"/>
+<polyline points="782,578 758,578" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="788" y="560" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">physical·consistency 확정 위반은 강제 병합</text>
+<path d="M756,654 h26 v22 h-26" fill="none" stroke="#222222" stroke-width="1.3"/>
+<polyline points="782,676 758,676" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="788" y="658" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">에피소드에 누적 (같은 물리적 사건)</text>
+<path d="M756,730 h26 v22 h-26" fill="none" stroke="#222222" stroke-width="1.3"/>
+<polyline points="782,752 758,752" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="788" y="734" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">지목 장면 우선 ≤16건으로 압축</text>
+<polyline points="756,772 1224,772" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="990.0" y="767" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">invoke({ sensorFinding, insightCards, docId: dq-&lt;sceneKey&gt; })</text>
+<polyline points="1224,802 756,802" fill="none" stroke="#555" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#m555)"/>
+<text x="990.0" y="797" text-anchor="middle" font-size="10.5" fill="#555" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">{ report, diagnosisTrajectory }</text>
+<polyline points="756,832 1384,832" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="1070.0" y="827" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">write &lt;날짜&gt;-&lt;시각&gt;-dq-&lt;sceneKey&gt;.md</text>
+<path d="M604,928 h125.6 l8,8 v34 h-133.6 z" fill="#fffbe6" stroke="#999" stroke-width="1"/>
+<path d="M729.6,928 v8 h8" fill="none" stroke="#999" stroke-width="1"/>
+<text x="612" y="942" text-anchor="start" font-size="10" fill="#333">관찰 실패 시 requeue,</text>
+<text x="612" y="955" text-anchor="start" font-size="10" fill="#333">3연속 실패 시 결정론 폴백</text>
+</svg>

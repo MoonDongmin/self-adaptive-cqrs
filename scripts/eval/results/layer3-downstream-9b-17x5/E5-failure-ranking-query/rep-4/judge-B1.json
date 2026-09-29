@@ -1,0 +1,24 @@
+{
+  "groundedness": 2,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 1,
+  "versioningQuality": 4,
+  "unsupportedClaims": [
+    "`insight_events` 테이블 존재 가정",
+    "`stream_id`에 `trip-anchor:` 접두사 존재 주장",
+    "`insight.card.miss`를 파지 실패 이벤트로 오인"
+  ],
+  "rationale": "T1은 정답 요지와 동일하게 기존 Read Model의 집계/랭킹 기능 부재를 정확히 진단하여 높은 점수(5)를 부여함. T2/T3 SQL은 자료에 없는 `insight_events` 테이블을 가정하고 로그의 캐시 미스 메시지를 이벤트로 오인해 `trip-anchor:` 접두사를 지어내는 등 근거가 결여되어 낮은 점수(1)를 부여함. T4는 v1/v2 엔드포인트 분리, 병행 운영, 백필 절차가 구체적이며 정답 요지의 조치와 일치하여 높은 점수(4)를 부여함.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 7919,
+    "completion_tokens": 3769,
+    "total_tokens": 11688,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3550
+    }
+  },
+  "latencyMs": 86319,
+  "judgedAt": "2026-09-11T14:56:58.229Z"
+}

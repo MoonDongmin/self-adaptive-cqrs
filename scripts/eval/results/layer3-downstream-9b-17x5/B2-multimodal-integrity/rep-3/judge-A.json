@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 2,
+  "versioningQuality": 5,
+  "unsupportedClaims": [],
+  "rationale": "groundedness는 T1~T4 모두 [자료]의 로그, DDL, 마이그레이션 절차 등을 정확히 인용해 외부 추측 없이 구성했음. diagnosisAccuracy는 정답 요지의 핵심인 파일명 메타데이터와 레코드 좌표 불일치 및 투영 매핑 충돌 원인을 정확히 진단함. sqlCorrectness는 T2 DDL은 정확하나, T3 조회 SQL에서 PostgreSQL의 regexp_matches가 배열을 반환하는 특성을 무시해 타입 불일치 오류를 유발하며, 백필도 추출 로직 없이 NULL 삽입으로 처리해 정합성 검증 데이터 준비가 미흡함. versioningQuality는 신규 엔드포인트 추가, v1 무손상 유지, 인간 승인 기반 컷오버 순서 등 자료의 절차와 정확히 매칭해 즉시 실행 가능한 구체적 전략을 제시함.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 14852,
+    "completion_tokens": 3081,
+    "total_tokens": 17933,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2863
+    }
+  },
+  "latencyMs": 88101,
+  "judgedAt": "2026-09-11T13:45:21.614Z"
+}

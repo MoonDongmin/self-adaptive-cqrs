@@ -1,0 +1,23 @@
+{
+  "groundedness": 1,
+  "diagnosisAccuracy": 5,
+  "actionability": 4,
+  "completeness": 4,
+  "unsupportedClaims": [
+    "grip-result.projector.ts 파일 경로 및 코드 발췌",
+    "toy-data.dto.ts 파일 경로 및 Zod 스키마 설명"
+  ],
+  "rationale": "groundedness: 저장소 확인 결과 Docs가 인용한 TypeScript 파일 경로가 존재하지 않으며, 관련 코드와 Zod 스키마 설명은 자료에 근거한 것이 아니므로 근거 없는 주장으로 간주. diagnosisAccuracy: 빈 배열(poison) 이벤트로 인한 map() 예외, 배치 트랜잭션 롤백 및 정상 이벤트 미투영 원인과 메커니즘이 정답 요지와 정확히 일치. actionability: poison 이벤트 skip/dead-letter 후 catch-up 재실행 조치와 커서 점프 금지 경고가 정답과 일치하나, 실제 런너 연동 코드 구현 세부사항이 부족하고 SQL이 검증용 SELECT에 그쳐 실행 단계에서 추가 작업 필요. completeness: 권고, SQL, API 버저닝 세 요소가 모두 수록되었으나 API 절에 오타('변 변경')가 있고, 정답 요지의 DDL 불필요 명시와 SQL(SELECT만)이 구조적으로 일치하여 사소한 불일치로 감점.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 11050,
+    "completion_tokens": 4591,
+    "total_tokens": 15641,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4308
+    }
+  },
+  "latencyMs": 108460,
+  "judgedAt": "2026-09-14T07:07:06.856Z"
+}

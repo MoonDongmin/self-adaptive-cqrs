@@ -1,0 +1,3 @@
+
+
+{"groundedness": 3, "diagnosisAccuracy": 5, "sqlCorrectness": 1, "versioningQuality": 3, "unsupportedClaims": ["기존 v1 테이블 ALTER TABLE 제안 (정답 요지 명시적 위반)", "자료에 없는 임의 값(1.2, 36.5)을 포함하는 INSERT 검증 SQL 작성", "현재 Read Model 스키마에 정의되지 않은 컬럼을 SELECT 문에서 참조"], "rationale": "T1은 로그와 스키마 불일치를 정확히 진단해 정답 요지와 일치하므로 5점. T2는 정답 요지(기존 v1 테이블 건드리지 않기)를 위반하는 ALTER TABLE을 제안하고, 자료에 없는 임의 값을 INSERT 검증 SQL에 포함해 groundedness와 sqlCorrectness를 크게 깎음. T3는 현재 스키마에 존재하지 않는 컬럼을 조회하는 SQL을 제시해 실행이 불가능하며 유실 데이터 복구 논리가 결여되어 1점. T4는 병행 운영과 컷오버를 언급했으나 단계가 다소 일반적이고 T2의 제안과 혼선이 있어 3점."}

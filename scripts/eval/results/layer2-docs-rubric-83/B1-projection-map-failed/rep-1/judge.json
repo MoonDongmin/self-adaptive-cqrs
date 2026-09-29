@@ -1,0 +1,22 @@
+{
+  "groundedness": 3,
+  "diagnosisAccuracy": 5,
+  "actionability": 5,
+  "completeness": 5,
+  "unsupportedClaims": [
+    "src/projection/projector/grip-result.projector.ts 파일 경로 및 throw new Error(...) 코드 구체적 인용 (자료 미제공)"
+  ],
+  "rationale": "groundedness는 핵심 로그와 스키마는 정확히 인용했으나 자료에 없는 특정 TS 파일 경로 및 코드 구조를 지어냈음. diagnosisAccuracy는 정답 요지의 poison 이벤트 원인, 배치 롤백 영향, skip/dead-letter 후 재실행 조치 및 커서 점프 금지와 완벽히 일치함. actionability는 제공된 SQL이 검증용 SELECT로 안전하며 자동 검증 결과와 부합하고 DDL 불필요 결론도 정답과 일치하여 실행 가능함. completeness는 권고, SQL, API 버전 세 요소가 모두 포함되며 서로 모순 없이 정답 요지의 '새 Read Model 불필요'와 일관됨.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 10971,
+    "completion_tokens": 3509,
+    "total_tokens": 14480,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3292
+    }
+  },
+  "latencyMs": 87198,
+  "judgedAt": "2026-09-14T01:50:51.844Z"
+}

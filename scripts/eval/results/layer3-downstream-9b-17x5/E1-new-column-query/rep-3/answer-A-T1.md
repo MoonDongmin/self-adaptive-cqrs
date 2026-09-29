@@ -1,0 +1,1 @@
+사용자가 최근 적재 데이터에 포함된 `gripper_temperature` 필드를 시간대별로 조회할 수 있는 Read Model 이 존재하는지 확인했으나, `insight.card.miss` 로그가 3 회 반복되어 요청 실패가 발생했습니다. 이는 `payload.schema.drift` 로그에서 `newKeys={"conveyor_speed": "1.2", "gripper_temperature": "36.5"}`로 신규 키 유입이 감지되었음에도, 기존 `read_grip_result` Read Model 에 해당 필드가 정의되지 않아 적재 시 데이터가 유실되고 투영된 결과에서 조회가 불가능했기 때문입니다.

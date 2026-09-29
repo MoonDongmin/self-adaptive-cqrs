@@ -1,0 +1,53 @@
+{
+  "scenarioId": "E5-failure-ranking-query",
+  "rep": 4,
+  "startedAt": "2026-08-13T01:43:25.320Z",
+  "expectsDocs": true,
+  "channel": "query",
+  "stagedCount": 30,
+  "insert": {
+    "inserted": 30,
+    "failed": []
+  },
+  "projection": {
+    "multimodalProcessed": 30,
+    "gripResultOk": true,
+    "gripResultProcessed": 30
+  },
+  "userQuery": "파지 실패가 가장 많은 객체 상위 목록을 조회하고 싶다. 객체별 실패 수와 실패율을 순위대로 보고 싶다.",
+  "exitReason": "docs-collected",
+  "observedCount": 30,
+  "projectedCount": 30,
+  "events": [
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 3건 (insight.card.miss)"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-08-13-104325-41b622e1-0ee2-4137-be39-fc548f8a3894.md",
+      "docsValid": true,
+      "docsValidationErrors": []
+    },
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "HTTP 404 에러 발생 및 동일 URL(/ GET) 에 대한 중복 요청 감지"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-08-13-110018-5fdce873-bc24-41b3-aa63-ae8b444ac102.md",
+      "docsValid": false,
+      "docsValidationErrors": [
+        "근거 미매핑 인용: [corr:-] 가 evidenceSources 에 없음",
+        "근거 미매핑 인용: [corr:-] 가 evidenceSources 에 없음",
+        "근거 미매핑 인용: [corr:b638fbe9-65b4-45ac-983a-357408ae753a] 가 evidenceSources 에 없음"
+      ]
+    }
+  ],
+  "finishedAt": "2026-08-13T02:49:17.999Z",
+  "durationSeconds": 3953,
+  "collectedDocs": [
+    "2026-08-13-104325-41b622e1-0ee2-4137-be39-fc548f8a3894.md",
+    "2026-08-13-110018-5fdce873-bc24-41b3-aa63-ae8b444ac102.md"
+  ]
+}

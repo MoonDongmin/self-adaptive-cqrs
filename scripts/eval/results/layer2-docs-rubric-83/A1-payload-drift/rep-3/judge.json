@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 5,
+  "completeness": 5,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용된 로그 레벨, 필드명(conveyor_speed, gripper_temperature), 상관관계 ID, 파일 수 등이 [자료]의 로그 테이블과 정확히 일치한다. diagnosisAccuracy: 정답 요지와 동일하게 스키마 드리프트로 인한 신규 키 유실 원인을 정확히 진단했으며, 기존 v1 테이블 수정 금지 및 신규 Read Model/API 병행 운영이라는 해결책을 정확히 제시했다. actionability: 자동 검증 결과에서 SQL 실행 및 코드 컴파일이 성공했으며, 기존 v1 자산에 ALTER/DROP을 가하지 않고 신규 테이블 생성과 API 확장을 통해 문제를 해결할 수 있는 실행 가능한 절차가 제시되었다. completeness: 권고 사항, Read Model 생성 SQL, API 버저닝 세 요소가 모두 포함되어 있으며, 테이블명과 필드 매핑이 문서 전반에 걸쳐 일관되게 사용되어 서로 모순이 없다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 25031,
+    "completion_tokens": 2927,
+    "total_tokens": 27958,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2694
+    }
+  },
+  "latencyMs": 127323,
+  "judgedAt": "2026-09-14T00:31:11.393Z"
+}

@@ -1,0 +1,22 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 5,
+  "completeness": 5,
+  "unsupportedClaims": [
+    "MultiModalProjector.checkIntegrity 및 ProjectionService 연동 로직에 대한 코드 구조 추측 (자료 내 로그로 직접 확인 불가)"
+  ],
+  "rationale": "groundedness: 인용된 모든 로그 레벨, correlation_id, stream_id, global_seq 및 필드명이 [자료]의 로그 테이블과 스키마와 정확히 일치함. diagnosisAccuracy: 정답 요지의 불일치 유형(파일명 scene/attempt), 발생 위치, 처리 단계(투영 정합성 검사) 및 격리 방향과 완벽히 일치함. actionability: 제공된 SQL(SELECT)은 자동 검증에서 성공적으로 실행되었으며, 기존 v1 테이블을 ALTER/DROP하지 않고 결함 이벤트 식별/격리 전략에 부합하여 v1 무손상 요구사항을 충족함. completeness: 권고, SQL, API 버저닝 세 요소가 모두 포함되어 있으며, 서로 v1 무변경 및 스키마 불변 전제에서 논리적으로 일관되게 기술됨.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 11667,
+    "completion_tokens": 3333,
+    "total_tokens": 15000,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3081
+    }
+  },
+  "latencyMs": 85248,
+  "judgedAt": "2026-09-14T01:57:27.866Z"
+}

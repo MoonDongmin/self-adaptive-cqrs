@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 5,
+  "completeness": 5,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용한 로그, 테이블명, 필드명이 [자료]와 정확히 일치하며 제안된 통합 모델의 키도 자료 기반임. diagnosisAccuracy: 정답 요지와 동일하게 분리된 두 Read Model의 조인 부재를 원인으로 진단하고 신규 통합 모델 신설을 권고함. actionability: DDL, Drizzle 스키마, Projector 코드가 NOT NULL 제약과 upsert 키를 정확히 준수하며 기존 v1 자산을 손상시키지 않고 실행 가능함. completeness: 권고, SQL, API 버저닝 세 요소가 모두 충실히 수록되고 테이블명·라우트명·스키마 매칭 등 내부 일관성이 검증됨.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 15937,
+    "completion_tokens": 4196,
+    "total_tokens": 20133,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4001
+    }
+  },
+  "latencyMs": 110693,
+  "judgedAt": "2026-09-14T08:49:45.138Z"
+}

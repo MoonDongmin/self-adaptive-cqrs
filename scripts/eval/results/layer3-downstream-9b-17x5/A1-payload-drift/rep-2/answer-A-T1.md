@@ -1,0 +1,3 @@
+현재 시스템은 `payload.schema.drift` 로그 (level 40) 를 통해 Toy-Data 적재 시 `conveyor_speed` 와 `gripper_temperature` 신규 키가 스키마에 정의되지 않아 Zod 검증 실패로 인해 해당 데이터가 이벤트 스토어에 저장되지 않고 영구 손실되는 문제를 겪고 있습니다. 이는 `read_grip_result` 및 `read_multimodal` 기존 Read Model 에 해당 필드가 미포함되어 투영 단계에서 데이터 추출이 불가능한 구조적 부족 때문입니다.
+
+해결책으로 `read_sensor_drift_v1`이라는 신규 Read Model 을 생성하여 센서 드리프트 변수를 독립적으로 보존하고, `toyDataSchema` 의 `conveyor_speed` 와 `gripper_temperature` 필드를 `optional()` 로 확장하여 검증 실패를 방지하는 변경이 필요합니다.

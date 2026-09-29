@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 2, "completeness": 3, "unsupportedClaims": ["TL;DR의 'read_grip_result 보강' 권고와 SQL 절의 '신규 DDL 불필요' 간 모순"], "rationale": "groundedness는 인용된 로그·필드·소스 파일이 자료와 정확히 일치하여 5점. diagnosisAccuracy는 정답 요지와 동일하게 Zod .int() 위반 필드와 적재 단계 거부 원인을 정확히 진단하여 5점. actionability는 정답 요지에서 명시적으로 요구한 Read Model 보강 SQL이 누락되고 검증용 SELECT만 제공하여 2점. completeness는 세 요소가 존재하지만 권고와 SQL 간에 '보강 vs 불필요' 모순이 있고 API 절 문장이 끊겨 3점."}

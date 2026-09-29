@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 4, "completeness": 5, "unsupportedClaims": [], "rationale": "groundedness: 인용된 장면 키, 시퀀스, z1=-0.05, xl=2500 등 모든 핵심 수치와 필드가 [자료] 원문과 정확히 일치함. diagnosisAccuracy: 정답 요지의 물리 불가능 값 적재 문제와 v2 테이블/격리 방안, v1 무손상 원칙을 정확히 반영함. actionability: SQL 실행은 성공하나 정답 요지에서 명시한 CHECK 제약 대신 플래그 컬럼과 별도 테이블을 제안하여 기술적 의도와 일부 상이함. completeness: 권고문, DDL, API 버저닝 세 요소가 모두 포함되며 테이블명·코드·설명이 내부적으로 일관됨."}

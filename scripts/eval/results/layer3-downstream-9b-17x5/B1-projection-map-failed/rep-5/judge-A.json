@@ -1,0 +1,23 @@
+{
+  "groundedness": 4,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 4,
+  "versioningQuality": 5,
+  "unsupportedClaims": [
+    "T2 SQL에서 event_store.status 컬럼을 가정하여 UPDATE문 작성 (자료에 미등재)",
+    "T4에서 구체적인 API 엔드포인트 경로(/api/v1/...) 제시 (자료에 명시되지 않음)"
+  ],
+  "rationale": "T1은 자료의 로그와 정답 요지를 정확히 매칭하여 poison 이벤트 원인과 배치 롤백 영향을 명확히 진단함. T3 SQL은 자료의 검증 쿼리와 일치하나, T2는 자료에서 명시한 '프로젝터 map() 로직 변경' 대신 존재하지 않는 DB 컬럼을 직접 수정하는 방식으로 제시되어 아키텍처 가이드라인과 다소 괴리됨. T4는 인간 승인, 커서 조작 금지, 재투영 등 핵심 제약조건을 잘 준수한 구체적 절차임. 전반적으로 근거는 탄탄하나 T2의 구현 방식에서 자료 미등재 컬럼 가정과 권장 아키텍처 이탈이 확인됨.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 8166,
+    "completion_tokens": 3859,
+    "total_tokens": 12025,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3618
+    }
+  },
+  "latencyMs": 88508,
+  "judgedAt": "2026-09-11T13:36:44.989Z"
+}

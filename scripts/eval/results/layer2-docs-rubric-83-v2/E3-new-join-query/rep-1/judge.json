@@ -1,0 +1,22 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 4,
+  "completeness": 3,
+  "unsupportedClaims": [
+    "Decision Outcome에서 '기존 Read Model 확장(read_grip_result)'이라고 명시했으나, 실제 SQL 및 코드 블록은 신규 테이블 'read_grip_result_v2' 생성을 제시함. TL;DR도 대상 테이블명을 read_grip_result로 표기하여 DDL과 불일치."
+  ],
+  "rationale": "groundedness: 인용한 로그, 필드명, 스키마 정보가 [자료]와 정확히 일치하며 파일 경로도 실재함. diagnosisAccuracy: 정답 요지와 동일하게 분리된 Read Model 간 조인 부재로 인한 단일 카드 조회 실패를 정확히 진단함. actionability: SQL 및 코드 블록은 컴파일·실행 가능하나, 'Decision Outcome'에서 기존 테이블 확장이라고 명시한 반면 실제 구현물은 신규 v2 테이블 생성으로 내부 일관성이 떨어짐. completeness: 세 요소가 모두 존재하지만, TL;DR/Decision Outcome의 대상 테이블명과 실제 DDL/코드(read_grip_result_v2)가 서로 모순되며, ORM 스키마의 notNull 제약과 DDL의 nullable 정의가 불일치함.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 18000,
+    "completion_tokens": 4705,
+    "total_tokens": 22705,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4432
+    }
+  },
+  "latencyMs": 125846,
+  "judgedAt": "2026-09-14T08:47:54.437Z"
+}

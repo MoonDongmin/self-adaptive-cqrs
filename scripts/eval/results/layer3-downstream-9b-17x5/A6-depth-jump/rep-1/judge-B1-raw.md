@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "sqlCorrectness": 2, "versioningQuality": 1, "unsupportedClaims": ["T2에서 '새 Read Model 테이블이 필요하지 않다'고 단정 (정답 요지에서는 v2 모델 생성을 명시)", "T3 질문의 '평균 깊이'를 'z1 단일 좌표'로 대체하여 조회"], "rationale": "T1은 정답 요지의 급변 원인과 임계값 초과 사실을 원시 레코드로 정확히 검증해 5점이다. T2/T3 SQL은 질문이 요구하는 '평균 깊이' 대신 'z1 좌표'를 사용했으며, 정답 요지의 v2 Read Model 생성 및 플래그 아키텍처를 무시해 2점이다. T4는 자료에 절차가 없어 v1 호환/컷오버 구체 방안을 제시하지 못해 1점이다. 자료 기반 검증은 우수하나 핵심 요구사항 누락으로 감점한다."}

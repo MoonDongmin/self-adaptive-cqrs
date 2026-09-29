@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 5,
+  "completeness": 3,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용된 로그, 필드명, 상관관계 ID 및 파일 경로가 [자료]와 정확히 일치한다. diagnosisAccuracy: payload schema drift로 인한 필드 유실 원인과 신규 Read Model/API v2 병행 해결책이 [정답 요지]와 완벽히 일치한다. actionability: 생성된 DDL, Projector 매핑, upsert 로직이 기존 v1 테이블을 손상시키지 않으며 드리프트 필드를 안전하게 적재하도록 설계되어 있다. completeness: 권고, SQL, API 버저닝 세 요소가 모두 존재하나 'Optional' 코드 블록과 '버전 교체 코드' 블록 간 클래스명 및 메서드명이 서로 상충하여 내부 일관성이 떨어진다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 31150,
+    "completion_tokens": 4099,
+    "total_tokens": 35249,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3901
+    }
+  },
+  "latencyMs": 149289,
+  "judgedAt": "2026-09-14T07:28:49.390Z"
+}

@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 3,
+  "sqlCorrectness": 1,
+  "versioningQuality": 1,
+  "unsupportedClaims": [],
+  "rationale": "groundedness는 5점이다. 자료의 값과 스키마만 정확히 인용하고 T4에서 자료 부재를 정직하게 인정해 지어낸 주장이 없기 때문이다. diagnosisAccuracy는 3점이다. T1에서 z1<0 문제를 맞혔으나 정답 요지의 xl=2500 픽셀 위반 누락으로 부분 일치한다. sqlCorrectness는 1점이다. PostgreSQL JSONB 연산자 오용(`->` vs `->>`)과 스칼라 값에 배열 함수 적용 등 문법적 오류가 많아 실행이 불가능하다. versioningQuality는 1점이다. T4에서 자료 부족을 이유로 답변을 회피해 v1 클라이언트 보호를 위한 구체적 버전 관리/마이그레이션 절차가 누락되었기 때문이다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 16755,
+    "completion_tokens": 2775,
+    "total_tokens": 19530,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2555
+    }
+  },
+  "latencyMs": 67495,
+  "judgedAt": "2026-09-11T12:02:04.084Z"
+}

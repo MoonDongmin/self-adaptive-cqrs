@@ -1,0 +1,3 @@
+
+
+{"groundedness": 4, "diagnosisAccuracy": 5, "actionability": 5, "completeness": 5, "unsupportedClaims": ["src/insert/dto/toy-data.dto.ts의 toyDataSchema 정의", "GripResultProjector.map() 경로 및 동작 설명"], "rationale": "groundedness: 핵심 로그·에러 메시지·파일명은 자료와 정확히 일치하나, 제공되지 않은 소스 코드 경로(toy-data.dto.ts 등)를 인용함. diagnosisAccuracy: 정답 요지의 Zod 타입/범위 위반, 적재 거부, v1 무손상 진단과 완벽히 일치. actionability: 검증용 SELECT SQL이 실행 성공하며 거부 건 추적 및 무유입 확인 목적을 충족하고 기존 자산에 영향 없음. completeness: 권고·SQL(검증/격리)·API 버저닝 세 요소가 모두 포함되며 상호 모순 없이 일관됨."}

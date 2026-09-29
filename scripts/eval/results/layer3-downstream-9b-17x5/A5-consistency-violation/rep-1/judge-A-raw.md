@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "sqlCorrectness": 2, "versioningQuality": 5, "unsupportedClaims": ["T3 SQL에서 v1 스키마에 jsonb로 정의된 robot_tf와 grip_3d_pose 컬럼을 직접 열로 참조함"], "rationale": "groundedness는 자료의 수치·식별자·원인을 정확히 인용하여 5점. diagnosisAccuracy는 정합성 위반 문제와 Projector/DB constraint 부재 원인을 [정답 요지]와 일치시켜 5점. sqlCorrectness는 T2는 정확하나, T3에서 v1 스키마의 jsonb 타입 컬럼을 직접 열로 참조하는 오류가 있어 실행이 불가능하므로 2점. versioningQuality는 v1 유지, v2 추가, 병행 운영, 컷오버 검증 절차를 자료에 기반해 구체적으로 서술하여 5점."}

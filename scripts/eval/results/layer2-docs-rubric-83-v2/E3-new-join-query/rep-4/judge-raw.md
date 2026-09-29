@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 5, "completeness": 5, "unsupportedClaims": [], "rationale": "groundedness: 인용된 로그, 스키마, 파일 경로가 [자료]와 정확히 일치하며 가짜 값이나 존재하지 않는 파일이 없음. diagnosisAccuracy: 정답 요지와 동일하게 기존 Read Model 분리 구조로 인한 통합 뷰 부재를 정확히 진단함. actionability: 제공된 DDL, ORM 스키마, Projector, 배선 코드가 논리적으로 완성되어 있으며 기존 v1 테이블을 손상시키지 않고 요구사항을 충족하는 신규 통합 Read Model을 추가함. completeness: 권고, SQL, API 버저닝 세 요소가 모두 포함되며 테이블명·라우트명·스키마 정의 간에 모순이나 누락이 없음."}

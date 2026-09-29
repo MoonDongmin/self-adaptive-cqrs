@@ -1,0 +1,1 @@
+현재 시스템은 Toy-Data 적재 배치 중 `grip_data` 와 `robot_tf` 필드가 누락된 원천 파일 2 개가 Zod 검증 (`invalid_type: expected object, received undefined`) 을 거절되어 이벤트 스토어에 유입되지 않았으며, 이로 인해 `read_grip_result` 및 `read_multimodal` Read Model 에 해당 시도의 데이터가 생성되지 않아 일관성 검증이 필요한 상황입니다.

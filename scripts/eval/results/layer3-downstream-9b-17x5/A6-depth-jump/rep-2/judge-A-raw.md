@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "sqlCorrectness": 5, "versioningQuality": 2, "unsupportedClaims": ["T4 단계 5에서 v1 테이블 삭제(DROP) 및 기존 엔드포인트 제거를 제안했으나, 자료의 명시적 제약조건 'v1 자산 무손상'에 위배됨.", "T4에서 DDL 실행 및 API 컷오버 시 필수인 'human-in-the-loop(인간 승인)' 게이트를 누락함."], "rationale": "T1~T3는 자료의 로그, 스키마, 제약조건을 정확히 반영하여 문제 진단과 SQL 생성이 완벽함. 그러나 T4는 자료의 핵심 제약조건인 'v1 자산 무손상'을 위반하는 파괴적 컷오버(DROP/삭제)를 제안했으며, 자료에서 반복 강조한 'human-in-the-loop' 승인 절차를 누락하여 버전 관리 품질이 크게 떨어짐."}

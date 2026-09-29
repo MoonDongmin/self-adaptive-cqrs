@@ -1,0 +1,62 @@
+{
+  "scenarioId": "A6-depth-jump",
+  "rep": 5,
+  "startedAt": "2026-08-13T07:12:20.252Z",
+  "expectsDocs": true,
+  "channel": "sensor",
+  "stagedCount": 26,
+  "insert": {
+    "inserted": 26,
+    "failed": []
+  },
+  "projection": {
+    "multimodalProcessed": 26,
+    "gripResultOk": true,
+    "gripResultProcessed": 26
+  },
+  "exitReason": "docs-collected",
+  "observedCount": 26,
+  "projectedCount": 26,
+  "events": [
+    {
+      "action": "sensor.episode.closed",
+      "reason": "무입력 15000ms — 스트림 중단(씬 종료)으로 간주"
+    },
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "HTTP 404 상태 코드 발생 (요청 충족 실패)"
+    },
+    {
+      "action": "sensor.analysis.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02010.md",
+      "docsValid": null,
+      "docsValidationErrors": []
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-08-13-162539-b644c2b3-3e79-492d-8b76-0e059a6256cc.md",
+      "docsValid": true,
+      "docsValidationErrors": []
+    },
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "HTTP 상태 코드 404 (요청 충족 실패: 리소스 없음)"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-08-13-162705-ab5e3f8f-ed5f-4d66-9fc6-abd5bbc6d816.md",
+      "docsValid": false,
+      "docsValidationErrors": [
+        "근거 미매핑 인용: [corr:ab5e3f8f] 가 evidenceSources 에 없음",
+        "근거 미매핑 인용: [corr:ab5e3f8f] 가 evidenceSources 에 없음"
+      ]
+    }
+  ],
+  "finishedAt": "2026-08-13T08:29:00.306Z",
+  "durationSeconds": 4600,
+  "collectedDocs": [
+    "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02010.md",
+    "2026-08-13-162539-b644c2b3-3e79-492d-8b76-0e059a6256cc.md",
+    "2026-08-13-162705-ab5e3f8f-ed5f-4d66-9fc6-abd5bbc6d816.md"
+  ]
+}

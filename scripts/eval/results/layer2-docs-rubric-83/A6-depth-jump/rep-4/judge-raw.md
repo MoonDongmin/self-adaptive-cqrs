@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 5, "completeness": 5, "unsupportedClaims": [], "rationale": "groundedness: 인용된 장면 키, z좌표 원문 값, Δ0.11m 계산 근거가 모두 제공된 로그 JSON 및 스키마에 정확히 부합함. diagnosisAccuracy: 정답 요지의 장면 내 시도 간 깊이 급변(Δ>0.10m) 감지, v2 Read Model 도입, v1 무손상 요구사항을 정확히 반영함. actionability: 생성된 DDL과 TypeScript 코드가 자동 검증 결과를 통과하며 기존 v1 테이블을 건드리지 않고 신규 v2 자산만 additive 방식으로 추가함. completeness: 권고문, DDL, API 버저닝 세 요소가 모두 포함되어 있으며 테이블명·필드명·버전 전략이 문서 전반에서 일관되게 사용됨."}

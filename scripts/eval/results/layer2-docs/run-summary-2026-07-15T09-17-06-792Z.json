@@ -1,9 +1,0 @@
-[
-  {
-    "scenarioId": "E3-new-join-query",
-    "rep": 3,
-    "docs": 0,
-    "exitReason": "timeout",
-    "durationSeconds": 1806
-  }
-]

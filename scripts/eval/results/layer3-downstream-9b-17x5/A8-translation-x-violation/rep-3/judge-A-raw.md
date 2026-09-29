@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "sqlCorrectness": 3, "versioningQuality": 5, "unsupportedClaims": [], "rationale": "groundedness: 모든 수치, 식별자, 테이블명, API 경로가 자료와 정확히 일치하며 외부 추측이나 지어낸 값이 없음. diagnosisAccuracy: 정답 요지의 핵심 문제(파지 성공 but translation 밖)와 원인(정합성 검증 누락)을 정확히 매칭하여 오진 없음. sqlCorrectness: T2 SQL은 자료 DDL과 완벽 일치하나, T3 백필 쿼리에 CROSS JOIN LATERAL 문법 오류와 참조 불일치가 있어 실행 불가함. 다만 선택적 백필 항목이며 최종 질문 답변용 SELECT문은 v2 스키마 기반 조건을 정확히 적용하여 의도한 결과를 도출함. versioningQuality: v1 무손상, 신규 엔드포인트 병행 운영, 인간 승인 게이트, 백필/컷오버 순서를 자료의 마이그레이션 절차와 정확히 매핑하여 구체적 실행 방안 제시."}

@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 5, "completeness": 5, "unsupportedClaims": [], "rationale": "groundedness: 인용된 insight.card.miss 로그 ID, read_grip_result 스키마 필드 및 PK 구조가 [자료]와 정확히 일치하며 추가 추측성 수치 없음. diagnosisAccuracy: 정답 요지의 '집계 Read Model 부재' 진단, 'object_name 키 신설', 'API v2 병행' 조치와 완벽히 일치. actionability: 자동 검증 결과(SQL 2/2 실행 성공, 코드 컴파일 통과)를 바탕으로 신규 테이블 생성 및 누적 upsert 로직이 의도대로 동작하며 기존 v1 자산에 손상을 주지 않음. completeness: 권고, DDL/매핑 SQL, API v2 버저닝 세 요소가 모두 포함되며 테이블명·필드명·라우트 경로가 문서 전반에서 일관되게 사용됨."}

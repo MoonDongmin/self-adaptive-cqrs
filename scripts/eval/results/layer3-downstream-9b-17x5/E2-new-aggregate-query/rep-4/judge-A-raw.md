@@ -1,0 +1,3 @@
+
+
+{"groundedness": 4, "diagnosisAccuracy": 5, "sqlCorrectness": 5, "versioningQuality": 3, "unsupportedClaims": ["T4에서 제안한 `/object-grip-rate/v2` 경로 변경 및 v1 엔드포인트 삭제/비활성화안은 자료의 '순수 추가(additive) 변경' 및 'v1 엔드포인트 무손상' 제약과 상충함."], "rationale": "T1은 로그와 정답 요지의 문제 원인을 정확히 식별해 5점. T2 SQL은 자료 제공 DDL과 완전히 일치하며 제약사항을 준수해 5점. T3 백필 및 조회 쿼리는 기존 v1 테이블을 건드리지 않고 집계 로직을 정확히 구현해 5점. T4는 자료의 '순수 추가 변경' 원칙을 무시하고 `/v2` 경로 변경 및 v1 삭제안을 제시해 실제 아키텍처 가이드와 괴리되므로 3점."}

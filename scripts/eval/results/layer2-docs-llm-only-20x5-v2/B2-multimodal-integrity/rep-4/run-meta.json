@@ -1,0 +1,65 @@
+{
+  "scenarioId": "B2-multimodal-integrity",
+  "rep": 4,
+  "startedAt": "2026-08-12T21:51:46.783Z",
+  "expectsDocs": true,
+  "channel": "log",
+  "stagedCount": 27,
+  "insert": {
+    "inserted": 27,
+    "failed": []
+  },
+  "projection": {
+    "multimodalProcessed": 27,
+    "gripResultOk": true,
+    "gripResultProcessed": 27
+  },
+  "exitReason": "docs-collected",
+  "observedCount": 27,
+  "projectedCount": 27,
+  "events": [
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 2건 (projection.integrity.violation)"
+    },
+    {
+      "action": "sensor.episode.closed",
+      "reason": "무입력 34904ms — 스트림 중단(씬 종료)으로 간주"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-08-13-065146-ee2549b1-5934-4548-bd3f-c5f9fe81eb3f.md",
+      "docsValid": true,
+      "docsValidationErrors": []
+    },
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "HTTP 404 에러 상태 코드 (res.statusCode: 404) 로 요청 충족 실패"
+    },
+    {
+      "action": "sensor.analysis.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2023-10-10-090000-반려동물용품_CR01_강아지공룡알장난감_00431.md",
+      "docsValid": null,
+      "docsValidationErrors": []
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-08-13-073201-417ede90-bcea-40df-9479-1dcfb18ad25d.md",
+      "docsValid": false,
+      "docsValidationErrors": [
+        "근거 미매핑 인용: [corr:-] 가 evidenceSources 에 없음"
+      ]
+    },
+    {
+      "action": "llm.analysis.failed",
+      "reason": "Error: 선판단 출력이 max_tokens(1024)에서 잘림 — content 길이 2151. PREJUDGE_MAX_OUTPUT_TOKENS 상향 필요."
+    }
+  ],
+  "finishedAt": "2026-08-12T23:14:53.981Z",
+  "durationSeconds": 4987,
+  "collectedDocs": [
+    "2023-10-10-090000-반려동물용품_CR01_강아지공룡알장난감_00431.md",
+    "2026-08-13-065146-ee2549b1-5934-4548-bd3f-c5f9fe81eb3f.md",
+    "2026-08-13-073201-417ede90-bcea-40df-9479-1dcfb18ad25d.md"
+  ]
+}

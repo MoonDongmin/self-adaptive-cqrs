@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="570" viewBox="0 0 1180 570" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">
+<rect width="1180" height="570" fill="#fff"/>
+<rect x="20" y="20" width="640" height="500" rx="8" fill="none" stroke="#888" stroke-width="1.2" stroke-dasharray="6 4"/>
+<text x="34" y="40" text-anchor="start" font-size="13" font-weight="700" fill="#333">이벤트 소싱·CQRS 영역</text>
+<rect x="40" y="50" width="250" height="171" rx="4" fill="#fff" stroke="#333" stroke-width="1.3"/>
+<rect x="40" y="50" width="250" height="28" rx="4" fill="#3a3a3a"/><rect x="40" y="68" width="250" height="10" fill="#3a3a3a"/>
+<text x="165.0" y="69" text-anchor="middle" font-size="12.5" font-weight="700" fill="#fff" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">event_store</text>
+<text x="48" y="93" text-anchor="start" font-size="9" font-weight="700" fill="#333" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">PK</text>
+<text x="80" y="93" text-anchor="start" font-size="11" font-weight="600" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">global_seq</text>
+<text x="282" y="93" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">bigserial</text>
+<text x="48" y="112" text-anchor="start" font-size="9" font-weight="700" fill="#333" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">UQ</text>
+<text x="80" y="112" text-anchor="start" font-size="11" font-weight="600" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">event_id</text>
+<text x="282" y="112" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">uuid</text>
+<text x="80" y="131" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">stream_id</text>
+<text x="282" y="131" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">varchar</text>
+<text x="80" y="150" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">attempt_num</text>
+<text x="282" y="150" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">integer</text>
+<text x="80" y="169" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">event_type</text>
+<text x="282" y="169" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">varchar</text>
+<text x="80" y="188" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">occurred_at</text>
+<text x="282" y="188" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">timestamptz</text>
+<text x="80" y="207" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">payload</text>
+<text x="282" y="207" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">jsonb</text>
+<text x="165.0" y="236" text-anchor="middle" font-size="10" font-weight="400" fill="#666">append-only · UNIQUE(stream_id, attempt_num)</text>
+<rect x="40" y="290" width="250" height="95" rx="4" fill="#fff" stroke="#333" stroke-width="1.3"/>
+<rect x="40" y="290" width="250" height="28" rx="4" fill="#3a3a3a"/><rect x="40" y="308" width="250" height="10" fill="#3a3a3a"/>
+<text x="165.0" y="309" text-anchor="middle" font-size="12.5" font-weight="700" fill="#fff" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">projection_cursor</text>
+<text x="48" y="333" text-anchor="start" font-size="9" font-weight="700" fill="#333" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">PK</text>
+<text x="80" y="333" text-anchor="start" font-size="11" font-weight="600" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">projector_name</text>
+<text x="282" y="333" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">varchar</text>
+<text x="80" y="352" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">last_event_seq</text>
+<text x="282" y="352" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">bigint</text>
+<text x="80" y="371" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">updated_at</text>
+<text x="282" y="371" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">timestamptz</text>
+<text x="165.0" y="400" text-anchor="middle" font-size="10" font-weight="400" fill="#666">last_event_seq → event_store.global_seq</text>
+<rect x="380" y="50" width="260" height="171" rx="4" fill="#fff" stroke="#333" stroke-width="1.3"/>
+<rect x="380" y="50" width="260" height="28" rx="4" fill="#3a3a3a"/><rect x="380" y="68" width="260" height="10" fill="#3a3a3a"/>
+<text x="510.0" y="69" text-anchor="middle" font-size="12.5" font-weight="700" fill="#fff" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">read_grip_result</text>
+<text x="388" y="93" text-anchor="start" font-size="9" font-weight="700" fill="#333" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">PK</text>
+<text x="420" y="93" text-anchor="start" font-size="11" font-weight="600" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">scene_key</text>
+<text x="632" y="93" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">varchar</text>
+<text x="388" y="112" text-anchor="start" font-size="9" font-weight="700" fill="#333" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">PK</text>
+<text x="420" y="112" text-anchor="start" font-size="11" font-weight="600" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">attempt_num</text>
+<text x="632" y="112" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">smallint</text>
+<text x="420" y="131" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">object_name</text>
+<text x="632" y="131" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">varchar</text>
+<text x="420" y="150" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">grip_succeed</text>
+<text x="632" y="150" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">boolean</text>
+<text x="420" y="169" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">grip_3d_pose</text>
+<text x="632" y="169" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">jsonb</text>
+<text x="420" y="188" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">robot_tf</text>
+<text x="632" y="188" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">jsonb</text>
+<text x="420" y="207" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">…</text>
+<text x="632" y="207" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace"></text>
+<rect x="380" y="330" width="260" height="133" rx="4" fill="#fff" stroke="#333" stroke-width="1.3"/>
+<rect x="380" y="330" width="260" height="28" rx="4" fill="#3a3a3a"/><rect x="380" y="348" width="260" height="10" fill="#3a3a3a"/>
+<text x="510.0" y="349" text-anchor="middle" font-size="12.5" font-weight="700" fill="#fff" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">read_multimodal</text>
+<text x="388" y="373" text-anchor="start" font-size="9" font-weight="700" fill="#333" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">PK</text>
+<text x="420" y="373" text-anchor="start" font-size="11" font-weight="600" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">scene_key</text>
+<text x="632" y="373" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">varchar</text>
+<text x="388" y="392" text-anchor="start" font-size="9" font-weight="700" fill="#333" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">PK</text>
+<text x="420" y="392" text-anchor="start" font-size="11" font-weight="600" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">attempt_num</text>
+<text x="632" y="392" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">smallint</text>
+<text x="420" y="411" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">image_2d_uri</text>
+<text x="632" y="411" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">varchar</text>
+<text x="420" y="430" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">video_uri</text>
+<text x="632" y="430" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">varchar</text>
+<text x="420" y="449" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">…</text>
+<text x="632" y="449" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace"></text>
+<text x="510.0" y="478" text-anchor="middle" font-size="10" font-weight="400" fill="#666">목적별 Read Model · 원천 추적용 stream_id·global_seq 보존</text>
+<path d="M 290 120 L 335 120 L 335 120" fill="none" stroke="#333" stroke-width="1.3"/>
+<path d="M 335 120 L 335 400" fill="none" stroke="#333" stroke-width="1.3"/>
+<path d="M 335 120 L 380 120" fill="none" stroke="#333" stroke-width="1.3"/>
+<path d="M 335 400 L 380 400" fill="none" stroke="#333" stroke-width="1.3"/>
+<text x="296" y="113" text-anchor="start" font-size="11" font-weight="700" fill="#222">1</text>
+<text x="372" y="113" text-anchor="end" font-size="11" font-weight="700" fill="#222">N</text>
+<text x="372" y="393" text-anchor="end" font-size="11" font-weight="700" fill="#222">N</text>
+<text x="335" y="90" text-anchor="middle" font-size="11" font-weight="400" fill="#555">투영</text>
+<path d="M 290 330 L 320 330 L 320 200 L 290 200" fill="none" stroke="#333" stroke-width="1.3" stroke-dasharray="4 3"/>
+<text x="326" y="268" text-anchor="start" font-size="10" font-weight="400" fill="#666">커서 참조</text>
+<rect x="690" y="20" width="470" height="500" rx="8" fill="none" stroke="#888" stroke-width="1.2" stroke-dasharray="6 4"/>
+<text x="704" y="40" text-anchor="start" font-size="13" font-weight="700" fill="#333">LLM 컨텍스트 저장소</text>
+<rect x="710" y="60" width="210" height="133" rx="4" fill="#fff" stroke="#333" stroke-width="1.3"/>
+<rect x="710" y="60" width="210" height="28" rx="4" fill="#3a3a3a"/><rect x="710" y="78" width="210" height="10" fill="#3a3a3a"/>
+<text x="815.0" y="79" text-anchor="middle" font-size="12.5" font-weight="700" fill="#fff" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">insight_entity</text>
+<text x="718" y="103" text-anchor="start" font-size="9" font-weight="700" fill="#333" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">PK</text>
+<text x="750" y="103" text-anchor="start" font-size="11" font-weight="600" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">entity_name</text>
+<text x="912" y="103" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">varchar</text>
+<text x="750" y="122" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">kind</text>
+<text x="912" y="122" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">event | read_model</text>
+<text x="750" y="141" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">purpose</text>
+<text x="912" y="141" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">text</text>
+<text x="750" y="160" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">key_columns</text>
+<text x="912" y="160" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">varchar[]</text>
+<text x="750" y="179" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">row_count</text>
+<text x="912" y="179" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">bigint</text>
+<rect x="710" y="300" width="210" height="133" rx="4" fill="#fff" stroke="#333" stroke-width="1.3"/>
+<rect x="710" y="300" width="210" height="28" rx="4" fill="#3a3a3a"/><rect x="710" y="318" width="210" height="10" fill="#3a3a3a"/>
+<text x="815.0" y="319" text-anchor="middle" font-size="12.5" font-weight="700" fill="#fff" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">insight_field</text>
+<text x="718" y="343" text-anchor="start" font-size="9" font-weight="700" fill="#333" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">PK,FK</text>
+<text x="750" y="343" text-anchor="start" font-size="11" font-weight="600" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">entity_name</text>
+<text x="912" y="343" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">varchar</text>
+<text x="718" y="362" text-anchor="start" font-size="9" font-weight="700" fill="#333" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">PK</text>
+<text x="750" y="362" text-anchor="start" font-size="11" font-weight="600" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">field_name</text>
+<text x="912" y="362" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">varchar</text>
+<text x="750" y="381" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">data_type</text>
+<text x="912" y="381" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">varchar</text>
+<text x="750" y="400" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">meaning</text>
+<text x="912" y="400" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">text</text>
+<text x="750" y="419" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">example</text>
+<text x="912" y="419" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">text</text>
+<text x="815.0" y="448" text-anchor="middle" font-size="10" font-weight="400" fill="#666">Insight Read DB: 스키마 정보 (M-Schema)</text>
+<path d="M 815 193 L 815 300" fill="none" stroke="#333" stroke-width="1.3"/>
+<text x="822" y="207" text-anchor="start" font-size="11" font-weight="700" fill="#222">1</text>
+<text x="822" y="292" text-anchor="start" font-size="11" font-weight="700" fill="#222">N</text>
+<rect x="940" y="60" width="200" height="171" rx="4" fill="#fff" stroke="#333" stroke-width="1.3"/>
+<rect x="940" y="60" width="200" height="28" rx="4" fill="#3a3a3a"/><rect x="940" y="78" width="200" height="10" fill="#3a3a3a"/>
+<text x="1040.0" y="79" text-anchor="middle" font-size="12.5" font-weight="700" fill="#fff" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">log_event</text>
+<text x="948" y="103" text-anchor="start" font-size="9" font-weight="700" fill="#333" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">PK</text>
+<text x="980" y="103" text-anchor="start" font-size="11" font-weight="600" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">time</text>
+<text x="1132" y="103" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">timestamptz</text>
+<text x="948" y="122" text-anchor="start" font-size="9" font-weight="700" fill="#333" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">PK</text>
+<text x="980" y="122" text-anchor="start" font-size="11" font-weight="600" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">log_id</text>
+<text x="1132" y="122" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">uuid</text>
+<text x="980" y="141" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">level</text>
+<text x="1132" y="141" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">smallint</text>
+<text x="980" y="160" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">action</text>
+<text x="1132" y="160" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">varchar</text>
+<text x="980" y="179" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">correlation_id</text>
+<text x="1132" y="179" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">varchar</text>
+<text x="980" y="198" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">stream_id</text>
+<text x="1132" y="198" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">varchar</text>
+<text x="980" y="217" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">payload</text>
+<text x="1132" y="217" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">jsonb</text>
+<rect x="940" y="340" width="200" height="76" rx="4" fill="#fff" stroke="#333" stroke-width="1.3"/>
+<rect x="940" y="340" width="200" height="28" rx="4" fill="#3a3a3a"/><rect x="940" y="358" width="200" height="10" fill="#3a3a3a"/>
+<text x="1040.0" y="359" text-anchor="middle" font-size="12.5" font-weight="700" fill="#fff" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">log_cursor</text>
+<text x="948" y="383" text-anchor="start" font-size="9" font-weight="700" fill="#333" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">PK</text>
+<text x="980" y="383" text-anchor="start" font-size="11" font-weight="600" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">source_file</text>
+<text x="1132" y="383" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">text</text>
+<text x="980" y="402" text-anchor="start" font-size="11" font-weight="400" fill="#222" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">byte_offset</text>
+<text x="1132" y="402" text-anchor="end" font-size="10" font-weight="400" fill="#777" font-family="'SF Mono','Menlo','Consolas','DejaVu Sans Mono',monospace">bigint</text>
+<text x="1040.0" y="431" text-anchor="middle" font-size="10" font-weight="400" fill="#666">Log DB: TimescaleDB hypertable</text>
+<text x="20" y="545" text-anchor="start" font-size="10.5" font-weight="400" fill="#555">실선 1–N: 이벤트 → Read Model 투영 (global_seq로 논리적 추적) · 점선: 커서 참조 · 물리적 FK는 insight_field → insight_entity만 · …: 생략된 컬럼</text>
+</svg>

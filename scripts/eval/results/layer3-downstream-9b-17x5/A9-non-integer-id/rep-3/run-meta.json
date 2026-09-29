@@ -1,0 +1,76 @@
+{
+  "scenarioId": "A9-non-integer-id",
+  "rep": 3,
+  "sourceDocument": "2026-08-12-113716-aaa46bb4-7b7d-4e48-a680-5c5fb0f2f51e.md",
+  "sourceDocsDirectory": "scripts/eval/results/layer2-docs-llm-only-20x5-v2",
+  "userQuery": null,
+  "model": "qwen/qwen3.5-9b",
+  "temperature": 0,
+  "maxTokens": 8192,
+  "answers": {
+    "B1-T1": {
+      "finishReason": "stop",
+      "promptTokens": 8325,
+      "completionTokens": 272,
+      "latencyMs": 31395,
+      "contextBytes": 15447,
+      "answeredAt": "2026-09-11T06:06:41.230Z"
+    },
+    "B1-T2": {
+      "finishReason": "stop",
+      "promptTokens": 8346,
+      "completionTokens": 1593,
+      "latencyMs": 30015,
+      "contextBytes": 15447,
+      "answeredAt": "2026-09-11T06:07:11.247Z"
+    },
+    "B1-T3": {
+      "finishReason": "stop",
+      "promptTokens": 9961,
+      "completionTokens": 2233,
+      "latencyMs": 47640,
+      "contextBytes": 15447,
+      "answeredAt": "2026-09-11T06:07:58.890Z"
+    },
+    "B1-T4": {
+      "finishReason": "stop",
+      "promptTokens": 8317,
+      "completionTokens": 2651,
+      "latencyMs": 49556,
+      "contextBytes": 15447,
+      "answeredAt": "2026-09-11T06:08:48.447Z"
+    },
+    "A-T1": {
+      "finishReason": "stop",
+      "promptTokens": 9883,
+      "completionTokens": 114,
+      "latencyMs": 33585,
+      "contextBytes": 19533,
+      "answeredAt": "2026-09-11T06:09:22.036Z"
+    },
+    "A-T2": {
+      "finishReason": "stop",
+      "promptTokens": 9904,
+      "completionTokens": 299,
+      "latencyMs": 6501,
+      "contextBytes": 19533,
+      "answeredAt": "2026-09-11T06:09:28.539Z"
+    },
+    "A-T3": {
+      "finishReason": "stop",
+      "promptTokens": 10225,
+      "completionTokens": 1336,
+      "latencyMs": 26831,
+      "contextBytes": 19533,
+      "answeredAt": "2026-09-11T06:09:55.372Z"
+    },
+    "A-T4": {
+      "finishReason": "stop",
+      "promptTokens": 9875,
+      "completionTokens": 597,
+      "latencyMs": 11926,
+      "contextBytes": 19533,
+      "answeredAt": "2026-09-11T06:10:07.299Z"
+    }
+  }
+}

@@ -1,0 +1,3 @@
+(1) **문제**: `payload.schema.drift` 로그가 발생하여, 이벤트 스토어에는 정상적으로 적재되었으나 Read Model 후보로 유실될 위험이 있는 데이터가 발생했습니다.
+
+(2) **근거**: `insert.file.ok` 로그는 54 회 성공했으나, `payload.schema.drift` 로그는 1 회 발생하며, `detail` 필드에 `newKeys={"conveyor_speed": "1.2", "gripper_temperature": "36.5"}`로 스키마에 없는 신규 키가 유입됨을 명시하고 있습니다. 이는 CQRS 구조상 Write Side(이벤트 스토어) 에는 모든 필드가 저장되지만, Read Side(Read Model) 는 정의된 스키마만 반영되므로, `conveyor_speed` 와 `gripper_temperature` 필드가 Read Model 테이블에 포함되지 않아 데이터 불일치가 발생할 수 있음을 시사합니다.

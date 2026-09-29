@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 3,
+  "versioningQuality": 4,
+  "unsupportedClaims": [],
+  "rationale": "groundedness는 제공된 로그와 ReadModel 스키마를 정확히 인용해 5점, diagnosisAccuracy는 정답 요지의 시계열 집계 부재 문제를 로그와 PK 구조로 정확히 매칭해 5점이다. sqlCorrectness는 새 집계 테이블 생성 방향은 맞으나 DDL의 PK 정의와 SELECT 문 간 논리적 모순 및 백필 시 데이터 충돌 위험이 있어 3점이다. versioningQuality는 v1 병행과 컷오버 절차를 구체적으로 서술했으나 일부 단계가 일반론에 머물러 4점이다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 6415,
+    "completion_tokens": 3549,
+    "total_tokens": 9964,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3377
+    }
+  },
+  "latencyMs": 78221,
+  "judgedAt": "2026-09-11T14:35:33.040Z"
+}

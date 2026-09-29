@@ -1,0 +1,3 @@
+현재 시스템은 Toy-Data 적재 시 payload 에 `conveyor_speed` 와 `gripper_temperature` 라는 신규 키가 유입되었으나, 기존 Zod 스키마가 이를 미지정 필드로 간주하여 적재 시 유실시켰고, 이를 반영하지 않은 고정된 Read Model 매핑 파이프라인으로 인해 해당 데이터가 `read_grip_result` 및 `read_multimodal` 테이블로 투영되지 않아 데이터 무결성이 위협받는 상황입니다.
+
+구체적으로 `payload.schema.drift` 로그 (level 40) 에서 `newKeys={"conveyor_speed": "1.2", "gripper_temperature": "36.5"}` 로 신규 필드 유입을 감지했으며, `GripResultProjector` 와 `MultiModalProjector` 의 매핑 로직이 이 필드를 추출하지 못해 `read_grip_sensor_drift` 전용 Read Model 생성이 필요하다는 판단 근거가 됩니다.

@@ -1,0 +1,23 @@
+{
+  "groundedness": 3,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 1,
+  "versioningQuality": 5,
+  "unsupportedClaims": [
+    "T3에서 가상의 log_entries 테이블 가정 및 detail 컬럼의 jsonb 타입 추측",
+    "T3 응답 내 반복 생성된 불필요한 텍스트 루프"
+  ],
+  "rationale": "T1과 T4는 자료의 로그 흐름과 정답 요지(검증 실패 시 이벤트 미생성, v1 무손상)를 정확히 반영하여 높은 점수를 받음. T2 SQL은 PK 기반 누락 확인 로직으로 적절하나, T3 응답이 반복 텍스트 루프와 가상 테이블 가정, 실제 실행 가능한 SQL 부재로 인해 심각한 결함이 있어 sqlCorrectness가 크게 감점됨. 전반적으로 근거는 탄탄하나 T3의 실패로 groundedness와 sqlCorrectness가 하향 조정됨.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 19795,
+    "completion_tokens": 3643,
+    "total_tokens": 23438,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3438
+    }
+  },
+  "latencyMs": 109524,
+  "judgedAt": "2026-09-11T11:29:07.872Z"
+}

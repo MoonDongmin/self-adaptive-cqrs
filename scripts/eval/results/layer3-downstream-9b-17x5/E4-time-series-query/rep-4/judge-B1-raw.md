@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "sqlCorrectness": 5, "versioningQuality": 4, "unsupportedClaims": [], "rationale": "T1은 정답 요지와 동일하게 기존 Read Model의 시계열 집계 부재를 정확히 진단했으며, 로그와 스키마를 근거로 삼아 groundedness 5점이다. T2/T3 SQL은 기존 테이블을 활용해 요구사항을 정확히 충족하므로 sqlCorrectness 5점이다. T4는 v2 API 병행과 점진적 전환 절차를 제시했으나 정답 요지의 '백필' 전략이 누락되어 운영 리스크가 있어 versioningQuality 4점이다. 자료 외 거짓 주장은 발견되지 않았다."}

@@ -1,0 +1,76 @@
+{
+  "scenarioId": "E1-new-column-query",
+  "rep": 5,
+  "sourceDocument": "2026-08-15-090746-a043a140-8c6e-4b33-ab6b-6431d58c43e2.md",
+  "sourceDocsDirectory": "scripts/eval/results/layer2-docs-llm-only-20x5-v2",
+  "userQuery": "최근 적재 데이터에 gripper_temperature 필드가 들어오기 시작했다. 이 값을 시간대별로 조회하고 싶다. 현재 Read Model로 가능한가? 안 되면 어떻게 해야 하나?",
+  "model": "qwen/qwen3.5-9b",
+  "temperature": 0,
+  "maxTokens": 8192,
+  "answers": {
+    "B1-T1": {
+      "finishReason": "stop",
+      "promptTokens": 9830,
+      "completionTokens": 166,
+      "latencyMs": 34503,
+      "contextBytes": 17594,
+      "answeredAt": "2026-09-11T09:03:12.482Z"
+    },
+    "B1-T2": {
+      "finishReason": "stop",
+      "promptTokens": 9851,
+      "completionTokens": 188,
+      "latencyMs": 4298,
+      "contextBytes": 17594,
+      "answeredAt": "2026-09-11T09:03:16.782Z"
+    },
+    "B1-T3": {
+      "finishReason": "stop",
+      "promptTokens": 10058,
+      "completionTokens": 321,
+      "latencyMs": 7476,
+      "contextBytes": 17594,
+      "answeredAt": "2026-09-11T09:03:24.258Z"
+    },
+    "B1-T4": {
+      "finishReason": "stop",
+      "promptTokens": 9822,
+      "completionTokens": 1641,
+      "latencyMs": 31234,
+      "contextBytes": 17594,
+      "answeredAt": "2026-09-11T09:03:55.494Z"
+    },
+    "A-T1": {
+      "finishReason": "stop",
+      "promptTokens": 15962,
+      "completionTokens": 155,
+      "latencyMs": 54504,
+      "contextBytes": 36546,
+      "answeredAt": "2026-09-11T09:04:50.000Z"
+    },
+    "A-T2": {
+      "finishReason": "stop",
+      "promptTokens": 15983,
+      "completionTokens": 227,
+      "latencyMs": 5270,
+      "contextBytes": 36546,
+      "answeredAt": "2026-09-11T09:04:55.274Z"
+    },
+    "A-T3": {
+      "finishReason": "stop",
+      "promptTokens": 16229,
+      "completionTokens": 389,
+      "latencyMs": 9438,
+      "contextBytes": 36546,
+      "answeredAt": "2026-09-11T09:05:04.713Z"
+    },
+    "A-T4": {
+      "finishReason": "stop",
+      "promptTokens": 15954,
+      "completionTokens": 1090,
+      "latencyMs": 22223,
+      "contextBytes": 36546,
+      "answeredAt": "2026-09-11T09:05:26.937Z"
+    }
+  }
+}

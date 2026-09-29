@@ -1,0 +1,24 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 2,
+  "sqlCorrectness": 1,
+  "versioningQuality": 1,
+  "unsupportedClaims": [
+    "T1 근본 원인을 Read Model 레코드 부재로 오진 (정답은 배치 트랜잭션 롤백 및 커서 정지)",
+    "T2 SQL이 poison 이벤트를 Read Model에 저장된 것으로 가정 (정답은 skip/dead-letter)",
+    "T3에서 동일한 T2 쿼리를 반복 출력하여 질문 미수행"
+  ],
+  "rationale": "groundedness는 제공된 로그와 스키마 외 값을 임의로 생성하지 않아 5점이지만, diagnosisAccuracy는 배치 트랜잭션 롤백 및 커서 정지 메커니즘을 누락해 2점이다. sqlCorrectness는 T2가 poison 이벤트를 저장된 것으로 잘못 가정하고 T3가 동일한 쿼리를 반복해 미답변 처리되어 1점이며, versioningQuality는 v1 호환 절차가 전혀 제시되지 않아 1점이다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 13860,
+    "completion_tokens": 3593,
+    "total_tokens": 17453,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3368
+    }
+  },
+  "latencyMs": 95902,
+  "judgedAt": "2026-09-11T13:32:08.644Z"
+}

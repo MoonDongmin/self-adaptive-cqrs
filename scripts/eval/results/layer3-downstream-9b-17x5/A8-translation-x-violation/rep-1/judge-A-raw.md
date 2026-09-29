@@ -1,0 +1,3 @@
+
+
+{"groundedness": 4, "diagnosisAccuracy": 5, "sqlCorrectness": 2, "versioningQuality": 5, "unsupportedClaims": ["T3 백필 SQL에서 기존 v1 테이블(read_grip_result)에 존재하지 않는 컬럼(robot_tf_translation_x, robot_tf_translation_y)을 CASE 조건으로 참조"], "rationale": "T1은 정답 요지와 정확히 일치하며 시퀀스·수치·로그 인용이 정확함. T2 DDL 및 격리 DELETE는 자료와 일치하나, T3 백필 SQL에서 v1 스키마에 존재하지 않는 컬럼을 참조하고 PostgreSQL JSONB 추출 문법이 오류가 있어 치명적 결함이 있음. T4는 자료의 비파괴 마이그레이션 및 human-in-the-loop 절차를 정확히 반영함. 전반적으로 근거는 탄탄하나 T3 SQL의 환각으로 인해 groundedness와 sqlCorrectness에서 감점."}

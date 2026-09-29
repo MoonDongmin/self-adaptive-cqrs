@@ -1,0 +1,3 @@
+
+
+{"groundedness": 4, "diagnosisAccuracy": 5, "actionability": 5, "completeness": 4, "unsupportedClaims": ["projector.map() 필드 누락 주장 (자료에 projector 구현체 없음)", "문서 내 한자/중국어 혼용 사용"], "rationale": "groundedness: 핵심 로그·스키마는 정확하나 projector 내부 로직 누락 여부는 [자료]에 명시되지 않은 추론임. diagnosisAccuracy: 정답 요지의 분리된 Read Model 문제점, 조인 키, 통합 모델 신설 및 API 병행 방안과 완벽 일치. actionability: DDL 및 TS 코드가 자동 검증 결과를 통과하며 기존 v1 자산 훼손 없이 요구사항을 해결하는 신규 모델과 API를 제공함. completeness: 세 핵심 요소는 모두 포함되나, 문서 내 한자/중국어 혼용이 제약 조건을 위반하여 전문성과 일관성을 저해함."}

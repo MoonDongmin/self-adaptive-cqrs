@@ -1,0 +1,3 @@
+
+
+{"groundedness":5,"diagnosisAccuracy":5,"actionability":5,"completeness":3,"unsupportedClaims":["targetReadModel과 TL;DR에서 'unknown'을 대상으로 한다고 명시했으나 실제 데이터와 정답 요지에서 대상은 grip-result-projector/read_grip_result임"],"rationale":"groundedness: 인용한 로그 레벨, 이벤트 ID, 메시지 및 프로젝트터 이름이 제공된 자료와 정확히 일치한다. diagnosisAccuracy: 빈 objects 이벤트 유발 배치 롤백, 커서 점프 금지, skip/dlq 후 재실행 등 정답 요지의 원인·메커니즘·조치와 완벽히 일치한다. actionability: 새 Read Model 불필요라는 진단에 맞게 검증용 SELECT만 제시했으며, 기술된 절차대로 실행 시 정상 재투영이 가능하여 문제 해결에 직접적으로 기여한다. completeness: 세 요소가 모두 존재하지만, TL;DR과 메타데이터에서 대상이 'unknown'으로 표기되어 본문과 모순되며, 권고 절에 '결정론 폴백', '재실행 권장' 등의 스텁 문구가 포함되어 완결성이 떨어진다."}

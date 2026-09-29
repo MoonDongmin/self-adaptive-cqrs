@@ -1,0 +1,24 @@
+{
+  "scenarioId": "F3-subthreshold-jump",
+  "rep": 4,
+  "startedAt": "2026-08-13T02:57:26.665Z",
+  "expectsDocs": false,
+  "channel": "none",
+  "stagedCount": 30,
+  "insert": {
+    "inserted": 30,
+    "failed": []
+  },
+  "projection": {
+    "multimodalProcessed": 30,
+    "gripResultOk": true,
+    "gripResultProcessed": 30
+  },
+  "exitReason": "clean-no-docs",
+  "observedCount": 30,
+  "projectedCount": 30,
+  "events": [],
+  "finishedAt": "2026-08-13T03:05:27.003Z",
+  "durationSeconds": 480,
+  "collectedDocs": []
+}

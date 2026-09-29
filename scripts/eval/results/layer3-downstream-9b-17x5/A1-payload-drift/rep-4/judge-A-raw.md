@@ -1,0 +1,3 @@
+
+
+{"groundedness": 3, "diagnosisAccuracy": 5, "sqlCorrectness": 3, "versioningQuality": 5, "unsupportedClaims": ["T3 백필 SQL에서 'event_store.grip_attempt_recorded' 테이블과 'payload_data' 컬럼을 자료 없이 임의로 가정", "T3 백필 SQL에서 stream_id 기반 SUBSTRING 로직이 자료의 정규식 매핑 명세와 상충될 수 있음"], "rationale": "T1과 T2는 자료의 로그와 제약조건을 정확히 반영하여 높은 점수. T3의 조회 쿼리는 적절하나, 백필 INSERT 문에서 자료에 존재하지 않는 'event_store' 테이블과 'payload_data' 컬럼을 임의로 가정하여 작성한 점이 엄격한 근거 기준에 위배되어 감점. T4는 v1 무손상, 병행 운영, human-in-the-loop 승인 절차를 명확히 제시하여 기준 충족. 전반적으로 핵심 아키텍처 방향은 정확하나 T3의 SQL 과잉 추론으로 인해 일부 감점."}

@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 5,
+  "completeness": 5,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용한 장면 키, z1=-0.05, xl=2500 등 모든 수치와 필드명이 [자료]의 로그 및 스키마에 정확히 일치한다. diagnosisAccuracy: 정답 요지와 동일하게 물리 불가능 값 적재 원인을 v1 검증 누락으로 진단하고, v2 플래그 격리 및 v1 무손상 해결책을 제시한다. actionability: 자동 검증 결과에서 SQL 실행 및 코드 컴파일이 성공했으며, v1 스키마를 변경하지 않고 v2 테이블을 추가 설계하여 이상 값 격리 및 재투영이 가능하도록 구성되었다. completeness: 권고, Read Model DDL, API 버저닝 세 요소가 모두 포함되어 있으며, 테이블명·필드명·API 경로가 문서 전반에서 일관되게 사용된다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 32056,
+    "completion_tokens": 2426,
+    "total_tokens": 34482,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2201
+    }
+  },
+  "latencyMs": 93440,
+  "judgedAt": "2026-09-14T01:05:31.674Z"
+}

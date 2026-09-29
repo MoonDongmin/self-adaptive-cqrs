@@ -1,0 +1,1 @@
+사용자가 파지 결과와 해당 시도의 이미지·영상 경로를 한 화면에 함께 보고는 싶으나, `insight.card.request` 로그에서 `insight.card.miss` 오류가 발생했습니다. 이는 `read_grip_result`와 `read_multimodal` 테이블이 서로 다른 키 (`scene_key`, `attempt_num`) 를 사용하여 독립적으로 관리되고 있어, 두 데이터를 `scene_key`와 `attempt_num` 조합으로 조인할 수 있는 통합 뷰나 쿼리가 Read Model 에 존재하지 않기 때문입니다. 따라서 요청된 화면 구성을 위해 두 Read Model 을 실시간으로 조인하거나, 이미 통합된 새로운 Read Model 을 생성해야 합니다.

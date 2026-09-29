@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 5, "completeness": 5, "unsupportedClaims": ["src/projection/projector/grip-result.projector.ts 및 schema/index.ts 파일 경로 인용은 제공된 [자료]에 명시되지 않음"], "rationale": "groundedness: 인용된 로그 correlation_id, 필드명(object_name, grip_succeed) 및 테이블 스키마가 [자료]와 정확히 일치함. diagnosisAccuracy: 기존 1:1 시도 단위 테이블의 한계와 집계 모델 부재로 인한 insight.card.miss 반복 진단이 [정답 요지]와 완벽히 일치함. actionability: 자동 검증 결과(SQL 2/2 실행 성공, 코드 4/4 컴파일 통과)를 바탕으로 신규 테이블 생성 및 누적 upsert 로직이 의도한 바를 정확히 구현했으며 기존 v1 자산을 ALTER/DROP하지 않음. completeness: 권고, Read Model DDL/SQL, API 버저닝(v1→v2) 세 요소가 모두 포함되며 테이블명·라우트·프로젝터 명칭이 문서 전반에서 일관되게 사용됨."}

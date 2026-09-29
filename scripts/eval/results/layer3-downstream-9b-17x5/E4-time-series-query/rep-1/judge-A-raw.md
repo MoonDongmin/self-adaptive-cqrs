@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "sqlCorrectness": 5, "versioningQuality": 5, "unsupportedClaims": [], "rationale": "T1은 자료의 insight.card.miss 로그와 기존 Read Model 스키마를 정확히 인용하여 정답 요지와 일치하는 원인을 진단했다. T2와 T3의 SQL은 자료의 PostgreSQL dialect 및 스키마를 정확히 반영하여 백필과 조회 로직이 실행 가능하며, 자료에 제시된 검증 쿼리까지 포함해 정확하다. T4는 v1 자산 무손상 제약, API 버전 경로 병행, human-in-the-loop 승인 절차 등 자료의 가이드라인을 구체적으로 따라 구현 가능한 절차로 서술했다. 전반적으로 자료 외 추측이나 지어낸 값 없이 모든 주장과 코드가 [자료]에 명확히 근거하므로 각 항목 만점을 부여한다."}

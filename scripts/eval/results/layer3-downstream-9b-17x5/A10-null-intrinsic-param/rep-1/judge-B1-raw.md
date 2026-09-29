@@ -1,0 +1,3 @@
+
+
+{"groundedness": 2, "diagnosisAccuracy": 4, "sqlCorrectness": 2, "versioningQuality": 4, "unsupportedClaims": ["실패 파일의 stream_id와 global_seq를 로그에 '-'로 명시된 것과 달리 임의로 추상화하여 채움", "read_grip_result 스키마에 존재하지 않는 camera_intrinsic_param 컬럼을 조회 대상으로 가정"], "rationale": "groundedness는 실패 로그의 stream_id와 global_seq를 '-'로 표기된 것과 달리 임의로 채워넣어 감점, 나머지 진단은 자료 기반. diagnosisAccuracy는 null 유입과 Zod 거부를 정확히 지적했으나 정답 요지의 '스키마 비대칭' 언급이 누락되어 4점. sqlCorrectness는 기존 스키마에 없는 컬럼을 조회하고 불필요한 새 테이블 생성 및 가짜 데이터 삽입으로 2점. versioningQuality는 v1 보호를 위한 병행 운영·백필·컷오버 절차를 구체적으로 서술하여 4점."}

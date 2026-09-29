@@ -1,0 +1,24 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 5,
+  "completeness": 5,
+  "unsupportedClaims": [
+    "toy-data.dto.ts 의 Zod 스키마",
+    "GripResultProjector.map() 함수 수정",
+    "CatchUpRunner 가 해당 에러를 포착"
+  ],
+  "rationale": "groundedness: 인용한 이벤트 ID, 로그 메시지, 스키마 필드 등 핵심 데이터가 [자료]와 정확히 일치함. diagnosisAccuracy: 빈 배열 poison 이벤트로 인한 map 예외, 트랜잭션 롤백, 커서 점프 금지 및 skip/dead-letter 조치 등 정답 요지와 완벽하게 일치함. actionability: 신규 DDL 불필요를 정확히 판단하고 검증용 SQL을 제공하며, 절차가 정답 요지의 조치와 일치하여 그대로 실행 시 문제 해결 가능. completeness: 권고, SQL(검증용), API 버저닝 세 요소가 모두 포함되며 서로 모순 없이 정답 요지의 방향성과 일치함.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 10474,
+    "completion_tokens": 4665,
+    "total_tokens": 15139,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4440
+    }
+  },
+  "latencyMs": 108589,
+  "judgedAt": "2026-09-14T01:52:40.438Z"
+}

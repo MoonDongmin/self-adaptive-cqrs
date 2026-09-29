@@ -1,0 +1,46 @@
+{
+  "scenarioId": "A3-missing-field",
+  "rep": 1,
+  "startedAt": "2026-08-10T16:18:37.856Z",
+  "expectsDocs": true,
+  "channel": "log",
+  "stagedCount": 27,
+  "insert": {
+    "inserted": 25,
+    "failed": [
+      {
+        "file": "반려동물용품_CR01_강아지공룡알장난감_02004_01_20230923.json",
+        "reason": "[\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"grip_data\"\n    ],\n    \"message\": \"Invalid input: expected object, received undefined\"\n  }\n]"
+      },
+      {
+        "file": "반려동물용품_CR01_강아지공룡알장난감_02005_01_20230923.json",
+        "reason": "[\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"robot_tf\"\n    ],\n    \"message\": \"Invalid input: expected object, received undefined\"\n  }\n]"
+      }
+    ]
+  },
+  "projection": {
+    "multimodalProcessed": 25,
+    "gripResultOk": true,
+    "gripResultProcessed": 25
+  },
+  "exitReason": "docs-collected",
+  "observedCount": 25,
+  "projectedCount": 25,
+  "events": [
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 2건 (insert.file.failed)"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-08-11-011837-f8148686-8f42-4e6f-bd96-71f8891488dc.md",
+      "docsValid": true,
+      "docsValidationErrors": []
+    }
+  ],
+  "finishedAt": "2026-08-10T16:30:28.222Z",
+  "durationSeconds": 710,
+  "collectedDocs": [
+    "2026-08-11-011837-f8148686-8f42-4e6f-bd96-71f8891488dc.md"
+  ]
+}

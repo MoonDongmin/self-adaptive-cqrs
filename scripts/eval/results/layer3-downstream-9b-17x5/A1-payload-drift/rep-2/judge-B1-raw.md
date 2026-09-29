@@ -1,0 +1,3 @@
+
+
+{"groundedness": 2, "diagnosisAccuracy": 5, "sqlCorrectness": 1, "versioningQuality": 3, "unsupportedClaims": ["event_store 테이블의 컬럼 구조(stream_id, global_seq, payload_json)가 자료에 명시되지 않음", "기존 read_grip_result 테이블 ALTER/INSERT 수정 제안이 정답 요지(신규 Read Model 생성)와 상충"], "rationale": "T1은 로그를 정확히 인용해 정답 요지와 일치했으나(5점), T2~T4에서 자료에 없는 event_store 스키마를 가정하고 기존 v1 테이블을 수정하는 SQL을 작성해 groundedness와 sqlCorrectness가 낮다(2, 1점). T4는 버전 경로와 병행 운영을 제시했으나 기존 테이블 수정 원칙을 위반해 versioningQuality가 제한된다(3점)."}

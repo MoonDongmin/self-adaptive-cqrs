@@ -1,9 +1,0 @@
-[
-  {
-    "scenarioId": "A10-null-intrinsic-param",
-    "rep": 5,
-    "docs": 0,
-    "exitReason": "timeout",
-    "durationSeconds": 8007
-  }
-]

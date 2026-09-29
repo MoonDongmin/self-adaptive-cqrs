@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 3,
+  "completeness": 3,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용된 로그, 필드명, 기존 스키마 및 코드 스니펫이 [자료]와 정확히 일치함. diagnosisAccuracy: 정답 요지와 동일하게 기존 row-level Read Model의 집계/정렬 한계를 정확히 진단하고 신규 aggregate Read Model 신설을 제안함. actionability: DDL에서 집계 카운트 컬럼에 double precision을 사용한 설계상 비효율과, upsert SQL 블록 내에서 Drizzle 컬럼 참조(camelCase)와 원문 snake_case가 혼재하여 식별자 오류를 유발함. 또한 코드 블록 간 구현체(class명)가 상충됨. completeness: 권고, SQL, API 버저닝 세 요소는 모두 포함되었으나, Optional 절에 서로 다른 클래스명/파일명을 가진 중복 프로젝트 구현체가 병기되어 코드 블록 간 일관성이 떨어짐.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 15936,
+    "completion_tokens": 4525,
+    "total_tokens": 20461,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4299
+    }
+  },
+  "latencyMs": 119612,
+  "judgedAt": "2026-09-14T09:27:23.302Z"
+}

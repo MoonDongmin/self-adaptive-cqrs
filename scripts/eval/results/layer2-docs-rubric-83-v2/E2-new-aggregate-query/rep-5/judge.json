@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 3,
+  "completeness": 4,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용한 로그, 스키마, 파일 경로가 [자료] 및 저장소 확인 결과와 정확히 일치함. diagnosisAccuracy: 정답 요지와 동일하게 기존 Read Model의 row-level 한계를 지적하고 object_name 기반 집계 테이블 신설을 정확히 진단함. actionability: PostgreSQL에서 'doubleprecision'은 유효한 타입명이 아님('double precision' 필요). 자동 검증 결과에서 해당 SQL 실패가 명시되었으므로, 그대로 적용 시 DDL 실행이 중단됨. 로직은 타당하나 오탈자 수정 필요. completeness: 권고, SQL, API 버저닝 세 요소가 모두 포함되고 구조적으로 일치하나, DDL의 NOT NULL 명시 여부와 ORM 스키마의 notNull 간 미세 불일치, 그리고 버전 교체 코드 내 export 경로와 테이블명 간 접미사 표기 차이 등 사소한 불일치가 존재함.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 15450,
+    "completion_tokens": 4135,
+    "total_tokens": 19585,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3896
+    }
+  },
+  "latencyMs": 108123,
+  "judgedAt": "2026-09-14T08:45:48.584Z"
+}

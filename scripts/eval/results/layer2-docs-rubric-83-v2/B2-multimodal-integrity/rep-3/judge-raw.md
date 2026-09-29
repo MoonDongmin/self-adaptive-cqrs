@@ -1,0 +1,3 @@
+
+
+{"groundedness": 3, "diagnosisAccuracy": 4, "actionability": 2, "completeness": 4, "unsupportedClaims": ["src/projection/projector/multimodal-enriched.projector.ts 파일은 저장소 확인 결과 실재하지 않음", "projector 내 checkIntegrity() 메서드 존재 및 위반 시 throw/반환 로직에 대한 발췌 근거 부족"], "rationale": "groundedness: 핵심 로그와 스키마는 정확하나 저장소에 없는 파일 경로를 인용하고 발췌 범위를 넘어선 메서드 동작을 단정함. diagnosisAccuracy: 파일명 메타데이터와 스트림 키 불일치라는 근본 원인과 위반 유형은 정확히 진단했으나 정답 요지의 '기존 모델 플래그 격리' 조치와 상충함. actionability: 정답 요지가 요구한 불일치 행 식별·격리 SQL이나 로직을 누락하고 병렬 테이블만 생성했으며, 제공된 코드 블록이 불완전해 컴파일 실패로 이어짐. completeness: 세 요소가 모두 존재하나 TL;DR 대상 테이블명과 실제 DDL 테이블명이 불일치하며 코드 블록이 단편적임."}

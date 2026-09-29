@@ -1,0 +1,3 @@
+
+
+{"groundedness":5,"diagnosisAccuracy":5,"sqlCorrectness":5,"versioningQuality":5,"unsupportedClaims":[],"rationale":"전체 답변은 제공된 로그, 스키마, 제약 조건을 정확히 인용하여 근거 없는 추측이나 fabricated 값을 포함하지 않았다. T1은 드리프트 원인과 기존 Read Model 미적합성을 정답 요지와 일치하게 진단했으며, T2 DDL은 read_ 접두어와 복합 PK 규칙을 완벽히 준수한다. T3는 대상 테이블 미생성 상태를 정확히 인지하고 실행 가능한 SELECT문을 제시했으며, T4는 API 병행 운영과 human-in-the-loop 컷오버 절차를 구체적으로 서술하여 즉시 실행 가능한 아키텍처 가이드라인을 제공한다."}

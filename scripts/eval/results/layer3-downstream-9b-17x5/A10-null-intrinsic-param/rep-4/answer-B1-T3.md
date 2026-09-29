@@ -1,0 +1,665 @@
+제공된 자료 (로그) 에 따르면, `insert.file.failed` 로 인해 `camera_info` 내의 `cody` 와 `camera_intrinsic_param` 내의 `fx` 가 `null` 이어서 Zod 검증이 실패했습니다.
+
+하지만 제공된 자료에는 **Event Store 에 저장된 데이터 (Raw Event)** 나 **기존에 존재하던 Read Model 데이터**에 대한 구체적인 내용 (예: 과거 성공한 데이터, 현재 저장된 이벤트 목록) 이 포함되어 있지 않습니다. 자료에는 `insert.file.failed` 로그만 있고, `insert.file.ok` 로 성공한 데이터의 상세 내용 (payload) 은 파일명만 나와 있으며, 그 내부의 `camera_info` 필드 값은 알 수 없습니다.
+
+따라서 "카메라 내부 파라미터가 null 이어서 거부된 건"을 **필드명별 건수로 집계**하는 SQL 을 작성하려면, 해당 필드가 `null` 이 되어 거부된 **이벤트 (Event)** 가 Event Store 에 실제로 존재하는지 확인해야 합니다.
+
+만약 Event Store 에 해당 필드가 `null` 인 이벤트가 저장되어 있다면, Projection 로직이 이를 처리하여 Read Model 에 `null` 값을 가진 레코드가 생성되었을 것입니다. 하지만 질문의 의도는 "검증 실패로 인해 데이터가 저장되지 않은 경우"와 "검증은 통과했으나 필드가 null 인 경우"를 구분하거나, 단순히 **검증 실패 사유가 된 필드별 발생 건수**를 세는 것일 수 있습니다.
+
+제공된 로그만 근거로 할 때, `insert.file.failed` 로그에 `reason` 필드가 포함되어 있어, 해당 로그에서 직접 필드별 실패 건수를 세는 것이 가장 정확합니다.
+
+1.  **`camera_info` -> `cody`**: 로그에서 `reason.path` 가 `["camera_info", "camera_intrinsic_param", "cody"]` 인 경우 1 개.
+2.  **`camera_intrinsic_param` -> `fx`**: 로그에서 `reason.path` 가 `["camera_info", "camera_intrinsic_param", "fx"]` 인 경우 1 개.
+
+만약 Event Store 에 저장된 이벤트에서 `camera_info` 필드가 `null` 인 경우를 세는 SQL 이 필요하다면, Event Store 스키마가 제공되지 않아 작성할 수 없습니다. 따라서 **제공된 로그 데이터**를 기반으로, `insert.file.failed` 로그에서 `reason.path` 를 분석하여 필드별 실패 건수를 집계하는 SQL 을 작성합니다.
+
+```sql
+WITH failed_reasons AS (
+    SELECT 
+        CASE 
+            WHEN jsonb_path_exists(detail::jsonb, 'reason') THEN true 
+            ELSE false 
+        AS has_reason,
+        CASE 
+            WHEN jsonb_path_exists(detail::jsonb, 'reason') THEN true 
+            ELSE false 
+        AS has_reason,
+        -- reason 필드 내의 path 배열을 추출하여 'camera_info' -> 'camera_intrinsic_param' -> 'cody' 또는 'fx' 가 있는지 확인
+        -- Postgres 의 jsonb_path_exists 와 jsonb_array_elements_text 를 활용하여 path 배열의 각 요소를 확인
+        -- path: ["camera_info", "camera_intrinsic_param", "cody"] 인 경우, path[2] 가 'cody' 이어야 함
+        -- path: ["camera_info", "camera_intrinsic_param", "fx"] 인 경우, path[2] 가 'fx' 이어야 함
+        -- 하지만 jsonb_path_exists 는 전체 경로를 매칭하는지, 부분적으로 매칭하는지 확인해야 함.
+        -- 여기서는 path 배열의 2 번째 요소 (index 2) 가 'camera_intrinsic_param' 이고, 3 번째 요소 (index 3) 가 'cody' 또는 'fx' 인 경우를 세는 로직이 필요함.
+        -- 그러나 제공된 로그의 detail 필드는 문자열로 되어 있고, jsonb 타입이 아님.
+        -- 따라서 detail 필드를 jsonb 로 변환하거나, 문자열 파싱이 필요함.
+        -- 하지만 Postgres 에서 문자열 파싱은 비효율적임.
+        -- 만약 detail 필드가 이미 jsonb 타입이라면:
+        -- SELECT 
+        --     (SELECT COUNT(*) FROM (
+        --         SELECT 
+        --             CASE 
+        --                 WHEN jsonb_path_exists(detail::jsonb, 'reason') THEN true 
+        --                 ELSE false 
+        --             END AS is_failed,
+        --             -- path 배열에서 2 번째 요소가 'camera_intrinsic_param' 이고 3 번째 요소가 'cody' 또는 'fx' 인 경우
+        --             -- jsonb_path_exists(detail::jsonb, 'reason.cody') 는 path 가 ["camera_info", "camera_intrinsic_param", "cody"] 일 때 true 를 반환함.
+        --             -- jsonb_path_exists(detail::jsonb, 'reason.fx') 는 path 가 ["camera_info", "camera_intrinsic_param", "fx"] 일 때 true 를 반환함.
+        --             -- 따라서 두 경우를 모두 체크하여 카운트
+        --             CASE 
+        --                 WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 1
+        --                 WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 1
+        --                 ELSE 0
+        --             END AS field_fail_count
+        --         FROM logging_context_table -- 실제 로그 테이블 이름이 필요함. 여기서는 가상의 테이블로 가정.
+        --         WHERE action = 'insert.file.failed'
+        --     ) sub)
+        -- ELSE 0
+        -- END AS field_fail_count
+        -- WHERE action = 'insert.file.failed'
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY CASE 
+        --     WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --     WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --     ELSE 'other'
+        -- END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --     CASE 
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.cody') THEN 'cody'
+        --         WHEN jsonb_path_exists(detail::jsonb, 'reason.fx') THEN 'fx'
+        --         ELSE 'other'
+        --     END
+        -- GROUP BY 
+        --    

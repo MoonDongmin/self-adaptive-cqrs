@@ -1,0 +1,185 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="640" viewBox="0 0 1120 640" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">
+<defs><marker id="m222222" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#222222"/></marker></defs>
+<rect width="1120" height="640" fill="#ffffff"/>
+<rect x="40" y="40" width="250" height="152" fill="#fff" stroke="#33557a" stroke-width="1.4"/>
+<rect x="40" y="40" width="250" height="24" fill="#e8edf3" stroke="#33557a" stroke-width="1.4"/>
+<text x="165.0" y="56.5" text-anchor="middle" font-size="11.5" fill="#223" font-weight="600" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">event_store</text>
+<text x="48" y="76" font-size="8.5" font-weight="700" fill="#a04050">PK</text>
+<text x="74" y="76" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">global_seq</text>
+<text x="282" y="76" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">bigserial</text>
+<text x="48" y="91" font-size="8.5" font-weight="700" fill="#667">UQ</text>
+<text x="74" y="91" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">event_id</text>
+<text x="282" y="91" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">uuid</text>
+<text x="74" y="106" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">stream_id</text>
+<text x="282" y="106" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">varchar</text>
+<text x="74" y="121" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">attempt_num</text>
+<text x="282" y="121" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">integer</text>
+<text x="74" y="136" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">event_type</text>
+<text x="282" y="136" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">varchar(64)</text>
+<text x="74" y="151" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">occurred_at</text>
+<text x="282" y="151" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">timestamptz</text>
+<text x="74" y="166" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">recorded_at</text>
+<text x="282" y="166" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">timestamptz</text>
+<text x="74" y="181" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">payload</text>
+<text x="282" y="181" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">jsonb</text>
+<text x="165" y="210" text-anchor="middle" font-size="9" fill="#667" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">UNIQUE (stream_id, attempt_num)</text>
+<rect x="40" y="250" width="250" height="77" fill="#fff" stroke="#33557a" stroke-width="1.4"/>
+<rect x="40" y="250" width="250" height="24" fill="#e8edf3" stroke="#33557a" stroke-width="1.4"/>
+<text x="165.0" y="266.5" text-anchor="middle" font-size="11.5" fill="#223" font-weight="600" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">projection_cursor</text>
+<text x="48" y="286" font-size="8.5" font-weight="700" fill="#a04050">PK</text>
+<text x="74" y="286" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">projector_name</text>
+<text x="282" y="286" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">varchar</text>
+<text x="74" y="301" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">last_event_seq</text>
+<text x="282" y="301" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">bigint</text>
+<text x="74" y="316" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">updated_at</text>
+<text x="282" y="316" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">timestamptz</text>
+<rect x="360" y="40" width="270" height="212" fill="#fff" stroke="#33557a" stroke-width="1.4"/>
+<rect x="360" y="40" width="270" height="24" fill="#e8edf3" stroke="#33557a" stroke-width="1.4"/>
+<text x="495.0" y="56.5" text-anchor="middle" font-size="11.5" fill="#223" font-weight="600" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">read_grip_result</text>
+<text x="368" y="76" font-size="8.5" font-weight="700" fill="#a04050">PK</text>
+<text x="394" y="76" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">scene_key</text>
+<text x="622" y="76" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">varchar</text>
+<text x="368" y="91" font-size="8.5" font-weight="700" fill="#a04050">PK</text>
+<text x="394" y="91" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">attempt_num</text>
+<text x="622" y="91" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">smallint</text>
+<text x="394" y="106" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">object_name</text>
+<text x="622" y="106" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">varchar</text>
+<text x="394" y="121" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">grip_succeed</text>
+<text x="622" y="121" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">boolean</text>
+<text x="394" y="136" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">gripper_type</text>
+<text x="622" y="136" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">varchar</text>
+<text x="394" y="151" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">occurred_at</text>
+<text x="622" y="151" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">timestamptz</text>
+<text x="394" y="166" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">grip_2d_pose</text>
+<text x="622" y="166" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">jsonb</text>
+<text x="394" y="181" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">grip_3d_pose</text>
+<text x="622" y="181" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">jsonb</text>
+<text x="394" y="196" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">robot_tf</text>
+<text x="622" y="196" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">jsonb</text>
+<text x="394" y="211" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">human_annotation_grasp</text>
+<text x="622" y="211" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">jsonb</text>
+<text x="394" y="226" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">stream_id</text>
+<text x="622" y="226" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">varchar</text>
+<text x="394" y="241" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">global_seq</text>
+<text x="622" y="241" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">bigint</text>
+<rect x="360" y="290" width="270" height="167" fill="#fff" stroke="#33557a" stroke-width="1.4"/>
+<rect x="360" y="290" width="270" height="24" fill="#e8edf3" stroke="#33557a" stroke-width="1.4"/>
+<text x="495.0" y="306.5" text-anchor="middle" font-size="11.5" fill="#223" font-weight="600" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">read_multimodal</text>
+<text x="368" y="326" font-size="8.5" font-weight="700" fill="#a04050">PK</text>
+<text x="394" y="326" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">scene_key</text>
+<text x="622" y="326" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">varchar</text>
+<text x="368" y="341" font-size="8.5" font-weight="700" fill="#a04050">PK</text>
+<text x="394" y="341" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">attempt_num</text>
+<text x="622" y="341" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">smallint</text>
+<text x="394" y="356" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">occurred_at</text>
+<text x="622" y="356" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">timestamptz</text>
+<text x="394" y="371" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">image_2d_file_name</text>
+<text x="622" y="371" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">varchar</text>
+<text x="394" y="386" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">image_2d_uri</text>
+<text x="622" y="386" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">varchar</text>
+<text x="394" y="401" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">video_file_name</text>
+<text x="622" y="401" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">varchar</text>
+<text x="394" y="416" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">video_uri</text>
+<text x="622" y="416" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">varchar</text>
+<text x="394" y="431" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">stream_id</text>
+<text x="622" y="431" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">varchar</text>
+<text x="394" y="446" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">global_seq</text>
+<text x="622" y="446" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">bigint</text>
+<rect x="700" y="40" width="210" height="122" fill="#fff" stroke="#a0812f" stroke-width="1.4"/>
+<rect x="700" y="40" width="210" height="24" fill="#fff3d6" stroke="#a0812f" stroke-width="1.4"/>
+<text x="805.0" y="56.5" text-anchor="middle" font-size="11.5" fill="#223" font-weight="600" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">insight_entity</text>
+<text x="708" y="76" font-size="8.5" font-weight="700" fill="#a04050">PK</text>
+<text x="734" y="76" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">entity_name</text>
+<text x="902" y="76" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">varchar</text>
+<text x="734" y="91" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">kind</text>
+<text x="902" y="91" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">event|read_model</text>
+<text x="734" y="106" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">purpose</text>
+<text x="902" y="106" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">text</text>
+<text x="734" y="121" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">key_columns</text>
+<text x="902" y="121" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">varchar[]</text>
+<text x="734" y="136" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">row_count</text>
+<text x="902" y="136" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">bigint</text>
+<text x="734" y="151" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">refreshed_at</text>
+<text x="902" y="151" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">timestamptz</text>
+<rect x="700" y="220" width="210" height="122" fill="#fff" stroke="#a0812f" stroke-width="1.4"/>
+<rect x="700" y="220" width="210" height="24" fill="#fff3d6" stroke="#a0812f" stroke-width="1.4"/>
+<text x="805.0" y="236.5" text-anchor="middle" font-size="11.5" fill="#223" font-weight="600" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">insight_field</text>
+<text x="708" y="256" font-size="8.5" font-weight="700" fill="#a04050">PK,FK</text>
+<text x="734" y="256" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">entity_name</text>
+<text x="902" y="256" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">varchar</text>
+<text x="708" y="271" font-size="8.5" font-weight="700" fill="#a04050">PK</text>
+<text x="734" y="271" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">field_name</text>
+<text x="902" y="271" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">varchar</text>
+<text x="734" y="286" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">data_type</text>
+<text x="902" y="286" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">varchar</text>
+<text x="734" y="301" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">meaning</text>
+<text x="902" y="301" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">text</text>
+<text x="734" y="316" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">example</text>
+<text x="902" y="316" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">text</text>
+<text x="734" y="331" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">display_order</text>
+<text x="902" y="331" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">integer</text>
+<rect x="700" y="370" width="210" height="77" fill="#fff" stroke="#777777" stroke-width="1.4"/>
+<rect x="700" y="370" width="210" height="24" fill="#eef0f2" stroke="#777777" stroke-width="1.4"/>
+<text x="805.0" y="386.5" text-anchor="middle" font-size="11.5" fill="#223" font-weight="600" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">log_cursor</text>
+<text x="708" y="406" font-size="8.5" font-weight="700" fill="#a04050">PK</text>
+<text x="734" y="406" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">source_file</text>
+<text x="902" y="406" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">text</text>
+<text x="734" y="421" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">byte_offset</text>
+<text x="902" y="421" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">bigint</text>
+<text x="734" y="436" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">updated_at</text>
+<text x="902" y="436" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">timestamptz</text>
+<rect x="940" y="40" width="160" height="242" fill="#fff" stroke="#777777" stroke-width="1.4"/>
+<rect x="940" y="40" width="160" height="24" fill="#eef0f2" stroke="#777777" stroke-width="1.4"/>
+<text x="1020.0" y="56.5" text-anchor="middle" font-size="11.5" fill="#223" font-weight="600" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">log_event</text>
+<text x="948" y="76" font-size="8.5" font-weight="700" fill="#a04050">PK</text>
+<text x="974" y="76" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">time</text>
+<text x="1092" y="76" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">timestamptz</text>
+<text x="948" y="91" font-size="8.5" font-weight="700" fill="#a04050">PK</text>
+<text x="974" y="91" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">log_id</text>
+<text x="1092" y="91" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">uuid</text>
+<text x="974" y="106" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">level</text>
+<text x="1092" y="106" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">smallint</text>
+<text x="974" y="121" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">action</text>
+<text x="1092" y="121" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">varchar</text>
+<text x="974" y="136" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">correlation_id</text>
+<text x="1092" y="136" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">varchar</text>
+<text x="974" y="151" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">stream_id</text>
+<text x="1092" y="151" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">varchar</text>
+<text x="974" y="166" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">global_seq</text>
+<text x="1092" y="166" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">bigint</text>
+<text x="974" y="181" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">attempt_num</text>
+<text x="1092" y="181" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">smallint</text>
+<text x="974" y="196" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">projector_name</text>
+<text x="1092" y="196" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">varchar</text>
+<text x="974" y="211" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">scene_key</text>
+<text x="1092" y="211" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">varchar</text>
+<text x="974" y="226" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">object_name</text>
+<text x="1092" y="226" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">varchar</text>
+<text x="974" y="241" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">duration_ms</text>
+<text x="1092" y="241" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">integer</text>
+<text x="974" y="256" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">reason</text>
+<text x="1092" y="256" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">text</text>
+<text x="974" y="271" font-size="9.5" fill="#222" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">payload</text>
+<text x="1092" y="271" font-size="9.0" fill="#667" text-anchor="end" font-family="'SF Mono','Menlo','Consolas','Noto Sans Mono CJK KR',monospace">jsonb</text>
+<polyline points="290,120 360,120" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round"/>
+<text x="298" y="116" text-anchor="middle" font-size="10" fill="#222" font-weight="600" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">1</text>
+<text x="352" y="116" text-anchor="middle" font-size="10" fill="#222" font-weight="600" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">N</text>
+<text x="325" y="108" text-anchor="middle" font-size="9.5" fill="#444" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">투영</text>
+<polyline points="290,160 330,160 330,400 360,400" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round"/>
+<text x="298" y="156" text-anchor="middle" font-size="10" fill="#222" font-weight="600" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">1</text>
+<text x="352" y="396" text-anchor="middle" font-size="10" fill="#222" font-weight="600" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">N</text>
+<text x="322" y="290" text-anchor="middle" font-size="9" fill="#444" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" transform="rotate(-90 322 290)">투영 (global_seq 추적)</text>
+<polyline points="290,290 312,290 312,182 290,182" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="6 4"/>
+<text x="298" y="286" text-anchor="middle" font-size="10" fill="#222" font-weight="600" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">1</text>
+<text x="298" y="178" text-anchor="middle" font-size="10" fill="#222" font-weight="600" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">1</text>
+<text x="165" y="345" text-anchor="middle" font-size="9" fill="#444" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">last_event_seq → event_store.global_seq (커서 참조)</text>
+<polyline points="805,156 805,220" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round"/>
+<text x="807" y="166" text-anchor="middle" font-size="10" fill="#222" font-weight="600" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">1</text>
+<text x="823" y="210" text-anchor="middle" font-size="10" fill="#222" font-weight="600" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">N</text>
+<text x="820" y="192" text-anchor="start" font-size="9.5" fill="#444" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">카드 = entity 1 + field N</text>
+<text x="40" y="500" text-anchor="start" font-size="10" fill="#33557a" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">쓰기 측 — event_store(append-only) · projection_cursor(프로젝터별 커서)</text>
+<text x="40" y="518" text-anchor="start" font-size="10" fill="#33557a" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">읽기 측 — read_grip_result · read_multimodal: PK (scene_key, attempt_num), 원천 추적용 stream_id · global_seq 보존</text>
+<text x="40" y="536" text-anchor="start" font-size="10" fill="#a0812f" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">Insight Read DB — insight_entity · insight_field: 이벤트·Read Model의 스키마와 의미 카드, M-Schema로 렌더링</text>
+<text x="40" y="554" text-anchor="start" font-size="10" fill="#777777" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">Log DB — log_event: TimescaleDB hypertable(1일 청크), 조회 필드는 1급 컬럼 + 원본 레코드 payload · log_cursor: 파일 tail 바이트 커서</text>
+<text x="40" y="590" text-anchor="start" font-size="9.5" fill="#667" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">관계 표기: 실선 1–N = 투영(이벤트 → Read Model 행, global_seq로 논리적 추적) · 점선 = 커서 참조 · 물리적 FK는 insight_field → insight_entity만</text>
+</svg>

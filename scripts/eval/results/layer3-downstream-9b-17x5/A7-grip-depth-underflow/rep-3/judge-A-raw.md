@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "sqlCorrectness": 1, "versioningQuality": 5, "unsupportedClaims": [], "rationale": "T1은 자료의 로그 수치와 정답 요지의 문제·원인을 정확히 매칭하여 5점. T2는 자료의 즉시 격리 SQL을 그대로 적용해 v1 무손상 원칙을 준수하므로 5점. T3은 단순 조회 질문에 불필요한 DDL 생성과 함께, JSONB 객체에서 z1~z8 숫자값을 추출하는 로직이 기술적으로 오류가 있어 1점. T4는 자료의 API 버전 관리 및 human-in-the-loop 컷오버 절차를 정확히 반영하여 5점."}

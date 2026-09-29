@@ -1,0 +1,3 @@
+
+
+{"groundedness": 2, "diagnosisAccuracy": 5, "sqlCorrectness": 2, "versioningQuality": 2, "unsupportedClaims": ["T4 복구 SQL에 grip_succeed: 0, global_seq: 0 등 자료 미기재 값을 임의로 채움", "T3 SQL에서 camera_intrinsic_param path 배열 인덱스를 2가 아닌 3으로 잘못 참조"], "rationale": "T1은 로그의 Zod 오류를 정확히 지적하여 정답 요지와 일치해 5점. T2는 새 테이블 생성으로 대응했으나 실제 파이프라인 복구가 필요 없는 상황이며, T3은 path 배열 인덱스를 2가 아닌 3으로 잘못 지정해 조회 로직이 틀렸다. T4는 정답 요지의 'v1 무손상' 원칙을 무시하고, 자료에 없는 값을 임의로 채운 복구 SQL과 일반적인 버전 분리론으로 일관해 근거 부족 및 구체성 결여로 낮은 점수. 전반적으로 T4의 추측성 INSERT와 T3의 인덱스 오류로 groundedness와 sqlCorrectness가 낮다."}

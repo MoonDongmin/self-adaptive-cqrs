@@ -1,9 +1,0 @@
-[
-  {
-    "scenarioId": "E5-failure-ranking-query",
-    "rep": 1,
-    "docs": 0,
-    "exitReason": "no-docs-timeout",
-    "durationSeconds": 1377
-  }
-]

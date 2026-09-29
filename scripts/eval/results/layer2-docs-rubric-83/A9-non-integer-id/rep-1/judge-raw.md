@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 4, "completeness": 4, "unsupportedClaims": ["LLM 재시도 실패 및 결정론 폴백 산출물임을 명시한 메타 주장 (자료 미포함)"], "rationale": "groundedness 5: 인용 로그 레벨, 필드 경로, 파일명이 자료와 정확히 일치. diagnosisAccuracy 5: Zod safeint 위반 원인 및 대상 필드가 정답 요지와 정확히 일치. actionability 4: SQL 실행 성공 및 v1 무손상 조건을 만족하나, 정답 요지의 추적 Read Model 보강 및 클라이언트 정수화 권고를 미포함하여 부분 해결에 그침. completeness 4: 세 요소 구조는 완비되었으나 Read Model 생성 SQL 대신 격리 검증 쿼리로 대체하여 요구 형식과 다소 상이함."}

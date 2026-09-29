@@ -1,0 +1,9 @@
+[
+  {
+    "scenarioId": "F3-subthreshold-jump",
+    "rep": 1,
+    "docs": 1,
+    "exitReason": "docs-collected",
+    "durationSeconds": 640
+  }
+]

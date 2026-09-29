@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 3, "completeness": 3, "unsupportedClaims": [], "rationale": "groundedness: 인용된 장면 키, 좌표 값, 워크스페이스 범위가 자료 로그와 정확히 일치하며 저장소 파일 경로도 실재한다. diagnosisAccuracy: 정답 요지의 '파지 성공 맥락에서 translation 위치 작업 영역 이탈' 및 '정합성 위반' 진단과 완전히 일치한다. actionability: '기각한 대안(DELETE)'을 명시하면서도 하단에 동일한 DELETE 문을 '즉시 격리 SQL'로 재수록하여 실행 지시가 모순되며, 해당 DELETE가 기존 v1 테이블을 대상으로 해 'v1 무손상' 제약과 정답 요지를 위반한다. completeness: 권고, DDL, API 버저닝 세 요소가 모두 존재하나 '기각'을 선언한 삭제 조치가 하단 즉시 실행 SQL로 중복 수록되어 문서 내 논리가 서로 어긋나고 v1 무손상 원칙과 충돌한다."}

@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 5,
+  "versioningQuality": 5,
+  "unsupportedClaims": [],
+  "rationale": "T1은 정답 요지의 schema drift 원인과 신규 Read Model 병행 운영 방안을 정확히 기술하였다. T2 DDL은 read_ 접두어, 복합 PK, human-in-the-loop 제약을 완벽히 준수한다. T3는 데이터 유실 현황을 정확히 인지하고 신규 테이블 기준 조회 쿼리를 제시하여 문제 해결 경로를 명확히 한다. T4는 v1 엔드포인트 유지, 신규 라우트 배선, Zod 호환성 확장, 인간 승인 컷오버 순서를 구체적으로 서술하여 클라이언트 보호 절차가 완성度高다. 자료 외 추가 가정이나 오류 없이 모든 답변이 근거에 부합한다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 19362,
+    "completion_tokens": 3754,
+    "total_tokens": 23116,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3569
+    }
+  },
+  "latencyMs": 112499,
+  "judgedAt": "2026-09-11T10:51:02.413Z"
+}

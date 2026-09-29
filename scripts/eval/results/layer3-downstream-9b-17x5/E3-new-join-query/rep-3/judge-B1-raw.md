@@ -1,0 +1,3 @@
+
+
+{"groundedness": 4, "diagnosisAccuracy": 5, "sqlCorrectness": 5, "versioningQuality": 3, "unsupportedClaims": ["T4에서 'grip.result', 'media.uploaded' 이벤트 이름을 자료에 없이 가정함", "T4 투영 SQL에서 INSERT만 기술하여 ES/CQRS 환경의 업데이트/중복 처리(ON CONFLICT) 누락"], "rationale": "T1은 정답 요지의 문제와 원인을 정확히 지적하여 5점. T2/T3 SQL은 기존 Read Model을 조인해 요구사항을 정확히 해결하며 5점. T4는 API 버전 분리, 병행 운영, 백필 등 절차 구조는 갖췄으나 자료에 없는 이벤트 이름을 가정하고 투영 로직을 과도하게 복잡하게 설계해 실제 구현 시 정합성 문제가 발생할 수 있어 3점. 전반적으로 자료 기반은 탄탄하나 T4의 불필요한 추측과 SQL 누락으로 groundedness는 4점."}

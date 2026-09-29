@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="470" viewBox="0 0 1220 470" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">
+<defs><marker id="m33557a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#33557a"/></marker><marker id="ma0812f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#a0812f"/></marker><marker id="mb3532b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#b3532b"/></marker></defs>
+<rect width="1220" height="470" fill="#ffffff"/>
+<rect x="20" y="150" width="110" height="90" rx="10" fill="#fff8e8" stroke="#a0812f" stroke-width="1.6"/>
+<text x="75.0" y="184.2" text-anchor="middle" font-size="13.5" font-weight="700" fill="#8a6d1f">LLM 응답</text>
+<text x="75.0" y="200.8" text-anchor="middle" font-size="11" fill="#556">산문 추론</text>
+<text x="75.0" y="215.8" text-anchor="middle" font-size="11" fill="#556">+ ```json 펜스</text>
+<rect x="160" y="150" width="118" height="90" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="219.0" y="185.1" text-anchor="middle" font-size="11.5" font-weight="700" fill="#33557a">① 형태</text>
+<text x="219.0" y="199.6" text-anchor="middle" font-size="9.2" fill="#556">zod 스키마 파싱</text>
+<text x="219.0" y="212.8" text-anchor="middle" font-size="9.2" fill="#556">필드·타입·regex</text>
+<rect x="294" y="150" width="118" height="90" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="353.0" y="185.1" text-anchor="middle" font-size="11.5" font-weight="700" fill="#33557a">② 산문 오염</text>
+<text x="353.0" y="199.6" text-anchor="middle" font-size="9.2" fill="#556">한자(CJK) 혼입 검사</text>
+<text x="353.0" y="212.8" text-anchor="middle" font-size="9.2" fill="#556">로컬 모델 특유</text>
+<rect x="428" y="150" width="118" height="90" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="487.0" y="171.8" text-anchor="middle" font-size="11.5" font-weight="700" fill="#33557a">③ 의미</text>
+<text x="487.0" y="186.3" text-anchor="middle" font-size="9.2" fill="#556">실DB BEGIN→ROLLBACK</text>
+<text x="487.0" y="199.5" text-anchor="middle" font-size="9.2" fill="#556">tsc --noEmit</text>
+<text x="487.0" y="212.7" text-anchor="middle" font-size="9.2" fill="#556">zod 확장·payload 키</text>
+<text x="487.0" y="225.9" text-anchor="middle" font-size="9.2" fill="#556">라우트·클래스명</text>
+<rect x="562" y="150" width="118" height="90" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="621.0" y="185.1" text-anchor="middle" font-size="11.5" font-weight="700" fill="#33557a">④ 근거 대조</text>
+<text x="621.0" y="199.6" text-anchor="middle" font-size="9.2" fill="#556">관측값 substring</text>
+<text x="621.0" y="212.8" text-anchor="middle" font-size="9.2" fill="#556">매핑 행 fields·카드</text>
+<rect x="696" y="150" width="118" height="90" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="755.0" y="185.1" text-anchor="middle" font-size="11.5" font-weight="700" fill="#33557a">⑤ 결정론 합성</text>
+<text x="755.0" y="199.6" text-anchor="middle" font-size="9.2" fill="#556">DDL·Drizzle·Projector</text>
+<text x="755.0" y="212.8" text-anchor="middle" font-size="9.2" fill="#556">권고·버전 템플릿</text>
+<rect x="830" y="150" width="118" height="90" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="889.0" y="185.1" text-anchor="middle" font-size="11.5" font-weight="700" fill="#33557a">⑥ 무결성 게이트</text>
+<text x="889.0" y="199.6" text-anchor="middle" font-size="9.2" fill="#556">권고 없는 산출물</text>
+<text x="889.0" y="212.8" text-anchor="middle" font-size="9.2" fill="#556">→ 폴백 권고/보류</text>
+<rect x="964" y="150" width="118" height="90" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="1023.0" y="185.1" text-anchor="middle" font-size="11.5" font-weight="700" fill="#33557a">⑦ 문서 계약</text>
+<text x="1023.0" y="199.6" text-anchor="middle" font-size="9.2" fill="#556">3절 순서·앵커·예산</text>
+<text x="1023.0" y="212.8" text-anchor="middle" font-size="9.2" fill="#556">기록만 (루프백 없음)</text>
+<rect x="1098" y="150" width="90" height="90" rx="10" fill="#fbeef0" stroke="#a04050" stroke-width="1.6"/>
+<text x="1143.0" y="184.2" text-anchor="middle" font-size="13.5" font-weight="700" fill="#8c3444">Docs</text>
+<text x="1143.0" y="200.8" text-anchor="middle" font-size="11" fill="#556">llm-docs/</text>
+<text x="1143.0" y="215.8" text-anchor="middle" font-size="11" fill="#556">*.md</text>
+<polyline points="130,195 160,195" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<polyline points="278,195 294,195" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<polyline points="412,195 428,195" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<polyline points="546,195 562,195" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<polyline points="680,195 696,195" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<polyline points="814,195 830,195" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<polyline points="948,195 964,195" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<polyline points="1082,195 1098,195" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#m33557a)"/>
+<polyline points="219,150 219,110 75,110 75,150" fill="none" stroke="#a0812f" stroke-width="1.6" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#ma0812f)"/>
+<polyline points="353,150 353,110 75,110 75,150" fill="none" stroke="#a0812f" stroke-width="1.6" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#ma0812f)"/>
+<polyline points="487,150 487,110 75,110 75,150" fill="none" stroke="#a0812f" stroke-width="1.6" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#ma0812f)"/>
+<text x="330" y="100" text-anchor="start" font-size="10" fill="#a0812f" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">재요청(re-ask): 직전 출력 + 오류를 대화에 누적 → 모델이 자기 오류를 보고 수정 · 모델 출력 시도 2회(재요청 1회) · 전송 실패 예산 3회(별도)</text>
+<polyline points="487,240 487,290 755,290 755,240" fill="none" stroke="#33557a" stroke-width="1.6" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#m33557a)"/>
+<text x="621" y="306" text-anchor="middle" font-size="10" fill="#33557a" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">③ 재요청 소진 → 마지막 출력을 ⑤ 결정론 합성으로 교체</text>
+<polyline points="621,240 621,262" fill="none" stroke="#b3532b" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#mb3532b)"/>
+<text x="621" y="276" text-anchor="middle" font-size="9.5" fill="#b3532b" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">행 제거 · 근거 0개면 출력 폐기</text>
+<text x="889" y="262" text-anchor="middle" font-size="9.5" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">생성기 부분 실패 시</text>
+<text x="1023" y="262" text-anchor="middle" font-size="9.5" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">info 로그로 기록</text>
+<rect x="20" y="340" width="1180" height="100" rx="14" fill="#fafbfc" stroke="#999" stroke-width="1.2" stroke-dasharray="7 5"/>
+<text x="38" y="364" font-size="13" font-weight="600" fill="#777">원칙 — LLM은 '어떤 컬럼을 왜'(설계 판단)만 내고, 실행 가능성은 결정론이 보장한다</text>
+<text x="40" y="392" text-anchor="start" font-size="10.5" fill="#333" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">① ~ ③ : 형태·문체·실행 가능성을 생성 시점에 실측 (그럴듯하지만 실행되지 않는 SQL, payload에 없는 키를 읽는 프로젝터를 여기서 잡는다)</text>
+<text x="40" y="412" text-anchor="start" font-size="10.5" fill="#333" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">④ ~ ⑥ : 입력에 실재하지 않는 값을 걷어내고, 남은 결함은 검증된 fields·keyColumns로부터 템플릿 합성 (유도 불가 컬럼은 null + TODO — 값을 발명하지 않음)</text>
+<text x="40" y="432" text-anchor="start" font-size="10.5" fill="#333" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">⑦ : 문서 수준 계약(front-matter · 3절 · Guardrails · 인용 앵커 · 예산)은 위반을 기록만 하며, 재실행은 사람의 판단에 맡긴다</text>
+<rect x="20" y="451" width="18" height="13" rx="3" fill="#fff8e8" stroke="#a0812f" stroke-width="1.2"/>
+<text x="44" y="462" font-size="11" fill="#555">LLM</text>
+<rect x="87.78" y="451" width="18" height="13" rx="3" fill="#eef2f7" stroke="#33557a" stroke-width="1.2"/>
+<text x="111.78" y="462" font-size="11" fill="#555">결정론 검증</text>
+<rect x="189.66" y="451" width="18" height="13" rx="3" fill="#fbeef0" stroke="#a04050" stroke-width="1.2"/>
+<text x="213.66" y="462" font-size="11" fill="#555">산출물</text>
+<line x1="267.01" y1="458" x2="293.01" y2="458" stroke="#a0812f" stroke-width="1.6" stroke-dasharray="5 3"/>
+<text x="299.01" y="462" font-size="11" fill="#555">재요청</text>
+<line x1="352.36" y1="458" x2="378.36" y2="458" stroke="#33557a" stroke-width="1.6" stroke-dasharray="5 3"/>
+<text x="384.36" y="462" font-size="11" fill="#555">폴백 경로</text>
+</svg>

@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 2,
+  "completeness": 2,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용된 로그 레벨, correlation_id, 파일명 및 스키마 경로가 [자료]와 정확히 일치하며 근거 없는 주장 없음. diagnosisAccuracy: 정답 요지와 동일하게 grip_data/robot_tf 누락에 의한 Zod 파싱 실패 및 적재 거절을 정확히 진단하고 v1 무손상 원칙을 준수함. actionability: 정답 요지에서 요구한 '거부 추적 Read Model/검증 로그 보강'을 누락하고 검증용 SELECT만 제시하여 실제 추적 메커니즘 구축 요구를 충족하지 못함. completeness: Read Model 생성 SQL 절에 실제 DDL 또는 보강 쿼리가 없이 검증 SELECT만 포함되어 있어 요소가 실질적으로 비어 있으며 정답 요지의 보강 요구와 불일치함.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 21755,
+    "completion_tokens": 3884,
+    "total_tokens": 25639,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3673
+    }
+  },
+  "latencyMs": 121522,
+  "judgedAt": "2026-09-14T05:55:34.036Z"
+}

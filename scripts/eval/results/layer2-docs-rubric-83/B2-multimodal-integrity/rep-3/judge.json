@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 4,
+  "completeness": 5,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용된 로그 메시지, 상관관계 ID, scene/attempt 수치 및 스키마 필드가 [자료]와 정확히 일치한다. diagnosisAccuracy: 정답 요지의 핵심(파일명 메타데이터와 레코드 좌표 불일치, Zod/투영 통과 후 정합성 검사 잡음)을 정확히 진단했으며 위반 유형과 위치를 명시했다. actionability: SQL 실행은 성공했으나, 자동 검증 결과에서 projection.service.ts 및 controller.ts 컴파일에 실패한 사항이 기록되어 즉시 배포 가능한 완성도에는 미흡하다. 격리 전략은 v1 무손상 요구사항을 충족한다. completeness: 권고문, Read Model DDL/SQL, API 버저닝 세 요소가 모두 포함되었으며 테이블명·라우트·프로젝터 명칭이 문서 전반에서 일관되게 사용된다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 16408,
+    "completion_tokens": 3989,
+    "total_tokens": 20397,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3760
+    }
+  },
+  "latencyMs": 109128,
+  "judgedAt": "2026-09-14T02:01:10.047Z"
+}

@@ -1,0 +1,1 @@
+사용자가 `insight.card.request` 를 통해 "파지 결과와 해당 시도의 이미지·영상 경로를 한 화면에서 함께 보고 싶다"는 요청을 수행했으나, 시스템은 `insight.card.miss` 로 응답하여 해당 뷰를 제공하지 못했습니다. 이는 기존 Read Model(`read_grip_result`, `read_multimodal`) 이 파지 결과와 미디어 경로를 각각 독립된 테이블로 관리하고 있어, 동일한 `(scene_key, attempt_num)` 키로 조인된 뷰가 Insight 카탈로그에 등록되어 있지 않기 때문입니다.

@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 2, "completeness": 3, "unsupportedClaims": [], "rationale": "groundedness: 인용된 필드(cody, fx), 로그 레벨, 파일명 및 DTO 스키마가 [자료]와 저장소 확인 결과와 정확히 일치한다. diagnosisAccuracy: 정답 요지와 동일하게 cody/fx null 유입으로 인한 Zod 검증 실패를 정확히 진단했으며, 배치 처리 및 투영 건너뛰기 현상도 올바르게 기술하였다. actionability: 정답 요지에서 요구한 'null 유입 추적 Read Model/검증 로그 보강' SQL을 제공하지 않고 단순 검증용 SELECT만 수록하여 추적 요구사항을 충족시키지 못한다. completeness: 권고, SQL, API 세 요소는 존재하나 정답이 요구한 Read Model 보강 SQL이 누락되어 의도 불일치가 있으며, API 절에 오타가 있어 사소한 완성도 저하가 있다."}

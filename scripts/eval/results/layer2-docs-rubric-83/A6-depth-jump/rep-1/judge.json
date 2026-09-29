@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 5,
+  "completeness": 5,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용된 sceneKey, attempt 번호, z값 및 Δ=0.110m 계산이 [자료] 원문과 정확히 일치함. diagnosisAccuracy: 정답 요지의 동일 장면 시도 간 깊이 급변(Δ>0.10m), 물리 범위 내 미검출, v2 플래그 Read Model 도입 및 v1 무손상 조치와 완벽히 일치함. actionability: 자동 검증 결과 SQL 5개 블록 모두 실행 성공이며, 신규 v2 테이블 생성으로 기존 v1 자산에 손상을 주지 않고 요구된 정합성 플래그 기능을 구현함. completeness: 권고, Read Model DDL, API 버저닝 세 요소가 모두 포함되어 있으며 테이블명·버전 구분·마이그레이션 절차가 문서 전반에서 일관되게 기술됨.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 15522,
+    "completion_tokens": 2250,
+    "total_tokens": 17772,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2041
+    }
+  },
+  "latencyMs": 72355,
+  "judgedAt": "2026-09-14T01:20:27.391Z"
+}

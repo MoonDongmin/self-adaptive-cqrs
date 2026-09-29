@@ -1,0 +1,3 @@
+
+
+{"groundedness": 3, "diagnosisAccuracy": 5, "sqlCorrectness": 2, "versioningQuality": 5, "unsupportedClaims": ["T2/T3에서 gripper_temperature 필드가 기존 read_grip_result 테이블에 존재하거나 자동 반영된다고 가정함", "새 Read Model 테이블이 필요 없다는 주장"], "rationale": "T1은 로그의 payload.schema.drift 정보와 정답 요지의 원인 분석을 정확히 매칭하여 5점. T2/T3 SQL은 문법적 오류는 없으나, 자료에 명시된 대로 필드가 Read Model에 유실되었음에도 기존 테이블에 컬럼이 존재한다고 가정하여 근거 부족으로 감점됨. 특히 T2는 occurred_at을 그대로 GROUP BY하여 시간대별 집계 의미가 퇴화됨. T4는 API 버전 분리, 새 Read Model 병행, 백필 및 컷오버 절차를 정답 요지와 일치하게 구체적으로 서술하여 5점."}

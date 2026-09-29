@@ -1,0 +1,9 @@
+[
+  {
+    "scenarioId": "A9-non-integer-id",
+    "rep": 2,
+    "docs": 1,
+    "exitReason": "timeout",
+    "durationSeconds": 7203
+  }
+]

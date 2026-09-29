@@ -1,0 +1,3 @@
+
+
+{"groundedness": 3, "diagnosisAccuracy": 5, "sqlCorrectness": 5, "versioningQuality": 2, "unsupportedClaims": ["T4에서 기존 v1 엔드포인트(`/multimodal` 등)에 `/v1/`, `/v2/` 접두사를 붙여 버전을 분리한다고 서술했으나, 자료는 기존 라우트 경로를 무변경 유지하고 신규 `/object-grip-stats` 라우트만 additive로 추가한다고 명시함."], "rationale": "T1~T3는 자료의 insight.card.miss 로그, read_grip_result PK 구조, 제공 DDL을 정확히 인용하여 문제 진단과 SQL 해결이 완벽하다. 그러나 T4에서 기존 v1 엔드포인트에 `/v1/`, `/v2/` 접두사를 추가하는 버전 분리 전략을 제시했으나, 자료는 기존 라우트 경로를 무변경 유지하고 신규 `/object-grip-stats` 라우트만 additive로 추가한다고 명시하여 근거가 부족하다. 이에 따라 groundedness와 versioningQuality는 감점 처리한다."}

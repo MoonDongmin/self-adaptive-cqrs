@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 5,
+  "versioningQuality": 5,
+  "unsupportedClaims": [],
+  "rationale": "groundedness는 자료의 로그, 스키마, SQL을 정확히 인용해 지어낸 값이 없었으며 5점이다. diagnosisAccuracy는 T1에서 분리된 Read Model과 insight.card.miss 로그를 정확히 매칭해 정답 요지와 일치하므로 5점이다. sqlCorrectness는 T2 DDL이 자료와 동일하고 T3가 신규 테이블을 조회해 기존 v1을 건드리지 않아 정확하므로 5점이다. versioningQuality는 T4가 버전 병행, 인간 승인 컷오버, 백필 순서를 구체적으로 서술해 실행 가능하므로 5점이다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 14003,
+    "completion_tokens": 3008,
+    "total_tokens": 17011,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2824
+    }
+  },
+  "latencyMs": 84773,
+  "judgedAt": "2026-09-11T14:31:51.919Z"
+}

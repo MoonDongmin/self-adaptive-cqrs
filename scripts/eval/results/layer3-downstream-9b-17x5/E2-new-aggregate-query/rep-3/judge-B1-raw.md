@@ -1,0 +1,3 @@
+
+
+{"groundedness": 3, "diagnosisAccuracy": 5, "sqlCorrectness": 2, "versioningQuality": 5, "unsupportedClaims": ["T3에서 insert.file.ok 로그가 데이터 성공을 의미한다고 추측", "T3 백필 SQL의 SUBSTRING(stream_id, 12)는 object_name이 아닌 scene_key 전체를 추출하여 GROUP BY 조건과 불일치"], "rationale": "T1 진단은 자료의 로그와 스키마를 정확히 분석하여 정답 요지와 일치함. T4 버전 관리 절차는 병행 운영과 컷오버를 구체적으로 서술하여 실용적임. 그러나 T3 백필 SQL에서 stream_id 파싱 로직이 scene_key를 추출하도록 작성되어 object_name별 집계가 불가능한 논리적 오류가 있으며, 로그의 insert.file.ok를 성공으로 추측하는 주장은 자료에 근거하지 않음. 이로 인해 groundedness와 sqlCorrectness가 감점됨."}

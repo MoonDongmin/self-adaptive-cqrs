@@ -1,0 +1,1 @@
+사용자가 `object_name`별 파지 성공률 (시도 수, 성공 수, 성공률) 을 한 번에 조회하는 요청을 보냈으나, `insight.card.miss` 로그 (예: `024af7c0-7847-4664-a276-a9680c7461a2`) 에서 해당 카드가 존재하지 않는다고 명시되어 있습니다. 이는 기존 Read Model인 `read_grip_result`의 Primary Key가 `(scene_key, attempt_num)`로 정의되어 있어, `object_name`을 기준으로 집계된 통계 테이블이 DB 에 존재하지 않기 때문입니다.

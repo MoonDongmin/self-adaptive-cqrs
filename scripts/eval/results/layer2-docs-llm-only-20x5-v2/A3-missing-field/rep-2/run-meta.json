@@ -1,0 +1,62 @@
+{
+  "scenarioId": "A3-missing-field",
+  "rep": 2,
+  "startedAt": "2026-08-11T02:06:57.495Z",
+  "expectsDocs": true,
+  "channel": "log",
+  "stagedCount": 27,
+  "insert": {
+    "inserted": 25,
+    "failed": [
+      {
+        "file": "반려동물용품_CR01_강아지공룡알장난감_02004_01_20230923.json",
+        "reason": "[\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"grip_data\"\n    ],\n    \"message\": \"Invalid input: expected object, received undefined\"\n  }\n]"
+      },
+      {
+        "file": "반려동물용품_CR01_강아지공룡알장난감_02005_01_20230923.json",
+        "reason": "[\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"robot_tf\"\n    ],\n    \"message\": \"Invalid input: expected object, received undefined\"\n  }\n]"
+      }
+    ]
+  },
+  "projection": {
+    "multimodalProcessed": 25,
+    "gripResultOk": true,
+    "gripResultProcessed": 25
+  },
+  "exitReason": "docs-collected",
+  "observedCount": 25,
+  "projectedCount": 25,
+  "events": [
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 2건 (insert.file.failed)"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-08-11-110657-1ec6c565-8522-4ec8-92ab-5a071d776fbe.md",
+      "docsValid": true,
+      "docsValidationErrors": []
+    },
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "요청 충족 실패: 모든 요청이 404 에러로 종료됨 (리소스 없음 또는 잘못된 경로)"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-08-11-111114-3ba90822-befc-4fd2-8b42-db20df148c65.md",
+      "docsValid": false,
+      "docsValidationErrors": [
+        "근거 미매핑 인용: [corr:-] 가 evidenceSources 에 없음",
+        "근거 미매핑 인용: [corr:-] 가 evidenceSources 에 없음",
+        "근거 미매핑 인용: [corr:-] 가 evidenceSources 에 없음",
+        "근거 미매핑 인용: [corr:-] 가 evidenceSources 에 없음"
+      ]
+    }
+  ],
+  "finishedAt": "2026-08-11T02:35:48.315Z",
+  "durationSeconds": 1731,
+  "collectedDocs": [
+    "2026-08-11-110657-1ec6c565-8522-4ec8-92ab-5a071d776fbe.md",
+    "2026-08-11-111114-3ba90822-befc-4fd2-8b42-db20df148c65.md"
+  ]
+}

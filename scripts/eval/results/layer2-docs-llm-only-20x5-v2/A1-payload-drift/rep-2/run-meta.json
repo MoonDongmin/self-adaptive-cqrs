@@ -1,0 +1,55 @@
+{
+  "scenarioId": "A1-payload-drift",
+  "rep": 2,
+  "startedAt": "2026-08-11T00:37:53.374Z",
+  "expectsDocs": true,
+  "channel": "log",
+  "stagedCount": 27,
+  "insert": {
+    "inserted": 27,
+    "failed": []
+  },
+  "projection": {
+    "multimodalProcessed": 27,
+    "gripResultOk": true,
+    "gripResultProcessed": 27
+  },
+  "exitReason": "docs-collected",
+  "observedCount": 27,
+  "projectedCount": 27,
+  "events": [
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 1건 (payload.schema.drift)"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-08-11-093753-ef7a97a0-1c26-4340-a290-c7a592943c87.md",
+      "docsValid": true,
+      "docsValidationErrors": []
+    },
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "HTTP 상태 코드 404 (요청 충족 실패)"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-08-11-093854-87bd35ba-2e75-4237-b47d-ed7159086612.md",
+      "docsValid": false,
+      "docsValidationErrors": [
+        "근거 미매핑 인용: [corr:-] 가 evidenceSources 에 없음",
+        "근거 미매핑 인용: [corr:-] 가 evidenceSources 에 없음",
+        "근거 미매핑 인용: [corr:-] 가 evidenceSources 에 없음",
+        "근거 미매핑 인용: [corr:-] 가 evidenceSources 에 없음",
+        "근거 미매핑 인용: [corr:-] 가 evidenceSources 에 없음",
+        "근거 미매핑 인용: [corr:ef7a97a0...] 가 evidenceSources 에 없음"
+      ]
+    }
+  ],
+  "finishedAt": "2026-08-11T01:48:39.114Z",
+  "durationSeconds": 4246,
+  "collectedDocs": [
+    "2026-08-11-093753-ef7a97a0-1c26-4340-a290-c7a592943c87.md",
+    "2026-08-11-093854-87bd35ba-2e75-4237-b47d-ed7159086612.md"
+  ]
+}

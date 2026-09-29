@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 5,
+  "completeness": 5,
+  "unsupportedClaims": [],
+  "rationale": "groundedness는 인용된 필드(cody, fx), 에러 경로, 파일명 및 correlation_id가 로그와 정확히 일치하여 5점. diagnosisAccuracy는 정답 요지와 동일하게 null 유입 원인과 Zod 거절 메커니즘을 정확히 진단하고 v1 무손상 조치 방향과 일치하여 5점. actionability는 제공된 검증 쿼리가 자동 검증을 통과하고 기존 v1 자산을 변경하지 않아 안전하며 무손상 원칙에 부합하여 5점. completeness는 권고, SQL(검증 쿼리), API 버전 세 요소가 모두 포함되어 v1 무변경이라는 일관된 결론으로 서로 일치하여 5점.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 19075,
+    "completion_tokens": 3997,
+    "total_tokens": 23072,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3805
+    }
+  },
+  "latencyMs": 116480,
+  "judgedAt": "2026-09-14T00:38:16.937Z"
+}

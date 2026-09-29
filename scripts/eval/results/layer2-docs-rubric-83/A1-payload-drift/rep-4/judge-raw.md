@@ -1,0 +1,3 @@
+
+
+{"groundedness": 4, "diagnosisAccuracy": 5, "actionability": 5, "completeness": 5, "unsupportedClaims": ["자료에 Zod/toyDataSchema 및 strict parsing 필터링 메커니즘 언급 없음", "src/insert/dto/toy-data.dto.ts 등 자료에 존재하지 않는 파일 경로 및 프레임워크 가정 인용"], "rationale": "groundedness: 핵심 로그와 스키마는 정확히 인용했으나, Zod/toyDataSchema 등 자료에 명시되지 않은 프레임워크 가정과 파일 경로를 인용하여 일부 감점. diagnosisAccuracy: 정답 요지의 스키마 드리프트 원인, v1 테이블 불변 원칙, 신규 Read Model 및 API 병행 운영 권고를 정확히 반영하여 만점. actionability: 자동 검증 결과(SQL 실행/컴파일 성공)와 일치하며, 기존 v1 자산 훼손 없이 신규 테이블 생성 및 라우트 추가만으로 문제 해결 가능하여 만점. completeness: 권고문, DDL, API 버저닝 세 요소가 모두 포함되며 테이블명·버전·프로젝터명이 문서 전반에서 일관되게 일치하여 만점."}

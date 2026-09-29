@@ -1,0 +1,157 @@
+{
+  "seed": 20260913,
+  "ratio": 0.3,
+  "total": 83,
+  "selected": [
+    {
+      "scenarioId": "A1-payload-drift",
+      "repName": "rep-5",
+      "channel": "log",
+      "sourceDocument": "2026-08-13-121715-ba0c7384-b8e3-4c8b-af0c-b739ee0d56c8.md"
+    },
+    {
+      "scenarioId": "A10-null-intrinsic-param",
+      "repName": "rep-4",
+      "channel": "log",
+      "sourceDocument": "2026-08-13-050835-bfa4a659-ddb6-4039-a2c1-1ed7eca0a83d.md"
+    },
+    {
+      "scenarioId": "A2-type-mismatch",
+      "repName": "rep-1",
+      "channel": "log",
+      "sourceDocument": "2026-08-11-010821-3e1426e4-85dd-41c3-aa39-04c9e140fdad.md"
+    },
+    {
+      "scenarioId": "A3-missing-field",
+      "repName": "rep-2",
+      "channel": "log",
+      "sourceDocument": "2026-08-11-110657-1ec6c565-8522-4ec8-92ab-5a071d776fbe.md"
+    },
+    {
+      "scenarioId": "A3-missing-field",
+      "repName": "rep-5",
+      "channel": "log",
+      "sourceDocument": "2026-08-13-131055-eeaa2cfe-1424-4957-8ebc-2219e32dcae2.md"
+    },
+    {
+      "scenarioId": "A4-physical-impossible",
+      "repName": "rep-4",
+      "channel": "sensor",
+      "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_00263.md"
+    },
+    {
+      "scenarioId": "A5-consistency-violation",
+      "repName": "rep-1",
+      "channel": "sensor",
+      "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02008.md"
+    },
+    {
+      "scenarioId": "A5-consistency-violation",
+      "repName": "rep-5",
+      "channel": "sensor",
+      "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02008.md"
+    },
+    {
+      "scenarioId": "A6-depth-jump",
+      "repName": "rep-3",
+      "channel": "sensor",
+      "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02010.md"
+    },
+    {
+      "scenarioId": "A6-depth-jump",
+      "repName": "rep-4",
+      "channel": "sensor",
+      "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02010.md"
+    },
+    {
+      "scenarioId": "A7-grip-depth-underflow",
+      "repName": "rep-1",
+      "channel": "sensor",
+      "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02018.md"
+    },
+    {
+      "scenarioId": "A7-grip-depth-underflow",
+      "repName": "rep-5",
+      "channel": "sensor",
+      "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02018.md"
+    },
+    {
+      "scenarioId": "A8-translation-x-violation",
+      "repName": "rep-5",
+      "channel": "sensor",
+      "sourceDocument": "2023-10-10-090000-반려동물용품_CR01_강아지공룡알장난감_02020.md"
+    },
+    {
+      "scenarioId": "A9-non-integer-id",
+      "repName": "rep-2",
+      "channel": "log",
+      "sourceDocument": "2026-08-14-121433-0dd288fd-95cd-428d-85ec-c18e9d5a692d.md"
+    },
+    {
+      "scenarioId": "A9-non-integer-id",
+      "repName": "rep-5",
+      "channel": "log",
+      "sourceDocument": "2026-08-15-135422-7a4d68a1-3b98-4a36-b959-42062ac6ee0b.md"
+    },
+    {
+      "scenarioId": "B1-projection-map-failed",
+      "repName": "rep-4",
+      "channel": "log",
+      "sourceDocument": "2026-08-13-064259-e1d30855-b67b-4176-b703-511b818ff2ab.md"
+    },
+    {
+      "scenarioId": "B2-multimodal-integrity",
+      "repName": "rep-1",
+      "channel": "log",
+      "sourceDocument": "2026-08-10-215349-d3ef57fe-0022-4a04-91be-5ffe32868419.md"
+    },
+    {
+      "scenarioId": "B2-multimodal-integrity",
+      "repName": "rep-2",
+      "channel": "log",
+      "sourceDocument": "2026-08-11-232750-c8ded58a-84c5-4e63-98dc-b1abd489eaeb.md"
+    },
+    {
+      "scenarioId": "E1-new-column-query",
+      "repName": "rep-1",
+      "channel": "query",
+      "sourceDocument": "2026-08-14-092216-67ac254c-114e-4fd3-bf1f-a901d726ec60.md"
+    },
+    {
+      "scenarioId": "E2-new-aggregate-query",
+      "repName": "rep-2",
+      "channel": "query",
+      "sourceDocument": "2026-08-12-012252-024af7c0-7847-4664-a276-a9680c7461a2.md"
+    },
+    {
+      "scenarioId": "E3-new-join-query",
+      "repName": "rep-5",
+      "channel": "query",
+      "sourceDocument": "2026-08-15-100958-7ec0d044-5f61-427a-ac34-f2bdbafd80a1.md"
+    },
+    {
+      "scenarioId": "E4-time-series-query",
+      "repName": "rep-1",
+      "channel": "query",
+      "sourceDocument": "2026-08-11-001933-d04b1d4a-540e-4677-bf1d-2ea38dab964c.md"
+    },
+    {
+      "scenarioId": "E4-time-series-query",
+      "repName": "rep-2",
+      "channel": "query",
+      "sourceDocument": "2026-08-12-024045-7f638470-b913-438a-a200-1c6b20779b34.md"
+    },
+    {
+      "scenarioId": "E5-failure-ranking-query",
+      "repName": "rep-4",
+      "channel": "query",
+      "sourceDocument": "2026-08-13-104325-41b622e1-0ee2-4137-be39-fc548f8a3894.md"
+    },
+    {
+      "scenarioId": "E5-failure-ranking-query",
+      "repName": "rep-5",
+      "channel": "query",
+      "sourceDocument": "2026-08-15-105405-e1f71d70-eeed-49ef-ae28-6d4baac12418.md"
+    }
+  ]
+}

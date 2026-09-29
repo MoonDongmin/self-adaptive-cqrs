@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 5,
+  "completeness": 5,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 로그, 스키마, 신규 키 값이 자료와 정확히 일치하며 Zod 미적합으로 인한 유실 원인을 적절히 인용함. diagnosisAccuracy: 정답 요지와 동일하게 payload schema drift로 인한 필드 유실 및 신규 Read Model 생성 필요성을 정확히 진단함. actionability: DDL, Drizzle 스키마, Projector 매핑 로직이 일관되며 기존 v1 테이블을 건드리지 않고 신규 모델로 격리함. 자동 검증 결과도 통과하여 실행 가능함. completeness: 권고, SQL, API 버저닝 세 요소가 모두 포함되며 테이블명·라우트·클래스명이 서로 일치하고 누락된 절이 없음.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 29279,
+    "completion_tokens": 4197,
+    "total_tokens": 33476,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3998
+    }
+  },
+  "latencyMs": 146634,
+  "judgedAt": "2026-09-14T07:26:20.094Z"
+}

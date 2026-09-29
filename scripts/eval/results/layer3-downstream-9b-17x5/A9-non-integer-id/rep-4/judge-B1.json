@@ -1,0 +1,24 @@
+{
+  "groundedness": 2,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 1,
+  "versioningQuality": 2,
+  "unsupportedClaims": [
+    "T3에서 detail::jsonb 컬럼과 insight_event_store 테이블을 가정했으나 자료의 logging_context 테이블은 detail이 '-'이며 오류 메시지는 msg 컬럼에 문자열로 존재함",
+    "T2에서 global_seq, pose 값 등을 자료에 없는 임의값으로 하드코딩하여 삽입",
+    "T4에서 v1 무손상을 위한 ES/CQRS 표준 절차(이벤트 거부/격리, 클라이언트 정수화 권고)를 제시하지 않고 자료 부족을 이유로 답변 회피"
+  ],
+  "rationale": "T1은 로그의 Zod 오류와 정답 요지를 정확히 매칭하여 5점. T2는 ES/CQRS 원칙에 위배되는 ReadModel 직접 수정을 제안하고 자료 미비 값을 하드코딩하여 1점. T3은 제공된 로그 테이블 구조를 무시하고 존재하지 않는 JSONB 컬럼을 조회하는 SQL을 작성하여 1점. T4는 v1 무손상을 위한 표준 절차(이벤트 격리/클라이언트 정수화 권고)를 누락하고 답변 회피하여 2점. 전반적으로 근거 없는 가정과 SQL 오류가 많아 groundedness는 2점.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 12758,
+    "completion_tokens": 4030,
+    "total_tokens": 16788,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3739
+    }
+  },
+  "latencyMs": 102568,
+  "judgedAt": "2026-09-11T13:20:04.989Z"
+}

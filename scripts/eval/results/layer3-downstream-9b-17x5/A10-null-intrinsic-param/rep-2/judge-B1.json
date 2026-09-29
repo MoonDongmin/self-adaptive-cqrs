@@ -1,0 +1,24 @@
+{
+  "groundedness": 2,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 1,
+  "versioningQuality": 1,
+  "unsupportedClaims": [
+    "T2 SQL의 하드코딩된 파일명 및 `AND(TRUE)` 조건",
+    "T3에서 `grip_3d_pose`의 x1/y1 필드를 cody/fx 누락으로 매핑한 근거 없는 가정",
+    "read_grip_result에 거부된 레코드가 존재할 것이라는 전제"
+  ],
+  "rationale": "T1은 로그의 Zod 오류 경로와 원인을 정답 요지와 정확히 매칭하여 진단 점수가 높으나, T2는 하드코딩된 값과 `AND(TRUE)` 가짜 조건을 사용해 실제 CQRS 흐름에 부합하지 않음. T3은 거부된 이벤트가 적재되지 않는 Read Model을 조회하고 `grip_3d_pose`와 파라미터 필드를 임의로 매핑하는 근거 없는 주장을 포함해 SQL 점수가 낮음. T4는 v1 무손상을 위한 구체적인 버전 관리 및 컷오버 절차를 제시하지 않아 회피 처리됨.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 13854,
+    "completion_tokens": 3269,
+    "total_tokens": 17123,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3029
+    }
+  },
+  "latencyMs": 87469,
+  "judgedAt": "2026-09-11T11:13:10.222Z"
+}

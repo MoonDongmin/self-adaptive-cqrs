@@ -1,0 +1,3 @@
+(1) **문제**: `payload.schema.drift` 로그가 발생하여, 이벤트 스토어에는 정상적으로 적재되었으나 Read Model(프로젝션) 에는 데이터가 반영되지 않는 '적재 시 유실' 문제가 발생했습니다.
+
+(2) **근거**: `insert.file.ok` 로그는 54 회 성공했으나, `payload.schema.drift` 로그가 1 회 발생하며 `newKeys={"conveyor_speed": "1.2", "gripper_temperature": "36.5"}`로 스키마에 알려지지 않은 신규 키가 유입되었음을 보여줍니다. 이는 `projection.event.mapped` 로직이 기존 스키마만 매핑하도록 설계되어 있어, 새로 추가된 필드를 가진 이벤트는 매핑이 실패하거나 무시되어 `read_grip_result` 및 `read_multimodal` 테이블에 해당 레코드가 생성되지 않았음을 의미합니다.

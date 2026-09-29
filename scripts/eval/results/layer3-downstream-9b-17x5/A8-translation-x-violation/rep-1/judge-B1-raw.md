@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "sqlCorrectness": 3, "versioningQuality": 1, "unsupportedClaims": [], "rationale": "T1은 원시 레코드 수치와 정답 요지의 정합성 위반 원인을 정확히 식별하여 5점. T2/T3 SQL은 진단용 SELECT에 그쳤고, PostgreSQL의 `->>0::float` 연산자 우선순위 문제로 실행이 불안정하며, T2(해결)와 T3(파생질의)가 동일하여 실제 조치나 파생 분석이 누락되어 3점. T4는 정답 요지의 'v1 무손상' 요구사항과 CQRS Read Model 보강 관례를 무시하고 자료 부재를 이유로 답변을 회피하여 1점. 전반적으로 데이터 기반 분석은 정확하나 해결 방안 및 버전 관리 측면에서 미흡함."}

@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 4,
+  "completeness": 3,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용된 로그, 스키마, 필드명이 [자료]와 정확히 일치하며 fabricated 값이나 근거 없는 주장이 없음. diagnosisAccuracy: 분리된 Read Model로 인한 단일 카드 조회 실패 원인을 정확히 진단했으며 정답 요지의 통합 모델 신설 및 API v2 병행 조치와 일치함. actionability: 자동 검증 결과 SQL 실행 및 코드 컴파일이 성공했으나, 권고 outcome이 '기존 모델 확장'이라 명시한 반면 실제 SQL/코드는 신규 테이블(v2) 생성으로 내부 모순이 존재하며 일부 원본 컬럼(robot_tf 등)이 누락됨. completeness: 권고, SQL, API 버저닝 세 요소가 모두 포함되었으나 Decision Outcome과 실제 구현물 간 명백한 불일치로 일관성이 떨어짐.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 15127,
+    "completion_tokens": 3194,
+    "total_tokens": 18321,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2986
+    }
+  },
+  "latencyMs": 90126,
+  "judgedAt": "2026-09-14T02:20:43.106Z"
+}

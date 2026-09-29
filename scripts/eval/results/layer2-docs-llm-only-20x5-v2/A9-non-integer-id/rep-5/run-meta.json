@@ -1,0 +1,57 @@
+{
+  "scenarioId": "A9-non-integer-id",
+  "rep": 5,
+  "startedAt": "2026-08-15T04:54:21.924Z",
+  "expectsDocs": true,
+  "channel": "log",
+  "stagedCount": 27,
+  "insert": {
+    "inserted": 25,
+    "failed": [
+      {
+        "file": "반려동물용품_CR01_강아지공룡알장난감_02022_01_20230923.json",
+        "reason": "[\n  {\n    \"expected\": \"int\",\n    \"format\": \"safeint\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"objects\",\n      0,\n      \"id\"\n    ],\n    \"message\": \"Invalid input: expected int, received number\"\n  }\n]"
+      },
+      {
+        "file": "반려동물용품_CR01_강아지공룡알장난감_02023_01_20230923.json",
+        "reason": "[\n  {\n    \"expected\": \"int\",\n    \"format\": \"safeint\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"human_annotation_grasp\",\n      0,\n      \"num_keypoints\"\n    ],\n    \"message\": \"Invalid input: expected int, received number\"\n  }\n]"
+      }
+    ]
+  },
+  "projection": {
+    "multimodalProcessed": 25,
+    "gripResultOk": true,
+    "gripResultProcessed": 25
+  },
+  "exitReason": "docs-collected",
+  "observedCount": 25,
+  "projectedCount": 25,
+  "events": [
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 2건 (insert.file.failed)"
+    },
+    {
+      "action": "sensor.episode.closed",
+      "reason": "무입력 55831ms — 스트림 중단(씬 종료)으로 간주"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-08-15-135422-7a4d68a1-3b98-4a36-b959-42062ac6ee0b.md",
+      "docsValid": true,
+      "docsValidationErrors": []
+    },
+    {
+      "action": "sensor.analysis.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_00317.md",
+      "docsValid": null,
+      "docsValidationErrors": []
+    }
+  ],
+  "finishedAt": "2026-08-15T06:22:53.867Z",
+  "durationSeconds": 5312,
+  "collectedDocs": [
+    "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_00317.md",
+    "2026-08-15-135422-7a4d68a1-3b98-4a36-b959-42062ac6ee0b.md"
+  ]
+}

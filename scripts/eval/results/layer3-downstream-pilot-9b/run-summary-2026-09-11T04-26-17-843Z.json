@@ -1,0 +1,49 @@
+{
+  "options": {
+    "scenarios": [
+      "A1-payload-drift",
+      "A6-depth-jump",
+      "B1-projection-map-failed",
+      "E2-new-aggregate-query",
+      "E4-time-series-query"
+    ],
+    "reps": 1,
+    "conditions": [
+      "B1",
+      "A"
+    ],
+    "model": "qwen/qwen3.5-9b",
+    "maxTokens": 4096,
+    "temperature": 0,
+    "timeoutMs": 900000,
+    "docsDirectory": "scripts/eval/results/layer2-docs-llm-only-20x5-v2",
+    "resultsName": "layer3-downstream-pilot-9b"
+  },
+  "summary": [
+    {
+      "scenarioId": "A1-payload-drift",
+      "rep": 1,
+      "document": "2026-08-11-003828-50eed889-a94b-4d1b-af92-63a4888e32ea.md"
+    },
+    {
+      "scenarioId": "A6-depth-jump",
+      "rep": 1,
+      "document": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02010.md"
+    },
+    {
+      "scenarioId": "B1-projection-map-failed",
+      "rep": 1,
+      "document": "2026-08-11-070644-174fa59a-162c-48c4-8164-1df4dc278f24.md"
+    },
+    {
+      "scenarioId": "E2-new-aggregate-query",
+      "rep": 1,
+      "document": "2026-08-14-100707-ea4ee9ce-edb0-4f77-8ec2-c65049a86a08.md"
+    },
+    {
+      "scenarioId": "E4-time-series-query",
+      "rep": 1,
+      "document": "2026-08-11-001933-d04b1d4a-540e-4677-bf1d-2ea38dab964c.md"
+    }
+  ]
+}

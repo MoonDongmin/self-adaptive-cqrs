@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 5,
+  "completeness": 5,
+  "unsupportedClaims": [],
+  "rationale": "groundedness(5): 인용된 로그 레벨, correlation_id, 신규 필드명 및 드리프트 메시지가 [자료]와 정확히 일치하며 허위 수치나 존재하지 않는 로그가 없음. diagnosisAccuracy(5): 정답 요지의 'payload-drift로 인한 기존 Read Model 컬럼 유실' 원인과 '신규 RM 생성 및 API v2 병행' 해결책과 완벽히 일치함. actionability(5): 자동 검증 결과(SQL 실행/컴파일 성공)를 반영하며, 기존 v1 테이블을 건드리지 않고 신규 테이블 생성과 병렬 라우팅으로 요구사항을 충족함. completeness(5): 권고문, Read Model 생성 SQL, API 버저닝 세 요소가 모두 포함되며 DDL, Drizzle 스키마, 프로젝트어, 컨트롤러 라우트명이 문서 전반에서 일관되게 매칭됨.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 28053,
+    "completion_tokens": 3439,
+    "total_tokens": 31492,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3208
+    }
+  },
+  "latencyMs": 127007,
+  "judgedAt": "2026-09-14T02:10:19.705Z"
+}

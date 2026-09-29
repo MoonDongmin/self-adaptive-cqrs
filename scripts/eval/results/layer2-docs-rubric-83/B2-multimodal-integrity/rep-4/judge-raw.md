@@ -1,0 +1,3 @@
+
+
+{"groundedness": 2, "diagnosisAccuracy": 5, "actionability": 2, "completeness": 3, "unsupportedClaims": ["src/projection/projector/multimodal.projector.ts의 checkIntegrity/map 메서드 및 로직 인용", "event_store 테이블 참조"], "rationale": "groundedness: 로그 및 스키마 데이터는 정확하나, 제공된 [자료]에 존재하지 않는 소스 코드 경로 및 메서드명을 근거로 인용하여 충실도가 떨어짐. diagnosisAccuracy: 정합성 위반 유형, 불일치 필드 및 장면 번호, 처리 단계 원인이 [정답 요지]와 정확히 일치함. actionability: 요청된 '식별·격리' 조치에 부합하지 않는 단순 SELECT 문만 제공하며, [자료]에 정의되지 않은 event_store 테이블을 참조하여 격리/해결 기능을 수행하지 못함. completeness: 세 요소 구조는 갖췄으나, Read Model 생성 SQL 항목이 실제 격리/생성 쿼리가 아닌 식별용 SELECT로 기능적 공백이 있음."}

@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "sqlCorrectness": 5, "versioningQuality": 5, "unsupportedClaims": [], "rationale": "T1은 자료의 insight.card.miss 로그와 read_grip_result 키 구조를 정확히 인용해 문제 원인을 진단했으며 정답 요지와 완전히 일치한다. T2 DDL은 자료에 명시된 스키마와 정확히 매칭되며, T3 SELECT 문은 요청한 집계 컬럼과 시간 순 정렬 조건을 정확히 반영했다. T4는 v1 엔드포인트 무손상, 신규 v2 병행 운영, 컷오버 단계를 구체적으로 서술하여 호환성 보호 절차를 충족한다. 전체적으로 자료 외 추측이나 오류가 없으며 모든 답변이 근거에 부합한다."}

@@ -1,0 +1,3 @@
+
+
+{"groundedness": 3, "diagnosisAccuracy": 5, "actionability": 5, "completeness": 5, "unsupportedClaims": ["src/projection/projector/multimodal.projector.ts의 checkIntegrity 메소드 및 정규표식(MODAL_FILE_NAME_RE, SCENE_KEY_NUM_RE) 존재 주장", "CatchUpRunner 패턴(map -> upsert -> checkIntegrity) 및 Zod(toyDataSchema) 검증 로직에 대한 기술적 상세"], "rationale": "groundedness: 핵심 로그 및 스키마 인용은 정확하나, 제공된 자료에 없는 코드 경로(CatchUpRunner 패턴, Zod 스키마명 등)를 근거로 서술하여 감점. diagnosisAccuracy: 정답 요지의 파일명 메타데이터 불일치 원인 및 격리 조치 방향과 완벽히 일치. actionability: 자동 검증 결과 실행 성공을 바탕으로, 조건이 정확한 DELETE 문으로 오염 행 격리/정화 가능 및 v1 자산 무손상. completeness: 권고, SQL, API 버저닝 3개 요소가 모두 포함되며 문서 내외 일관성 유지."}

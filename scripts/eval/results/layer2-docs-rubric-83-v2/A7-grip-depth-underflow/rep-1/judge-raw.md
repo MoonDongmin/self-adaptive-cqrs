@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 4, "completeness": 4, "unsupportedClaims": ["src/shared/database/schema/service/read-grip-result-v2.ts 파일이 저장소 실재 목록에 없음 (신규 생성 대상이나 검증 기준상 미실재 파일 인용으로 간주)"], "rationale": "groundedness: 인용한 장면 번호, z값, 로그 문구가 원문과 정확히 일치하며 참조 파일 경로도 실재 목록과 부합한다. diagnosisAccuracy: 정답 요지의 '성공 맥락에서 z1~z8 하한 위반' 원인과 'Read Model 보강/격리, v1 무손상' 조치 방향을 정확히 진단하고 반영했다. actionability: 'contain(격리)을 기각'한다고 명시하면서도 즉시 격리 SQL로 DELETE 문을 제공해 내부 논리가 상충한다. Drizzle ORM upsert 문법은 정상이나 문서 내 권고와 실행 코드 간 모순이 있다. completeness: 권고, DDL, API 버저닝 세 요소가 모두 포함되었으나 'contain 기각' 주장과 DELETE SQL 제공 간 상충, 및 일부 문장 오타가 있다."}

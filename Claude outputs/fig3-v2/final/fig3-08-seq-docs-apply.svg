@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1228" height="840" viewBox="0 0 1228 840" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">
+<defs><marker id="m222222" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#222222"/></marker><marker id="m555" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#555"/></marker></defs>
+<rect width="1228" height="840" fill="#ffffff"/>
+<line x1="110" y1="78" x2="110" y2="820" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="236" y1="78" x2="236" y2="820" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="362" y1="78" x2="362" y2="820" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="488" y1="78" x2="488" y2="820" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="614" y1="78" x2="614" y2="820" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="740" y1="78" x2="740" y2="820" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="866" y1="78" x2="866" y2="820" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="992" y1="78" x2="992" y2="820" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="1118" y1="78" x2="1118" y2="820" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<rect x="356" y="196" width="12" height="306" fill="#e8edf3" stroke="#33557a" stroke-width="1.2"/>
+<rect x="174" y="204" width="1006" height="296" fill="none" stroke="#333" stroke-width="1"/>
+<path d="M174,204 h35.01 v14 l-6,6 h-29.009999999999998 z" fill="#eeeeee" stroke="#333" stroke-width="1"/>
+<text x="181" y="218" font-size="10.5" font-weight="700" fill="#222">alt</text>
+<text x="217.01" y="218" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">[채택 (human-in-the-loop 승인)]</text>
+<line x1="174" y1="418" x2="1180" y2="418" stroke="#333" stroke-width="1" stroke-dasharray="5 4"/>
+<text x="182" y="432" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">[기각 · 수정]</text>
+<rect x="804" y="642" width="376" height="144" fill="none" stroke="#333" stroke-width="1"/>
+<path d="M804,642 h40.68 v14 l-6,6 h-34.68 z" fill="#eeeeee" stroke="#333" stroke-width="1"/>
+<text x="811" y="656" font-size="10.5" font-weight="700" fill="#222">loop</text>
+<text x="852.68" y="656" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">[다음 분석 사이클 — 카탈로그 폐쇄]</text>
+<rect x="426" y="514" width="628" height="114" fill="none" stroke="#333" stroke-width="1"/>
+<path d="M426,514 h35.01 v14 l-6,6 h-29.009999999999998 z" fill="#eeeeee" stroke="#333" stroke-width="1"/>
+<text x="433" y="528" font-size="10.5" font-weight="700" fill="#222">opt</text>
+<text x="469.01" y="528" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">[카드 등록 누락 (DDL만 적용)]</text>
+<rect x="61.07000000000001" y="30" width="97.85999999999999" height="42" rx="4" fill="#fff8e8" stroke="#a0812f" stroke-width="1.4"/>
+<text x="110" y="48" text-anchor="middle" font-size="11" fill="#8a6d1f" font-weight="600">AnalysisGraph</text>
+<text x="110" y="63" text-anchor="middle" font-size="9.5" fill="#556">aggregate</text>
+<rect x="200.0" y="30" width="72" height="42" rx="4" fill="#fbeef0" stroke="#a04050" stroke-width="1.4"/>
+<text x="236" y="48" text-anchor="middle" font-size="11" fill="#8c3444" font-weight="600">llm-docs/</text>
+<text x="236" y="63" text-anchor="middle" font-size="9.5" fill="#556">Docs .md</text>
+<circle cx="362" cy="40" r="6" fill="#fff" stroke="#222222" stroke-width="1.4"/>
+<path d="M362,46 v14 M352,52 h20 M362,60 l-8,12 M362,60 l8,12" fill="none" stroke="#222222" stroke-width="1.4"/>
+<text x="362" y="84" text-anchor="middle" font-size="11" fill="#222222" font-weight="600" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">개발자</text>
+<rect x="446.66" y="30" width="82.67999999999999" height="42" rx="4" fill="#f3f4f6" stroke="#777777" stroke-width="1.4"/>
+<text x="488" y="48" text-anchor="middle" font-size="11" fill="#444444" font-weight="600">PostgreSQL</text>
+<text x="488" y="63" text-anchor="middle" font-size="9.5" fill="#556">Read DB</text>
+<rect x="577.06" y="30" width="73.88" height="42" rx="4" fill="#f3f4f6" stroke="#777777" stroke-width="1.4"/>
+<text x="614" y="48" text-anchor="middle" font-size="11" fill="#444444" font-weight="600">소스 저장소</text>
+<text x="614" y="63" text-anchor="middle" font-size="9.5" fill="#556">src/</text>
+<rect x="690.41" y="30" width="99.17999999999999" height="42" rx="4" fill="#eef2f7" stroke="#33557a" stroke-width="1.4"/>
+<text x="740" y="48" text-anchor="middle" font-size="11" fill="#33557a" font-weight="600">CatchUpRunner</text>
+<text x="740" y="63" text-anchor="middle" font-size="9.5" fill="#556">리플레이</text>
+<rect x="812.12" y="30" width="107.76" height="42" rx="4" fill="#f3f4f6" stroke="#777777" stroke-width="1.4"/>
+<text x="866" y="48" text-anchor="middle" font-size="11" fill="#444444" font-weight="600">Insight Read DB</text>
+<text x="866" y="63" text-anchor="middle" font-size="9.5" fill="#556">카드 카탈로그</text>
+<rect x="930.53" y="30" width="122.93999999999998" height="42" rx="4" fill="#eef2f7" stroke="#33557a" stroke-width="1.4"/>
+<text x="992" y="48" text-anchor="middle" font-size="11" fill="#33557a" font-weight="600">CardDriftObserver</text>
+<text x="992" y="63" text-anchor="middle" font-size="9.5" fill="#556">60초 주기</text>
+<rect x="1055.21" y="30" width="125.57999999999998" height="42" rx="4" fill="#eef2f7" stroke="#33557a" stroke-width="1.4"/>
+<text x="1118" y="48" text-anchor="middle" font-size="11" fill="#33557a" font-weight="600">LLMContextService</text>
+<text x="1118" y="63" text-anchor="middle" font-size="9.5" fill="#556">다음 사이클</text>
+<polyline points="116,102 230,102" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="173.0" y="97" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">write Docs (① 권고 ② DDL+매핑+카드 INSERT ③ API Versioning)</text>
+<path d="M116,132 h26 v22 h-26" fill="none" stroke="#222222" stroke-width="1.3"/>
+<polyline points="142,154 118,154" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="148" y="136" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">validateDocs → info 로그</text>
+<polyline points="356,174 242,174" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="299.0" y="169" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">검토: 결론 → 근거 블록 → 옵션·트레이드오프</text>
+<polyline points="368,238 482,238" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="425.0" y="233" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">§2 DDL 실행 — CREATE TABLE read_&lt;name&gt;_v2 + INDEX</text>
+<polyline points="368,268 860,268" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="614.0" y="263" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">§2 카드 등록 INSERT (insight_entity · insight_field)</text>
+<polyline points="368,298 608,298" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="488.0" y="293" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">Optional: V2 프로젝터 · Drizzle 스키마 · 배선 추가 (v1 파일은 한 줄 추가만)</text>
+<polyline points="368,328 734,328" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="551.0" y="323" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">캐치업 실행 (이벤트 리플레이)</text>
+<polyline points="734,358 494,358" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="614.0" y="353" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">upsert → read_&lt;name&gt;_v2 채움</text>
+<polyline points="368,388 608,388" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="488.0" y="383" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">§3 절차: /v2 라우트 검증 → 컷오버 (롤백 = v1 유지)</text>
+<path d="M368,450 h26 v22 h-26" fill="none" stroke="#222222" stroke-width="1.3"/>
+<polyline points="394,472 370,472" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="400" y="454" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">Docs 폐기 또는 옵션 수정 후 수동 적용</text>
+<polyline points="986,548 494,548" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="740.0" y="543" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">public 테이블 − 인프라 − 카드 등록 테이블</text>
+<path d="M986,578 h-26 v22 h26" fill="none" stroke="#222222" stroke-width="1.3"/>
+<polyline points="960,600 984,600" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="954" y="582" text-anchor="end" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">warn insight.card.drift (S5) → 로그 레인 → '카드 등록 권고' Docs</text>
+<polyline points="1112,676 872,676" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="992.0" y="671" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">renderAllCards()</text>
+<polyline points="872,706 1112,706" fill="none" stroke="#555" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#m555)"/>
+<text x="992.0" y="701" text-anchor="middle" font-size="10.5" fill="#555" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">기존 카드 + read_&lt;name&gt;_v2 카드</text>
+<path d="M1112,736 h-26 v22 h26" fill="none" stroke="#222222" stroke-width="1.3"/>
+<polyline points="1086,758 1110,758" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="1080" y="740" text-anchor="end" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">같은 조회 요구 → 기존 자산으로 인식 (신규 설계 대신 활용)</text>
+</svg>

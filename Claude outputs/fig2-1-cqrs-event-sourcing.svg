@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="500" viewBox="0 0 880 500" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#333"/>
+    </marker>
+    <marker id="arrowDash" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#7a7a7a"/>
+    </marker>
+  </defs>
+  <rect width="880" height="500" fill="#ffffff"/>
+
+  <!-- side labels -->
+  <text x="220" y="34" text-anchor="middle" font-size="15" font-weight="700" fill="#333">쓰기 측 (Command)</text>
+  <text x="660" y="34" text-anchor="middle" font-size="15" font-weight="700" fill="#333">읽기 측 (Query)</text>
+  <line x1="440" y1="20" x2="440" y2="410" stroke="#bbb" stroke-width="1" stroke-dasharray="6 5"/>
+
+  <!-- client -->
+  <rect x="355" y="440" width="170" height="42" rx="8" fill="#f2f2f2" stroke="#333" stroke-width="1.4"/>
+  <text x="440" y="466" text-anchor="middle" font-size="14" font-weight="600" fill="#333">클라이언트</text>
+
+  <!-- command handler -->
+  <rect x="120" y="330" width="200" height="60" rx="8" fill="#ffffff" stroke="#333" stroke-width="1.4"/>
+  <text x="220" y="355" text-anchor="middle" font-size="14" font-weight="600" fill="#333">명령 처리</text>
+  <text x="220" y="375" text-anchor="middle" font-size="11.5" fill="#666">도메인 검증 후 이벤트 발행</text>
+
+  <!-- event store -->
+  <rect x="110" y="80" width="220" height="200" rx="10" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+  <text x="220" y="108" text-anchor="middle" font-size="15" font-weight="700" fill="#33557a">이벤트 스토어(Event Store)</text>
+  <text x="220" y="126" text-anchor="middle" font-size="11" fill="#556">순차 기록(append-only) · 유일한 원본</text>
+  <g font-size="11.5" fill="#333">
+    <rect x="135" y="140" width="170" height="26" rx="4" fill="#ffffff" stroke="#8aa0b8"/>
+    <text x="220" y="157" text-anchor="middle">e₁ : GraspAttempted</text>
+    <rect x="135" y="172" width="170" height="26" rx="4" fill="#ffffff" stroke="#8aa0b8"/>
+    <text x="220" y="189" text-anchor="middle">e₂ : SensorRecorded</text>
+    <rect x="135" y="204" width="170" height="26" rx="4" fill="#ffffff" stroke="#8aa0b8"/>
+    <text x="220" y="221" text-anchor="middle">e₃ : GraspSucceeded</text>
+    <text x="220" y="252" text-anchor="middle" font-size="13" fill="#556">⋮  (불변 이벤트 시퀀스)</text>
+  </g>
+
+  <!-- read models -->
+  <g>
+    <rect x="560" y="80" width="200" height="52" rx="8" fill="#ffffff" stroke="#333" stroke-width="1.4"/>
+    <text x="660" y="102" text-anchor="middle" font-size="13.5" font-weight="600" fill="#333">Read Model A</text>
+    <text x="660" y="120" text-anchor="middle" font-size="11" fill="#666">파지 성공률 집계</text>
+
+    <rect x="560" y="150" width="200" height="52" rx="8" fill="#ffffff" stroke="#333" stroke-width="1.4"/>
+    <text x="660" y="172" text-anchor="middle" font-size="13.5" font-weight="600" fill="#333">Read Model B</text>
+    <text x="660" y="190" text-anchor="middle" font-size="11" fill="#666">센서 시계열 조회</text>
+
+    <rect x="560" y="220" width="200" height="52" rx="8" fill="#ffffff" stroke="#7a7a7a" stroke-width="1.4" stroke-dasharray="5 4"/>
+    <text x="660" y="242" text-anchor="middle" font-size="13.5" font-weight="600" fill="#7a7a7a">Read Model C (신규)</text>
+    <text x="660" y="260" text-anchor="middle" font-size="11" fill="#8a8a8a">재생(replay)으로 사후 구성</text>
+  </g>
+
+  <!-- arrows: client -> command handler -->
+  <path d="M 380 440 L 235 395" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <text x="270" y="432" text-anchor="middle" font-size="12" fill="#333">명령(Command)</text>
+
+  <!-- command handler -> event store -->
+  <path d="M 220 330 L 220 285" fill="none" stroke="#333" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <text x="268" y="312" text-anchor="middle" font-size="12" fill="#333">이벤트 기록</text>
+
+  <!-- projections -->
+  <path d="M 330 130 C 430 110, 470 106, 555 106" fill="none" stroke="#33557a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M 330 180 C 430 178, 470 176, 555 176" fill="none" stroke="#33557a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M 330 235 C 430 242, 470 246, 555 246" fill="none" stroke="#7a7a7a" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#arrowDash)"/>
+  <text x="443" y="94" text-anchor="middle" font-size="12.5" font-weight="600" fill="#33557a">프로젝션(구체화)</text>
+  <text x="443" y="164" text-anchor="middle" font-size="11" fill="#556">비동기 반영 · 최종 일관성</text>
+  <text x="443" y="268" text-anchor="middle" font-size="11" fill="#8a8a8a">전체 이벤트 재생(replay)</text>
+
+  <!-- query arrows: read models -> client -->
+  <g stroke="#333" stroke-width="1.4" fill="none">
+    <path d="M 760 106 L 795 106"/>
+    <path d="M 760 176 L 795 176"/>
+    <path d="M 760 246 L 795 246"/>
+    <path d="M 795 106 L 795 340 C 795 400, 640 445, 530 458" marker-end="url(#arrow)"/>
+  </g>
+  <text x="720" y="392" text-anchor="middle" font-size="12" fill="#333">조회 응답(Query)</text>
+</svg>

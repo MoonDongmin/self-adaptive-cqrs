@@ -1,0 +1,23 @@
+{
+  "groundedness": 4,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 2,
+  "versioningQuality": 4,
+  "unsupportedClaims": [
+    "T3 SQL의 파일명 파싱 인덱스([5])가 제공된 예시 구조(인덱스 4)와 불일치",
+    "T4의 event_store DELETE 제안은 자료의 격리 SQL(SELECT) 및 이벤트 소싱 불변 원칙과 상충됨"
+  ],
+  "rationale": "T1은 자료의 로그와 결정 사항에 기반해 문제 원인을 정확히 진단하여 5점. T3 SQL은 제공된 파일명 예시 구조를 기준으로 인덱스 위치를 잘못 계산하여 실제 실행 시 오류를 유발하므로 2점. T4는 버전 변경 불필요 및 human-in-the-loop 승인 절차를 정확히 서술했으나, event_store 삭제 제안은 ES 원칙과 자료의 격리 방안(SELECT)에 부합하지 않아 4점. 전반적으로 근거는 충실하나 SQL 인덱스 오류와 ES 원칙 위반 주장이 감점 요인임.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 9140,
+    "completion_tokens": 3693,
+    "total_tokens": 12833,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3454
+    }
+  },
+  "latencyMs": 87449,
+  "judgedAt": "2026-09-11T13:39:18.477Z"
+}

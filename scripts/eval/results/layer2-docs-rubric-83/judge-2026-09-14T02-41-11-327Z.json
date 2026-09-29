@@ -1,0 +1,2024 @@
+[
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": 3,
+    "channel": "log",
+    "sourceDocument": "2026-08-12-035813-e18ec5e8-31f8-42c6-b105-533fdc7373ad.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 로그 레벨, 필드명(conveyor_speed, gripper_temperature), 상관관계 ID, 파일 수 등이 [자료]의 로그 테이블과 정확히 일치한다. diagnosisAccuracy: 정답 요지와 동일하게 스키마 드리프트로 인한 신규 키 유실 원인을 정확히 진단했으며, 기존 v1 테이블 수정 금지 및 신규 Read Model/API 병행 운영이라는 해결책을 정확히 제시했다. actionability: 자동 검증 결과에서 SQL 실행 및 코드 컴파일이 성공했으며, 기존 v1 자산에 ALTER/DROP을 가하지 않고 신규 테이블 생성과 API 확장을 통해 문제를 해결할 수 있는 실행 가능한 절차가 제시되었다. completeness: 권고 사항, Read Model 생성 SQL, API 버저닝 세 요소가 모두 포함되어 있으며, 테이블명과 필드 매핑이 문서 전반에 걸쳐 일관되게 사용되어 서로 모순이 없다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 25031,
+      "completion_tokens": 2927,
+      "total_tokens": 27958,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2694
+      }
+    },
+    "latencyMs": 127323,
+    "judgedAt": "2026-09-14T00:31:11.393Z"
+  },
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": 4,
+    "channel": "log",
+    "sourceDocument": "2026-08-14-180140-cd4a7d38-b8ae-47c0-b30d-a05f7531ed66.md",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [
+      "자료에 Zod/toyDataSchema 및 strict parsing 필터링 메커니즘 언급 없음",
+      "src/insert/dto/toy-data.dto.ts 등 자료에 존재하지 않는 파일 경로 및 프레임워크 가정 인용"
+    ],
+    "rationale": "groundedness: 핵심 로그와 스키마는 정확히 인용했으나, Zod/toyDataSchema 등 자료에 명시되지 않은 프레임워크 가정과 파일 경로를 인용하여 일부 감점. diagnosisAccuracy: 정답 요지의 스키마 드리프트 원인, v1 테이블 불변 원칙, 신규 Read Model 및 API 병행 운영 권고를 정확히 반영하여 만점. actionability: 자동 검증 결과(SQL 실행/컴파일 성공)와 일치하며, 기존 v1 자산 훼손 없이 신규 테이블 생성 및 라우트 추가만으로 문제 해결 가능하여 만점. completeness: 권고문, DDL, API 버저닝 세 요소가 모두 포함되며 테이블명·버전·프로젝터명이 문서 전반에서 일관되게 일치하여 만점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 23617,
+      "completion_tokens": 2687,
+      "total_tokens": 26304,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2435
+      }
+    },
+    "latencyMs": 100047,
+    "judgedAt": "2026-09-14T00:32:51.445Z"
+  },
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": 5,
+    "channel": "log",
+    "sourceDocument": "2026-08-13-121715-ba0c7384-b8e3-4c8b-af0c-b739ee0d56c8.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 로그 레벨, 필드명, correlation_id 및 기존 스키마 정보가 제공된 [자료]와 정확히 일치한다. diagnosisAccuracy: 정답 요지의 스키마 드리프트 원인, 신규 필드 위치, v1 무손상 및 v2 Read Model/API 병행 조치와 완벽히 일치한다. actionability: 자동 검증 결과에서 SQL 실행 및 코드 컴파일이 모두 성공했으며, 기존 v1 테이블을 건드리지 않고 신규 Read Model과 API를 추가하는 구조로 문제 해결이 가능하다. completeness: 권고, Read Model DDL, API 버저닝 세 요소가 모두 포함되어 있으며 테이블명·필드·라우트가 문서 전반에서 일관되게 매칭된다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 23067,
+      "completion_tokens": 2454,
+      "total_tokens": 25521,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2263
+      }
+    },
+    "latencyMs": 93774,
+    "judgedAt": "2026-09-14T00:34:25.224Z"
+  },
+  {
+    "scenarioId": "A10-null-intrinsic-param",
+    "rep": 1,
+    "channel": "log",
+    "sourceDocument": "2026-08-11-052002-56eff07e-bd6f-4df2-957c-6c0521b1a3e9.md",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [
+      "src/insert/dto/toy-data.dto.ts의 cameraIntrinsicSchema 정의에서 cody와 fx 필드가 .nullable() 누락 (제공 자료에 해당 파일 경로 및 스키마 정의 미존재)"
+    ],
+    "rationale": "groundedness: 핵심 오류 경로와 로그 값은 정확히 일치하나, Zod 스키마 파일 경로(.dto.ts)는 제공 자료에 명시되지 않음. diagnosisAccuracy: 정답 요지의 원인(내부 파라미터 null 유입, Zod 검증 거부)과 처리 단계를 정확히 식별함. actionability: 자동 검증 결과에서 SQL 실행 성공을 확인했으며, 기존 v1 테이블을 건드리지 않고 무유입 검증 절차로 격리하는 방안이 명확함. completeness: 권고, SQL(검증용), API 버저닝 세 요소가 모두 포함되어 있으며 서로 모순 없이 v1 무손상 원칙을 일관되게 따름.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 19154,
+      "completion_tokens": 3924,
+      "total_tokens": 23078,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3688
+      }
+    },
+    "latencyMs": 115222,
+    "judgedAt": "2026-09-14T00:36:20.451Z"
+  },
+  {
+    "scenarioId": "A10-null-intrinsic-param",
+    "rep": 2,
+    "channel": "log",
+    "sourceDocument": "2026-08-14-134331-416d5c44-4f0f-4a2a-bcdb-285a7f908cf3.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness는 인용된 필드(cody, fx), 에러 경로, 파일명 및 correlation_id가 로그와 정확히 일치하여 5점. diagnosisAccuracy는 정답 요지와 동일하게 null 유입 원인과 Zod 거절 메커니즘을 정확히 진단하고 v1 무손상 조치 방향과 일치하여 5점. actionability는 제공된 검증 쿼리가 자동 검증을 통과하고 기존 v1 자산을 변경하지 않아 안전하며 무손상 원칙에 부합하여 5점. completeness는 권고, SQL(검증 쿼리), API 버전 세 요소가 모두 포함되어 v1 무변경이라는 일관된 결론으로 서로 일치하여 5점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 19075,
+      "completion_tokens": 3997,
+      "total_tokens": 23072,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3805
+      }
+    },
+    "latencyMs": 116480,
+    "judgedAt": "2026-09-14T00:38:16.937Z"
+  },
+  {
+    "scenarioId": "A10-null-intrinsic-param",
+    "rep": 3,
+    "channel": "log",
+    "sourceDocument": "2026-08-12-115250-bff8a490-1e5c-42d5-9cd5-2e0d0ab60238.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [
+      "src/insert/dto/toy-data.dto.ts 및 GripResultProjector.map() 코드 상세는 [자료]에 명시되지 않음"
+    ],
+    "rationale": "groundedness: 인용된 필드명(cody/fx), 에러 메시지, 파일명이 [자료] 로그와 정확히 일치하며 코드 경로 추론은 문맥상 타당함. diagnosisAccuracy: 정답 요지의 null 유입, Zod 검증 실패, 비대칭 스키마 문제 및 v1 무손상 조치 방향을 정확히 진단함. actionability: 제공된 SQL은 기존 자산 변경 없는 검증 쿼리이며, 자동 검증 결과와 절차적 조치(거절 유지/로그 보강)가 문제 격리에 부합함. completeness: 권고, Read Model SQL, API 버저닝 세 요소가 모두 포함되며 DDL 불필요 결론과 API 변경 없음이 일관되게 서술됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 19021,
+      "completion_tokens": 3884,
+      "total_tokens": 22905,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3652
+      }
+    },
+    "latencyMs": 114069,
+    "judgedAt": "2026-09-14T00:40:11.013Z"
+  },
+  {
+    "scenarioId": "A10-null-intrinsic-param",
+    "rep": 4,
+    "channel": "log",
+    "sourceDocument": "2026-08-13-050835-bfa4a659-ddb6-4039-a2c1-1ed7eca0a83d.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [
+      "Zod 스키마 파일 경로(src/insert/dto/toy-data.dto.ts)는 제공된 자료에 명시되지 않음"
+    ],
+    "rationale": "groundedness: 인용된 필드명(cody, fx), 에러 경로, 파일명, correlation_id가 제공 로그와 정확히 일치함. diagnosisAccuracy: cody/fx null 유입에 따른 Zod 검증 실패 및 배치/투영 처리 흐름이 정답 요지와 완벽히 일치함. actionability: 제공된 검증 SQL이 자동 검증에서 성공했으며, v1 무손상 제약과 정답 요지의 'null 유입 추적' 의도에 부합함. completeness: 권고, SQL, API 버저닝 세 요소가 모두 포함되어 있으며 상호 모순 없이 일관되게 서술됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 18891,
+      "completion_tokens": 3398,
+      "total_tokens": 22289,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3192
+      }
+    },
+    "latencyMs": 105885,
+    "judgedAt": "2026-09-14T00:41:56.903Z"
+  },
+  {
+    "scenarioId": "A10-null-intrinsic-param",
+    "rep": 5,
+    "channel": "log",
+    "sourceDocument": "2026-08-15-031523-991f7605-5256-4d4d-a029-fe5ae0cb9662.md",
+    "groundedness": 2,
+    "diagnosisAccuracy": 5,
+    "actionability": 3,
+    "completeness": 3,
+    "unsupportedClaims": [
+      "src/insert/dto/toy-data.dto.ts의 cameraIntrinsicSchema 정의 및 cody/fx Zod 타입 명시",
+      "src/projection/projector/multimodal.projector.ts의 map() 메서드 동작 설명"
+    ],
+    "rationale": "groundedness: Docs가 [자료]에 존재하지 않는 TypeScript 파일 경로 및 스키마 정의를 인용하여 근거를 보강했으나 이는 지어낸 주장임. diagnosisAccuracy: cody/fx 필드 null 유입으로 인한 Zod 검증 실패 및 부분 거부 현상을 정답 요지와 정확히 일치하게 진단함. actionability: 제공된 SQL은 실행에 성공하나 Read Model 생성 DDL이 아닌 검증용 SELECT 쿼리이며 요구된 Read Model 구축 목적을 직접 수행하지 못함. completeness: 권고, SQL, API 버저닝 섹션이 모두 존재하나 SQL 항목이 Read Model 생성을 명시적으로 거부하고 격리 쿼리로 대체하여 요구 사항과 일부 어긂.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 19082,
+      "completion_tokens": 4914,
+      "total_tokens": 23996,
+      "completion_tokens_details": {
+        "reasoning_tokens": 4666
+      }
+    },
+    "latencyMs": 135664,
+    "judgedAt": "2026-09-14T00:44:12.572Z"
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": 1,
+    "channel": "log",
+    "sourceDocument": "2026-08-11-010821-3e1426e4-85dd-41c3-aa39-04c9e140fdad.md",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [
+      "src/insert/dto/toy-data.dto.ts의 toyDataSchema 정의",
+      "GripResultProjector.map() 경로 및 동작 설명"
+    ],
+    "rationale": "groundedness: 핵심 로그·에러 메시지·파일명은 자료와 정확히 일치하나, 제공되지 않은 소스 코드 경로(toy-data.dto.ts 등)를 인용함. diagnosisAccuracy: 정답 요지의 Zod 타입/범위 위반, 적재 거부, v1 무손상 진단과 완벽히 일치. actionability: 검증용 SELECT SQL이 실행 성공하며 거부 건 추적 및 무유입 확인 목적을 충족하고 기존 자산에 영향 없음. completeness: 권고·SQL(검증/격리)·API 버저닝 세 요소가 모두 포함되며 상호 모순 없이 일관됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 19144,
+      "completion_tokens": 2874,
+      "total_tokens": 22018,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2670
+      }
+    },
+    "latencyMs": 93185,
+    "judgedAt": "2026-09-14T00:45:45.762Z"
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": 2,
+    "channel": "log",
+    "sourceDocument": "2026-08-11-104910-4714dd7b-ed3a-4520-be3e-818c082b6086.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [
+      "src/insert/dto/toy-data.dto.ts 및 GripResultProjector.map() 호출 경로는 제공된 [자료]에 명시되지 않음"
+    ],
+    "rationale": "groundedness: 인용된 Zod 에러 메시지, 파일명, correlation_id가 [자료] 로그와 정확히 일치함. diagnosisAccuracy: 정답 요지와 동일하게 grip_succeed의 타입/범위 위반으로 Zod 검증 거부됨을 정확히 진단하고 v1 무손상 결론을 도출함. actionability: 검증용 SELECT SQL이 자동 검증에서 성공했으며, 기존 v1 테이블을 변경하지 않고 격리/모니터링 권고를 제시하여 실행 가능함. completeness: 권고, SQL(검증 쿼리), API 버저닝 세 요소가 모두 포함되며 서로 모순 없이 v1 무변경 관점에서 일관되게 서술됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 19166,
+      "completion_tokens": 3258,
+      "total_tokens": 22424,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3036
+      }
+    },
+    "latencyMs": 101227,
+    "judgedAt": "2026-09-14T00:47:26.995Z"
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": 3,
+    "channel": "log",
+    "sourceDocument": "2026-08-12-044046-ac26991b-9f8d-4831-b386-957e1b997958.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 로그 레벨, 필드명(grip_succeed), 검증 메시지(string/Too big)가 [자료]와 정확히 일치함. diagnosisAccuracy: 정답 요지의 타입/도메인 위반, Zod 거부, v1 무손상 권고와 완전히 일치함. actionability: 제공된 검증 SQL이 [자동 검증 결과]에서 성공했으며, 기존 v1 테이블을 변경하지 않고 격리 확인을 수행해 의도대로 작동함. completeness: 권고, SQL(검증 쿼리), API 버저닝 세 요소가 모두 포함되어 있으며, DDL 불필요한 판단이 권고와 API 변경 없음 절에서 일관되게 서술됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 19388,
+      "completion_tokens": 3327,
+      "total_tokens": 22715,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3134
+      }
+    },
+    "latencyMs": 103505,
+    "judgedAt": "2026-09-14T00:49:10.504Z"
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": 4,
+    "channel": "log",
+    "sourceDocument": "2026-08-12-185842-0069e24d-fc33-4d71-84a0-4aeab4ae354b.md",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "actionability": 4,
+    "completeness": 5,
+    "unsupportedClaims": [
+      "src/insert/dto/toy-data.dto.ts의 toyDataSchema 정의",
+      "src/projection/projector/grip-result.projector.ts의 map() 메서드 동작"
+    ],
+    "rationale": "groundedness: 3. 핵심 로그 오류는 정확히 인용했으나, 제공 자료에 없는 소스 파일 경로 및 Zod 스키마 정의를 근거 없이 인용함. diagnosisAccuracy: 5. 정답 요지와 완벽히 일치하며, 타입/치역 위반 원인과 ES 미적재 결과를 정확히 진단함. actionability: 4. 검증용 SQL은 실행 성공했으나, 요구된 'Read Model 생성/변경'이 아닌 무유입 확인 쿼리를 제시하여 형식적 요구사항과 미세하게 어긋남. completeness: 5. 권고, SQL, API 버저닝 세 요소가 모두 포함되며 서로 모순 없이 일관되게 서술됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 19063,
+      "completion_tokens": 3443,
+      "total_tokens": 22506,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3211
+      }
+    },
+    "latencyMs": 105086,
+    "judgedAt": "2026-09-14T00:50:55.595Z"
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": 5,
+    "channel": "log",
+    "sourceDocument": "2026-08-13-124823-64cfdb18-ddbd-4492-95a4-9a350e21c3b7.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 파일명, 에러 메시지, 상관관계 ID 등 모든 기술치가 [자료] 로그와 정확히 일치함. diagnosisAccuracy: grip_succeed의 타입/도메인 위반으로 Zod 적재 거부됨을 정확히 진단했으며, 정답 요지의 메커니즘과 v1 무손상 결론 및 조치 방향(추적 보강/클라이언트 정규화)과 완벽히 일치함. actionability: 제공된 검증 SQL이 자동 검증에서 성공했으며, 기존 테이블을 ALTER/DROP하지 않고 무해성 확인 및 모니터링 보강을 권고하여 실행 가능하고 안전함. completeness: 권고, 검증용 SQL, API 버저닝 세 요소가 모두 포함되어 있으며, v1 무손상 결론을 일관되게 유지하고 섹션 간 모순이 없음.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 18935,
+      "completion_tokens": 3082,
+      "total_tokens": 22017,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2862
+      }
+    },
+    "latencyMs": 97489,
+    "judgedAt": "2026-09-14T00:52:33.090Z"
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": 1,
+    "channel": "log",
+    "sourceDocument": "2026-08-11-011837-f8148686-8f42-4e6f-bd96-71f8891488dc.md",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [
+      "src/insert/dto/toy-data.dto.ts 및 MultiModalProjector.map() 코드 참조는 제공된 [자료]에 없음"
+    ],
+    "rationale": "groundedness: 핵심 로그 및 필드 누락 근거는 정확하나, 제공된 [자료]에 없는 코드 파일 경로를 인용하여 일부 감점. diagnosisAccuracy: Zod 파싱 실패 원인, 거부 필드, ES 미유입 및 v1 무손상 조치 방향이 정답 요지와 완벽 일치. actionability: 제공된 검증 SQL은 자동 검증 결과대로 성공 실행되었으며, 기존 자산 변경 없이 격리 확인 및 모니터링 절차로 대응 가능. completeness: 권고, SQL(검증 쿼리), API 버저닝 세 요소가 모두 명시되어 v1 무손상 및 검증 중심 접근으로 서로 일관되게 일치함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 19153,
+      "completion_tokens": 3863,
+      "total_tokens": 23016,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3649
+      }
+    },
+    "latencyMs": 114188,
+    "judgedAt": "2026-09-14T00:54:27.283Z"
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": 2,
+    "channel": "log",
+    "sourceDocument": "2026-08-11-110657-1ec6c565-8522-4ec8-92ab-5a071d776fbe.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 로그 레벨, 상관관계 ID, 실패 파일명 및 누락 필드명이 제공된 로그 테이블과 정확히 일치한다. diagnosisAccuracy: Zod 파싱 실패로 인한 적재 거절 원인과 v1 무손상 조치 방향이 정답 요지와 완벽히 부합한다. actionability: 제공된 검증 SQL이 실행 성공했으며 기존 v1 테이블을 변경하지 않고 무해화 원칙에 따라 추적/검증 절차를 제안하여 실행 가능성이 높다. completeness: 권고, 검증용 SQL, API 버저닝 세 요소가 모두 포함되어 있으며 v1 무변/버전 변경 없음으로 서로 모순 없이 일관되게 구성되었다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 19353,
+      "completion_tokens": 4324,
+      "total_tokens": 23677,
+      "completion_tokens_details": {
+        "reasoning_tokens": 4130
+      }
+    },
+    "latencyMs": 124203,
+    "judgedAt": "2026-09-14T00:56:31.491Z"
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": 3,
+    "channel": "log",
+    "sourceDocument": "2026-08-12-045628-0e0dc39b-7edd-41f0-8a85-de26b45d9ba1.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [
+      "src/insert/dto/toy-data.dto.ts, src/projection/projector/grip-result.projector.ts 등 코드 경로 추론이 [자료]에 명시되지 않음"
+    ],
+    "rationale": "groundedness: 인용된 로그 레벨, 파일명, 필드명, Zod 에러 메시지가 [자료]와 정확히 일치함. diagnosisAccuracy: 필드 누락에 의한 Zod 파싱 실패 및 적재 거부 진단이 [정답 요지]와 완벽히 일치함. actionability: 제공 SQL은 검증용 SELECT로 자동 검증에서 성공했으며 기존 v1 테이블을 변경하지 않고 추적/로그 보강 조치 방향을 정확히 따름. completeness: 권고, SQL, API 버저닝 세 요소가 모두 포함되어 있으며 서로 모순 없이 일관됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 19345,
+      "completion_tokens": 3313,
+      "total_tokens": 22658,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3107
+      }
+    },
+    "latencyMs": 102967,
+    "judgedAt": "2026-09-14T00:58:14.463Z"
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": 4,
+    "channel": "log",
+    "sourceDocument": "2026-08-12-191007-b70bf9ab-4b8e-43d5-ba32-5ff1c63c022d.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 2,
+    "completeness": 3,
+    "unsupportedClaims": [
+      "src/insert/dto/toy-data.dto.ts",
+      "src/projection/projector/grip-result.projector.ts",
+      "src/insert/insert.service.ts",
+      "src/projection/projector/multimodal.projector.ts"
+    ],
+    "rationale": "groundedness 5: 引用日志、字段名及关联ID均与[资料]严格一致。diagnosisAccuracy 5: 准确诊断Zod因grip_data/robot_tf缺失导致解析拒绝，与[정답 요지]完全吻合。actionability 2: 仅提供验证性SELECT查询而非要求的DDL，未落实正答的Read Model/日志 보강意图。completeness 3: 三要素齐全但SQL部分类型错位（查询非DDL），与标题及正答要求矛盾。unsupportedClaims: 文档引用了资料中未提供的源码文件路径，属过度推断。",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 18890,
+      "completion_tokens": 4133,
+      "total_tokens": 23023,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3911
+      }
+    },
+    "latencyMs": 118362,
+    "judgedAt": "2026-09-14T01:00:12.830Z"
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": 5,
+    "channel": "log",
+    "sourceDocument": "2026-08-13-131055-eeaa2cfe-1424-4957-8ebc-2219e32dcae2.md",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [
+      "src/insert/dto/toy-data.dto.ts 및 src/projection/projector/grip-result.projector.ts 파일 경로 인용 (제공 자료에 미포함)"
+    ],
+    "rationale": "groundedness: 핵심 로그·필드·파일명은 자료와 정확히 일치하나, 제공 자료에 없는 외부 TypeScript 파일 경로를 인용하여 4점. diagnosisAccuracy: Zod 검증 실패로 인한 필수 필드 누락 및 적재 거부 원인을 정답 요지와 정확히 매칭하여 5점. actionability: 자동 검증 결과 SQL 실행 성공을 바탕으로 기존 v1 테이블을 변경하지 않는 무유입 검증 쿼리로 정합성을 확인하는 방안이 실행 가능하여 5점. completeness: 권고, SQL(검증 쿼리), API 버저닝 세 요소가 모두 포함되며 v1 무손상 원칙과 일관되게 구성되어 5점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 18751,
+      "completion_tokens": 3824,
+      "total_tokens": 22575,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3594
+      }
+    },
+    "latencyMs": 111552,
+    "judgedAt": "2026-09-14T01:02:04.390Z"
+  },
+  {
+    "scenarioId": "A4-physical-impossible",
+    "rep": 1,
+    "channel": "sensor",
+    "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_00263.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 장면 키(02006, 02007), 전역 시퀀스(26, 27), 이상 측정값(z1=-0.05, xl=2500)이 [자료]의 원문 로그와 정확히 일치함. diagnosisAccuracy: 정답 요지의 물리 불가능 값(z1<0, xl>1920) 감지, v2 별도 테이블/플래그로 격리 권고, 기존 v1 무손상 유지가 모두 정확히 반영됨. actionability: 자동 검증 결과(4/4 실행·컴파일 성공)를 바탕으로 신규 DDL이 의도대로 v2 격리 테이블을 생성하며 기존 read_grip_result를 ALTER/DROP하지 않음. completeness: 권고문, Read Model 생성 SQL(DDL/Insight 등록), API 버저닝(v1→v2 신규 라우트 추가) 세 요소가 모두 포함되며 테이블명·스키마·라우트 간 일관성이 완벽함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 32016,
+      "completion_tokens": 2391,
+      "total_tokens": 34407,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2122
+      }
+    },
+    "latencyMs": 113830,
+    "judgedAt": "2026-09-14T01:03:58.228Z"
+  },
+  {
+    "scenarioId": "A4-physical-impossible",
+    "rep": 2,
+    "channel": "sensor",
+    "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_00263.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용한 장면 키, z1=-0.05, xl=2500 등 모든 수치와 필드명이 [자료]의 로그 및 스키마에 정확히 일치한다. diagnosisAccuracy: 정답 요지와 동일하게 물리 불가능 값 적재 원인을 v1 검증 누락으로 진단하고, v2 플래그 격리 및 v1 무손상 해결책을 제시한다. actionability: 자동 검증 결과에서 SQL 실행 및 코드 컴파일이 성공했으며, v1 스키마를 변경하지 않고 v2 테이블을 추가 설계하여 이상 값 격리 및 재투영이 가능하도록 구성되었다. completeness: 권고, Read Model DDL, API 버저닝 세 요소가 모두 포함되어 있으며, 테이블명·필드명·API 경로가 문서 전반에서 일관되게 사용된다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 32056,
+      "completion_tokens": 2426,
+      "total_tokens": 34482,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2201
+      }
+    },
+    "latencyMs": 93440,
+    "judgedAt": "2026-09-14T01:05:31.674Z"
+  },
+  {
+    "scenarioId": "A4-physical-impossible",
+    "rep": 3,
+    "channel": "sensor",
+    "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_00263.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 4,
+    "completeness": 5,
+    "unsupportedClaims": [
+      "신규 Read Model 설계 시 grip3dPoseZ_depth_min 하한을 0.01m으로 설정했으나, 자료에서는 깊이 ≤ 0만 물리적 한계로 명시함."
+    ],
+    "rationale": "groundedness: 인용된 장면 번호(02006, 02007)와 이상 값(z1=-0.05, xl=2500)이 자료 로그와 정확히 일치함. diagnosisAccuracy: 정답 요지의 물리적 불가능성 진단과 v2 격리 방향이 일치하며, 원인(프로젝터 의미 검증 누락)과 위치(grip3dPose.z1, grip2dPose.xl)까지 정확히 특정함. actionability: 자동 검증 결과 SQL 실행 성공 및 v1 무손상 조건 충족하나, TypeScript 프로젝트터에서 위반 플래그 컬럼이 TODO로 null 고정되어 실제 동작을 위해 추가 수정 필요. completeness: 권고문, Read Model DDL(read_grip_outlier_v2), API 버저닝(v1→v2) 세 요소가 모두 포함되며 테이블명·라우트·코드 간 일관성 유지.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 31316,
+      "completion_tokens": 3897,
+      "total_tokens": 35213,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3596
+      }
+    },
+    "latencyMs": 123705,
+    "judgedAt": "2026-09-14T01:07:35.384Z"
+  },
+  {
+    "scenarioId": "A4-physical-impossible",
+    "rep": 4,
+    "channel": "sensor",
+    "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_00263.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [
+      "z1 물리적 기준 범위 [0.01, 0.30] m는 원문 자료에 명시되지 않은 가정치"
+    ],
+    "rationale": "groundedness: 인용된 장면 번호(Seq 26, 27), 필드(z1, xl), 수치(-0.05, 2500)가 자료 로그와 정확히 일치한다. diagnosisAccuracy: 정답 요지의 물리 불가능 값 적재 원인과 v2 Read Model 격리/플래그 조치 방향을 정확히 진단하고 매칭한다. actionability: 자동 검증 결과(4/4 실행·컴파일 통과)를 반영하며, v1 테이블을 건드리지 않고 신규 v2 테이블과 엔드포인트로 해결책을 제시한다. completeness: 권고문, DDL, API 버저닝 세 요소가 모두 포함되어 있으며 테이블명·라우트·코드 간에 모순이 없다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 32016,
+      "completion_tokens": 3424,
+      "total_tokens": 35440,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3190
+      }
+    },
+    "latencyMs": 114827,
+    "judgedAt": "2026-09-14T01:09:30.218Z"
+  },
+  {
+    "scenarioId": "A4-physical-impossible",
+    "rep": 5,
+    "channel": "sensor",
+    "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_00263.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 4,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 장면 키, 시퀀스, z1=-0.05, xl=2500 등 모든 핵심 수치와 필드가 [자료] 원문과 정확히 일치함. diagnosisAccuracy: 정답 요지의 물리 불가능 값 적재 문제와 v2 테이블/격리 방안, v1 무손상 원칙을 정확히 반영함. actionability: SQL 실행은 성공하나 정답 요지에서 명시한 CHECK 제약 대신 플래그 컬럼과 별도 테이블을 제안하여 기술적 의도와 일부 상이함. completeness: 권고문, DDL, API 버저닝 세 요소가 모두 포함되며 테이블명·코드·설명이 내부적으로 일관됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 32338,
+      "completion_tokens": 3639,
+      "total_tokens": 35977,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3443
+      }
+    },
+    "latencyMs": 120350,
+    "judgedAt": "2026-09-14T01:11:30.576Z"
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": 1,
+    "channel": "sensor",
+    "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02008.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 장면 키, 센서 값(1.5m, 0.398m), 허용 범위([0.95,1.15], [0.01,0.3]), 필드명 등이 [자료]의 로그 및 스키마와 정확히 일치한다. diagnosisAccuracy: 정답 요지의 'grip_succeed=1과 물리적 범위 모순' 진단 및 'v1 무손상, 정합성 플래그 보강' 해결책과 완벽히 부합한다. actionability: 자동 검증 결과(실행/컴파일 성공)를 반영하며, v1 테이블을 건드리지 않고 신규 v2 테이블/프로젝터로 격리 및 해결하는 SQL과 코드가 의도대로 작동한다. completeness: 권고, Read Model DDL/매핑, API 버저닝 세 요소가 모두 포함되며, 테이블명·필드·라우트 간 일관성이 유지된다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 20175,
+      "completion_tokens": 2932,
+      "total_tokens": 23107,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2681
+      }
+    },
+    "latencyMs": 94863,
+    "judgedAt": "2026-09-14T01:13:05.446Z"
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": 2,
+    "channel": "sensor",
+    "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02008.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용 sceneKey, 필드명, 수치(1.5m, 0.398m) 및 검증 범위가 로그 원문과 정확히 일치하며 가설/원문 구분도 명확함. diagnosisAccuracy: 정답 요지의 'grip_succeed=1 맥락과 센서 값 모순' 및 'Read Model 보강/격리, v1 무손상' 조치와 완벽히 일치함. actionability: 자동 검증 결과(실행/컴파일 성공)를 바탕으로 하며, v1 테이블을 건드리지 않고 신규 v2 DDL과 격리 DELETE SQL로 요구사항을 충족함. completeness: 권고, Read Model DDL, API 버저닝 세 요소가 모두 포함되며 테이블명·필드명·라우트가 문서 전반에서 일관되게 매칭됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 20175,
+      "completion_tokens": 2421,
+      "total_tokens": 22596,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2197
+      }
+    },
+    "latencyMs": 79219,
+    "judgedAt": "2026-09-14T01:14:24.670Z"
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": 3,
+    "channel": "sensor",
+    "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02008.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 장면 키(02008, 02009), 센서 값(robotTfTranslationZ=1.5, grip3dPoseZMax≈0.398), 물리적 범위([0.95,1.15], [0.01,0.3])가 [자료]의 원시 로그와 정확히 일치하며 재확인된 사실에 기반함. diagnosisAccuracy: 정답 요지의 'grip_succeed=1과 센서 값 모순' 및 'Read Model 보강/격리, v1 무손상' 조치와 완벽히 일치하며, 근본 원인을 Read Model 레이어의 물리적 범위 검증 누락으로 정확히 진단함. actionability: 자동 검증 결과(DDL 2/2 실행, TS 4/4 컴파일 통과)를 바탕으로 신규 v2 테이블 생성 및 투영기 구현이 기존 v1을 건드리지 않고 문제를 해결할 수 있으며, 마이그레이션/롤백 절차도 명확함. completeness: 권고, SQL DDL, API 버저닝 세 요소가 모두 포함되어 있으며, 테이블명·컬럼명·프로젝터명이 문서 전반에서 일관되게 사용되어 구조적 완결성이 높음.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 18624,
+      "completion_tokens": 2743,
+      "total_tokens": 21367,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2440
+      }
+    },
+    "latencyMs": 82033,
+    "judgedAt": "2026-09-14T01:15:46.709Z"
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": 4,
+    "channel": "sensor",
+    "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02008.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 장면 키(02008, 02009), 센서 값(1.5m, 0.398m), 허용 범위([0.95,1.15], [0.01,0.3]) 및 모순 논리 모두 원본 로그와 정확히 일치함. diagnosisAccuracy: 정답 요지의 'grip_succeed=1과 물리적 범위 불일치(정합성 위반)' 진단 및 'v2 플래그 보강/격리, v1 무손상' 조치 방향과 완벽히 부합함. actionability: 자동 검증 결과(실행/컴파일 성공)를 바탕으로, v1 테이블을 건드리지 않고 신규 v2 테이블 생성 및 이상 행 삭제(SQL)로 격리/보강 요구사항을 충족하며 의도와 다른 동작이 없음. completeness: 권고문, Read Model DDL(read_grip_result_v2), API 버저닝(v1→v2) 세 요소가 모두 포함되며 테이블명·라우트·제약 조건이 문서 전반에서 일관되게 사용됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 20181,
+      "completion_tokens": 4114,
+      "total_tokens": 24295,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3839
+      }
+    },
+    "latencyMs": 114169,
+    "judgedAt": "2026-09-14T01:17:40.884Z"
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": 5,
+    "channel": "sensor",
+    "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02008.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 장면 키, 센서 값(1.5m, 0.398m), 허용 범위([0.95,1.15], [0.01,0.3]), 성공 플래그 등 모든 수치가 [자료] 원문과 정확히 일치한다. diagnosisAccuracy: 정답 요지의 'grip_succeed=1과 물리적 불가능 위치/깊이 모순'을 정확히 포착했으며, 필드 위치와 정합성 위반 메커니즘까지 일치한다. actionability: 자동 검증 결과(실행/컴파일 성공)를 반영하여 v1 테이블을 건드리지 않고 신규 v2 테이블/프로젝터로 격리 및 보강하는 SQL과 코드가 의도대로 작동한다. completeness: 권고, Read Model DDL, API 버저닝 세 요소가 모두 포함되어 있으며, 테이블명·버전·무손상 제약이 문서 전반에서 일관되게 적용되었다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 20168,
+      "completion_tokens": 3148,
+      "total_tokens": 23316,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2895
+      }
+    },
+    "latencyMs": 94139,
+    "judgedAt": "2026-09-14T01:19:15.029Z"
+  },
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": 1,
+    "channel": "sensor",
+    "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02010.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 sceneKey, attempt 번호, z값 및 Δ=0.110m 계산이 [자료] 원문과 정확히 일치함. diagnosisAccuracy: 정답 요지의 동일 장면 시도 간 깊이 급변(Δ>0.10m), 물리 범위 내 미검출, v2 플래그 Read Model 도입 및 v1 무손상 조치와 완벽히 일치함. actionability: 자동 검증 결과 SQL 5개 블록 모두 실행 성공이며, 신규 v2 테이블 생성으로 기존 v1 자산에 손상을 주지 않고 요구된 정합성 플래그 기능을 구현함. completeness: 권고, Read Model DDL, API 버저닝 세 요소가 모두 포함되어 있으며 테이블명·버전 구분·마이그레이션 절차가 문서 전반에서 일관되게 기술됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 15522,
+      "completion_tokens": 2250,
+      "total_tokens": 17772,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2041
+      }
+    },
+    "latencyMs": 72355,
+    "judgedAt": "2026-09-14T01:20:27.391Z"
+  },
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": 2,
+    "channel": "sensor",
+    "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02010.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 장면 키, 시도 번호, Z축 좌표값 및 Δ=0.110m 수치가 [자료]의 원시 JSON 및 로그와 정확히 일치함. diagnosisAccuracy: 정답 요지의 핵심(시도 간 Δ>0.10m 급변, 기존 정적 검사 미적용, v2 Read Model로 변화량 계산·플래그, v1 무손상)을 정확히 포착하고 진단함. actionability: 자동 검증 결과에서 SQL 실행 및 코드 컴파일이 모두 성공했으며, v1 테이블을 건드리지 않고 v2를 신규 생성·동재하는 설계가 의도대로 구현됨. completeness: 권고, Read Model DDL, API 버저닝 세 요소가 모두 포함되며, 테이블명·컬럼명·라우트 경로가 문서 전반에서 일관되게 사용됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 15400,
+      "completion_tokens": 3848,
+      "total_tokens": 19248,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3615
+      }
+    },
+    "latencyMs": 100237,
+    "judgedAt": "2026-09-14T01:22:07.634Z"
+  },
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": 3,
+    "channel": "sensor",
+    "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02010.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 3,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 장면 키, 시도 번호, Z좌표 값 및 Δ=0.110m 급변 수치가 [자료]의 원시 로그와 정확히 일치하며 근거 없는 주장은 없음. diagnosisAccuracy: 정답 요지의 핵심(동장 시도 간 Δ>0.10m 급변, 값은 물리 범위 내, v2 Read Model로 변화량 계산·플래그, v1 무손상)을 정확히 반영함. actionability: PostgreSQL DDL에서 doublePrecision은 유효한 타입명이 아니며 공백이 필요한 DOUBLE PRECISION이어야 함. 자동 검증 결과의 실패 원인이므로 소폭 수정 후 실행 가능하나 그대로 적용 시 실패함. completeness: 권고, Read Model DDL/매핑, API 버저닝 세 요소가 모두 포함되며 테이블명·프로젝터·라우트 간 일관성이 유지됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 14579,
+      "completion_tokens": 3692,
+      "total_tokens": 18271,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3451
+      }
+    },
+    "latencyMs": 95216,
+    "judgedAt": "2026-09-14T01:23:42.856Z"
+  },
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": 4,
+    "channel": "sensor",
+    "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02010.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 장면 키, z좌표 원문 값, Δ0.11m 계산 근거가 모두 제공된 로그 JSON 및 스키마에 정확히 부합함. diagnosisAccuracy: 정답 요지의 장면 내 시도 간 깊이 급변(Δ>0.10m) 감지, v2 Read Model 도입, v1 무손상 요구사항을 정확히 반영함. actionability: 생성된 DDL과 TypeScript 코드가 자동 검증 결과를 통과하며 기존 v1 테이블을 건드리지 않고 신규 v2 자산만 additive 방식으로 추가함. completeness: 권고문, DDL, API 버저닝 세 요소가 모두 포함되어 있으며 테이블명·필드명·버전 전략이 문서 전반에서 일관되게 사용됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 15006,
+      "completion_tokens": 3034,
+      "total_tokens": 18040,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2827
+      }
+    },
+    "latencyMs": 83243,
+    "judgedAt": "2026-09-14T01:25:06.107Z"
+  },
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": 5,
+    "channel": "sensor",
+    "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02010.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 sceneKey, 시도 번호, z값 및 Δ=0.110m가 [자료] 원문 JSON과 정확히 일치하며, 가설 수치도 재확인하여 인용함. diagnosisAccuracy: 정답 요지의 '동장 시도 간 깊이 급변(Δ>0.10m) 감지 및 v2 Read Model 생성, v1 무손상' 진단과 메커니즘이 완전히 일치함. actionability: 생성된 DDL은 기존 v1을 건드리지 않고 신규 v2 테이블을 생성하며, 자동 검증 결과 SQL 실행이 성공적으로 확인됨. completeness: 권고, DDL, API 버저닝 세 요소가 모두 포함되며, 테이블명·컬럼명·버전 경로가 문서 전반에서 일관되게 사용됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 14678,
+      "completion_tokens": 4139,
+      "total_tokens": 18817,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3931
+      }
+    },
+    "latencyMs": 104510,
+    "judgedAt": "2026-09-14T01:26:50.623Z"
+  },
+  {
+    "scenarioId": "A7-grip-depth-underflow",
+    "rep": 1,
+    "channel": "sensor",
+    "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02018.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 장면 키, z값(0.008~0.005m), 성공 여부 등 모든 수치가 [자료] 원문 로그와 정확히 일치한다. diagnosisAccuracy: 정답 요지의 '성공 vs z<0.01m 하한 위반 모순' 진단과 투영 로직 검증 누락 원인 분석이 정확히 부합한다. actionability: 자동 검증 결과(실행/컴파일 성공)를 바탕으로 격리 SQL, v2 DDL, 플래그 계산 TS 코드가 의도대로 작동하며 기존 v1 스키마는 ALTER/DROP 없이 무손상으로 유지된다. completeness: 권고문, Read Model DDL, API 버저닝 세 요소가 모두 포함되며 테이블명·컬럼명·프로젝터 로직이 문서 전반에서 일관되게 매칭된다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 21321,
+      "completion_tokens": 3052,
+      "total_tokens": 24373,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2822
+      }
+    },
+    "latencyMs": 101924,
+    "judgedAt": "2026-09-14T01:28:32.554Z"
+  },
+  {
+    "scenarioId": "A7-grip-depth-underflow",
+    "rep": 3,
+    "channel": "sensor",
+    "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02018.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 3,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 장면 키, z1~z8 수치, 하한 0.01m 기준 및 스키마 필드가 [자료] 원문과 정확히 일치함. diagnosisAccuracy: 정답 요지의 '성공 맥락에서 z1~z8 하한 위반 모순' 및 'v1 무손상/Read Model 격리·플래그 보강' 조치와 완벽히 일치함. actionability: SQL 4개 블록은 실행 성공 및 의도(오염 행 격리, 신규 Read Model 생성)에 부합하나, 제공된 projection.service.ts 코드에서 CatchUpAllResult 타입 정의 누락 등으로 인해 자동 검증 결과에 명시된 컴파일 오류가 발생하여 소폭 수정이 필요함. completeness: 권고, Read Model DDL/매핑, API 버저닝 세 요소가 모두 포함되며 테이블명·라우트·프로젝터명이 문서 전반에서 일관되게 사용됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 20739,
+      "completion_tokens": 3245,
+      "total_tokens": 23984,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2995
+      }
+    },
+    "latencyMs": 93938,
+    "judgedAt": "2026-09-14T01:30:06.498Z"
+  },
+  {
+    "scenarioId": "A7-grip-depth-underflow",
+    "rep": 4,
+    "channel": "sensor",
+    "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02018.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 4,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 sceneKey, z1~z8 수치, 로그 경고문이 제공된 자료와 정확히 일치함. diagnosisAccuracy: 정답 요지의 성공/하한위반 모순, 원인(프로젝터 정합성 검증 누락), 조치 방향과 완벽히 일치함. actionability: SQL 실행은 성공했으나 격리 DELETE문이 _02019를 누락했고, 제공된 TS 코드 컴파일이 실패함. v1 무손상 원칙은 준수함. completeness: 권고, SQL, API 버저닝 세 요소가 모두 포함되며 테이블명·라우트·프로젝터 간 일관성 유지.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 19770,
+      "completion_tokens": 3472,
+      "total_tokens": 23242,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3284
+      }
+    },
+    "latencyMs": 96212,
+    "judgedAt": "2026-09-14T01:31:42.717Z"
+  },
+  {
+    "scenarioId": "A7-grip-depth-underflow",
+    "rep": 5,
+    "channel": "sensor",
+    "sourceDocument": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02018.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 장면 키와 z값(0.008~0.005m), gripSucceed=1 등 모든 수치가 [자료] 원문과 정확히 일치함. diagnosisAccuracy: 정답 요지의 '성공 vs 하한 미만 깊이' 모순과 jsonb 검증 한계 진단을 정확히 포착함. actionability: 자동 검증 결과(실행/컴파일 성공)를 바탕으로 v2 테이블 생성, 플래그 추가, API 라우팅까지 완전한 마이그레이션 경로를 제시하며 v1 무손상 조건을 준수함. completeness: 권고, DDL/매핑, API 버저닝 세 요소가 누락 없이 포함되고 테이블명·라우트·프로젝터명이 문서 전반에서 일관되게 매칭됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 20630,
+      "completion_tokens": 3000,
+      "total_tokens": 23630,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2784
+      }
+    },
+    "latencyMs": 88685,
+    "judgedAt": "2026-09-14T01:33:11.408Z"
+  },
+  {
+    "scenarioId": "A8-translation-x-violation",
+    "rep": 1,
+    "channel": "sensor",
+    "sourceDocument": "2023-10-10-090000-반려동물용품_CR01_강아지공룡알장난감_02020.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 장면 번호(02020/02021), translation 좌표(X=1.2, Y=0.2), 작업 범위 부등호 및 gripSucceed 상태가 원문 로그와 정확히 일치하며 수치 추측 없음. diagnosisAccuracy: 정답 요지의 '파지 성공 맥락에서 translation 축 작업 영역 밖 정합성 위반' 진단과 완전히 일치하며 근본원인을 projection 로직 누락으로 정확히 특정. actionability: 자동 검증 결과에서 SQL 실행 및 코드 컴파일이 성공했으며, 기존 v1 테이블을 건드리지 않고 신규 v2 Read Model DDL과 격리 SQL, TypeScript 프로젝터 코드를 제공하여 즉시 실행 가능. completeness: 권고 사항, 신규 Read Model 생성 SQL(DDL), API 버저닝(v1->v2) 세 요소가 모두 포함되어 있으며 테이블명·컬럼명·프로젝터 로직 간에 일관성이 유지됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 18204,
+      "completion_tokens": 2723,
+      "total_tokens": 20927,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2473
+      }
+    },
+    "latencyMs": 87552,
+    "judgedAt": "2026-09-14T01:34:38.967Z"
+  },
+  {
+    "scenarioId": "A8-translation-x-violation",
+    "rep": 2,
+    "channel": "sensor",
+    "sourceDocument": "2023-10-10-090000-반려동물용품_CR01_강아지공룡알장난감_02020.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [
+      "TL;DR의 이상 유형 'sensor_baseline_deviation'은 원문 로그의 'consistency 모순'과 용어가 상이함",
+      "API 버저닝 섹션의 엔드포인트 경로 '/grip-result-v2'와 컨트롤러 실제 배선 '/projection/grip-result-v2' 간 접두사 불일치"
+    ],
+    "rationale": "groundedness: 인용된 장면 번호, 좌표 값, 범위가 원문 로그와 정확히 일치하며 fabrication 없음. diagnosisAccuracy: 정답 요지의 '파지 성공 but translation 작업영역 밖 정합성 위반' 진단과 조치 방향(Read Model 보강, v1 무손상)이 완벽히 일치. actionability: 자동 검증 결과(DDL 실행 성공, 코드 컴파일 통과)를 바탕으로 v1 자산 손상 없이 신규 Read Model과 API로 문제를 격리/해결하는 구조가 명확함. completeness: 권고, DDL, API 버저닝 세 요소가 모두 포함되며 테이블명·필드 매핑·라우트 경로가 문서 전반에서 일관되게 사용됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 16308,
+      "completion_tokens": 3552,
+      "total_tokens": 19860,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3283
+      }
+    },
+    "latencyMs": 93124,
+    "judgedAt": "2026-09-14T01:36:12.097Z"
+  },
+  {
+    "scenarioId": "A8-translation-x-violation",
+    "rep": 3,
+    "channel": "sensor",
+    "sourceDocument": "2023-10-10-090000-반려동물용품_CR01_강아지공룡알장난감_02020.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 장면 키, translation 값(1.2/0.2), 작업 범위 부등호 및 로그 시퀀스가 자료와 정확히 일치하며 추가 추측이나 지어낸 값이 없음. diagnosisAccuracy: 정답 요지의 '파지 성공 but translation 작업영역 밖' 원인과 'Read Model 보강/격리, v1 무손상' 조치 방향과 완벽히 일치. actionability: 자동 검증 결과(SQL 5/5 실행 성공, 코드 컴파일 통과)를 바탕으로 오염 행 격리 DELETE문과 신규 v2 DDL이 의도대로 작동하며 기존 v1 스키마와 유효 데이터는 보존됨. completeness: 권고 사항, read_grip_result_v2 생성 SQL, v1->v2 API 버저닝 세 요소가 모두 포함되어 있으며 테이블명·플래그 명세·라우트 경로가 문서 전반에서 일관되게 사용됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 17697,
+      "completion_tokens": 2507,
+      "total_tokens": 20204,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2261
+      }
+    },
+    "latencyMs": 75167,
+    "judgedAt": "2026-09-14T01:37:27.269Z"
+  },
+  {
+    "scenarioId": "A8-translation-x-violation",
+    "rep": 4,
+    "channel": "sensor",
+    "sourceDocument": "2023-10-10-090000-반려동물용품_CR01_강아지공룡알장난감_02020.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 4,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 장면 키, 좌표(X=1.2/Y=0.2), 작업 영역 한계 및 필드명이 [자료] 로그와 스키마와 정확히 일치하며 추가 추측 없음. diagnosisAccuracy: 정답 요지의 '파지 성공 맥락 translation 영역 밖 정합성 위반' 및 'v1 무손상 하 Read Model 보강/격리'와 완전히 일치. actionability: SQL 격리문 및 v2 DDL은 정상 실행되며 의도대로 동작하나, 제공된 TypeScript 코드 스니펫에 미정의 타입이 포함되어 자동 검증 결과의 컴파일 실패가 발생함. completeness: 권고, Read Model 생성 SQL, API 버저닝 세 요소가 모두 포함되며 v2 테이블명 및 필드명이 문서 전반에서 일관되게 사용됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 17526,
+      "completion_tokens": 3254,
+      "total_tokens": 20780,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3030
+      }
+    },
+    "latencyMs": 90190,
+    "judgedAt": "2026-09-14T01:38:57.465Z"
+  },
+  {
+    "scenarioId": "A8-translation-x-violation",
+    "rep": 5,
+    "channel": "sensor",
+    "sourceDocument": "2023-10-10-090000-반려동물용품_CR01_강아지공룡알장난감_02020.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 장면 키, translation 값(X=1.2, Y=0.2), workspace 범위 및 gripSucceed 상태가 원본 JSON 및 로그와 정확히 일치한다. diagnosisAccuracy: 정답 요지의 '파지 성공 but translation 작업영역 이탈' 원인과 'v1 무손상 + 플래그 Read Model 보강/격리' 조치 방향이 정확히 일치한다. actionability: 자동 검증 결과에서 SQL 및 코드 모두 성공했으며, 기존 v1 테이블을 손상시키지 않고 격리 SQL과 신규 DDL로 요구사항을 충족한다. completeness: 권고, Read Model 생성 SQL, API 버저닝 세 요소가 모두 포함되어 있으며 테이블명·버전 관리·무손상 원칙이 문서 전반에서 일관되게 적용되었다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 17962,
+      "completion_tokens": 2737,
+      "total_tokens": 20699,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2536
+      }
+    },
+    "latencyMs": 80367,
+    "judgedAt": "2026-09-14T01:40:17.837Z"
+  },
+  {
+    "scenarioId": "A9-non-integer-id",
+    "rep": 1,
+    "channel": "log",
+    "sourceDocument": "2026-08-11-035103-7c6f6088-2361-48eb-8bf3-cc0d113dec4c.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 4,
+    "completeness": 4,
+    "unsupportedClaims": [
+      "LLM 재시도 실패 및 결정론 폴백 산출물임을 명시한 메타 주장 (자료 미포함)"
+    ],
+    "rationale": "groundedness 5: 인용 로그 레벨, 필드 경로, 파일명이 자료와 정확히 일치. diagnosisAccuracy 5: Zod safeint 위반 원인 및 대상 필드가 정답 요지와 정확히 일치. actionability 4: SQL 실행 성공 및 v1 무손상 조건을 만족하나, 정답 요지의 추적 Read Model 보강 및 클라이언트 정수화 권고를 미포함하여 부분 해결에 그침. completeness 4: 세 요소 구조는 완비되었으나 Read Model 생성 SQL 대신 격리 검증 쿼리로 대체하여 요구 형식과 다소 상이함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 18719,
+      "completion_tokens": 3619,
+      "total_tokens": 22338,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3418
+      }
+    },
+    "latencyMs": 107208,
+    "judgedAt": "2026-09-14T01:42:05.052Z"
+  },
+  {
+    "scenarioId": "A9-non-integer-id",
+    "rep": 2,
+    "channel": "log",
+    "sourceDocument": "2026-08-14-121433-0dd288fd-95cd-428d-85ec-c18e9d5a692d.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 4,
+    "actionability": 2,
+    "completeness": 3,
+    "unsupportedClaims": [
+      "자동 폴백 문서: LLM 권고 생성이 재시도까지 실패해 결정론 폴백이 최소 근거만 수록했다"
+    ],
+    "rationale": "groundedness: 인용 로그, 필드 경로(objects[0].id 등), 에러 메시지 및 배치 진행 상태가 [자료]와 정확히 일치함. diagnosisAccuracy: Zod .int() 위반 원인 및 필드 위치 진단은 정답 요지와 일치하나, 조치 방안(원천 수정 요청)이 정답의 클라이언트 정수화 권고 및 검증 로그 보강과 상이함. actionability: Read Model 생성 DDL 대신 단순 SELECT 검증 쿼리만 제공하여 정답 요지의 아키텍처 조치(Read Model/로그 보강)를 이행하지 못하며, 의도된 SQL과 불일치함. completeness: 권고, SQL, API 버저닝 섹션은 모두 존재하나, Read Model 생성 SQL 항목이 DDL 없이 검증 쿼리만으로 구성되어 제목 및 요구사항과 부합하지 않음.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 18752,
+      "completion_tokens": 3613,
+      "total_tokens": 22365,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3354
+      }
+    },
+    "latencyMs": 107363,
+    "judgedAt": "2026-09-14T01:43:52.422Z"
+  },
+  {
+    "scenarioId": "A9-non-integer-id",
+    "rep": 3,
+    "channel": "log",
+    "sourceDocument": "2026-08-12-113716-aaa46bb4-7b7d-4e48-a680-5c5fb0f2f51e.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [
+      "src/insert/dto/toy-data.dto.ts",
+      "GripResultProjector.map()"
+    ],
+    "rationale": "groundedness: 인용된 필드 경로, 파일명, Zod 오류 메시지가 제공 로그와 정확히 일치함. diagnosisAccuracy: 정수 타입 유입으로 인한 Zod .int() 거절 원인 및 v1 무손상 조치 방향이 정답 요지와 완벽히 일치함. actionability: 제공된 격리 검증 SQL이 자동 검증 결과에서 성공 실행되었으며 기존 자산 변경 없이 추적/무해화 목적을 달성함. completeness: 권고, 검증 SQL, API 버저닝 세 요소가 모두 포함되어 있으며 서로 모순 없이 일관된 구조를 가짐.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 18761,
+      "completion_tokens": 3704,
+      "total_tokens": 22465,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3516
+      }
+    },
+    "latencyMs": 111363,
+    "judgedAt": "2026-09-14T01:45:43.792Z"
+  },
+  {
+    "scenarioId": "A9-non-integer-id",
+    "rep": 4,
+    "channel": "log",
+    "sourceDocument": "2026-08-14-212102-c3ed0664-1205-4435-a0c6-21507e8db831.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [
+      "src/insert/dto/toy-data.dto.ts 참조",
+      "GripAttemptRecorded Insight 카드 참조"
+    ],
+    "rationale": "groundedness: 인용된 에러 경로, 필드명, 파일명, 상관관계 ID가 제공 로그와 정확히 일치함. diagnosisAccuracy: 정수 타입 불일치로 인한 Zod 검증 거절 및 적재 차단 메커니즘을 정답 요지와 정확히 매칭함. actionability: 제공된 SQL이 검증용으로 정상 실행되며, 기존 v1 테이블을 건드리지 않고 모니터링 및 클라이언트 정수화 권고로 문제 해결 경로를 제시함. completeness: 권고, SQL, API 버저닝 세 요소가 모두 포함되며 v1 무손상 원칙에 따라 서로 모순 없이 일관됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 18966,
+      "completion_tokens": 2801,
+      "total_tokens": 21767,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2608
+      }
+    },
+    "latencyMs": 91053,
+    "judgedAt": "2026-09-14T01:47:14.849Z"
+  },
+  {
+    "scenarioId": "A9-non-integer-id",
+    "rep": 5,
+    "channel": "log",
+    "sourceDocument": "2026-08-15-135422-7a4d68a1-3b98-4a36-b959-42062ac6ee0b.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 4,
+    "actionability": 3,
+    "completeness": 3,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 로그 레벨, 상관관계 ID, Zod 에러 경로 및 파일명은 [자료]와 정확히 일치한다. diagnosisAccuracy: Zod .int() 위반과 적재 거부 메커니즘을 정확히 진단했으나, 정답 요지의 명시적 '클라이언트 정수화 권고' 및 'Read Model/로그 보강' 조치가 누락되었다. actionability: 제공된 SQL은 DDL이 아닌 읽기 전용 검증 쿼리(SELECT)로, 요구사항인 추적 모델/로그 보강을 직접 수행하지 못해 수동적 격리 확인에 그친다. completeness: 권고, SQL, API 버저닝 세 섹션이 모두 존재하나, SQL 섹션 제목은 'Read Model 생성 DDL'이나 실제 내용은 격리 검증 쿼리라 명칭과 내용이 불일치한다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 19007,
+      "completion_tokens": 4667,
+      "total_tokens": 23674,
+      "completion_tokens_details": {
+        "reasoning_tokens": 4441
+      }
+    },
+    "latencyMs": 129783,
+    "judgedAt": "2026-09-14T01:49:24.638Z"
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": 1,
+    "channel": "log",
+    "sourceDocument": "2026-08-11-070644-174fa59a-162c-48c4-8164-1df4dc278f24.md",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [
+      "src/projection/projector/grip-result.projector.ts 파일 경로 및 throw new Error(...) 코드 구체적 인용 (자료 미제공)"
+    ],
+    "rationale": "groundedness는 핵심 로그와 스키마는 정확히 인용했으나 자료에 없는 특정 TS 파일 경로 및 코드 구조를 지어냈음. diagnosisAccuracy는 정답 요지의 poison 이벤트 원인, 배치 롤백 영향, skip/dead-letter 후 재실행 조치 및 커서 점프 금지와 완벽히 일치함. actionability는 제공된 SQL이 검증용 SELECT로 안전하며 자동 검증 결과와 부합하고 DDL 불필요 결론도 정답과 일치하여 실행 가능함. completeness는 권고, SQL, API 버전 세 요소가 모두 포함되며 서로 모순 없이 정답 요지의 '새 Read Model 불필요'와 일관됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 10971,
+      "completion_tokens": 3509,
+      "total_tokens": 14480,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3292
+      }
+    },
+    "latencyMs": 87198,
+    "judgedAt": "2026-09-14T01:50:51.844Z"
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": 2,
+    "channel": "log",
+    "sourceDocument": "2026-08-11-222607-af4516bb-9aff-4896-bc8f-87e9e45301ac.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [
+      "toy-data.dto.ts 의 Zod 스키마",
+      "GripResultProjector.map() 함수 수정",
+      "CatchUpRunner 가 해당 에러를 포착"
+    ],
+    "rationale": "groundedness: 인용한 이벤트 ID, 로그 메시지, 스키마 필드 등 핵심 데이터가 [자료]와 정확히 일치함. diagnosisAccuracy: 빈 배열 poison 이벤트로 인한 map 예외, 트랜잭션 롤백, 커서 점프 금지 및 skip/dead-letter 조치 등 정답 요지와 완벽하게 일치함. actionability: 신규 DDL 불필요를 정확히 판단하고 검증용 SQL을 제공하며, 절차가 정답 요지의 조치와 일치하여 그대로 실행 시 문제 해결 가능. completeness: 권고, SQL(검증용), API 버저닝 세 요소가 모두 포함되며 서로 모순 없이 정답 요지의 방향성과 일치함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 10474,
+      "completion_tokens": 4665,
+      "total_tokens": 15139,
+      "completion_tokens_details": {
+        "reasoning_tokens": 4440
+      }
+    },
+    "latencyMs": 108589,
+    "judgedAt": "2026-09-14T01:52:40.438Z"
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": 3,
+    "channel": "log",
+    "sourceDocument": "2026-08-14-164045-15de548c-3870-45f1-b84d-dd09d545a2ed.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 이벤트 ID, 로그 레벨/메시지 및 스키마 필드가 [자료]의 로깅 컨텍스트와 정확히 일치하며 외부 추론이나 지어진 값이 없음. diagnosisAccuracy: objects 배열 공백으로 인한 매핑 예외, 배치 트랜잭션 롤백 및 정상 이벤트 차단 메커니즘이 [정답 요지]와 완벽히 일치함. actionability: 제공된 SQL은 진단 및 격리 확인용이며 자동 검증 결과 실행 성공, 기존 v1 테이블을 변경하지 않고 재실행 절차가 정답 요지의 조치와 정확히 부합함. completeness: 권고, SQL, API 버저닝 세 요소가 모두 포함되어 있으며 신규 DDL 불필요 및 커서 점프 금지 지침이 문서 전반에 일관되게 반영됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 10827,
+      "completion_tokens": 2296,
+      "total_tokens": 13123,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2073
+      }
+    },
+    "latencyMs": 63137,
+    "judgedAt": "2026-09-14T01:53:43.580Z"
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": 4,
+    "channel": "log",
+    "sourceDocument": "2026-08-13-064259-e1d30855-b67b-4176-b703-511b818ff2ab.md",
+    "groundedness": 2,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [
+      "[자료]에 없는 Zod 스키마(.min(1) 누락) 및 런타임 예외 처리 로직 인용",
+      "파일 경로(src/projection/projector/grip-result.projector.ts) 및 상수(LogAction.DEAD_LETTER 등)의 존재 주장"
+    ],
+    "rationale": "groundedness: Zod 검증 로직과 파일 경로 등 [자료]에 존재하지 않는 기술적 세부사항을 근거로 인용하여 감점. diagnosisAccuracy: 정답 요지의 원인(빈 objects 예외→롤백), 영향(정상 이벤트 미투영), 조치(skip/dead-letter, 커서 점프 금지)와 정확히 일치. actionability: 자동 검증 결과 SQL 실행 성공 및 절차가 정답 요지와 일치하여 문제 해결 가능. completeness: 권고, SQL, API 버저닝 3개 요소가 모두 포함되고 서로 모순 없이 일치.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 10776,
+      "completion_tokens": 3024,
+      "total_tokens": 13800,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2810
+      }
+    },
+    "latencyMs": 77001,
+    "judgedAt": "2026-09-14T01:55:00.586Z"
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": 5,
+    "channel": "log",
+    "sourceDocument": "2026-08-15-044757-c40f6d2a-2015-4307-9bb8-9b1f06f4525e.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "인용한 이벤트 ID, 로그 레벨, 프로젝트터명 등 모든 데이터가 [자료]와 정확히 일치한다. 정답 요지의 롤백 메커니즘, poison 이벤트 격리 조치, 커서 점프 금지 원칙을 정확히 진단하여 반영했다. 제공 SQL은 기존 테이블을 변경하지 않고 결함 식별과 검증에 사용되며 자동 검증 결과와 의도된 재실행 절차가 부합한다. 권고, SQL, API 버저닝 세 요소가 모두 포함되어 있으며 '신규 스키마 불필요' 및 '버전 변경 없음'으로 내부 일관성을 유지한다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 10616,
+      "completion_tokens": 2259,
+      "total_tokens": 12875,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2092
+      }
+    },
+    "latencyMs": 62022,
+    "judgedAt": "2026-09-14T01:56:02.614Z"
+  },
+  {
+    "scenarioId": "B2-multimodal-integrity",
+    "rep": 1,
+    "channel": "log",
+    "sourceDocument": "2026-08-10-215349-d3ef57fe-0022-4a04-91be-5ffe32868419.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [
+      "MultiModalProjector.checkIntegrity 및 ProjectionService 연동 로직에 대한 코드 구조 추측 (자료 내 로그로 직접 확인 불가)"
+    ],
+    "rationale": "groundedness: 인용된 모든 로그 레벨, correlation_id, stream_id, global_seq 및 필드명이 [자료]의 로그 테이블과 스키마와 정확히 일치함. diagnosisAccuracy: 정답 요지의 불일치 유형(파일명 scene/attempt), 발생 위치, 처리 단계(투영 정합성 검사) 및 격리 방향과 완벽히 일치함. actionability: 제공된 SQL(SELECT)은 자동 검증에서 성공적으로 실행되었으며, 기존 v1 테이블을 ALTER/DROP하지 않고 결함 이벤트 식별/격리 전략에 부합하여 v1 무손상 요구사항을 충족함. completeness: 권고, SQL, API 버저닝 세 요소가 모두 포함되어 있으며, 서로 v1 무변경 및 스키마 불변 전제에서 논리적으로 일관되게 기술됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 11667,
+      "completion_tokens": 3333,
+      "total_tokens": 15000,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3081
+      }
+    },
+    "latencyMs": 85248,
+    "judgedAt": "2026-09-14T01:57:27.866Z"
+  },
+  {
+    "scenarioId": "B2-multimodal-integrity",
+    "rep": 2,
+    "channel": "log",
+    "sourceDocument": "2026-08-11-232750-c8ded58a-84c5-4e63-98dc-b1abd489eaeb.md",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [
+      "src/projection/projector/multimodal.projector.ts의 checkIntegrity 메소드 및 정규표식(MODAL_FILE_NAME_RE, SCENE_KEY_NUM_RE) 존재 주장",
+      "CatchUpRunner 패턴(map -> upsert -> checkIntegrity) 및 Zod(toyDataSchema) 검증 로직에 대한 기술적 상세"
+    ],
+    "rationale": "groundedness: 핵심 로그 및 스키마 인용은 정확하나, 제공된 자료에 없는 코드 경로(CatchUpRunner 패턴, Zod 스키마명 등)를 근거로 서술하여 감점. diagnosisAccuracy: 정답 요지의 파일명 메타데이터 불일치 원인 및 격리 조치 방향과 완벽히 일치. actionability: 자동 검증 결과 실행 성공을 바탕으로, 조건이 정확한 DELETE 문으로 오염 행 격리/정화 가능 및 v1 자산 무손상. completeness: 권고, SQL, API 버저닝 3개 요소가 모두 포함되며 문서 내외 일관성 유지.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 11434,
+      "completion_tokens": 4771,
+      "total_tokens": 16205,
+      "completion_tokens_details": {
+        "reasoning_tokens": 4523
+      }
+    },
+    "latencyMs": 113046,
+    "judgedAt": "2026-09-14T01:59:20.917Z"
+  },
+  {
+    "scenarioId": "B2-multimodal-integrity",
+    "rep": 3,
+    "channel": "log",
+    "sourceDocument": "2026-08-12-133847-2e0ba5d4-c224-4a0e-9ab8-f169471f7bca.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 4,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 로그 메시지, 상관관계 ID, scene/attempt 수치 및 스키마 필드가 [자료]와 정확히 일치한다. diagnosisAccuracy: 정답 요지의 핵심(파일명 메타데이터와 레코드 좌표 불일치, Zod/투영 통과 후 정합성 검사 잡음)을 정확히 진단했으며 위반 유형과 위치를 명시했다. actionability: SQL 실행은 성공했으나, 자동 검증 결과에서 projection.service.ts 및 controller.ts 컴파일에 실패한 사항이 기록되어 즉시 배포 가능한 완성도에는 미흡하다. 격리 전략은 v1 무손상 요구사항을 충족한다. completeness: 권고문, Read Model DDL/SQL, API 버저닝 세 요소가 모두 포함되었으며 테이블명·라우트·프로젝터 명칭이 문서 전반에서 일관되게 사용된다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 16408,
+      "completion_tokens": 3989,
+      "total_tokens": 20397,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3760
+      }
+    },
+    "latencyMs": 109128,
+    "judgedAt": "2026-09-14T02:01:10.047Z"
+  },
+  {
+    "scenarioId": "B2-multimodal-integrity",
+    "rep": 4,
+    "channel": "log",
+    "sourceDocument": "2026-08-13-065146-ee2549b1-5934-4548-bd3f-c5f9fe81eb3f.md",
+    "groundedness": 2,
+    "diagnosisAccuracy": 5,
+    "actionability": 2,
+    "completeness": 3,
+    "unsupportedClaims": [
+      "src/projection/projector/multimodal.projector.ts의 checkIntegrity/map 메서드 및 로직 인용",
+      "event_store 테이블 참조"
+    ],
+    "rationale": "groundedness: 로그 및 스키마 데이터는 정확하나, 제공된 [자료]에 존재하지 않는 소스 코드 경로 및 메서드명을 근거로 인용하여 충실도가 떨어짐. diagnosisAccuracy: 정합성 위반 유형, 불일치 필드 및 장면 번호, 처리 단계 원인이 [정답 요지]와 정확히 일치함. actionability: 요청된 '식별·격리' 조치에 부합하지 않는 단순 SELECT 문만 제공하며, [자료]에 정의되지 않은 event_store 테이블을 참조하여 격리/해결 기능을 수행하지 못함. completeness: 세 요소 구조는 갖췄으나, Read Model 생성 SQL 항목이 실제 격리/생성 쿼리가 아닌 식별용 SELECT로 기능적 공백이 있음.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 11467,
+      "completion_tokens": 4311,
+      "total_tokens": 15778,
+      "completion_tokens_details": {
+        "reasoning_tokens": 4070
+      }
+    },
+    "latencyMs": 104014,
+    "judgedAt": "2026-09-14T02:02:54.066Z"
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": 1,
+    "channel": "query",
+    "sourceDocument": "2026-08-14-092216-67ac254c-114e-4fd3-bf1f-a901d726ec60.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 로그 시점·필드명·스키마 구조가 [자료]와 정확히 일치하며 허위 값이나 과장된 주장이 없음. diagnosisAccuracy: 정답 요지의 스키마 드리프트로 인한 데이터 유실 및 시간대별 조회 실패 원인을 정확히 진단하고 대응 방향과 완벽히 일치. actionability: 자동 검증 결과에서 SQL 실행 및 코드 컴파일이 모두 성공했으며, 기존 v1 자산 훼손 없이 신규 Read Model과 API v2를 병행하는 방식으로 요구사항을 직접 해결함. completeness: 권고, Read Model 생성 SQL, API 버저닝 세 요소가 모두 포함되어 있으며 테이블명·컬럼 매핑·라우팅이 문서 전반에서 일관되게 유지됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 27633,
+      "completion_tokens": 2244,
+      "total_tokens": 29877,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2036
+      }
+    },
+    "latencyMs": 100239,
+    "judgedAt": "2026-09-14T02:04:34.311Z"
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": 2,
+    "channel": "query",
+    "sourceDocument": "2026-08-12-001828-3d8cd69e-27ca-499f-b59c-6f6cb37e1f91.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 로그 레벨, correlation_id, 신규 키 값 및 기존 Read Model 스키마가 [자료]와 정확히 일치한다. diagnosisAccuracy: payload 드리프트로 인한 키 유실 및 기존 Read Model 미비 문제를 정답 요지와 동일하게 정확히 진단했다. actionability: 자동 검증 결과 SQL 실행 및 코드 컴파일이 성공했으며, 신규 테이블 생성·백필(캐치업)·API v2 병행 방안이 정답 요지의 조치와 일치하여 즉시 실행 가능하다. completeness: 권고, DDL, API 버저닝 세 요소가 모두 포함되며 테이블명·키·필드명이 문서 전반에서 일관되게 사용되어 모순이 없다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 26589,
+      "completion_tokens": 3179,
+      "total_tokens": 29768,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2981
+      }
+    },
+    "latencyMs": 117671,
+    "judgedAt": "2026-09-14T02:06:31.988Z"
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": 3,
+    "channel": "query",
+    "sourceDocument": "2026-08-12-150255-6c4ce0db-5330-409d-ab4b-ea21dba948b3.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 로그 레벨, correlation_id, 신규 필드명(newKeys) 및 기존 Read Model 스키마가 [자료]와 정확히 일치하며 허위 값이 없음. diagnosisAccuracy: 정답 요지와 동일하게 payload schema drift로 인한 필드 유실 및 기존 Read Model 부재를 정확히 진단하고, 신규 모델 생성과 API v2 병행 방안을 제시. actionability: 자동 검증 결과(DDL 실행 성공, 코드 컴파일 통과)를 반영하며 기존 v1 테이블을 건드리지 않고 신규 Read Model과 라우트를 추가하는 방식으로 문제 해결 가능. completeness: 권고, DDL/매핑 SQL, API 버저닝 세 요소가 모두 포함되며 테이블명·컬럼·라우트 경로가 문서 전반에서 일관되게 사용됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 26572,
+      "completion_tokens": 2390,
+      "total_tokens": 28962,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2176
+      }
+    },
+    "latencyMs": 100700,
+    "judgedAt": "2026-09-14T02:08:12.694Z"
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": 4,
+    "channel": "query",
+    "sourceDocument": "2026-08-13-081525-4645a1d4-9c60-4b8c-a8e3-038f3011fd37.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness(5): 인용된 로그 레벨, correlation_id, 신규 필드명 및 드리프트 메시지가 [자료]와 정확히 일치하며 허위 수치나 존재하지 않는 로그가 없음. diagnosisAccuracy(5): 정답 요지의 'payload-drift로 인한 기존 Read Model 컬럼 유실' 원인과 '신규 RM 생성 및 API v2 병행' 해결책과 완벽히 일치함. actionability(5): 자동 검증 결과(SQL 실행/컴파일 성공)를 반영하며, 기존 v1 테이블을 건드리지 않고 신규 테이블 생성과 병렬 라우팅으로 요구사항을 충족함. completeness(5): 권고문, Read Model 생성 SQL, API 버저닝 세 요소가 모두 포함되며 DDL, Drizzle 스키마, 프로젝트어, 컨트롤러 라우트명이 문서 전반에서 일관되게 매칭됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 28053,
+      "completion_tokens": 3439,
+      "total_tokens": 31492,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3208
+      }
+    },
+    "latencyMs": 127007,
+    "judgedAt": "2026-09-14T02:10:19.705Z"
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": 5,
+    "channel": "query",
+    "sourceDocument": "2026-08-15-090746-a043a140-8c6e-4b33-ab6b-6431d58c43e2.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 4,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 필드명(gripper_temperature, conveyor_speed), 로그 레벨(40), correlation_id 및 insight.card.miss 횟수 등이 [자료]와 정확히 일치함. diagnosisAccuracy: payload schema drift로 인한 기존 Read Model 미비 및 사용자 시간대별 조회 요청 실패 원인을 [정답 요지]와 동일하게 정확히 진단함. actionability: 자동 검증 결과 SQL 실행 및 코드 컴파일 성공을 확인했으며, 기존 v1 자산을 손상시키지 않고 신규 Read Model과 API v2를 additive 방식으로 제안하여 문제 해결에 직접적으로 기여함. completeness: 세 요소가 모두 포함되었으나, 권고 섹션에서 'LLM 생성 실패로 결정론 폴백... 옵션 비교·코드 스니펫이 없다'고 명시하면서도 문서 하단에 상세 SQL 및 TypeScript 코드를 포함하여 내부 서술과 실제 구성이 상충됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 26253,
+      "completion_tokens": 3100,
+      "total_tokens": 29353,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2861
+      }
+    },
+    "latencyMs": 115082,
+    "judgedAt": "2026-09-14T02:12:14.794Z"
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": 1,
+    "channel": "query",
+    "sourceDocument": "2026-08-14-100707-ea4ee9ce-edb0-4f77-8ec2-c65049a86a08.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 3,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 로그, 스키마, 필드명 등이 [자료]와 정확히 일치하며 허위 수치가 없음. diagnosisAccuracy: 정답 요지와 동일하게 기존 1:1 테이블의 한계를 정확히 지적하고 object_name 기반 집계 Read Model 신설 및 API v2 병행을 진단함. actionability: 자동 검증 결과에서 'doubleprecision' 타입 오류가 발생하며, 성공률(upsert 시)이 단순 합산 로직으로 구현되어 의도한 누적 비율 산출과 다름. 오탈자 및 로직 수정 후 실행 가능하나 즉시 적용 시 오류 발생. completeness: 권고, SQL DDL, API 버저닝 세 요소가 모두 포함되며 테이블명·필드명·라우트명이 문서 전반에서 일관되게 사용됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 11935,
+      "completion_tokens": 3189,
+      "total_tokens": 15124,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2983
+      }
+    },
+    "latencyMs": 83006,
+    "judgedAt": "2026-09-14T02:13:37.807Z"
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": 2,
+    "channel": "query",
+    "sourceDocument": "2026-08-12-012252-024af7c0-7847-4664-a276-a9680c7461a2.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 insight.card.miss 로그 ID, read_grip_result 스키마 필드 및 PK 구조가 [자료]와 정확히 일치하며 추가 추측성 수치 없음. diagnosisAccuracy: 정답 요지의 '집계 Read Model 부재' 진단, 'object_name 키 신설', 'API v2 병행' 조치와 완벽히 일치. actionability: 자동 검증 결과(SQL 2/2 실행 성공, 코드 컴파일 통과)를 바탕으로 신규 테이블 생성 및 누적 upsert 로직이 의도대로 동작하며 기존 v1 자산에 손상을 주지 않음. completeness: 권고, DDL/매핑 SQL, API v2 버저닝 세 요소가 모두 포함되며 테이블명·필드명·라우트 경로가 문서 전반에서 일관되게 사용됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 11799,
+      "completion_tokens": 2797,
+      "total_tokens": 14596,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2579
+      }
+    },
+    "latencyMs": 74704,
+    "judgedAt": "2026-09-14T02:14:52.516Z"
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": 3,
+    "channel": "query",
+    "sourceDocument": "2026-08-14-164932-351e1b87-0959-4410-ba93-0983fe7e6cf7.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 3,
+    "completeness": 4,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 로그 시퀀스, insight.card.miss 메시지, read_grip_result 스키마 및 필드명이 [자료]와 정확히 일치함. diagnosisAccuracy: 정답 요지의 '집계 Read Model 부재' 진단과 'object_name 키 신규 생성 + API v2 병행' 조치 방향이 완벽히 일치함. actionability: 자동 검증 결과에서 'doublePrecision does not exist' 오류가 발생하여 PostgreSQL 표준 타입명('DOUBLE PRECISION') 수정이 필요함. completeness: 권고, SQL, API 버저닝 세 요소가 모두 포함되었으나, SQL 실행 오류로 인해 Read Model 생성 요소의 유효성이 일부 저하됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 14578,
+      "completion_tokens": 3450,
+      "total_tokens": 18028,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3256
+      }
+    },
+    "latencyMs": 94185,
+    "judgedAt": "2026-09-14T02:16:26.706Z"
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": 4,
+    "channel": "query",
+    "sourceDocument": "2026-08-14-213054-376d841e-1546-47e6-ba5b-b6d837e8edaf.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [
+      "src/projection/projector/grip-result.projector.ts 및 schema/index.ts 파일 경로 인용은 제공된 [자료]에 명시되지 않음"
+    ],
+    "rationale": "groundedness: 인용된 로그 correlation_id, 필드명(object_name, grip_succeed) 및 테이블 스키마가 [자료]와 정확히 일치함. diagnosisAccuracy: 기존 1:1 시도 단위 테이블의 한계와 집계 모델 부재로 인한 insight.card.miss 반복 진단이 [정답 요지]와 완벽히 일치함. actionability: 자동 검증 결과(SQL 2/2 실행 성공, 코드 4/4 컴파일 통과)를 바탕으로 신규 테이블 생성 및 누적 upsert 로직이 의도한 바를 정확히 구현했으며 기존 v1 자산을 ALTER/DROP하지 않음. completeness: 권고, Read Model DDL/SQL, API 버저닝(v1→v2) 세 요소가 모두 포함되며 테이블명·라우트·프로젝터 명칭이 문서 전반에서 일관되게 사용됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 11666,
+      "completion_tokens": 3153,
+      "total_tokens": 14819,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2893
+      }
+    },
+    "latencyMs": 81702,
+    "judgedAt": "2026-09-14T02:17:48.413Z"
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": 5,
+    "channel": "query",
+    "sourceDocument": "2026-08-15-094200-0c57d8eb-3d3b-4af9-addc-8c192f70357d.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 3,
+    "completeness": 4,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 로그 타임스탬프, 상관ID, 스키마 필드 및 제약조건이 [자료]와 정확히 일치한다. diagnosisAccuracy: 정답 요지의 집계 Read Model 신설 및 API v2 병행 방안과 진단이 완벽히 일치한다. actionability: SQL의 doublePrecision 타입 오타(공백 누락)로 인해 자동 검증에서 실패했으며, 소폭 수정 후 해결 가능하나 즉시 실행 불가하다. completeness: 세 핵심 요소가 모두 포함되었으나, 코드 블록의 중복 및 버전 교체 표시 방식이 다소 혼란스럽다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12978,
+      "completion_tokens": 3148,
+      "total_tokens": 16126,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2974
+      }
+    },
+    "latencyMs": 84557,
+    "judgedAt": "2026-09-14T02:19:12.974Z"
+  },
+  {
+    "scenarioId": "E3-new-join-query",
+    "rep": 1,
+    "channel": "query",
+    "sourceDocument": "2026-08-14-104836-ab9b5814-ed10-4646-8761-fd1845840652.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 4,
+    "completeness": 3,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 로그, 스키마, 필드명이 [자료]와 정확히 일치하며 fabricated 값이나 근거 없는 주장이 없음. diagnosisAccuracy: 분리된 Read Model로 인한 단일 카드 조회 실패 원인을 정확히 진단했으며 정답 요지의 통합 모델 신설 및 API v2 병행 조치와 일치함. actionability: 자동 검증 결과 SQL 실행 및 코드 컴파일이 성공했으나, 권고 outcome이 '기존 모델 확장'이라 명시한 반면 실제 SQL/코드는 신규 테이블(v2) 생성으로 내부 모순이 존재하며 일부 원본 컬럼(robot_tf 등)이 누락됨. completeness: 권고, SQL, API 버저닝 세 요소가 모두 포함되었으나 Decision Outcome과 실제 구현물 간 명백한 불일치로 일관성이 떨어짐.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 15127,
+      "completion_tokens": 3194,
+      "total_tokens": 18321,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2986
+      }
+    },
+    "latencyMs": 90126,
+    "judgedAt": "2026-09-14T02:20:43.106Z"
+  },
+  {
+    "scenarioId": "E3-new-join-query",
+    "rep": 2,
+    "channel": "query",
+    "sourceDocument": "2026-08-12-021512-7be30198-dc16-4d70-bc4a-78aa5d654ff9.md",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 4,
+    "unsupportedClaims": [
+      "projector.map() 필드 누락 주장 (자료에 projector 구현체 없음)",
+      "문서 내 한자/중국어 혼용 사용"
+    ],
+    "rationale": "groundedness: 핵심 로그·스키마는 정확하나 projector 내부 로직 누락 여부는 [자료]에 명시되지 않은 추론임. diagnosisAccuracy: 정답 요지의 분리된 Read Model 문제점, 조인 키, 통합 모델 신설 및 API 병행 방안과 완벽 일치. actionability: DDL 및 TS 코드가 자동 검증 결과를 통과하며 기존 v1 자산 훼손 없이 요구사항을 해결하는 신규 모델과 API를 제공함. completeness: 세 핵심 요소는 모두 포함되나, 문서 내 한자/중국어 혼용이 제약 조건을 위반하여 전문성과 일관성을 저해함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 13046,
+      "completion_tokens": 3554,
+      "total_tokens": 16600,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3349
+      }
+    },
+    "latencyMs": 92925,
+    "judgedAt": "2026-09-14T02:22:16.037Z"
+  },
+  {
+    "scenarioId": "E3-new-join-query",
+    "rep": 3,
+    "channel": "query",
+    "sourceDocument": "2026-08-12-160018-ab2f93e1-c6ca-4376-89bf-58e370e2183c.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [
+      "TL;DR의 'fuzzy result'는 '파지 결과' 오역으로 자료에 없음"
+    ],
+    "rationale": "groundedness: 인용된 로그 correlation_id, 테이블 스키마(PK 및 필드), 메시지 내용이 [자료]와 정확히 일치하며 fabrication 없음. diagnosisAccuracy: 정답 요지의 '분할 Read Model로 인한 통합 뷰 부재' 진단과 로그의 3회 재시도 맥락을 정확히 포착하여 일치함. actionability: 자동 검증 결과 DDL 실행 및 코드 컴파일이 성공했으며, 기존 v1 자산을 건드리지 않고 신규 통합 테이블과 병행 API를 제안하여 요구사항을 충족함. completeness: 권고, DDL(인사이트 등록 포함), API v2 버저닝 세 요소가 모두 포함되어 있으며 테이블명 및 필드 매핑이 문서 전반에서 일관되게 유지됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 13985,
+      "completion_tokens": 3751,
+      "total_tokens": 17736,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3524
+      }
+    },
+    "latencyMs": 98785,
+    "judgedAt": "2026-09-14T02:23:54.826Z"
+  },
+  {
+    "scenarioId": "E3-new-join-query",
+    "rep": 4,
+    "channel": "query",
+    "sourceDocument": "2026-08-13-091345-628677b3-2b44-4797-a757-d2d6c89bb1b3.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 로그 메시지, 스키마 필드명, PK 구조 및 URI null 상태가 [자료]와 정확히 일치한다. diagnosisAccuracy: 정답 요지의 분리된 Read Model로 인한 통합 조회 불가 원인과 (scene_key, attempt_num) 기반 신규 모델 신설 방안이 완벽히 일치한다. actionability: 자동 검증 결과(DDL 실행 성공, 코드 컴파일 통과)를 바탕으로 기존 v1 자산 손상 없이 신규 모델과 API v2 병행 구축이 가능하도록 명확히 제시되었다. completeness: 권고, DDL/매핑 명세, API 버저닝 세 요소가 모두 포함되어 있으며, 테이블명·엔드포인트·TypeScript 코드 간 일관성이 유지된다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 13883,
+      "completion_tokens": 2953,
+      "total_tokens": 16836,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2755
+      }
+    },
+    "latencyMs": 82507,
+    "judgedAt": "2026-09-14T02:25:17.337Z"
+  },
+  {
+    "scenarioId": "E3-new-join-query",
+    "rep": 5,
+    "channel": "query",
+    "sourceDocument": "2026-08-15-100958-7ec0d044-5f61-427a-ac34-f2bdbafd80a1.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 로그 시퀀스, PK 구성, 필드 타입이 [자료]와 정확히 일치하며 프로젝트터 파일명 추론도 스키마 주석에 기반함. diagnosisAccuracy: [정답 요지]의 분리된 Read Model로 인한 조인 뷰 부재 원인과 신규 통합 모델 신설+API v2 병행 해결책을 정확히 매칭함. actionability: 자동 검증 결과(DDL/컴파일 성공)와 일치하며 기존 v1 자산 훼손 없이 신규 테이블/라우트만 추가하는 명확한 실행 경로 제공. completeness: 권고, DDL/매핑 SQL, API 버저닝(코드 포함) 세 요소가 모두 포함되어 있으며 테이블명·PK·버전 관리가 문서 전반에서 일관되게 사용됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 14274,
+      "completion_tokens": 2657,
+      "total_tokens": 16931,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2444
+      }
+    },
+    "latencyMs": 77627,
+    "judgedAt": "2026-09-14T02:26:34.970Z"
+  },
+  {
+    "scenarioId": "E4-time-series-query",
+    "rep": 1,
+    "channel": "query",
+    "sourceDocument": "2026-08-11-001933-d04b1d4a-540e-4677-bf1d-2ea38dab964c.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 4,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 로그 ID, 메시지 원문 및 스키마 필드/키가 [자료]와 정확히 일치함. diagnosisAccuracy: 기존 row-level 스키마의 집계 부재를 정확히 진단했으며 [정답 요지]의 시계열 Read Model 신설 및 API v2 병행 조치와 완벽히 일치함. actionability: DDL 및 Projector 증분 집계 로직은 요구사항을 충족하고 실행 검증도 통과했으나, 제공된 projection.service.ts 코드에 컴파일 오류가 있어 소폭 수정 필요. completeness: 권고, DDL/SQL, API 버저닝 세 요소가 모두 포함되며 테이블명·타입·라우트가 문서 전반에서 일관되게 사용됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12857,
+      "completion_tokens": 4022,
+      "total_tokens": 16879,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3822
+      }
+    },
+    "latencyMs": 101390,
+    "judgedAt": "2026-09-14T02:28:16.367Z"
+  },
+  {
+    "scenarioId": "E4-time-series-query",
+    "rep": 2,
+    "channel": "query",
+    "sourceDocument": "2026-08-12-024045-7f638470-b913-438a-a200-1c6b20779b34.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 로그 메시지, 상관관계 ID, 기존 Read Model 스키마가 [자료]와 정확히 일치하며 핵심 근거 값이 모두 실재함. diagnosisAccuracy: 정답 요지와 동일하게 기존 row-level Read Model의 시계열 집계 부재를 정확히 진단하고 일자별 키 기반 신규 모델 신설을 제안함. actionability: 자동 검증 결과에서 SQL 실행 및 코드 컴파일이 성공했으며, 기존 v1 테이블을 건드리지 않고 upsert 기반 백필 로직과 API v2 병행이 명확히 설계됨. completeness: 권고 사항, Read Model DDL(및 인사이트 카드 등록), API 버저닝 세 요소가 모두 포함되어 있으며, 테이블명 및 버전 정보가 전 문서에서 일관되게 사용됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 11594,
+      "completion_tokens": 2952,
+      "total_tokens": 14546,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2743
+      }
+    },
+    "latencyMs": 77547,
+    "judgedAt": "2026-09-14T02:29:33.921Z"
+  },
+  {
+    "scenarioId": "E4-time-series-query",
+    "rep": 3,
+    "channel": "query",
+    "sourceDocument": "2026-08-12-162844-7145b74d-4a63-492a-9320-2fb8a584d2ec.md",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "actionability": 3,
+    "completeness": 5,
+    "unsupportedClaims": [
+      "기존 GripResultProjector의 내부 파일 경로(src/projection/projector/grip-result.projector.ts) 및 매핑 로직 상세 기술은 제공된 [자료]에 포함되지 않음."
+    ],
+    "rationale": "groundedness: 로그 ID와 Read Model 스키마는 자료와 정확히 일치하나, 기존 프로젝트터의 내부 파일 경로 및 로직 상세는 자료에 명시되지 않음. diagnosisAccuracy: 정답 요지의 시계열 집계 부재 진단과 신규 Read Model 신설, API v2 병행 권고를 정확히 반영함. actionability: PostgreSQL에서 유효하지 않은 double_precision 타입 사용으로 SQL 실패가 발생(자동 검증 결과 일치)하여 소폭 수정 후 실행 가능함. completeness: 권고, DDL SQL, API 버저닝 세 요소가 모두 포함되며 테이블명 및 버전 관리 방향이 문서 전반에서 일관되게 유지됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 11868,
+      "completion_tokens": 3543,
+      "total_tokens": 15411,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3310
+      }
+    },
+    "latencyMs": 89601,
+    "judgedAt": "2026-09-14T02:31:03.528Z"
+  },
+  {
+    "scenarioId": "E4-time-series-query",
+    "rep": 4,
+    "channel": "query",
+    "sourceDocument": "2026-08-13-101511-4601b3a0-19c6-4f12-816c-4e2801538dfe.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 3,
+    "completeness": 4,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 로그 correlation_id, 필드명(occurred_at, grip_succeed), 스키마 구조가 [자료]와 정확히 일치하며 허위 데이터나 과장된 인용이 없음. diagnosisAccuracy: 기존 Read Model의 시계열 집계 부재 문제를 정확히 진단했으며, 정답 요지의 '일자별 키 신규 Read Model 신설 + 백필 + API v2 병행' 방안과 완전히 일치함. actionability: PostgreSQL DDL에서 'doublePrecision(6)'은 구문 오류를 유발하는 유효한 타입명이 아니며 공백이 필요한 'DOUBLE PRECISION' 또는 NUMERIC이어야 해, 자동 검증 결과의 실패 원인이 명확히 반영되어 소폭 수정 후 실행 가능. completeness: 권고, Read Model 생성 SQL, API 버저닝 세 요소가 모두 유효하게 포함되었으나, 코드 블록 간 클래스명(DailyGripStatsV1Projector vs DailyGripStatsProjector)과 import 경로가 불일치하여 내부 정합성에 약간의 결함이 있음.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 13988,
+      "completion_tokens": 3436,
+      "total_tokens": 17424,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3166
+      }
+    },
+    "latencyMs": 92554,
+    "judgedAt": "2026-09-14T02:32:36.088Z"
+  },
+  {
+    "scenarioId": "E4-time-series-query",
+    "rep": 5,
+    "channel": "query",
+    "sourceDocument": "2026-08-15-103011-e6070e58-70d5-406f-93a1-a92ca161723e.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 로그 시점, correlation_id, 스키마 필드 및 메시지 내용이 [자료]와 정확히 일치함. diagnosisAccuracy: 정답 요지의 '일자별 집계 Read Model 부재' 진단과 '신설+백필, API v2 병행' 해결책이 정확히 매칭됨. actionability: 자동 검증 결과 SQL 실행 및 코드 컴파일이 모두 성공했으며, 기존 v1 자산 훼손 없이 신규 집계 테이블과 라우트를 추가하여 요구 사항을 충족함. completeness: 권고, DDL/SQL, API 버저닝 세 요소가 모두 포함되며 테이블명·라우트·프로젝터명이 문서 전반에서 일관되게 사용됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 11976,
+      "completion_tokens": 3411,
+      "total_tokens": 15387,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3216
+      }
+    },
+    "latencyMs": 87469,
+    "judgedAt": "2026-09-14T02:34:03.561Z"
+  },
+  {
+    "scenarioId": "E5-failure-ranking-query",
+    "rep": 1,
+    "channel": "query",
+    "sourceDocument": "2026-08-14-111323-ad97f0d9-9104-443d-940b-686fc20a2274.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 3,
+    "completeness": 5,
+    "unsupportedClaims": [
+      "src/projection/projector/grip-result.projector.ts의 map() 메서드 동작 및 ProjectionService.catchUpAll() 패턴에 대한 기술이 제공된 [자료] 로그/스키마에 명시되지 않음"
+    ],
+    "rationale": "groundedness: 인용된 insight.card.miss 로그 메시지, correlation_id, read_grip_result 스키마 필드 등이 [자료]와 정확히 일치함. diagnosisAccuracy: 정답 요지의 '기존 Read Model에 집계/랭킹 부재' 진단과 신규 object_name 기반 집계 모델 신설 방안이 정확히 일치함. actionability: PostgreSQL DDL에서 doublePrecision은 유효한 타입명이 아니며 DOUBLE PRECISION으로 수정해야 실행이 가능하므로 오탈자 수준에서 3점 부여. completeness: 권고, Read Model 생성 SQL, API 버저닝 세 요소가 모두 포함되며 테이블명·필드명·라우트 간 내부 일관성이 유지됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12050,
+      "completion_tokens": 3410,
+      "total_tokens": 15460,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3170
+      }
+    },
+    "latencyMs": 87368,
+    "judgedAt": "2026-09-14T02:35:30.935Z"
+  },
+  {
+    "scenarioId": "E5-failure-ranking-query",
+    "rep": 2,
+    "channel": "query",
+    "sourceDocument": "2026-08-14-150907-4cd287fe-8fb3-4f28-9499-16ccd3114250.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 로그 correlation_id, 필드명(object_name, grip_succeed) 및 스키마 구조가 [자료]와 정확히 일치함. diagnosisAccuracy: 기존 row-level Read Model의 집계/순위 한계를 정확히 지적하며 정답 요지와 완벽하게 일치함. actionability: 자동 검증 결과(실행/컴파일 성공)를 반영하며 기존 v1 자산을 손상시키지 않고 신규 집계 테이블과 API를 추가해 요구사항을 충족함. completeness: 권고, DDL/SQL, API 버저닝 세 요소가 모두 포함되며 테이블명·타입·버전 정보가 문서 전반에서 일관되게 사용됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 13453,
+      "completion_tokens": 3183,
+      "total_tokens": 16636,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2995
+      }
+    },
+    "latencyMs": 86349,
+    "judgedAt": "2026-09-14T02:36:57.290Z"
+  },
+  {
+    "scenarioId": "E5-failure-ranking-query",
+    "rep": 3,
+    "channel": "query",
+    "sourceDocument": "2026-08-12-174724-5dafb157-8e5b-49d5-a5cc-c16b33d3c95d.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 3,
+    "completeness": 5,
+    "unsupportedClaims": [
+      "GripResultProjector.map()/upsert()의 내부 동작에 대한 기술은 제공된 [자료] 로그 및 스키마에 명시되지 않음."
+    ],
+    "rationale": "groundedness: 인용된 로그, correlation_id, 스키마 필드 및 메시지 내용이 [자료]와 정확히 일치함. diagnosisAccuracy: 기존 Read Model의 레코드 단위 구조로 집계/랭킹 불가라는 진단이 [정답 요지]와 완벽히 일치함. actionability: 자동 검증 결과에서 명시된 대로 SQL의 'double_precision' 타입 명칭 오류(PostgreSQL 표준은 'DOUBLE PRECISION')로 인해 실행이 실패하나, 수정 시 해결 가능하므로 3점 부여. completeness: 권고 사항, Read Model 생성 SQL, API 버저닝 세 요소가 모두 포함되어 있으며 테이블명·필드명·버전 정보가 서로 일관되게 매칭됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 11487,
+      "completion_tokens": 3398,
+      "total_tokens": 14885,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3178
+      }
+    },
+    "latencyMs": 86172,
+    "judgedAt": "2026-09-14T02:38:23.467Z"
+  },
+  {
+    "scenarioId": "E5-failure-ranking-query",
+    "rep": 4,
+    "channel": "query",
+    "sourceDocument": "2026-08-13-104325-41b622e1-0ee2-4137-be39-fc548f8a3894.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 3,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용한 로그, correlation_id, 기존 Read Model 스키마 및 필드명이 [자료]와 정확히 일치함. diagnosisAccuracy: 정답 요지와 동일하게 기존 Read Model의 1:1 매핑 구조 한계와 집계/랭킹 부재를 정확히 진단함. actionability: SQL의 'doublePrecision' 타입 명칭 오류(PostgreSQL 기준 'DOUBLE PRECISION' 공백 필요)로 인해 자동 검증에서 실패했으며, 소폭 수정 시 해결 가능하나 그대로 적용하면 실행 불가. completeness: 권고, DDL/SQL, API 버저닝 세 요소가 모두 포함되며 테이블명·필드명·라우트 경로가 문서 전반에서 일관되게 사용됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12026,
+      "completion_tokens": 2573,
+      "total_tokens": 14599,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2382
+      }
+    },
+    "latencyMs": 71052,
+    "judgedAt": "2026-09-14T02:39:34.526Z"
+  },
+  {
+    "scenarioId": "E5-failure-ranking-query",
+    "rep": 5,
+    "channel": "query",
+    "sourceDocument": "2026-08-15-105405-e1f71d70-eeed-49ef-ae28-6d4baac12418.md",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "actionability": 5,
+    "completeness": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 인용된 로그 ID·메시지 및 스키마 필드명이 [자료]와 정확히 일치함. diagnosisAccuracy: 기존 Read Model의 행 단위 원천 데이터 한계와 집계/순위 부재 문제를 정확히 진단하여 [정답 요지]와 완전히 일치함. actionability: 자동 검증 결과에서 SQL 실행 및 코드 컴파일이 모두 성공했으며, 기존 v1 테이블을 건드리지 않고 신규 집계 테이블과 프로젝터로 additive 방식으로 문제를 해결할 수 있음. completeness: 권고, DDL/매핑 SQL, API 버저닝 세 요소가 모두 포함되어 있으며, 테이블명·컬럼·라우트 경로 등 전역에서 일관되게 사용됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 13043,
+      "completion_tokens": 3746,
+      "total_tokens": 16789,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3549
+      }
+    },
+    "latencyMs": 96793,
+    "judgedAt": "2026-09-14T02:41:11.325Z"
+  }
+]

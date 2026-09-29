@@ -1,0 +1,9 @@
+[
+  {
+    "scenarioId": "A7-grip-depth-underflow",
+    "rep": 3,
+    "docs": 2,
+    "exitReason": "docs-collected",
+    "durationSeconds": 5422
+  }
+]

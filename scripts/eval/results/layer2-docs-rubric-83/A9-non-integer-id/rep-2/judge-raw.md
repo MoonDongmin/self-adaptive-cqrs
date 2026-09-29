@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 4, "actionability": 2, "completeness": 3, "unsupportedClaims": ["자동 폴백 문서: LLM 권고 생성이 재시도까지 실패해 결정론 폴백이 최소 근거만 수록했다"], "rationale": "groundedness: 인용 로그, 필드 경로(objects[0].id 등), 에러 메시지 및 배치 진행 상태가 [자료]와 정확히 일치함. diagnosisAccuracy: Zod .int() 위반 원인 및 필드 위치 진단은 정답 요지와 일치하나, 조치 방안(원천 수정 요청)이 정답의 클라이언트 정수화 권고 및 검증 로그 보강과 상이함. actionability: Read Model 생성 DDL 대신 단순 SELECT 검증 쿼리만 제공하여 정답 요지의 아키텍처 조치(Read Model/로그 보강)를 이행하지 못하며, 의도된 SQL과 불일치함. completeness: 권고, SQL, API 버저닝 섹션은 모두 존재하나, Read Model 생성 SQL 항목이 DDL 없이 검증 쿼리만으로 구성되어 제목 및 요구사항과 부합하지 않음."}

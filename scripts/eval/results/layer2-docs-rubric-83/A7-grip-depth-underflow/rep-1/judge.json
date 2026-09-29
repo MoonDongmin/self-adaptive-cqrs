@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 5,
+  "completeness": 5,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용된 장면 키, z값(0.008~0.005m), 성공 여부 등 모든 수치가 [자료] 원문 로그와 정확히 일치한다. diagnosisAccuracy: 정답 요지의 '성공 vs z<0.01m 하한 위반 모순' 진단과 투영 로직 검증 누락 원인 분석이 정확히 부합한다. actionability: 자동 검증 결과(실행/컴파일 성공)를 바탕으로 격리 SQL, v2 DDL, 플래그 계산 TS 코드가 의도대로 작동하며 기존 v1 스키마는 ALTER/DROP 없이 무손상으로 유지된다. completeness: 권고문, Read Model DDL, API 버저닝 세 요소가 모두 포함되며 테이블명·컬럼명·프로젝터 로직이 문서 전반에서 일관되게 매칭된다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 21321,
+    "completion_tokens": 3052,
+    "total_tokens": 24373,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2822
+    }
+  },
+  "latencyMs": 101924,
+  "judgedAt": "2026-09-14T01:28:32.554Z"
+}

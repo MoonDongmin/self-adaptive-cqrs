@@ -1,0 +1,3 @@
+
+
+{"groundedness":5,"diagnosisAccuracy":5,"actionability":3,"completeness":5,"unsupportedClaims":["GripResultProjector.map()/upsert()의 내부 동작에 대한 기술은 제공된 [자료] 로그 및 스키마에 명시되지 않음."],"rationale":"groundedness: 인용된 로그, correlation_id, 스키마 필드 및 메시지 내용이 [자료]와 정확히 일치함. diagnosisAccuracy: 기존 Read Model의 레코드 단위 구조로 집계/랭킹 불가라는 진단이 [정답 요지]와 완벽히 일치함. actionability: 자동 검증 결과에서 명시된 대로 SQL의 'double_precision' 타입 명칭 오류(PostgreSQL 표준은 'DOUBLE PRECISION')로 인해 실행이 실패하나, 수정 시 해결 가능하므로 3점 부여. completeness: 권고 사항, Read Model 생성 SQL, API 버저닝 세 요소가 모두 포함되어 있으며 테이블명·필드명·버전 정보가 서로 일관되게 매칭됨."}

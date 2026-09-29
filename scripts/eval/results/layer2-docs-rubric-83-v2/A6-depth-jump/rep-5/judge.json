@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 2,
+  "completeness": 4,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용된 장면 키, z좌표 원문 값, 델타 수치(0.110m)가 제공된 로그 및 스키마와 정확히 일치함. diagnosisAccuracy: 정답 요지의 동장 시도 간 Δ>0.10m 급변 감지, Read Model v2 보강 및 v1 무손상 권고를 정확히 진단하고 반영함. actionability: 의사결정에서 기각한 '[contain] 오염 행 격리(DELETE)' SQL을 '즉시 격리 SQL' 절에 그대로 수록하여 v1 무손상 요구사항과 직접 모순되며, DDL의 nullable 필드와 ORM의 notNull() 설정 불일치로 실제 투영 적재 시 오류 발생 가능. completeness: 권고, DDL, API 버저닝 세 요소가 모두 유효하게 구성되었으나, 내부 조치 모순(기각 SQL 재수록)과 스키마 정의 불일치로 감점.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 18193,
+    "completion_tokens": 3763,
+    "total_tokens": 21956,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3510
+    }
+  },
+  "latencyMs": 105119,
+  "judgedAt": "2026-09-14T06:35:12.980Z"
+}

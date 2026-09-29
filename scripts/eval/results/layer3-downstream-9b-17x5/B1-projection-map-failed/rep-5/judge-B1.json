@@ -1,0 +1,24 @@
+{
+  "groundedness": 3,
+  "diagnosisAccuracy": 4,
+  "sqlCorrectness": 1,
+  "versioningQuality": 3,
+  "unsupportedClaims": [
+    "정답 요지와 배치하여 '새 Read Model 테이블 생성 필요' 주장",
+    "T3에서 '미투영 정상 이벤트 수'가 아닌 '이미 투영된 레코드 수'를 조회하는 논리",
+    "v1 API 경로 분리 및 병행 운영에 대한 구체적 절차(자료 미제공)"
+  ],
+  "rationale": "T1은 로그 기반 원인 분석이 정확하나 배치 롤백 및 정상 이벤트 미투영 영향까지 명시하지 못해 4점. T2는 정답 요지(새 ReadModel 불필요)와 반대로 새 테이블을 생성하도록 제안했고, T3은 질문의 '미투영 정상 이벤트 수'가 아닌 '이미 투영된 레코드 수'를 조회하는 논리적 오류가 있어 SQL 점수는 1점. T4는 자료 부재를 인정했으나 일반적인 API 버전화 전략으로 그쳤으며, 플랫폼 특화 백필/컷오버 절차가 부족해 3점. 전반적으로 자료 기반 주장보다 추상적 해결책이 많아 groundedness는 3점.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 8588,
+    "completion_tokens": 2650,
+    "total_tokens": 11238,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2389
+    }
+  },
+  "latencyMs": 66032,
+  "judgedAt": "2026-09-11T13:37:51.024Z"
+}

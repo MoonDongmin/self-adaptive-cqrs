@@ -1,0 +1,3 @@
+
+
+{"groundedness": 3, "diagnosisAccuracy": 5, "sqlCorrectness": 1, "versioningQuality": 1, "unsupportedClaims": ["T2 SQL에서 실패 파일(02002/02003)에 성공 파일의 stream_id를 임의로 매핑하여 데이터 정합성 위반", "T3에서 자료에 정의되지 않은 log_insert_failed 테이블을 가정하고 JSONB 배열 파싱 경로를 잘못 작성"], "rationale": "T1은 로그의 Zod 오류와 정답 요지의 타입/도메인 위반 원인을 정확히 매칭하여 5점. T2는 검증 실패 데이터를 메인 Read Model에 강제로 적재하여 CQRS 무손실 원칙을 위반하고, T3은 JSONB 배열 구조에 대한 파싱 오류와 존재하지 않는 테이블 가정을 포함하여 1점. T4는 v1 호환 절차에 대한 답변을 아예 제공하지 않아 1점. 전반적으로 T1 외의 과제에서 자료 기반이 아닌 임의 추측과 아키텍처 원칙 위반이 확인되어 groundedness는 3점."}

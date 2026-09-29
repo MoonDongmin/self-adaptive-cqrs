@@ -1,0 +1,24 @@
+{
+  "groundedness": 2,
+  "diagnosisAccuracy": 4,
+  "sqlCorrectness": 1,
+  "versioningQuality": 1,
+  "unsupportedClaims": [
+    "T4 INSERT 문에서 로그에 없는 더미 데이터(attempt_num 1,2,3 및 고정 JSON 값) 생성",
+    "T2/T3 SQL에서 MySQL/Postgres 구문 혼재 및 한글 파일명 underscore 기반 파싱 로직의 비현실성",
+    "T3은 '위반 필드명과 원본 값 조회' 요구를 미수행하고 T2 검증 쿼리를 반복"
+  ],
+  "rationale": "T1은 Zod 정수 위반과 적재 거부를 정확히 진단했으나 정답 요지의 구체적 조치(검증 로그 보강, 클라이언트 정수화 권고)를 누락해 4점. T2/T3 SQL은 구문 혼재 및 한글 파일명 파싱 오류가 있고, T3은 '위반 필드/원본 값 조회' 요구를 전혀 반영하지 않아 1점. T4는 v1 호환 절차에 대해 자료 부재를 이유로 구체적인 버전 경로, 병행 운영, 컷오버 순서를 제시하지 않아 1점. T4의 INSERT 문에서 로그에 없는 더미 데이터를 생성한 점도 groundedness를 2점으로 낮춤.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 20526,
+    "completion_tokens": 3415,
+    "total_tokens": 23941,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3131
+    }
+  },
+  "latencyMs": 108074,
+  "judgedAt": "2026-09-11T13:23:14.167Z"
+}

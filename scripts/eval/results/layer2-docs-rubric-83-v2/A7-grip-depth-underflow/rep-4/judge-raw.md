@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 2, "completeness": 3, "unsupportedClaims": ["권고에서 contain(DELETE)을 기각하고 v1 무손상을 명시했음에도 '즉시 격리 SQL' 절에 DELETE 문을 그대로 수록하여 제약 조건 및 정답 요지와 직접 모순됨."], "rationale": "groundedness: 인용된 장면 키, 센서 값, 스키마 필드가 [자료]와 정확히 일치하며 기존 파일 경로도 저장소 발췌와 부합한다. diagnosisAccuracy: 정답 요지와 동일하게 파지 성공 플래그와 물리적 하한 미달(z<0.01m)의 정합성 위배를 정확히 진단하고 v2 보강 방향을 제시했다. actionability: 권고에서 contain(DELETE)을 기각하고 v1 무손상을 명시했음에도 즉시 격리 SQL 절에 DELETE 문을 그대로 수록하여 제약 조건과 정답 요지를 직접 위반한다. completeness: 세 요소가 모두 존재하고 클래스/라우트/스키마명이 일치하나, 권고 절에서 기각한 DELETE 조치를 SQL 블록에 포함하여 문서 내부 논리가 모순되며 v1 무손상 제약과 충돌한다."}

@@ -1,0 +1,3 @@
+
+
+{"groundedness":2,"diagnosisAccuracy":5,"actionability":5,"completeness":5,"unsupportedClaims":["[자료]에 없는 Zod 스키마(.min(1) 누락) 및 런타임 예외 처리 로직 인용","파일 경로(src/projection/projector/grip-result.projector.ts) 및 상수(LogAction.DEAD_LETTER 등)의 존재 주장"],"rationale":"groundedness: Zod 검증 로직과 파일 경로 등 [자료]에 존재하지 않는 기술적 세부사항을 근거로 인용하여 감점. diagnosisAccuracy: 정답 요지의 원인(빈 objects 예외→롤백), 영향(정상 이벤트 미투영), 조치(skip/dead-letter, 커서 점프 금지)와 정확히 일치. actionability: 자동 검증 결과 SQL 실행 성공 및 절차가 정답 요지와 일치하여 문제 해결 가능. completeness: 권고, SQL, API 버저닝 3개 요소가 모두 포함되고 서로 모순 없이 일치."}

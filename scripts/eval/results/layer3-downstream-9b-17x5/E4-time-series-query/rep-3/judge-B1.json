@@ -1,0 +1,22 @@
+{
+  "groundedness": 4,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 5,
+  "versioningQuality": 4,
+  "unsupportedClaims": [
+    "`insight.card.miss` 원인이 집계 키워드가 `object_name` 필드 키로 오해되어 발생했다는 주장은 제공된 로그에 명시되지 않음"
+  ],
+  "rationale": "groundedness는 자료의 스키마와 로그를 정확히 인용했으나, 로그 원인에 대한 추론이 일부 과장됨. diagnosisAccuracy는 정답 요지의 핵심 문제(집계 Read Model 부재)와 해결 방향을 정확히 포착함. sqlCorrectness는 기존 테이블을 훼손하지 않고 요구사항을 충족하는 표준 집계 쿼리를 제시함. versioningQuality는 병행 운영과 컷오버 절차를 상세히 서술했으나, 승인 절차와 백필 전략의 구체성이 다소 부족함.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 6463,
+    "completion_tokens": 3490,
+    "total_tokens": 9953,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3293
+    }
+  },
+  "latencyMs": 77261,
+  "judgedAt": "2026-09-11T14:40:24.207Z"
+}

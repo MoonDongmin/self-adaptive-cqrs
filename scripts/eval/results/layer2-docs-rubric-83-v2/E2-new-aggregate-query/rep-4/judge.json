@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 4,
+  "completeness": 3,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용된 로그, 스키마, 파일 경로가 [자료]와 정확히 일치함. diagnosisAccuracy: 정답 요지와 동일하게 기존 Read Model의 행 단위 구조 한계와 집계 모델 필요성을 정확히 진단함. actionability: SQL 및 프로젝트터 로직이 집계 요구를 충족하고 컴파일 통과하나, '기존 프로젝터 보강'이라는 의사결정과 실제 제공된 '신규 프로젝트터 코드' 간 의도 불일치가 있어 실행 시 혼란을 줄 수 있음. completeness: 세 요소가 모두 존재하지만 Decision Outcome(기존 확장)과 부속 코드(신규 프로젝트터 생성)가 서로 모순됨.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 14514,
+    "completion_tokens": 3983,
+    "total_tokens": 18497,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3793
+    }
+  },
+  "latencyMs": 102955,
+  "judgedAt": "2026-09-14T08:44:00.454Z"
+}

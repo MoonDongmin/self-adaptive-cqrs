@@ -1,0 +1,22 @@
+{
+  "groundedness": 3,
+  "diagnosisAccuracy": 5,
+  "actionability": 4,
+  "completeness": 4,
+  "unsupportedClaims": [
+    "src/projection/dto/toy-data.dto.ts 파일 경로 인용 (저장소 확인 결과 실재하지 않음, 실제 적재 DTO는 src/insert/dto/toy-data.dto.ts)"
+  ],
+  "rationale": "groundedness: 핵심 로그와 필드명은 정확히 매칭되나, DTO 확장 경로로 저장소 확인 결과 실재하지 않는 src/projection/dto/toy-data.dto.ts를 인용하여 근거 충실성이 떨어짐. diagnosisAccuracy: 정답 요지와 동일하게 스키마 드리프트로 인한 필드 유실 원인을 정확히 진단하고, 기존 v1 테이블 손상을 피하며 신규 Read Model과 병행 API(v2)를 권고함. actionability: SQL과 프로젝터 로직은 DDL 제약과 upsert 구조가 적절하나, 배선 코드 블록 내 DTO 파일 경로 안내와 실제 import 경로가 서로 어긋나 개발자가 혼동할 수 있음. completeness: 권고, SQL, API 버저닝 세 요소가 모두 포함되고 구조적으로 일관되나, 배선 코드 블록 내 DTO 파일 경로와 실제 프로젝트 구조 간 모순이 존재함.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 25945,
+    "completion_tokens": 3785,
+    "total_tokens": 29730,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3507
+    }
+  },
+  "latencyMs": 129957,
+  "judgedAt": "2026-09-14T04:43:13.754Z"
+}

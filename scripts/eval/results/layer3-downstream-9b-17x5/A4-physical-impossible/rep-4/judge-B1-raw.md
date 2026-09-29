@@ -1,0 +1,3 @@
+
+
+{"groundedness": 3, "diagnosisAccuracy": 5, "sqlCorrectness": 1, "versioningQuality": 1, "unsupportedClaims": ["새 Read Model 테이블은 필요 없습니다 (정답 요지 및 CQRS 관례상 위반 값 격리/체크제약용 v2 모델 생성이 필요함)", "LATERAL jsonb_array_elements_text를 스칼라 JSONB에 적용하는 문법 오류 주장"], "rationale": "T1은 물리성 위반 값을 정확히 진단했으나, 정답 요지에서 명시한 'v2 Read Model 생성 및 CHECK 제약 적용'을 무시하고 기존 테이블 조회만으로 해결하려 함. T2/T3 SQL은 스칼라 JSONB에 배열 추출 함수를 적용하는 문법 오류가 있으며, 위반 값 격리 아키텍처를 반영하지 못해 실효성이 떨어짐. T4는 자료 부재를 이유로 v1 호환 및 마이그레이션 절차를 제시하지 못해 점수 최저."}

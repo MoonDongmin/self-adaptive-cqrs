@@ -1,0 +1,3 @@
+
+
+{"groundedness": 4, "diagnosisAccuracy": 5, "actionability": 2, "completeness": 3, "unsupportedClaims": ["src/shared/database/schema/service/read-grip-result-v2.ts 파일이 저장소에 실재하지 않음", "권고 절에서 CHECK constraint 적용을 명시했으나 실제 DDL에 누락됨"], "rationale": "groundedness: 인용된 장면 번호, 센서 값, 물리적 범위가 [자료]와 정확히 일치하나 신규 파일 경로가 저장소에 실재하지 않아 일부 감점. diagnosisAccuracy: 정답 요지의 모순 지점과 해결 방향(Read Model 보강/격리, v1 무손상)을 정확히 진단하고 일치시킴. actionability: 'v1 무손상' 제약과 정답 요지에 위배되도록 v1 테이블 DELETE SQL을 포함했으며, 권고에 명시된 CHECK constraint가 실제 DDL에 누락되어 설계와 구현이 불일치함. completeness: 세 요소가 모두 존재하나 'harden' 권고와 실제 DDL 간 CHECK 제약 부재 모순, 그리고 기각한 'contain(DELETE)' 조치를 즉시 격리 SQL로 포함하는 내부 정합성 문제가 있음."}

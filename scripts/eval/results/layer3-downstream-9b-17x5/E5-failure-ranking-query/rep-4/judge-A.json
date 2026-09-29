@@ -1,0 +1,22 @@
+{
+  "groundedness": 4,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 5,
+  "versioningQuality": 5,
+  "unsupportedClaims": [
+    "T4 단계 1에서 'v3 엔드포인트' 언급 (자료는 v1→v2 전환만 명시)"
+  ],
+  "rationale": "T1은 정답 요지와 문제·원인·해결책이 정확히 일치하여 진단Accuracy 5점입니다. T2 DDL은 자료와 동일하고, T3 SELECT문은 요청 조건을 정확히 반영해 SQLCorrectness 5점입니다. T4는 비파괴적 마이그레이션·인간 승인·롤백 계획이 자료와 일치해 versioningQuality 5점이나, 'v3' 언급 등 근거 없는 주장이 있어 groundedness 4점으로 감점합니다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 11131,
+    "completion_tokens": 3669,
+    "total_tokens": 14800,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3488
+    }
+  },
+  "latencyMs": 91394,
+  "judgedAt": "2026-09-11T14:55:31.907Z"
+}

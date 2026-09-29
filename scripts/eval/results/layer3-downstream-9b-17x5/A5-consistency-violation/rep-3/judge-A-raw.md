@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "sqlCorrectness": 5, "versioningQuality": 4, "unsupportedClaims": ["T4에서 기존 /grip-result 엔드포인트 응답 로직을 수정해 v1과 v2 데이터를 병합하여 반환하는 pseudo-code 제시 (자료는 v1 자산 무손상 및 신규 v2 독립 배선을 명시)"], "rationale": "groundedness는 자료의 테이블명, 컬럼, 수치 범위([0.95, 1.15], [0.01, 0.30])를 정확히 인용하여 5점. diagnosisAccuracy는 정답 요지의 모순 데이터 적재 및 Read Model 보강/격리 조치와 완벽히 일치하여 5점. sqlCorrectness는 T2 DDL이 자료 명세와 동일하고 v1을 건드리지 않았으며, T3 쿼리가 신규 플래그를 활용해 조건을 정확히 필터링하여 5점. versioningQuality는 병행·백필·검증·컷오버 절차가 구체적이지만, 자료의 'v1 엔드포인트 무손상' 제약과 달리 기존 /grip-result 로직 수정 pseudo-code를 포함해 4점."}

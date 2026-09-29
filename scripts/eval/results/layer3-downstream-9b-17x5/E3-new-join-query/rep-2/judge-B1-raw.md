@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "sqlCorrectness": 5, "versioningQuality": 5, "unsupportedClaims": [], "rationale": "T1은 로그의 insight.card.miss 메시지와 Read Model 분리 구조를 정확히 인용하여 정답 요지의 문제 원인과 일치함. T2/T3 SQL은 제공된 스키마의 컬럼만 사용하여 (scene_key, attempt_num)으로 조인하는 쿼리를 정확히 작성했으며 ALTER/DROP이나 불필요한 테이블 생성 없이 즉시 해결 가능함. T4는 정답 요지의 '통합 Read Model(뷰) 신설 + 백필, API v2 병행'을 구체적 버전 경로, 병행 운영, 컷오버 절차로 구현 가능하게 서술함. 자료 외 추측이나 지어낸 값·컬럼이 전혀 없음."}

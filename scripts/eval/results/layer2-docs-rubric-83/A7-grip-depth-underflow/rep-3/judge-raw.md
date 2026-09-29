@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 3, "completeness": 5, "unsupportedClaims": [], "rationale": "groundedness: 인용된 장면 키, z1~z8 수치, 하한 0.01m 기준 및 스키마 필드가 [자료] 원문과 정확히 일치함. diagnosisAccuracy: 정답 요지의 '성공 맥락에서 z1~z8 하한 위반 모순' 및 'v1 무손상/Read Model 격리·플래그 보강' 조치와 완벽히 일치함. actionability: SQL 4개 블록은 실행 성공 및 의도(오염 행 격리, 신규 Read Model 생성)에 부합하나, 제공된 projection.service.ts 코드에서 CatchUpAllResult 타입 정의 누락 등으로 인해 자동 검증 결과에 명시된 컴파일 오류가 발생하여 소폭 수정이 필요함. completeness: 권고, Read Model DDL/매핑, API 버저닝 세 요소가 모두 포함되며 테이블명·라우트·프로젝터명이 문서 전반에서 일관되게 사용됨."}

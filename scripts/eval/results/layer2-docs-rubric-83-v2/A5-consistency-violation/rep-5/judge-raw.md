@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 2, "completeness": 4, "unsupportedClaims": [], "rationale": "groundedness: 인용된 장면 키, 센서 수치, 허용 범위 및 로그 문구가 [자료]와 정확히 일치하며 허위 데이터 없음. diagnosisAccuracy: 정답 요지의 'grip_succeed=1과 물리적 불가능 값 모순' 진단 및 'Read Model 보강/격리, v1 무손상' 방향과 완벽히 일치. actionability: 'v1 무손상' 제약에 위배되도록 기존 v1 테이블에 DELETE를 실행하는 즉시 격리 SQL을 제시함. 또한 권고 절에서 명시적으로 기각한 DELETE 옵션을 그대로 '즉시 격리 SQL'에 복사해 실행 지침과 의사결정이 정면으로 충돌함. completeness: 권고, DDL, API 버저닝 세 요소가 모두 충실히 구성되었으나, v1 무손상 원칙과 실제 제시된 파괴적 SQL 간 내부 정합성 결함이 존재함."}

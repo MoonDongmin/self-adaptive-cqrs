@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 5,
+  "completeness": 3,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용된 로그 레벨, correlation_id, 신규 필드명 및 기존 Read Model 스키마가 [자료]와 정확히 일치하며, 저장소 파일 경로도 실재한다. diagnosisAccuracy: 정답 요지와 동일하게 payload 최상위 신규 키 유입으로 인한 스키마 드리프트를 정확히 진단하고, v1 무손상 + 신규 Read Model(v2) 생성 및 API 병행 운영을 제안한다. actionability: DDL, Drizzle ORM 스키마, Projector 매핑 로직, upsert 문법이 모두 일치하며 null 처리와 타입 변환이 적절해 그대로 실행 시 문제 해결이 가능하다. completeness: 권고 절의 Decision Outcome과 Consequences에 '결정론 폴백 산출물이며 코드 스니펫이 없다(재실행 권장)'는 모순된 스텁 문구가 포함되어 실제 상세 SQL/코드와 상충하므로 감점한다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 25762,
+    "completion_tokens": 4264,
+    "total_tokens": 30026,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4016
+    }
+  },
+  "latencyMs": 139983,
+  "judgedAt": "2026-09-14T04:45:33.745Z"
+}

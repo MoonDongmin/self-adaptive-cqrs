@@ -1,0 +1,23 @@
+{
+  "groundedness": 3,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 1,
+  "versioningQuality": 4,
+  "unsupportedClaims": [
+    "T3에서 read_multimodal 테이블에 grip_data 컬럼이 존재한다고 가정",
+    "Zod 검증 실패로 적재가 거부된 이벤트가 Read Model에 행을 생성할 수 있다는 아키텍처 오해"
+  ],
+  "rationale": "T1은 로그의 Zod 오류 경로와 정답 요지의 핵심 원인(필드 누락→파싱 실패→거부)을 정확히 매칭하여 5점. T2는 문법과 스키마 사용이 정확하나 실제 해결(업데이트/재적재)이 아닌 진단용 SELECT에 그쳐 2점. T3은 Zod 검증 실패로 적재가 거부된 이벤트는 Read Model에 존재하지 않음에도 해당 테이블을 조회하도록 설계했으며, 제공 스키마에 없는 read_multimodal.grip_data 컬럼을 참조하는 등 아키텍처와 자료 기반 오류가 있어 1점. T4는 v1 무손실 요구사항에 맞춰 버전 경로 분리 및 병행 운영을 제시했으나 자료 내 API 정의 부재를 고려한 일반론적 접근으로 4점.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 21132,
+    "completion_tokens": 3846,
+    "total_tokens": 24978,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3566
+    }
+  },
+  "latencyMs": 117091,
+  "judgedAt": "2026-09-11T11:52:19.735Z"
+}

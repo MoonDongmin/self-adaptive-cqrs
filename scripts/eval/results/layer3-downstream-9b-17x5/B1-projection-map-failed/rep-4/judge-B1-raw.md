@@ -1,0 +1,3 @@
+
+
+{"groundedness": 4, "diagnosisAccuracy": 3, "sqlCorrectness": 1, "versioningQuality": 3, "unsupportedClaims": ["stream_events 테이블 가정", "payload JSONB 구조 가정", "API 버전 관리 절차 (자료 미제공)"], "rationale": "T1은 결함 원인을 맞혔으나 배치 트랜잭션 롤백 영향과 커서 점프 금지, 데드레터 처리 등 정답 요지의 핵심 ES 운영 조치 누락으로 3점. T2 SQL은 WHERE 절이 결함 이벤트를 선택하는 역논리 오류가 있고, 투영 로직 버그를 SQL 필터로 해결하려는 아키텍처적 오류가 있어 1점. T3는 구조적 타당성 있으나 가정된 테이블 사용으로 제한적. T4는 자료 부재를 인정했으나 일반론에 그쳐 3점."}

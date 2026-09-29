@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 5, "completeness": 5, "unsupportedClaims": [], "rationale": "groundedness: 인용된 장면 키, 센서 값(1.5m, 0.398m), 허용 범위([0.95,1.15], [0.01,0.3]), 성공 플래그 등 모든 수치가 [자료] 원문과 정확히 일치한다. diagnosisAccuracy: 정답 요지의 'grip_succeed=1과 물리적 불가능 위치/깊이 모순'을 정확히 포착했으며, 필드 위치와 정합성 위반 메커니즘까지 일치한다. actionability: 자동 검증 결과(실행/컴파일 성공)를 반영하여 v1 테이블을 건드리지 않고 신규 v2 테이블/프로젝터로 격리 및 보강하는 SQL과 코드가 의도대로 작동한다. completeness: 권고, Read Model DDL, API 버저닝 세 요소가 모두 포함되어 있으며, 테이블명·버전·무손상 제약이 문서 전반에서 일관되게 적용되었다."}

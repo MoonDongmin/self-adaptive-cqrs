@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 5,
+  "completeness": 5,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용된 로그 레벨, 필드명, correlation_id 및 기존 스키마 정보가 제공된 [자료]와 정확히 일치한다. diagnosisAccuracy: 정답 요지의 스키마 드리프트 원인, 신규 필드 위치, v1 무손상 및 v2 Read Model/API 병행 조치와 완벽히 일치한다. actionability: 자동 검증 결과에서 SQL 실행 및 코드 컴파일이 모두 성공했으며, 기존 v1 테이블을 건드리지 않고 신규 Read Model과 API를 추가하는 구조로 문제 해결이 가능하다. completeness: 권고, Read Model DDL, API 버저닝 세 요소가 모두 포함되어 있으며 테이블명·필드·라우트가 문서 전반에서 일관되게 매칭된다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 23067,
+    "completion_tokens": 2454,
+    "total_tokens": 25521,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2263
+    }
+  },
+  "latencyMs": 93774,
+  "judgedAt": "2026-09-14T00:34:25.224Z"
+}

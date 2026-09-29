@@ -1,0 +1,22 @@
+{
+  "groundedness": 3,
+  "diagnosisAccuracy": 5,
+  "actionability": 4,
+  "completeness": 4,
+  "unsupportedClaims": [
+    "Next steps 절에서 실행 대상 파일로 명시한 'src/shared/database/schema/service/read-grip-outlier-v2.ts'는 저장소 확인 결과 실재하지 않음."
+  ],
+  "rationale": "groundedness: 핵심 위반 값과 로그를 정확히 인용했으나, Next steps에서 존재하지 않는 파일 경로를 실행 대상으로 명시하여 감점. diagnosisAccuracy: 정답 요지의 물리적 제약 위배(z1<0, xl>1920)와 v1 무손상 조건을 정확히 진단했으며 신규 Read Model 및 플래그 격리 방안이 의도와 일치함. actionability: DDL과 ORM 매핑, upsert 로직은 정합성을 유지하나, 정답 요지에서 요구한 CHECK 제약을 명시적으로 기각하고 플래그만 도입했으며, 제시된 checkIntegrity 코드가 위반 시 적재를 차단하지 않고 반환만 하여 실행 가능성에 미세한 결함이 있음. completeness: 권고, DDL, API 버저닝 세 요소가 모두 포함되며 테이블명·라우트·프로젝터 클래스명이 서로 일치하고 nullable/notNull 매핑도 정확하나, Next steps의 존재하지 않는 파일 참조가 유일한 불일치 요소임.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 35093,
+    "completion_tokens": 4840,
+    "total_tokens": 39933,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4546
+    }
+  },
+  "latencyMs": 154135,
+  "judgedAt": "2026-09-14T06:07:17.165Z"
+}

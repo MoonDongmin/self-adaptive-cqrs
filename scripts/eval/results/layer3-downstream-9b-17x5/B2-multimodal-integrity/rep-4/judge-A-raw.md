@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "sqlCorrectness": 2, "versioningQuality": 4, "unsupportedClaims": [], "rationale": "groundedness는 제공된 로그·스키마·리포트의 식별자와 제약사항만 정확히 인용해 5점, diagnosisAccuracy는 정답 요지의 핵심(파일명 메타데이터와 레코드 좌표 불일치, 투영 통과 후 정합성 검사 잡음)을 정확히 매칭해 5점 부여함. sqlCorrectness는 T3이 특정 사례를 하드코딩하고 NOT LIKE 조건으로 동적 일관성 검증을 구현하지 않아 질문의 일반화 요구를 충족하지 못해 2점, versioningQuality는 v1 무손상 제약과 인간 승인 게이트를 구체적으로 서술했으나 정답 요지의 '플래그/격리 테이블' 아키텍처 대안을 누락해 4점 평가함. unsupportedClaims는 자료 외 주장이 없어 빈 배열 처리함."}

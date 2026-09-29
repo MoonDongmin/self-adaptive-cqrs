@@ -1,0 +1,22 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 5,
+  "completeness": 5,
+  "unsupportedClaims": [
+    "z1 물리적 기준 범위 [0.01, 0.30] m는 원문 자료에 명시되지 않은 가정치"
+  ],
+  "rationale": "groundedness: 인용된 장면 번호(Seq 26, 27), 필드(z1, xl), 수치(-0.05, 2500)가 자료 로그와 정확히 일치한다. diagnosisAccuracy: 정답 요지의 물리 불가능 값 적재 원인과 v2 Read Model 격리/플래그 조치 방향을 정확히 진단하고 매칭한다. actionability: 자동 검증 결과(4/4 실행·컴파일 통과)를 반영하며, v1 테이블을 건드리지 않고 신규 v2 테이블과 엔드포인트로 해결책을 제시한다. completeness: 권고문, DDL, API 버저닝 세 요소가 모두 포함되어 있으며 테이블명·라우트·코드 간에 모순이 없다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 32016,
+    "completion_tokens": 3424,
+    "total_tokens": 35440,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3190
+    }
+  },
+  "latencyMs": 114827,
+  "judgedAt": "2026-09-14T01:09:30.218Z"
+}

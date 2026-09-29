@@ -1,0 +1,3 @@
+
+
+{"groundedness": 3, "diagnosisAccuracy": 5, "sqlCorrectness": 4, "versioningQuality": 5, "unsupportedClaims": ["T3 백필 SQL 작성 시 Seq 26 레코드에 xl 값이 정의되지 않았고, Seq 27 레코드에 z1 값이 정의되지 않았다고 잘못 서술함 (자료의 원시 JSON에서 양쪽 모두 해당 필드가 명확히 존재함)."], "rationale": "T1은 정답 요지와 자료의 로그/원인을 정확히 매칭하여 5점. T2는 v1 무손상 제약과 권장 DDL을 정확히 준수하여 5점. T4는 자료의 버전 교체 코드와 절차에 부합하는 구체적 병행 운영 및 컷오버 방안을 제시하여 5점. T3의 SELECT는 의도대로 동작하나, 백필 SQL 작성 시 자료에 명시된 원시 JSON 데이터의 필드 존재 여부를 잘못 판단하여 xl과 z1이 누락되었다고 주장하는 근거 없는 주장을 포함했으므로 groundedness와 sqlCorrectness에서 감점 처리함."}

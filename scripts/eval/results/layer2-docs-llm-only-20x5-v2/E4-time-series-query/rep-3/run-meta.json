@@ -1,0 +1,49 @@
+{
+  "scenarioId": "E4-time-series-query",
+  "rep": 3,
+  "startedAt": "2026-08-12T07:28:44.435Z",
+  "expectsDocs": true,
+  "channel": "query",
+  "stagedCount": 30,
+  "insert": {
+    "inserted": 30,
+    "failed": []
+  },
+  "projection": {
+    "multimodalProcessed": 30,
+    "gripResultOk": true,
+    "gripResultProcessed": 30
+  },
+  "userQuery": "일자별 파지 성공률 추이를 보고 싶다. 날짜별 시도 수, 성공 수, 성공률이 시간 순으로 필요하다. 현재 Read Model로 가능한가?",
+  "exitReason": "docs-collected",
+  "observedCount": 30,
+  "projectedCount": 30,
+  "events": [
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "결정론 프리게이트: level>=40 로그 3건 (insight.card.miss)"
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-08-12-162844-7145b74d-4a63-492a-9320-2fb8a584d2ec.md",
+      "docsValid": true,
+      "docsValidationErrors": []
+    },
+    {
+      "action": "llm.prejudge.triggered",
+      "reason": "HTTP 상태 코드가 404 로 종료되어 요청 충족 실패 (Not Found) 에 해당합니다."
+    },
+    {
+      "action": "llm.analysis.aggregate.done",
+      "reportPath": "/Users/dongmin/Developments/graduate-school/self-adaptive-cqrs/llm-docs/2026-08-12-164010-5b2711e9-31a6-4777-bbde-b730177aeb5c.md",
+      "docsValid": true,
+      "docsValidationErrors": []
+    }
+  ],
+  "finishedAt": "2026-08-12T08:46:52.521Z",
+  "durationSeconds": 4688,
+  "collectedDocs": [
+    "2026-08-12-162844-7145b74d-4a63-492a-9320-2fb8a584d2ec.md",
+    "2026-08-12-164010-5b2711e9-31a6-4777-bbde-b730177aeb5c.md"
+  ]
+}

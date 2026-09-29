@@ -1,0 +1,25 @@
+sequenceDiagram
+  participant M as 관리 대상 시스템<br/>(로거)
+  participant K as 메시지 브로커<br/>(log-events)
+  participant D as LogDB<br/>(log_event)
+  participant S as 로그 경로<br/>(1차 선별)
+  participant W as 이상 로그 구간<br/>조립
+
+  M->>K: 로그 (실시간 경로)
+  M->>D: 로그 (축적 경로, 주기 적재)
+
+  loop 5초마다
+    S->>K: 배치 읽기 (≤ 500건)
+    Note over S: 규칙 + SLM 1차 선별
+  end
+
+  opt 이상 판정
+    S->>W: 상관관계 식별자
+    W->>D: 식별자로 요청 궤적 조회
+    Note over W: 기준 로그 결정 (첫 경고 이상 로그)
+    W->>D: 기준 시각 앞뒤 20행 조회
+    W->>D: 이전 1시간 행위명·수준별 빈도 집계
+    Note over W: 잡음 제거, 80행 상한
+    W-->>S: 이상 로그 구간 (빈도 집계 + 로그 목록)
+    Note over S: 진단 파이프라인 호출 (3.5절)
+  end

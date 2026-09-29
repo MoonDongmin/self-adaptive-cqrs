@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 4,
+  "versioningQuality": 5,
+  "unsupportedClaims": [],
+  "rationale": "T1과 T2는 제공된 로그와 자료의 권고 사항을 정확히 인용하여 문제 원인과 조치 방안을 5점으로 평가. T3은 거부된 데이터가 ES 및 ReadModel에 적재되지 않았음을 정확히 지적하나, 질문이 요구한 '위반 필드명과 원본 값'을 DB에서 조회할 수 없다는 점을 명확히 하되 대체 SQL로 식별자만 나열하는 데 그쳐 4점. T4는 v1 무손상 원칙과 자료의 변경 없음 결론을 구체적으로 기술하여 5점. 전반적으로 근거 기반 판단이 탄탄하며 지어진 주장 없음.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 12722,
+    "completion_tokens": 3042,
+    "total_tokens": 15764,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2864
+    }
+  },
+  "latencyMs": 82687,
+  "judgedAt": "2026-09-11T13:15:14.056Z"
+}

@@ -1,0 +1,3 @@
+
+
+{"groundedness":5,"diagnosisAccuracy":5,"actionability":5,"completeness":5,"unsupportedClaims":[],"rationale":"groundedness: 인용된 sceneKey, 시도 번호, z값 및 Δ=0.110m가 [자료] 원문 JSON과 정확히 일치하며, 가설 수치도 재확인하여 인용함. diagnosisAccuracy: 정답 요지의 '동장 시도 간 깊이 급변(Δ>0.10m) 감지 및 v2 Read Model 생성, v1 무손상' 진단과 메커니즘이 완전히 일치함. actionability: 생성된 DDL은 기존 v1을 건드리지 않고 신규 v2 테이블을 생성하며, 자동 검증 결과 SQL 실행이 성공적으로 확인됨. completeness: 권고, DDL, API 버저닝 세 요소가 모두 포함되며, 테이블명·컬럼명·버전 경로가 문서 전반에서 일관되게 사용됨."}

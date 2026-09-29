@@ -1,0 +1,3 @@
+
+
+{"groundedness": 3, "diagnosisAccuracy": 5, "sqlCorrectness": 2, "versioningQuality": 4, "unsupportedClaims": ["한글이 포함된 stream_id를 SUBSTRING(13)으로 파싱하여 scene_key 및 시간대 추출", "event_store 테이블의 payload 구조 및 컬럼명 가정", "occurred_at을 stream_id 문자 위치로 임의로 매핑하는 CASE 문 로직"], "rationale": "T1은 로그와 스키마를 정확히 인용해 정답 요지와 일치하는 5점이나, T2/T3의 백필 SQL에서 한글이 포함된 stream_id를 SUBSTRING으로 파싱하고 시간대를 임의로 매핑하는 로직은 자료에 없는 지어낸 주장으로 sqlCorrectness를 2점으로 감점함. T4는 API 버전 분리, 병행 운영, 백필 및 컷오버 절차를 구체적으로 제시해 v1 보호에 적합하므로 4점이며, 전반적으로 핵심 진단은 정확하나 SQL 구현부에 근거 없는 가정과 UTF-8 처리 오류가 있어 groundedness는 3점임."}

@@ -1,0 +1,4151 @@
+[
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": 1,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 4,
+    "unsupportedClaims": [
+      "T4에서 제시한 GET /api/v1/... 엔드포인트 경로 및 HTTP 메서드는 제공된 코드(@Controller('projection'), @Post)와 상이함"
+    ],
+    "rationale": "groundedness: T1~T4 전반에 걸쳐 제공된 로그 레벨, 신규 키명, 테이블/컬럼 명세, Zod 검증 실패 원인이 자료와 정확히 일치하며 외부 추측이 없음. diagnosisAccuracy: 정답 요지의 스키마 드리프트로 인한 데이터 유실 문제와 신규 Read Model 분리 해결책을 정확히 진단함. sqlCorrectness: T2는 자료의 DDL과 동일하며, T3은 신규 테이블에서 요구한 컬럼을 정확히 조회하는 SELECT문을 작성함. versioningQuality: 병행 운영, 인간 승인 절차, 롤백 계획을 포함해 구체적이지만, 제시한 API 경로(GET /api/v1/...)와 HTTP 메서드가 제공된 코드(@Post /projection/...)와 상이하여 실전 적용 시 수정 필요.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 17349,
+      "completion_tokens": 3475,
+      "total_tokens": 20824,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3222
+      }
+    },
+    "latencyMs": 71846,
+    "judgedAt": "2026-09-11T10:47:38.708Z"
+  },
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": 1,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "event_store 테이블 구조 및 detail 필드 파싱 방식 가정",
+      "기존 read_grip_result 테이블 ALTER TABLE 및 INSERT ON CONFLICT 수행 주장 (정답 요지와 상충)",
+      "v1 API SELECT 쿼리 수정으로만 호환성 확보 가능하다는 주장 (Read Model 스키마 변경 금지 원칙 위반)"
+    ],
+    "rationale": "T1은 로그와 정답 요지를 정확히 매칭하여 만점. 그러나 T2~T4에서 정답 요지의 핵심인 '기존 v1 테이블 건드리지 않고 신규 Read Model/API 병행 운영'을 무시하고 기존 테이블 ALTER/INSERT를 제안하여 아키텍처 원칙을 위반함. T3 SQL은 비표준 문자열 파싱과 불필요한 상태 변경을 포함하며, T4 절차는 CQRS/ES 관점에서 Read Model 스키마 변경 시 재투영 필요 등 실제 운영에 부적합하여 낮은 점수 부여.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12656,
+      "completion_tokens": 3490,
+      "total_tokens": 16146,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3249
+      }
+    },
+    "latencyMs": 91190,
+    "judgedAt": "2026-09-11T10:49:09.907Z"
+  },
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": 2,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "T1은 정답 요지의 schema drift 원인과 신규 Read Model 병행 운영 방안을 정확히 기술하였다. T2 DDL은 read_ 접두어, 복합 PK, human-in-the-loop 제약을 완벽히 준수한다. T3는 데이터 유실 현황을 정확히 인지하고 신규 테이블 기준 조회 쿼리를 제시하여 문제 해결 경로를 명확히 한다. T4는 v1 엔드포인트 유지, 신규 라우트 배선, Zod 호환성 확장, 인간 승인 컷오버 순서를 구체적으로 서술하여 클라이언트 보호 절차가 완성度高다. 자료 외 추가 가정이나 오류 없이 모든 답변이 근거에 부합한다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 19362,
+      "completion_tokens": 3754,
+      "total_tokens": 23116,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3569
+      }
+    },
+    "latencyMs": 112499,
+    "judgedAt": "2026-09-11T10:51:02.413Z"
+  },
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": 2,
+    "condition": "B1",
+    "groundedness": 2,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 3,
+    "unsupportedClaims": [
+      "event_store 테이블의 컬럼 구조(stream_id, global_seq, payload_json)가 자료에 명시되지 않음",
+      "기존 read_grip_result 테이블 ALTER/INSERT 수정 제안이 정답 요지(신규 Read Model 생성)와 상충"
+    ],
+    "rationale": "T1은 로그를 정확히 인용해 정답 요지와 일치했으나(5점), T2~T4에서 자료에 없는 event_store 스키마를 가정하고 기존 v1 테이블을 수정하는 SQL을 작성해 groundedness와 sqlCorrectness가 낮다(2, 1점). T4는 버전 경로와 병행 운영을 제시했으나 기존 테이블 수정 원칙을 위반해 versioningQuality가 제한된다(3점).",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12214,
+      "completion_tokens": 3760,
+      "total_tokens": 15974,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3568
+      }
+    },
+    "latencyMs": 95329,
+    "judgedAt": "2026-09-11T10:52:37.751Z"
+  },
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": 3,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "전체 답변은 제공된 로그, 스키마, 제약 조건을 정확히 인용하여 근거 없는 추측이나 fabricated 값을 포함하지 않았다. T1은 드리프트 원인과 기존 Read Model 미적합성을 정답 요지와 일치하게 진단했으며, T2 DDL은 read_ 접두어와 복합 PK 규칙을 완벽히 준수한다. T3는 대상 테이블 미생성 상태를 정확히 인지하고 실행 가능한 SELECT문을 제시했으며, T4는 API 병행 운영과 human-in-the-loop 컷오버 절차를 구체적으로 서술하여 즉시 실행 가능한 아키텍처 가이드라인을 제공한다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 17926,
+      "completion_tokens": 3079,
+      "total_tokens": 21005,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2909
+      }
+    },
+    "latencyMs": 94894,
+    "judgedAt": "2026-09-11T10:54:12.651Z"
+  },
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": 3,
+    "condition": "B1",
+    "groundedness": 2,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 4,
+    "unsupportedClaims": [
+      "로그의 insert.file.ok 횟수를 54회로 잘못 기재 (실제 27건)",
+      "read_grip_result 스키마에 없는 'payload' 컬럼을 가정함",
+      "'raw_event_stream' 테이블 인용 (자료 미등재)",
+      "SUBSTRING(stream_id, 12)로 'grip-attempt:' 제거 시 인덱스 오류 (실제 길이 13자)"
+    ],
+    "rationale": "T1은 정답 요지와 문제·원인이 정확히 일치하나 로그 건수 오류가 있음. T2/T3 SQL은 제공된 Read Model 스키마에 없는 컬럼을 가정하고 자료 미등재 테이블을 참조하며 문자열 처리 오류가 있어 실행 및 검증이 불가능함. T4는 v1 테이블 불변, API 버전 분리, 병행 운영 등 핵심 절차를 잘 서술했으나 예시 SQL에서 추가적인 가정을 섞어 엄격성 기준에 미흡함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 13246,
+      "completion_tokens": 4329,
+      "total_tokens": 17575,
+      "completion_tokens_details": {
+        "reasoning_tokens": 4082
+      }
+    },
+    "latencyMs": 111294,
+    "judgedAt": "2026-09-11T15:01:21.249Z"
+  },
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": 4,
+    "condition": "A",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 3,
+    "versioningQuality": 5,
+    "unsupportedClaims": [
+      "T3 백필 SQL에서 'event_store.grip_attempt_recorded' 테이블과 'payload_data' 컬럼을 자료 없이 임의로 가정",
+      "T3 백필 SQL에서 stream_id 기반 SUBSTRING 로직이 자료의 정규식 매핑 명세와 상충될 수 있음"
+    ],
+    "rationale": "T1과 T2는 자료의 로그와 제약조건을 정확히 반영하여 높은 점수. T3의 조회 쿼리는 적절하나, 백필 INSERT 문에서 자료에 존재하지 않는 'event_store' 테이블과 'payload_data' 컬럼을 임의로 가정하여 작성한 점이 엄격한 근거 기준에 위배되어 감점. T4는 v1 무손상, 병행 운영, human-in-the-loop 승인 절차를 명확히 제시하여 기준 충족. 전반적으로 핵심 아키텍처 방향은 정확하나 T3의 SQL 과잉 추론으로 인해 일부 감점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 17210,
+      "completion_tokens": 3466,
+      "total_tokens": 20676,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3234
+      }
+    },
+    "latencyMs": 102316,
+    "judgedAt": "2026-09-11T15:03:03.570Z"
+  },
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": 4,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 3,
+    "unsupportedClaims": [
+      "기존 v1 테이블 ALTER TABLE 제안 (정답 요지 명시적 위반)",
+      "자료에 없는 임의 값(1.2, 36.5)을 포함하는 INSERT 검증 SQL 작성",
+      "현재 Read Model 스키마에 정의되지 않은 컬럼을 SELECT 문에서 참조"
+    ],
+    "rationale": "T1은 로그와 스키마 불일치를 정확히 진단해 정답 요지와 일치하므로 5점. T2는 정답 요지(기존 v1 테이블 건드리지 않기)를 위반하는 ALTER TABLE을 제안하고, 자료에 없는 임의 값을 INSERT 검증 SQL에 포함해 groundedness와 sqlCorrectness를 크게 깎음. T3는 현재 스키마에 존재하지 않는 컬럼을 조회하는 SQL을 제시해 실행이 불가능하며 유실 데이터 복구 논리가 결여되어 1점. T4는 병행 운영과 컷오버를 언급했으나 단계가 다소 일반적이고 T2의 제안과 혼선이 있어 3점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 14744,
+      "completion_tokens": 4070,
+      "total_tokens": 18814,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3813
+      }
+    },
+    "latencyMs": 137825,
+    "judgedAt": "2026-09-11T11:03:37.229Z"
+  },
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": 5,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "전체 답변은 [자료]의 로그, 스키마 정의, 제약조건 및 정답 요지와 정확히 매칭되며 외부 값을 추가하거나 잘못 인용한 부분이 없다. T1은 드리프트 로그와 필드 유실 원인을 정확히 진단했고, T2/T3 SQL은 기존 v1 테이블을 건드리지 않고 신규 Read Model을 생성·조회하는 정답 요지의 조치와 일치한다. T4는 병행 API 운영, 인간 승인 게이트, 단계별 컷오버 절차를 구체적으로 서술하여 v1 클라이언트 보호 방안을 명확히 제시한다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 16186,
+      "completion_tokens": 2273,
+      "total_tokens": 18459,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2102
+      }
+    },
+    "latencyMs": 80491,
+    "judgedAt": "2026-09-11T11:04:57.728Z"
+  },
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": 5,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "새 Read Model 불필요 주장 (정답 요지와 상충)",
+      "T3 SQL의 더미 데이터 및 가상의 Event Store 쿼리 인용"
+    ],
+    "rationale": "T1은 로그와 정답 요지를 정확히 매칭하여 높은 점수. 그러나 T2는 정답 요지의 새 Read Model 생성을 거부하고 검증 쿼리만 제공했으며, T3는 더미 값과 가상의 ES 연동 SQL로 실제 해결책이 아님. T4는 자료 부재를 이유로 병행 운영 절차를 제시하지 않아 절차적 완성도가 낮음. 전반적으로 근거 없는 아키텍처 판단과 더미 SQL이 groundedness와 sqlCorrectness를 크게 저하시킴.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 11696,
+      "completion_tokens": 3488,
+      "total_tokens": 15184,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3297
+      }
+    },
+    "latencyMs": 87599,
+    "judgedAt": "2026-09-11T11:06:25.332Z"
+  },
+  {
+    "scenarioId": "A10-null-intrinsic-param",
+    "rep": 1,
+    "condition": "A",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "T1은 자료의 로그와 파일명을 정확히 인용하여 null 유입 및 Zod 검증 실패 원인을 정답 요지와 일치하게 진단(5)했으며, T2는 격리 검증 SQL로 자료와 정확히 매칭됨. 그러나 T3에서 필드명별 집계 요구사항에 대해 T2 SQL을 그대로 복사·붙여넣기하여 질문을 미수행했으므로 sqlCorrectness는 1로 감점. T4는 자료의 Decision Outcome과 제약사항을 반영해 DDL/API 변경 없이 무유입 검증만 수행한다는 구체적 v1 호환 절차를 제시(5)함. 전반적으로 사실 기반은 정확하나(T4), T3의 복사 오류가 전체 품질을 제한함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 13010,
+      "completion_tokens": 4107,
+      "total_tokens": 17117,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3907
+      }
+    },
+    "latencyMs": 105905,
+    "judgedAt": "2026-09-11T15:04:49.484Z"
+  },
+  {
+    "scenarioId": "A10-null-intrinsic-param",
+    "rep": 1,
+    "condition": "B1",
+    "groundedness": 2,
+    "diagnosisAccuracy": 4,
+    "sqlCorrectness": 2,
+    "versioningQuality": 4,
+    "unsupportedClaims": [
+      "실패 파일의 stream_id와 global_seq를 로그에 '-'로 명시된 것과 달리 임의로 추상화하여 채움",
+      "read_grip_result 스키마에 존재하지 않는 camera_intrinsic_param 컬럼을 조회 대상으로 가정"
+    ],
+    "rationale": "groundedness는 실패 로그의 stream_id와 global_seq를 '-'로 표기된 것과 달리 임의로 채워넣어 감점, 나머지 진단은 자료 기반. diagnosisAccuracy는 null 유입과 Zod 거부를 정확히 지적했으나 정답 요지의 '스키마 비대칭' 언급이 누락되어 4점. sqlCorrectness는 기존 스키마에 없는 컬럼을 조회하고 불필요한 새 테이블 생성 및 가짜 데이터 삽입으로 2점. versioningQuality는 v1 보호를 위한 병행 운영·백필·컷오버 절차를 구체적으로 서술하여 4점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 13016,
+      "completion_tokens": 3286,
+      "total_tokens": 16302,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3054
+      }
+    },
+    "latencyMs": 91581,
+    "judgedAt": "2026-09-11T11:09:55.677Z"
+  },
+  {
+    "scenarioId": "A10-null-intrinsic-param",
+    "rep": 2,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 3,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness는 T1~T4 모두 자료의 로그, 스키마, 제약조건을 정확히 참조하여 근거 기반 답변을 구성했으므로 5점이다. diagnosisAccuracy는 T1에서 null 유입, Zod 검증 실패, 파일 단위 격리 등 핵심 원인과 현상을 정답 요지와 일치하게 진단했으므로 5점이다. sqlCorrectness는 T2 SQL에서 event_store에 정의되지 않은 scene_key를 선택했으며, HAVING COUNT(*)=0 구문이 누락 레코드 조회 논리로 부적절해 3점이다. versioningQuality는 T4에서 v1 무손상, API/DDL 변경 금지, 인간 승인 기반 원천 수정 및 재투영 절차 등 자료의 Decision Outcome과 제약조건을 구체적 실행 단계로 정확히 매핑했으므로 5점이다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 20343,
+      "completion_tokens": 3480,
+      "total_tokens": 23823,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3254
+      }
+    },
+    "latencyMs": 107065,
+    "judgedAt": "2026-09-11T11:11:42.748Z"
+  },
+  {
+    "scenarioId": "A10-null-intrinsic-param",
+    "rep": 2,
+    "condition": "B1",
+    "groundedness": 2,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "T2 SQL의 하드코딩된 파일명 및 `AND(TRUE)` 조건",
+      "T3에서 `grip_3d_pose`의 x1/y1 필드를 cody/fx 누락으로 매핑한 근거 없는 가정",
+      "read_grip_result에 거부된 레코드가 존재할 것이라는 전제"
+    ],
+    "rationale": "T1은 로그의 Zod 오류 경로와 원인을 정답 요지와 정확히 매칭하여 진단 점수가 높으나, T2는 하드코딩된 값과 `AND(TRUE)` 가짜 조건을 사용해 실제 CQRS 흐름에 부합하지 않음. T3은 거부된 이벤트가 적재되지 않는 Read Model을 조회하고 `grip_3d_pose`와 파라미터 필드를 임의로 매핑하는 근거 없는 주장을 포함해 SQL 점수가 낮음. T4는 v1 무손상을 위한 구체적인 버전 관리 및 컷오버 절차를 제시하지 않아 회피 처리됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 13854,
+      "completion_tokens": 3269,
+      "total_tokens": 17123,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3029
+      }
+    },
+    "latencyMs": 87469,
+    "judgedAt": "2026-09-11T11:13:10.222Z"
+  },
+  {
+    "scenarioId": "A10-null-intrinsic-param",
+    "rep": 3,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "T1은 자료 로그와 정답 요지대로 null 유입 및 Zod 검증 실패 원인을 정확히 진단했다. T2/T3 SQL은 기존 테이블을 건드리지 않고 격리 확인과 0 집계 논리를 올바르게 구현했다. T4는 v1 무손상 제약과 human-in-the-loop 절차를 준수하며 원천 수정-재적재 경로를 구체화해 클라이언트 보호를 완성했다. 전 답변은 자료 사실에 충실하며 근거 없는 주장을 포함하지 않았다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12141,
+      "completion_tokens": 3129,
+      "total_tokens": 15270,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2976
+      }
+    },
+    "latencyMs": 80916,
+    "judgedAt": "2026-09-11T11:14:31.142Z"
+  },
+  {
+    "scenarioId": "A10-null-intrinsic-param",
+    "rep": 3,
+    "condition": "B1",
+    "groundedness": 2,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 2,
+    "unsupportedClaims": [
+      "T4 복구 SQL에 grip_succeed: 0, global_seq: 0 등 자료 미기재 값을 임의로 채움",
+      "T3 SQL에서 camera_intrinsic_param path 배열 인덱스를 2가 아닌 3으로 잘못 참조"
+    ],
+    "rationale": "T1은 로그의 Zod 오류를 정확히 지적하여 정답 요지와 일치해 5점. T2는 새 테이블 생성으로 대응했으나 실제 파이프라인 복구가 필요 없는 상황이며, T3은 path 배열 인덱스를 2가 아닌 3으로 잘못 지정해 조회 로직이 틀렸다. T4는 정답 요지의 'v1 무손상' 원칙을 무시하고, 자료에 없는 값을 임의로 채운 복구 SQL과 일반적인 버전 분리론으로 일관해 근거 부족 및 구체성 결여로 낮은 점수. 전반적으로 T4의 추측성 INSERT와 T3의 인덱스 오류로 groundedness와 sqlCorrectness가 낮다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 14079,
+      "completion_tokens": 4542,
+      "total_tokens": 18621,
+      "completion_tokens_details": {
+        "reasoning_tokens": 4296
+      }
+    },
+    "latencyMs": 113350,
+    "judgedAt": "2026-09-11T11:16:24.497Z"
+  },
+  {
+    "scenarioId": "A10-null-intrinsic-param",
+    "rep": 4,
+    "condition": "A",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 5,
+    "unsupportedClaims": [
+      "T3에서 event_store 테이블을 거부 건수 집계 대상으로 인용한 것은 자료상 검증 실패 로그가 별도 로깅 시스템에 기록되므로 근거 없음"
+    ],
+    "rationale": "T1 진단과 T2 SQL은 자료의 로그 맥락 및 격리 전략을 정확히 반영해 높은 점수를 받으나, T3은 거부된 이벤트가 event_store에 존재하지 않음에도 해당 테이블을 조회 대상으로 설정해 논리적 오류가 있다. T4는 v1 무손상 제약과 인간 승인 절차를 명확히 준수해 호환성 보호 절차가 타당하다. 전반적으로 자료 기반이 탄탄하나 T3의 데이터 소스 선정 오류가 sqlCorrectness를 크게 낮춘다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12903,
+      "completion_tokens": 3709,
+      "total_tokens": 16612,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3519
+      }
+    },
+    "latencyMs": 93933,
+    "judgedAt": "2026-09-11T11:17:58.435Z"
+  },
+  {
+    "scenarioId": "A10-null-intrinsic-param",
+    "rep": 4,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "T3에서 자료에 정의되지 않은 'logging_context_table'을 참조하고 유효하지 않은 JSONB 경로 구문을 사용함",
+      "T4에서 v1 무손상 요구사항에 대한 표준 마이그레이션 절차를 제시하지 않고 답변을 회피함"
+    ],
+    "rationale": "T1은 로그의 Zod 오류 경로와 정답 요지의 핵심 원인을 정확히 매칭하여 높은 점수. T2 SQL은 Read Model 검증 논리가 타당하나, T3 SQL이 구문 오류와 존재하지 않는 테이블 참조로 실행 불가능하여 전체 SQL 점수를 크게 낮춤. T4는 v1 무손상 요구사항에 대해 병행 운영·백필·컷오버 등 구체적 절차를 제시하지 않고 자료 부족을 이유로 답변을 회피함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 18713,
+      "completion_tokens": 3175,
+      "total_tokens": 21888,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2969
+      }
+    },
+    "latencyMs": 97474,
+    "judgedAt": "2026-09-11T11:19:35.914Z"
+  },
+  {
+    "scenarioId": "A10-null-intrinsic-param",
+    "rep": 5,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 모든 답변은 제공된 로그, 스키마, 제약조건을 정확히 참조하여 구성되었다. event_store 미존재 검증과 insert.file.failed 로그 기반 추론은 자료의 사실 관계와 일치하며, 외부 데이터나 존재하지 않는 테이블을 인용하지 않았다. diagnosisAccuracy: T1은 정답 요지와 동일하게 cody/fx 필드 null 유입이 Zod 검증 실패를 유발하고 ES append를 차단하는 원인을 정확히 진단했다. 배치 트랜잭션 롤백 부재 및 Read Model 미생성 사실도 자료의 로그 맥락과 일치한다. sqlCorrectness: T2는 자료에서 제시한 격리 SQL과 동일하게 event_store의 무유입을 검증하는 쿼리를 작성했다. T3는 거부된 이벤트가 ES에 존재하지 않는다는 전제 하에 필드명별 집계 로직을 CTE로 구현하여 질문에 정확히 부응하며, 기존 테이블을 변경하거나 불필요한 DDL을 생성하지 않아 제약조건을 준수했다. versioningQuality: T4는 v1 자산 무손상 제약과 인간 승인 프로세스를 명시적으로 반영하여 No-op 절차를 제시했다. DDL/API 변경 금지, 원천 데이터 수정 요청, 승인 기록 등 구체적인 실행 단계가 포함되어 v1 클라이언트 보호에 직접적으로 기여한다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 15732,
+      "completion_tokens": 4002,
+      "total_tokens": 19734,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3673
+      }
+    },
+    "latencyMs": 106671,
+    "judgedAt": "2026-09-11T11:21:22.590Z"
+  },
+  {
+    "scenarioId": "A10-null-intrinsic-param",
+    "rep": 5,
+    "condition": "B1",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 3,
+    "versioningQuality": 1,
+    "unsupportedClaims": [],
+    "rationale": "groundedness는 T1~T4 모두 제공된 로그와 스키마 정보만 정확히 인용했으며, T4에서 자료 부재를 정직하게 명시해 추측을 배제함. diagnosisAccuracy는 T1에서 Zod 검증 실패 원인과 null 유입, Read Model 누락 영향도를 정답 요지와 완벽히 일치시킴. sqlCorrectness는 T2 쿼리가 적절하나, T3에서 '집계' 요구사항에 대해 DB에 데이터가 없음에도 하드코딩된 상수 반환 SQL만 제시해 실제 집계 로직을 구현하지 못함. versioningQuality는 T4에서 v1 호환 절차에 대해 자료 부재를 이유로 답변을 회피하여 구체적 마이그레이션 절차를 전혀 제시하지 않음.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12397,
+      "completion_tokens": 3527,
+      "total_tokens": 15924,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3318
+      }
+    },
+    "latencyMs": 89111,
+    "judgedAt": "2026-09-11T11:22:51.704Z"
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": 1,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 4,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness는 모든 식별자·에러 코드·제약조건이 자료와 정확히 일치하며 외부 추측이나 fabricated 값이 전혀 없다. diagnosisAccuracy는 T1에서 grip_succeed의 타입/범위 위배와 Zod 검증 실패 원인을 정답 요지와 로그 근거를 통해 정확히 매칭했다. sqlCorrectness는 T2가 자료의 검증 쿼리와 일치하고 새 테이블 생성을 피했으나, T3에서 '집계' 요구사항에 대해 현재 DB에 검증 로그 테이블이 없어 정적 값을 하드코딩한 점이 동적 집계 측면에서 다소 제한적이다. versioningQuality는 v1 무손상 원칙을 준수하며 DDL/API 변경 없이 모니터링 알림과 SQL 검증 절차로 클라이언트 호환성을 구체적으로 보장했다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 13137,
+      "completion_tokens": 3351,
+      "total_tokens": 16488,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3140
+      }
+    },
+    "latencyMs": 87571,
+    "judgedAt": "2026-09-11T11:24:19.280Z"
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": 1,
+    "condition": "B1",
+    "groundedness": 2,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 2,
+    "unsupportedClaims": [
+      "read_grip_result 테이블에 detail 컬럼 존재 가정",
+      "기존 v1 Read Model 테이블 ALTER/DROP 제안",
+      "stream_id를 하드코딩한 정적 SQL 사용"
+    ],
+    "rationale": "T1은 로그의 reason과 path를 정확히 매칭하여 정답 요지와 일치함. 그러나 T2~T4는 Read Model 스키마에 정의되지 않은 detail 컬럼을 가정하고, 정답 요지의 'v1 무손상' 원칙을 무시하며 기존 테이블 삭제/변경(ALTER/DROP)을 제안함. T2 SQL은 CTE 컬럼명 중복 및 하드코딩으로 실행 불가이며, T3 SQL은 존재하지 않는 컬럼을 문자열 파싱으로 조회하는 논리적 오류가 있음. T4는 클라이언트 보호보다 스키마 변경에 치중하여 v1 호환성 보장 절차가 미흡함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12915,
+      "completion_tokens": 3398,
+      "total_tokens": 16313,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3166
+      }
+    },
+    "latencyMs": 88058,
+    "judgedAt": "2026-09-11T11:25:47.343Z"
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": 2,
+    "condition": "A",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "T1은 자료의 로그와 정답 요지를 정확히 매칭하여 5점, T4는 v1 무손상 및 인간 승인 제약을 구체적 절차로 잘 정리하여 5점이다. T2는 검증 목적에 부합하나 자료의 event_store 대신 read_grip_result를 조회해 4점, T3은 질문 의도(집계)를 완전히 무시하고 T2를 복사해 붙여넣어 1점이다. 전반적으로 T3의 복사 오류로 groundedness와 sqlCorrectness가 하락했으며,捏造된 주장은 없다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12699,
+      "completion_tokens": 3568,
+      "total_tokens": 16267,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3399
+      }
+    },
+    "latencyMs": 90996,
+    "judgedAt": "2026-09-11T11:27:18.344Z"
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": 2,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 5,
+    "unsupportedClaims": [
+      "T3에서 가상의 log_entries 테이블 가정 및 detail 컬럼의 jsonb 타입 추측",
+      "T3 응답 내 반복 생성된 불필요한 텍스트 루프"
+    ],
+    "rationale": "T1과 T4는 자료의 로그 흐름과 정답 요지(검증 실패 시 이벤트 미생성, v1 무손상)를 정확히 반영하여 높은 점수를 받음. T2 SQL은 PK 기반 누락 확인 로직으로 적절하나, T3 응답이 반복 텍스트 루프와 가상 테이블 가정, 실제 실행 가능한 SQL 부재로 인해 심각한 결함이 있어 sqlCorrectness가 크게 감점됨. 전반적으로 근거는 탄탄하나 T3의 실패로 groundedness와 sqlCorrectness가 하향 조정됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 19795,
+      "completion_tokens": 3643,
+      "total_tokens": 23438,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3438
+      }
+    },
+    "latencyMs": 109524,
+    "judgedAt": "2026-09-11T11:29:07.872Z"
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": 3,
+    "condition": "A",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 3,
+    "unsupportedClaims": [
+      "T3에서 자료에 정의되지 않은 'insight_logs' 테이블을 가정함",
+      "T3의 'jsonb_path_text' 함수는 PostgreSQL 표준 문법이 아님"
+    ],
+    "rationale": "T1은 자료의 로그와 정답 요지의 타입/도메인 위배 원인을 정확히 진단해 5점. T2는 자료의 격리 검증 SQL을 정확히 인용해 5점. T3은 존재하지 않는 테이블과 유효하지 않은 JSONB 함수를 사용하며 집계 로직이 부실해 2점. T4는 v1 무변경 원칙을 따랐으나 구체적인 버전 경로 및 컷오버 절차가 생략되어 3점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12149,
+      "completion_tokens": 3581,
+      "total_tokens": 15730,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3392
+      }
+    },
+    "latencyMs": 89686,
+    "judgedAt": "2026-09-11T11:30:37.561Z"
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": 3,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 2,
+    "unsupportedClaims": [
+      "T2 INSERT문의 grip_2d_pose 등 좌표값은 자료에 없음",
+      "T3 SQL의 reason 컬럼이 JSONB 객체라고 가정했으나 자료상 배열 형태임",
+      "T4 ALTER TABLE 및 데이터 정제 절차는 ES/CQRS 원칙과 자료에 부합하지 않음"
+    ],
+    "rationale": "groundedness는 T1은 정확하나 T2에서 자료에 없는 좌표값을 임의로 채우고 T3에 반복 생성 오류가 있어 감점. diagnosisAccuracy는 T1이 Zod 검증 실패 원인과 적재 거부를 정확히 진단하여 정답 요지와 일치함. sqlCorrectness는 T2는 새 테이블 생성은 타당하나 임의 데이터 삽입으로 실용성이 떨어지고, T3 SQL은 reason 배열을 객체로 처리하며 반복 텍스트로 인해 정확도가 낮음. versioningQuality는 T4가 API 스키마 부재를 인정했으나, 자료에 없는 가정을 바탕으로 ALTER TABLE 등 ES 원칙에 위배되는 마이그레이션을 제안하여 정답 요지의 Read Model/검증 로그 보강 및 v1 무손상 권고와 거리가 있음.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 20366,
+      "completion_tokens": 3580,
+      "total_tokens": 23946,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3299
+      }
+    },
+    "latencyMs": 109364,
+    "judgedAt": "2026-09-11T11:32:26.930Z"
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": 4,
+    "condition": "A",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 5,
+    "unsupportedClaims": [
+      "T3 설명에서 원본 파일명 `_02003`을 `_00023`으로 잘못 표기",
+      "T3 SQL이 실제 로그/테이블을 조회하지 않고 정적 값을 하드코딩한 더미 쿼리임"
+    ],
+    "rationale": "T1 진단과 T2 격리 SQL은 자료 및 정답 요지와 정확히 일치하며 v1 무손상 제약을 잘 준수함. T4 버전 관리 절차도 인간 승인 및 경로 불변 요구사항을 구체적으로 반영하여 만점. 반면 T3 SQL은 실제 데이터 소스를 조회하거나 집계하지 않고 정적 값을 하드코딩한 더미 쿼리로, 질문의 집계 요구를 충족하지 못해 낮은 점수. T3 설명 중 파일명 오타(`_00023`)도 근거 미비로 간주.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12041,
+      "completion_tokens": 3112,
+      "total_tokens": 15153,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2892
+      }
+    },
+    "latencyMs": 80466,
+    "judgedAt": "2026-09-11T11:33:47.401Z"
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": 4,
+    "condition": "B1",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 3,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "T4에서 v1 API 관련 자료 부재를 이유로 답변을 거부함 (정답 요지에서는 클라이언트 타입 정규화 권고 및 v1 무손상 조치 요구)"
+    ],
+    "rationale": "groundedness는 자료의 로그와 스키마만 정확히 인용하고 근거 없는 추측을 배제하여 5점. diagnosisAccuracy는 T1에서 Zod 검증 실패 및 grip_succeed 필드의 타입/도메인 위반 원인을 정답 요지와 정확히 매칭하여 5점. sqlCorrectness는 T2 검증 로직은 타당하나 CTE 구조가 불필요하게 복잡하고, T3는 집계 질문임에도 파일명 기준으로 GROUP BY하여 집계의 의미를 상실해 3점. versioningQuality는 정답 요지에서 요구하는 클라이언트 타입 정규화 권고 및 v1 무손상 구체적 절차를 제시하지 않고 자료 부재를 이유로 답변을 거부해 1점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12774,
+      "completion_tokens": 3130,
+      "total_tokens": 15904,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2890
+      }
+    },
+    "latencyMs": 82807,
+    "judgedAt": "2026-09-11T11:35:10.212Z"
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": 5,
+    "condition": "A",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 3,
+    "unsupportedClaims": [
+      "event_store 테이블에 detail 컬럼 존재 가정",
+      "원본 값(original_value)이 자료에 없음에도 이를 포함하는 쿼리 작성 시도",
+      "T3 답변의 반복적 논리 순환 및 가설 기반 SQL 제시"
+    ],
+    "rationale": "T1과 T2는 자료와 정답 요지를 정확히 반영하여 높은 점수. T3은 질문의 집계 쿼리 요구사항을 해결하지 못하고, 자료에 없는 event_store 스키마를 가정하며 반복적이고 모순적인 SQL을 제시하여 감점. T4는 v1 무변동 결론은 정확하나, 불필요한 v2 컷오버 및 병행 운영 일반론을 포함해 실용성이 떨어짐. 전반적으로 근거는 충실하나 T3의 SQL 실패와 T4의 불필요한 확장으로 점수 조정.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 20504,
+      "completion_tokens": 3290,
+      "total_tokens": 23794,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3070
+      }
+    },
+    "latencyMs": 103752,
+    "judgedAt": "2026-09-11T11:36:53.970Z"
+  },
+  {
+    "scenarioId": "A2-type-mismatch",
+    "rep": 5,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "T2 SQL에서 실패 파일(02002/02003)에 성공 파일의 stream_id를 임의로 매핑하여 데이터 정합성 위반",
+      "T3에서 자료에 정의되지 않은 log_insert_failed 테이블을 가정하고 JSONB 배열 파싱 경로를 잘못 작성"
+    ],
+    "rationale": "T1은 로그의 Zod 오류와 정답 요지의 타입/도메인 위반 원인을 정확히 매칭하여 5점. T2는 검증 실패 데이터를 메인 Read Model에 강제로 적재하여 CQRS 무손실 원칙을 위반하고, T3은 JSONB 배열 구조에 대한 파싱 오류와 존재하지 않는 테이블 가정을 포함하여 1점. T4는 v1 호환 절차에 대한 답변을 아예 제공하지 않아 1점. 전반적으로 T1 외의 과제에서 자료 기반이 아닌 임의 추측과 아키텍처 원칙 위반이 확인되어 groundedness는 3점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 19192,
+      "completion_tokens": 3838,
+      "total_tokens": 23030,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3590
+      }
+    },
+    "latencyMs": 111991,
+    "judgedAt": "2026-09-11T11:38:45.966Z"
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": 1,
+    "condition": "A",
+    "groundedness": 2,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "T3에서 자료에 정의되지 않은 'logging_context' SQL 테이블과 JSONB 구조 가정",
+      "T4에서 'v1 자산 무손상' 및 'read_ 접두사' 제약 조건을 위반하는 read_grip_result_v2 테이블 생성 주장",
+      "T4에서 자료에 명시되지 않은 /api/v1 vs /api/v2 엔드포인트 분리 및 Strangler Fig 패턴 적용"
+    ],
+    "rationale": "T1 진단은 정답 요지와 정확히 일치하여 높은 점수를 받았으나, T3에서 자료에 정의되지 않은 로그 테이블과 JSONB 구조를 임의로 가정하여 SQL을 작성했고, T4에서 'v1 자산 무손상' 및 테이블명 제약 조건을 위반하며 불필요한 v2 API/테이블 컷오버를 제안함. 이로 인해 groundedness, sqlCorrectness, versioningQuality 모두 낮은 점수를 부여함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 13382,
+      "completion_tokens": 3130,
+      "total_tokens": 16512,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2902
+      }
+    },
+    "latencyMs": 83990,
+    "judgedAt": "2026-09-11T11:40:09.961Z"
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": 1,
+    "condition": "B1",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 4,
+    "versioningQuality": 1,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: T1~T3의 모든 분석과 SQL은 제공된 로그 및 ReadModel 스키마에 정확히 기반하며, 외부 지식이나 지어낸 값이 없음. diagnosisAccuracy: T1에서 Zod 파싱 실패, grip_data/robot_tf 누락, 적재 거부 원인을 정답 요지와 완벽하게 일치시켜 정확히 진단함. sqlCorrectness: T2/T3 모두 누락 검증 및 집계를 위한 논리는 정확하나, 로그 기반 동적 처리 대신 파일명을 하드코딩하고 T3의 UNION ALL 구조가 비효율적이므로 감점. versioningQuality: T4에서 v1 호환 절차에 대한 근거가 부족하다며 답변을 회피하여, 정답 요지의 'v1 무손상' 및 구체적인 병행 운영/컷오버 절차가 누락됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 13353,
+      "completion_tokens": 3034,
+      "total_tokens": 16387,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2809
+      }
+    },
+    "latencyMs": 81886,
+    "judgedAt": "2026-09-11T11:41:31.850Z"
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": 2,
+    "condition": "A",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 2,
+    "unsupportedClaims": [
+      "T4에서 v2 API 경로 생성 및 컷오버를 제안했으나, 자료의 'API Versioning: 변경 없음', 'v1 무손상' 제약과 정면으로 배치됨"
+    ],
+    "rationale": "T1은 Zod 검증 실패와 이벤트 미유입 원인을 정확히 진단하여 5점. T2는 자료에 명시된 격리 SQL을 그대로 적용해 정확함(5점). T3은 거부된 데이터가 DB에 존재하지 않음을 인지해 SQL 작성을 보류함으로써 근거 없는 주장 방지 원칙을 준수(5점). 그러나 T4는 자료의 '변경 없음' 및 'v1 무손상' 제약에도 불구하고 v2 API 생성과 컷오버를 제안하여 시나리오 요구사항을 무시함(2점). 이에 따라 groundedness는 3점으로 조정됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 20708,
+      "completion_tokens": 3030,
+      "total_tokens": 23738,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2810
+      }
+    },
+    "latencyMs": 98944,
+    "judgedAt": "2026-09-11T11:43:10.799Z"
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": 2,
+    "condition": "B1",
+    "groundedness": 2,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 2,
+    "unsupportedClaims": [
+      "read_grip_result 스키마에 grip_data 컬럼이 존재한다고 주장함 (실제 스키마 없음)",
+      "T3 SQL에서 UNNEST 및 JSONB 파싱 로직이 자료에 없는 로그 테이블을 가정함",
+      "T4에서 batch_status 필드 추가 및 기존 테이블 ALTER를 제안하여 v1 무손상 원칙과 충돌"
+    ],
+    "rationale": "T1은 로그와 정답 요지를 정확히 매칭하여 진단 만점을 받았으나, T3에서 실제 스키마에 없는 grip_data 컬럼을 가정하고 Postgres 문법 오류가 있는 SQL을 작성해 groundedness와 sqlCorrectness를 낮췄다. T4는 정답 요지의 'v1 무손상' 원칙을 무시하고 기존 스키마 변경과 API 로직 개선을 제안하여 v1 클라이언트 보호 절차가 부적절하다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 15881,
+      "completion_tokens": 3649,
+      "total_tokens": 19530,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3421
+      }
+    },
+    "latencyMs": 99970,
+    "judgedAt": "2026-09-11T11:44:50.774Z"
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": 3,
+    "condition": "A",
+    "groundedness": 2,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 5,
+    "unsupportedClaims": [
+      "T3에서 거부된 적재 건을 집계하기 위해 read_grip_result에 NULL 레코드를 백필하자는 전략은 자료의 'Zod 검증 실패로 ES 미유입' 전제와 v1 무손상 제약에 위배됨",
+      "T3 답변 내 'stream_id에서 scene_key 추출...' 반복 루프 문장은 실제 자료에 존재하지 않는 추론 과정이며, 실행 가능한 SQL을 제공하지 못함"
+    ],
+    "rationale": "T1은 로그와 정답 요지를 정확히 매칭하여 진단 점수 5점. T2는 자료의 격리 SQL을 정확히 인용함. T3은 질문 의도(누락 필드별 집계)에 맞지 않게 백필을 제안하며, 거부된 이벤트는 ES/ReadModel에 존재하지 않는다는 전제를 무시하고 실행 가능한 SQL을 제공하지 못해 1점. T4는 인간 승인, 원천 수정, 재적재, 자동 복구 순서를 구체적으로 서술하여 v1 보호 절차로 적합함. T3의 백필 주장과 반복 문장은 자료 근거가 부족하여 groundedness와 sqlCorrectness를 낮춤.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 20509,
+      "completion_tokens": 3065,
+      "total_tokens": 23574,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2777
+      }
+    },
+    "latencyMs": 99022,
+    "judgedAt": "2026-09-11T11:46:29.800Z"
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": 3,
+    "condition": "B1",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 2,
+    "unsupportedClaims": [
+      "T3 SQL에서 read_grip_result에 missing_field 컬럼 존재 가정",
+      "T4에서 REST API URL 버전화(/v1) 방식 제시 (자료 미제공)",
+      "T2에서 Zod 검증 실패 시 Read Model에 잔존 레코드 존재 가정 (ES 원칙과 상충)"
+    ],
+    "rationale": "T1은 정답 요지의 Zod 파싱 실패 및 적재 거부 원인을 정확히 매칭하여 5점. T2 SQL은 ES 검증-투영 분리 원칙상 불필요한 DELETE를 포함하나 문법적 오류는 적음. T3 SQL은 제공 스키마에 없는 missing_field 컬럼을 참조하고 하드코딩 CTE로 집계 요구사항을 왜곡하여 1점. T4는 정답 요지의 검증 로그 보강 및 스키마 안내 조치를 누르고 일반 REST API 버전 관리론으로 회피하여 2점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12648,
+      "completion_tokens": 4373,
+      "total_tokens": 17021,
+      "completion_tokens_details": {
+        "reasoning_tokens": 4139
+      }
+    },
+    "latencyMs": 106662,
+    "judgedAt": "2026-09-11T11:48:16.467Z"
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": 4,
+    "condition": "A",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 4,
+    "unsupportedClaims": [
+      "read_grip_result 테이블에 grip_data 컬럼 존재 가정 (실제 스키마 미존재)",
+      "거부된 이벤트를 read_grip_result에 INSERT하여 백필 시도 (v1 자산 무손상/데이터 정합성 제약 위반)"
+    ],
+    "rationale": "T1은 정답 요지와 자료 로그를 정확히 매칭하여 5점, T2는 자료의 격리 SQL과 일치하여 5점이다. 그러나 T3은 Read Model에 존재하지 않는 grip_data 컬럼을 가정하고 실제 테이블에 가짜 데이터를 INSERT하는 SQL을 제시하여 v1 자산 무손상 제약과 데이터 정합성 원칙을 심각하게 위반했으므로 1점이다. T4는 API 불변과 내부 격리, 인간 승인 절차를 제시했으나 구체적인 운영 순서가 다소 일반론에 머물러 4점이다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 20546,
+      "completion_tokens": 4376,
+      "total_tokens": 24922,
+      "completion_tokens_details": {
+        "reasoning_tokens": 4156
+      }
+    },
+    "latencyMs": 126169,
+    "judgedAt": "2026-09-11T11:50:22.639Z"
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": 4,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 4,
+    "unsupportedClaims": [
+      "T3에서 read_multimodal 테이블에 grip_data 컬럼이 존재한다고 가정",
+      "Zod 검증 실패로 적재가 거부된 이벤트가 Read Model에 행을 생성할 수 있다는 아키텍처 오해"
+    ],
+    "rationale": "T1은 로그의 Zod 오류 경로와 정답 요지의 핵심 원인(필드 누락→파싱 실패→거부)을 정확히 매칭하여 5점. T2는 문법과 스키마 사용이 정확하나 실제 해결(업데이트/재적재)이 아닌 진단용 SELECT에 그쳐 2점. T3은 Zod 검증 실패로 적재가 거부된 이벤트는 Read Model에 존재하지 않음에도 해당 테이블을 조회하도록 설계했으며, 제공 스키마에 없는 read_multimodal.grip_data 컬럼을 참조하는 등 아키텍처와 자료 기반 오류가 있어 1점. T4는 v1 무손실 요구사항에 맞춰 버전 경로 분리 및 병행 운영을 제시했으나 자료 내 API 정의 부재를 고려한 일반론적 접근으로 4점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 21132,
+      "completion_tokens": 3846,
+      "total_tokens": 24978,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3566
+      }
+    },
+    "latencyMs": 117091,
+    "judgedAt": "2026-09-11T11:52:19.735Z"
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": 5,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 4,
+    "unsupportedClaims": [],
+    "rationale": "groundedness는 모든 인용값이 자료와 일치하여 5점, diagnosisAccuracy는 정답 요지와 로그 근거가 정확히 매칭되어 5점이다. sqlCorrectness는 T2 검증 쿼리는 적절하나 T3이 누락 필드명별 집계 요청을 무시하고 T2 쿼리를 반복하며 순환 논리로 질문을 외면해 2점이다. versioningQuality는 v1 무손상 원칙은 정확히 따랐으나 human-in-the-loop 제약을 명시하지 않아 4점이다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 20101,
+      "completion_tokens": 3437,
+      "total_tokens": 23538,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3277
+      }
+    },
+    "latencyMs": 105792,
+    "judgedAt": "2026-09-11T11:54:05.533Z"
+  },
+  {
+    "scenarioId": "A3-missing-field",
+    "rep": 5,
+    "condition": "B1",
+    "groundedness": 2,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 2,
+    "unsupportedClaims": [
+      "T4에서 v1/v2 API 경로 분리, 병행 운영, 컷오버 절차 등 자료에 없는 API 마이그레이션 전략 제시",
+      "T4에서 read_grip_result 테이블에 수동 INSERT로 데이터 복구 시도 제안 (CQRS 원칙 및 자료와 상충)",
+      "T3에서 적재 거부된 레코드가 존재하지 않는 ReadModel을 조회하여 누락 필드 집계 시도"
+    ],
+    "rationale": "T1은 로그의 Zod 오류와 정답 요지의 필수 필드 누락 원인을 정확히 식별하여 5점. T2 SQL은 검증 목적에 맞게 정상적으로 작성되어 5점. T3 SQL은 적재 실패로 ES/ReadModel에 존재하지 않는 레코드를 조회하는 구조적 오류가 있으며 질문 의도(로그 기반 집계)와 맞지 않아 1점. T4는 정답 요지의 '적재 거부 추적 및 클라이언트 스키마 안내, v1 무손상'이라는 CQRS 원칙을 누르고 일반적인 API 버전화 전략과 수동 DB 패치를 제시하여 근거 없는 주장을 포함했으므로 2점. 전반적으로 T4의 추측성 내용이 groundedness를 낮춤.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12939,
+      "completion_tokens": 3667,
+      "total_tokens": 16606,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3374
+      }
+    },
+    "latencyMs": 93691,
+    "judgedAt": "2026-09-11T11:55:39.228Z"
+  },
+  {
+    "scenarioId": "A4-physical-impossible",
+    "rep": 1,
+    "condition": "A",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 4,
+    "unsupportedClaims": [
+      "T2/T3 SQL INSERT 문에서 Seq 26의 xl_raw를 자료상 0.139로 잘못 기재(실제 686.577)",
+      "위반 레코드에 대해 해당 flag를 0으로 설정하여 격리/검출 목적과 상충",
+      "T4 절차에 자료의 'human-in-the-loop' 승인 게이트 반영 누락"
+    ],
+    "rationale": "groundedness: T1/T4는 자료에 기반하나, T2/T3 SQL에 원천 데이터와 다른 값 채움 및 flag 오류가 있어 감점. diagnosisAccuracy: 정답 요지의 핵심 문제(음수 깊이, 픽셀 초과)와 대상 레코드(Seq 26/27)를 정확히 진단. sqlCorrectness: DDL은 적절하나 INSERT 문에 값 스왑 오류와 flag 0 설정으로 실제 격리 목적을 달성하지 못함. versioningQuality: v1 병행 운영 및 엔드포인트 분리 전략이 명확하나, 자료의 human-in-the-loop 승인 게이트 누락으로 감점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 22136,
+      "completion_tokens": 3973,
+      "total_tokens": 26109,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3704
+      }
+    },
+    "latencyMs": 122022,
+    "judgedAt": "2026-09-11T11:57:41.255Z"
+  },
+  {
+    "scenarioId": "A4-physical-impossible",
+    "rep": 1,
+    "condition": "B1",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 1,
+    "unsupportedClaims": [],
+    "rationale": "T1은 자료의 z1=-0.05 값을 정확히 인용하여 정답 요지와 문제·원인이 일치하므로 5점이다. T2·T3 SQL은 PostgreSQL 문법상 jsonb_array_elements_text를 단일 키 추출에 잘못 사용해 실행 불가이며, 정답 요지에서 요구한 'v2 Read Model 생성 및 CHECK 제약, v1 무손상' 아키텍처 조치를 완전히 무시하여 1점이다. T4는 v1 보호 절차에 대한 구체적 방안을 제시하지 않아 1점이나, 자료 부재를 정직하게 명시하여 근거 기반 점수를 유지한다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 16870,
+      "completion_tokens": 3078,
+      "total_tokens": 19948,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2899
+      }
+    },
+    "latencyMs": 91225,
+    "judgedAt": "2026-09-11T11:59:12.483Z"
+  },
+  {
+    "scenarioId": "A4-physical-impossible",
+    "rep": 2,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness는 5점: 모든 식별자, SQL 문법, 코드 구조가 제공된 자료에서 직접 인용되었으며 외부 추측이나 지어낸 값이 전혀 없다. diagnosisAccuracy는 5점: T1에서 z1<0 및 xl>1920 위반 사실을 정확히 지적하고, v1 프로젝터의 검증 부재를 원인으로 규명하여 정답 요지와 완벽히 일치한다. sqlCorrectness는 5점: T2와 T3 SQL이 자료의 DDL과 격리 절차를 정확히 반영했으며, PostgreSQL JSONB 추출 문법을 올바르게 사용하여 v1 테이블을 변경하지 않고 문제를 해결한다. versioningQuality는 5점: T4가 인간 승인 게이트, 병렬 프로젝트 실행, 하위 호환 엔드포인트 유지 등 자료의 마이그레이션 절차를 구체적이고 실행 가능한 순서로 정리하여 v1 클라이언트를 완벽히 보호한다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 23332,
+      "completion_tokens": 2965,
+      "total_tokens": 26297,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2734
+      }
+    },
+    "latencyMs": 104095,
+    "judgedAt": "2026-09-11T12:00:56.584Z"
+  },
+  {
+    "scenarioId": "A4-physical-impossible",
+    "rep": 2,
+    "condition": "B1",
+    "groundedness": 5,
+    "diagnosisAccuracy": 3,
+    "sqlCorrectness": 1,
+    "versioningQuality": 1,
+    "unsupportedClaims": [],
+    "rationale": "groundedness는 5점이다. 자료의 값과 스키마만 정확히 인용하고 T4에서 자료 부재를 정직하게 인정해 지어낸 주장이 없기 때문이다. diagnosisAccuracy는 3점이다. T1에서 z1<0 문제를 맞혔으나 정답 요지의 xl=2500 픽셀 위반 누락으로 부분 일치한다. sqlCorrectness는 1점이다. PostgreSQL JSONB 연산자 오용(`->` vs `->>`)과 스칼라 값에 배열 함수 적용 등 문법적 오류가 많아 실행이 불가능하다. versioningQuality는 1점이다. T4에서 자료 부족을 이유로 답변을 회피해 v1 클라이언트 보호를 위한 구체적 버전 관리/마이그레이션 절차가 누락되었기 때문이다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 16755,
+      "completion_tokens": 2775,
+      "total_tokens": 19530,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2555
+      }
+    },
+    "latencyMs": 67495,
+    "judgedAt": "2026-09-11T12:02:04.084Z"
+  },
+  {
+    "scenarioId": "A4-physical-impossible",
+    "rep": 3,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "T1 진단과 T4 버전 교체 절차는 자료의 로그, 스키마, 제약사항을 정확히 반영하여 높은 점수. T2 격리 SQL은 자료의 권장 사항과 일치함. 그러나 T3 조회 SQL에서 PostgreSQL JSON 연산자 체이닝(`->'z1'::jsonb->>'z1'`)이 문법적/논리적으로 오류가 있어 실행 시 NULL 또는 에러를 유발하며, 단순 조회 요청에 백필(INSERT)을 포함하는 것은 불필요한 복잡도를 추가함. 이에 SQLCorrectness는 낮은 점수 부여.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 20971,
+      "completion_tokens": 3558,
+      "total_tokens": 24529,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3384
+      }
+    },
+    "latencyMs": 110683,
+    "judgedAt": "2026-09-11T12:03:54.772Z"
+  },
+  {
+    "scenarioId": "A4-physical-impossible",
+    "rep": 3,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "새 Read Model 테이블은 필요 없습니다 (정답 요지 및 CQRS 관례상 위반 값 격리/체크제약용 v2 모델 생성이 필요함)",
+      "LATERAL jsonb_array_elements_text를 스칼라 JSONB에 적용하는 문법 오류 주장"
+    ],
+    "rationale": "T1은 물리성 위반 값을 정확히 진단했으나, 정답 요지에서 명시한 'v2 Read Model 생성 및 CHECK 제약 적용'을 무시하고 기존 테이블 조회만으로 해결하려 함. T2/T3 SQL은 스칼라 JSONB에 배열 추출 함수를 적용하는 문법 오류가 있으며, 위반 값 격리 아키텍처를 반영하지 못해 실효성이 떨어짐. T4는 자료 부재를 이유로 v1 호환 및 마이그레이션 절차를 제시하지 못해 점수 최저.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 16755,
+      "completion_tokens": 2813,
+      "total_tokens": 19568,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2598
+      }
+    },
+    "latencyMs": 56095,
+    "judgedAt": "2026-09-11T12:04:50.872Z"
+  },
+  {
+    "scenarioId": "A4-physical-impossible",
+    "rep": 4,
+    "condition": "A",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 3,
+    "versioningQuality": 5,
+    "unsupportedClaims": [
+      "T2 SQL INSERT 문에서 Seq 26의 xl_raw 값으로 -0.05를 기재했으나, 제공 자료상 해당 레코드의 실제 xl 값은 686.577임."
+    ],
+    "rationale": "groundedness는 시퀀스 번호, 위반 값, 테이블명, API 경로를 정확히 인용했으나 T2 INSERT 문에 데이터 치환 오류가 있어 감점. diagnosisAccuracy는 Seq 26(z1≤0)과 Seq 27(xl>1920)의 물리적 위반 사실과 checkIntegrity 누락 원인을 정답 요지와 완벽히 매칭하여 5점. sqlCorrectness는 DDL이 PK 및 read_ 접두 규칙을 준수하고 T3 쿼리가 플래그 기반 필터링으로 질문을 정확히 해결하나, T2 INSERT의 명백한 값 오류로 strict 기준 3점 부여. versioningQuality는 v1 엔드포인트 무손상 유지, 신규 v2 라우트 분리, 인간 승인 게이트 포함 백필/컷오버 절차를 구체적으로 서술하여 즉시 실행 가능한 수준으로 5점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 21807,
+      "completion_tokens": 3519,
+      "total_tokens": 25326,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3237
+      }
+    },
+    "latencyMs": 111687,
+    "judgedAt": "2026-09-11T12:06:42.563Z"
+  },
+  {
+    "scenarioId": "A4-physical-impossible",
+    "rep": 4,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "새 Read Model 테이블은 필요 없습니다 (정답 요지 및 CQRS 관례상 위반 값 격리/체크제약용 v2 모델 생성이 필요함)",
+      "LATERAL jsonb_array_elements_text를 스칼라 JSONB에 적용하는 문법 오류 주장"
+    ],
+    "rationale": "T1은 물리성 위반 값을 정확히 진단했으나, 정답 요지에서 명시한 'v2 Read Model 생성 및 CHECK 제약 적용'을 무시하고 기존 테이블 조회만으로 해결하려 함. T2/T3 SQL은 스칼라 JSONB에 배열 추출 함수를 적용하는 문법 오류가 있으며, 위반 값 격리 아키텍처를 반영하지 못해 실효성이 떨어짐. T4는 자료 부재를 이유로 v1 호환 및 마이그레이션 절차를 제시하지 못해 점수 최저.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 16755,
+      "completion_tokens": 2813,
+      "total_tokens": 19568,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2598
+      }
+    },
+    "latencyMs": 56192,
+    "judgedAt": "2026-09-11T12:07:38.760Z"
+  },
+  {
+    "scenarioId": "A4-physical-impossible",
+    "rep": 5,
+    "condition": "A",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 4,
+    "versioningQuality": 5,
+    "unsupportedClaims": [
+      "T3 백필 SQL 작성 시 Seq 26 레코드에 xl 값이 정의되지 않았고, Seq 27 레코드에 z1 값이 정의되지 않았다고 잘못 서술함 (자료의 원시 JSON에서 양쪽 모두 해당 필드가 명확히 존재함)."
+    ],
+    "rationale": "T1은 정답 요지와 자료의 로그/원인을 정확히 매칭하여 5점. T2는 v1 무손상 제약과 권장 DDL을 정확히 준수하여 5점. T4는 자료의 버전 교체 코드와 절차에 부합하는 구체적 병행 운영 및 컷오버 방안을 제시하여 5점. T3의 SELECT는 의도대로 동작하나, 백필 SQL 작성 시 자료에 명시된 원시 JSON 데이터의 필드 존재 여부를 잘못 판단하여 xl과 z1이 누락되었다고 주장하는 근거 없는 주장을 포함했으므로 groundedness와 sqlCorrectness에서 감점 처리함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 23623,
+      "completion_tokens": 3702,
+      "total_tokens": 27325,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3459
+      }
+    },
+    "latencyMs": 120244,
+    "judgedAt": "2026-09-11T12:09:39.010Z"
+  },
+  {
+    "scenarioId": "A4-physical-impossible",
+    "rep": 5,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "새 Read Model 테이블은 필요 없습니다 (정답 요지 및 CQRS 관례상 위반 값 격리/체크제약용 v2 모델 생성이 필요함)",
+      "LATERAL jsonb_array_elements_text를 스칼라 JSONB에 적용하는 문법 오류 주장"
+    ],
+    "rationale": "T1은 물리성 위반 값을 정확히 진단했으나, 정답 요지에서 명시한 'v2 Read Model 생성 및 CHECK 제약 적용'을 무시하고 기존 테이블 조회만으로 해결하려 함. T2/T3 SQL은 스칼라 JSONB에 배열 추출 함수를 적용하는 문법 오류가 있으며, 위반 값 격리 아키텍처를 반영하지 못해 실효성이 떨어짐. T4는 자료 부재를 이유로 v1 호환 및 마이그레이션 절차를 제시하지 못해 점수 최저.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 16755,
+      "completion_tokens": 2813,
+      "total_tokens": 19568,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2598
+      }
+    },
+    "latencyMs": 56096,
+    "judgedAt": "2026-09-11T12:10:35.110Z"
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": 1,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 5,
+    "unsupportedClaims": [
+      "T3 SQL에서 v1 스키마에 jsonb로 정의된 robot_tf와 grip_3d_pose 컬럼을 직접 열로 참조함"
+    ],
+    "rationale": "groundedness는 자료의 수치·식별자·원인을 정확히 인용하여 5점. diagnosisAccuracy는 정합성 위반 문제와 Projector/DB constraint 부재 원인을 [정답 요지]와 일치시켜 5점. sqlCorrectness는 T2는 정확하나, T3에서 v1 스키마의 jsonb 타입 컬럼을 직접 열로 참조하는 오류가 있어 실행이 불가능하므로 2점. versioningQuality는 v1 유지, v2 추가, 병행 운영, 컷오버 검증 절차를 자료에 기반해 구체적으로 서술하여 5점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 16943,
+      "completion_tokens": 3696,
+      "total_tokens": 20639,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3485
+      }
+    },
+    "latencyMs": 103535,
+    "judgedAt": "2026-09-11T12:12:18.650Z"
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": 1,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "grip_3d_pose를 JSON 배열로 간주해 jsonb_array_elements_text 함수 사용",
+      "read_grip_anomaly 테이블 및 하드코딩된 워크스페이스/그리퍼 설정 컬럼 임의 설계",
+      "v1 API 스키마 정보 부족으로 T4 수행 불가 주장"
+    ],
+    "rationale": "T1은 자료의 경고와 원시 값을 정확히 매칭해 정답 요지의 문제·원인을 완벽히 진단했다(5점). 그러나 T2/T3 SQL은 정답 요지의 'Read Model 보강' 지시를 무시하고 새 테이블을 생성했으며, grip_3d_pose JSONB 객체를 배열 함수로 파싱하는 문법 오류와 하드코딩된 설정값으로 실행 가능성이 낮다(2점). T4는 v1 무손상 원칙에 부합하는 구체적인 버전 경로·병행 운영·마이그레이션 절차를 제시하지 않고 '자료 부족'으로 회피해 실무 적용이 불가능하다(1점). 전반적으로 T2/T3에서 자료에 없는 스키마와 함수를 임의로 설계해 근거 기반성도 훼손했다(3점).",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12533,
+      "completion_tokens": 3993,
+      "total_tokens": 16526,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3713
+      }
+    },
+    "latencyMs": 98866,
+    "judgedAt": "2026-09-11T12:13:57.525Z"
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": 2,
+    "condition": "A",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 2,
+    "unsupportedClaims": [
+      "T3 SQL에서 v1 테이블(read_grip_result)에 정의되지 않은 추출 컬럼(robot_tf_translation_z, grip_3d_pose_z_max)을 참조함",
+      "T4 SQL에 'v1 자산 무손상' 제약 조건을 위반하는 DROP TABLE read_grip_result 문이 포함됨"
+    ],
+    "rationale": "T1은 정답 요지와 자료 로그를 정확히 매칭하여 만점이며, T2는 contain 전략 SQL과 일치함. 그러나 T3은 v1 스키마에 jsonb로 정의된 컬럼을 추출한 가상의 열명으로 조회문을 작성해 실행이 불가능하며, 백필 SQL 지시를 무시함. T4는 상세한 컷오버 절차를 서술했으나 'v1 자산 무손상'이라는 명시적 제약 조건을 위반하는 DROP TABLE 문을 포함하여 감점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 16968,
+      "completion_tokens": 4033,
+      "total_tokens": 21001,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3809
+      }
+    },
+    "latencyMs": 110517,
+    "judgedAt": "2026-09-11T12:15:48.046Z"
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": 2,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "read_grip_anomaly 테이블 및 컬럼 존재 가정",
+      "grip_3d_pose를 JSON 배열로 간주한 jsonb_array_elements_text 사용",
+      "robotTfTranslation Z값을 Base Position으로 해석하여 Gripper Z와 더하는 좌표계 오해"
+    ],
+    "rationale": "T1은 로그 수치와 정합성 위반 문제를 정확히 매칭하여 높은 점수. T2/T3 SQL은 제공된 JSONB 객체 스키마와 호환되지 않는 함수를 사용하고, 로그가 이미 절대 좌표 위반을 명시함에도 Base+Gripper를 더하는 오해를 반영해 실행 불가. 정답 요지의 Read Model 보강 방향과 달리 새 테이블 생성을 제안했으며, T4는 v1 무손상 요구사항에 대해 답변 회피로 최저 점수.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12569,
+      "completion_tokens": 3447,
+      "total_tokens": 16016,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3233
+      }
+    },
+    "latencyMs": 81448,
+    "judgedAt": "2026-09-11T12:17:09.500Z"
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": 3,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 4,
+    "unsupportedClaims": [
+      "T4에서 기존 /grip-result 엔드포인트 응답 로직을 수정해 v1과 v2 데이터를 병합하여 반환하는 pseudo-code 제시 (자료는 v1 자산 무손상 및 신규 v2 독립 배선을 명시)"
+    ],
+    "rationale": "groundedness는 자료의 테이블명, 컬럼, 수치 범위([0.95, 1.15], [0.01, 0.30])를 정확히 인용하여 5점. diagnosisAccuracy는 정답 요지의 모순 데이터 적재 및 Read Model 보강/격리 조치와 완벽히 일치하여 5점. sqlCorrectness는 T2 DDL이 자료 명세와 동일하고 v1을 건드리지 않았으며, T3 쿼리가 신규 플래그를 활용해 조건을 정확히 필터링하여 5점. versioningQuality는 병행·백필·검증·컷오버 절차가 구체적이지만, 자료의 'v1 엔드포인트 무손상' 제약과 달리 기존 /grip-result 로직 수정 pseudo-code를 포함해 4점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 15040,
+      "completion_tokens": 2874,
+      "total_tokens": 17914,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2602
+      }
+    },
+    "latencyMs": 82779,
+    "judgedAt": "2026-09-11T12:18:32.284Z"
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": 3,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "robotTfTranslation z는 로봇 기반 위치이며 그리퍼 Z를 더해야 절대 높이가 됨",
+      "워크스페이스/그리퍼 범위 정의가 필요함 (자료에 이미 명시)",
+      "새로운 Read Model 테이블 생성이 필수임"
+    ],
+    "rationale": "T1은 정답 요지와 일치해 진단 정확도 5점. 그러나 T2 SQL에서 grip_3d_pose(JSONB 객체)를 배열로 처리해 문법 오류가 발생하며, 자료에 없는 절대 높이 계산 가정을 적용해 groundedness와 sqlCorrectness를 낮춤. T4는 v1 무손상 요구사항에 대한 구체적 절차를 제시하지 않고 회피해 versioningQuality 1점. 전반적으로 근거 없는 계산 로직과 SQL 오류가 핵심 점수를 제약함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12569,
+      "completion_tokens": 3860,
+      "total_tokens": 16429,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3654
+      }
+    },
+    "latencyMs": 74458,
+    "judgedAt": "2026-09-11T12:19:46.748Z"
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": 4,
+    "condition": "A",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 5,
+    "unsupportedClaims": [
+      "T3 SQL에서 기존 v1 테이블(read_grip_result)에 robot_tf_translation_z, grip_3d_pose_z_max 컬럼이 존재한다고 가정하여 조회함. 자료의 DDL에 따르면 해당 필드는 jsonb 타입으로 중첩되어 있으며, 추출 컬럼은 신규 v2 모델에서만 정의됨."
+    ],
+    "rationale": "T1 진단과 T4 버전 관리 절차는 자료의 정답 요지, DDL 스키마, 마이그레이션 가이드라인과 정확히 일치하여 높은 점수. T2 격리 SQL도 자료의 즉시 조치 권고와 동일함. 그러나 T3 SQL은 기존 v1 테이블의 jsonb 중첩 구조를 무시하고 존재하지 않는 추출 컬럼을 직접 조회하도록 작성하여 실행이 불가능하며, 자료의 사실과 배치됨. 이에 groundedness와 sqlCorrectness에서 엄격하게 감점 처리함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 16840,
+      "completion_tokens": 3148,
+      "total_tokens": 19988,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2921
+      }
+    },
+    "latencyMs": 92523,
+    "judgedAt": "2026-09-11T12:21:19.275Z"
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": 4,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "robotTfTranslation z는 로봇 기반 위치이며 그리퍼 Z를 더해야 절대 높이가 됨",
+      "워크스페이스/그리퍼 범위 정의가 필요함 (자료에 이미 명시)",
+      "새로운 Read Model 테이블 생성이 필수임"
+    ],
+    "rationale": "T1은 정답 요지와 일치해 진단 정확도 5점. 그러나 T2 SQL에서 grip_3d_pose(JSONB 객체)를 배열로 처리해 문법 오류가 발생하며, 자료에 없는 절대 높이 계산 가정을 적용해 groundedness와 sqlCorrectness를 낮춤. T4는 v1 무손상 요구사항에 대한 구체적 절차를 제시하지 않고 회피해 versioningQuality 1점. 전반적으로 근거 없는 계산 로직과 SQL 오류가 핵심 점수를 제약함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12569,
+      "completion_tokens": 3860,
+      "total_tokens": 16429,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3654
+      }
+    },
+    "latencyMs": 74457,
+    "judgedAt": "2026-09-11T12:22:33.735Z"
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": 5,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 4,
+    "unsupportedClaims": [],
+    "rationale": "T1은 자료의 로그 수치와 정답 요지의 문제/원인을 정확히 매칭하여 5점. T2 DDL은 자료와 일치하나, T3 SQL에서 단순 조회 요청에 불필요한 백필 DML을 포함했으며 PostgreSQL JSONB 추출 문법(`->'z'||keys.key`)이 구문 오류로 실행 불가능하여 2점. T4는 병행 운영·백필·검증·컷오버 단계를 자료의 마이그레이션 절차에 맞게 구체적으로 서술하여 4점. 전제 조건과 자료 기반 주장으로 무리 없음.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 18896,
+      "completion_tokens": 3437,
+      "total_tokens": 22333,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3262
+      }
+    },
+    "latencyMs": 103257,
+    "judgedAt": "2026-09-11T12:24:16.997Z"
+  },
+  {
+    "scenarioId": "A5-consistency-violation",
+    "rep": 5,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "robotTfTranslation z는 로봇 기반 위치이며 그리퍼 Z를 더해야 절대 높이가 됨",
+      "워크스페이스/그리퍼 범위 정의가 필요함 (자료에 이미 명시)",
+      "새로운 Read Model 테이블 생성이 필수임"
+    ],
+    "rationale": "T1은 정답 요지와 일치해 진단 정확도 5점. 그러나 T2 SQL에서 grip_3d_pose(JSONB 객체)를 배열로 처리해 문법 오류가 발생하며, 자료에 없는 절대 높이 계산 가정을 적용해 groundedness와 sqlCorrectness를 낮춤. T4는 v1 무손상 요구사항에 대한 구체적 절차를 제시하지 않고 회피해 versioningQuality 1점. 전반적으로 근거 없는 계산 로직과 SQL 오류가 핵심 점수를 제약함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12569,
+      "completion_tokens": 3860,
+      "total_tokens": 16429,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3654
+      }
+    },
+    "latencyMs": 74549,
+    "judgedAt": "2026-09-11T12:25:31.554Z"
+  },
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": 1,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 4,
+    "unsupportedClaims": [],
+    "rationale": "T1은 자료의 Z평균 급변 수치(0.06→0.17, Δ=0.11)와 정답 요지의 물리적 정체성 위반 원인을 정확히 매칭하여 5점. T2 DDL은 제공된 스키마와 완벽히 일치하며 v1 무손상 제약을 준수해 5점. T3 SQL은 LAG 윈도우 함수를 활용해 장면 내 시도 간 ΔZ를 정확히 계산하고 0.10m 이상만 필터링해 5점. T4는 병행 운영 및 정합성 검증 절차가 정확하나, 컷오버 단계에서 'v1 테이블/라우트 삭제'를 명시하여 제약 조건('v1 자산 무손상')과 충돌하므로 4점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 13833,
+      "completion_tokens": 3260,
+      "total_tokens": 17093,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3049
+      }
+    },
+    "latencyMs": 87405,
+    "judgedAt": "2026-09-11T12:26:58.963Z"
+  },
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": 1,
+    "condition": "B1",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "T2에서 '새 Read Model 테이블이 필요하지 않다'고 단정 (정답 요지에서는 v2 모델 생성을 명시)",
+      "T3 질문의 '평균 깊이'를 'z1 단일 좌표'로 대체하여 조회"
+    ],
+    "rationale": "T1은 정답 요지의 급변 원인과 임계값 초과 사실을 원시 레코드로 정확히 검증해 5점이다. T2/T3 SQL은 질문이 요구하는 '평균 깊이' 대신 'z1 좌표'를 사용했으며, 정답 요지의 v2 Read Model 생성 및 플래그 아키텍처를 무시해 2점이다. T4는 자료에 절차가 없어 v1 호환/컷오버 구체 방안을 제시하지 못해 1점이다. 자료 기반 검증은 우수하나 핵심 요구사항 누락으로 감점한다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 5895,
+      "completion_tokens": 4225,
+      "total_tokens": 10120,
+      "completion_tokens_details": {
+        "reasoning_tokens": 4004
+      }
+    },
+    "latencyMs": 87705,
+    "judgedAt": "2026-09-11T12:28:26.670Z"
+  },
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": 2,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 2,
+    "unsupportedClaims": [
+      "T4 단계 5에서 v1 테이블 삭제(DROP) 및 기존 엔드포인트 제거를 제안했으나, 자료의 명시적 제약조건 'v1 자산 무손상'에 위배됨.",
+      "T4에서 DDL 실행 및 API 컷오버 시 필수인 'human-in-the-loop(인간 승인)' 게이트를 누락함."
+    ],
+    "rationale": "T1~T3는 자료의 로그, 스키마, 제약조건을 정확히 반영하여 문제 진단과 SQL 생성이 완벽함. 그러나 T4는 자료의 핵심 제약조건인 'v1 자산 무손상'을 위반하는 파괴적 컷오버(DROP/삭제)를 제안했으며, 자료에서 반복 강조한 'human-in-the-loop' 승인 절차를 누락하여 버전 관리 품질이 크게 떨어짐.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 13196,
+      "completion_tokens": 3843,
+      "total_tokens": 17039,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3628
+      }
+    },
+    "latencyMs": 97649,
+    "judgedAt": "2026-09-11T12:30:04.322Z"
+  },
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": 2,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "새 Read Model 테이블이 필요하지 않습니다 (정답 요지 및 CQRS 관점과 상충)",
+      "WHERE grip_succeed = 1 필터 (자료/질문에 근거 없음)",
+      "평균 깊이 대신 z1 단일 좌표 비교로 검증 가능 (정답 요지 및 로그와 상충)"
+    ],
+    "rationale": "진단(T1)은 정답 요지의 장면 내 시도 간 평균 깊이 급변(Δ>0.10m) 및 물리 검사 미적용 사실을 정확히 포착해 5점을 부여합니다. 자료 기반성은 원시 레코드와 로그를 인용했으나 핵심 아키텍처 주장인 '새 Read Model 불필요'가 자료와 정답 요지에 반하고, 평균 대신 z1 단일 값을 사용하며 grip_succeed 필터를 임의로 추가해 3점입니다. SQL은 정답 요지에서 요구하는 Read Model(v2) 생성을 거부하고 기존 v1 테이블만 조회하도록 작성했으며, 평균 계산과 플래그 저장 로직이 누락되어 2점입니다. 버전 관리는 v1 클라이언트 보호를 위한 병행 운영, 백필, 컷오버 절차가 전혀 제시되지 않고 단순 테이블명 추론만 그쳤으므로 1점입니다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 5987,
+      "completion_tokens": 5331,
+      "total_tokens": 11318,
+      "completion_tokens_details": {
+        "reasoning_tokens": 5028
+      }
+    },
+    "latencyMs": 104956,
+    "judgedAt": "2026-09-11T12:31:49.280Z"
+  },
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": 3,
+    "condition": "A",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 5,
+    "unsupportedClaims": [
+      "v1 테이블(read_grip_result)에 ALTER TABLE로 컬럼 추가 및 UPDATE 수행 방안",
+      "JSONB 필드에 LAG 윈도우 함수 적용 문법"
+    ],
+    "rationale": "T1은 자료의 로그와 정답 요지를 정확히 인용해 문제 원인을 진단했으나, T2/T3에서 명시된 'v1 자산 무손상' 제약을 위반하며 v1 테이블을 ALTER하는 방안을 제시했다. 또한 PostgreSQL JSONB와 윈도우 함수를 혼용한 SQL 문법은 실행 불가능하며 자료의 v2 Read Model 설계와도 맞지 않아 sqlCorrectness는 1점이다. T4는 자료의 API 버전화 및 병행 운영 절차를 정확히 서술하여 5점이다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 13763,
+      "completion_tokens": 3609,
+      "total_tokens": 17372,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3417
+      }
+    },
+    "latencyMs": 94334,
+    "judgedAt": "2026-09-11T12:33:23.619Z"
+  },
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": 3,
+    "condition": "B1",
+    "groundedness": 2,
+    "diagnosisAccuracy": 4,
+    "sqlCorrectness": 2,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "새 Read Model 테이블이 필요하지 않습니다 (정답 요지와 상충)",
+      "z1 단일 좌표를 z 평균으로 대체함",
+      "read_grip_anomaly 테이블 스키마 임의 생성"
+    ],
+    "rationale": "groundedness: T4에서 자료에 없는 테이블 스키마를 임의로 생성했으며, 정답 요지의 'Read Model(v2) 신규 구축' 지시를 무시함. diagnosisAccuracy: T1은 장면 내 시도 간 깊이 급변(Δ>0.10m)을 정확히 지적했으나, 정답 요지의 '물리/정합성 검사 통과' 및 '평균 깊이 기준'이라는 핵심 뉘앙스를 누락함. sqlCorrectness: T2/T3 SQL은 LAG 함수의 컬럼 할당 순서가 반전되어 양수 점프 시 음수 차이를 계산하며, 질문 요구사항인 'z 평균' 대신 'z1'을 사용하고 v2 Read Model 구축을 생략함. versioningQuality: T4는 v1 클라이언트 보호를 위한 버전 경로, 병행 운영, 컷오버 절차 등 구체적 마이그레이션 전략을 entirely 누락하고 단순 테이블명 추론만 제시함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 5987,
+      "completion_tokens": 4341,
+      "total_tokens": 10328,
+      "completion_tokens_details": {
+        "reasoning_tokens": 4046
+      }
+    },
+    "latencyMs": 81936,
+    "judgedAt": "2026-09-11T12:34:45.559Z"
+  },
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": 4,
+    "condition": "A",
+    "groundedness": 3,
+    "diagnosisAccuracy": 4,
+    "sqlCorrectness": 2,
+    "versioningQuality": 5,
+    "unsupportedClaims": [
+      "T1에서 z축 평균값을 0.0526m/0.1626m로 인용했으나, 이는 자료의 grip3dPose.z8 값이며 실제 평균(~0.060m/~0.170m)이 아님.",
+      "T3 SQL은 PostgreSQL 문법 오류가 있으며, v1 테이블에 존재하지 않는 컬럼을 UPDATE하여 'v1 자산 무손상' 제약과 정답 요지(신독 v2)에 위배됨."
+    ],
+    "rationale": "T1은 문제와 원인을 정확히 진단했으나, 평균값 대신 z8 값을 인용하는 수치 오류가 있어 diagnosisAccuracy 4점. T2는 자료의 contain 전략 SQL을 제시했으나 정답 요지에서는 v2 플래그링을 권장하므로 4점. T3 SQL은 문법 오류가 있고 v1 스키마 변경을 시도하여 sqlCorrectness 2점. T4는 additive migration, 병행 운영, human-in-the-loop 컷오버를 정확히 서술하여 5점. T1의 수치 오류와 T3의 근거 없는 SQL 구현으로 groundedness는 3점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 14639,
+      "completion_tokens": 4924,
+      "total_tokens": 19563,
+      "completion_tokens_details": {
+        "reasoning_tokens": 4635
+      }
+    },
+    "latencyMs": 125071,
+    "judgedAt": "2026-09-11T12:36:50.634Z"
+  },
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": 4,
+    "condition": "B1",
+    "groundedness": 2,
+    "diagnosisAccuracy": 4,
+    "sqlCorrectness": 2,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "새 Read Model 테이블이 필요하지 않습니다 (정답 요지와 상충)",
+      "z1 단일 좌표를 z 평균으로 대체함",
+      "read_grip_anomaly 테이블 스키마 임의 생성"
+    ],
+    "rationale": "groundedness: T4에서 자료에 없는 테이블 스키마를 임의로 생성했으며, 정답 요지의 'Read Model(v2) 신규 구축' 지시를 무시함. diagnosisAccuracy: T1은 장면 내 시도 간 깊이 급변(Δ>0.10m)을 정확히 지적했으나, 정답 요지의 '물리/정합성 검사 통과' 및 '평균 깊이 기준'이라는 핵심 뉘앙스를 누락함. sqlCorrectness: T2/T3 SQL은 LAG 함수의 컬럼 할당 순서가 반전되어 양수 점프 시 음수 차이를 계산하며, 질문 요구사항인 'z 평균' 대신 'z1'을 사용하고 v2 Read Model 구축을 생략함. versioningQuality: T4는 v1 클라이언트 보호를 위한 버전 경로, 병행 운영, 컷오버 절차 등 구체적 마이그레이션 전략을 entirely 누락하고 단순 테이블명 추론만 제시함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 5987,
+      "completion_tokens": 4341,
+      "total_tokens": 10328,
+      "completion_tokens_details": {
+        "reasoning_tokens": 4046
+      }
+    },
+    "latencyMs": 82187,
+    "judgedAt": "2026-09-11T12:38:12.823Z"
+  },
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": 5,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "T1은 정답 요지의 Δ>0.10m 급변, warning 심각도, v2 Read Model 플래그 생성 및 v1 무손상 요건을 자료의 근본원인/권고 섹션과 정확히 매칭하여 5점. T2는 DDL은 정합이나 즉시 격리 SQL의 대상 테이블명을 자료의 권고사항과 달리 신규 v2로 잘못 지정하여 논리적 오류가 있음. T3 백필 SQL은 PostgreSQL JSONB 객체 추출 문법(`jsonb_array_elements`는 배열 전용) 오류와 조인/서브쿼리 로직 결함으로 실행이 불가능하며, 점프 조회 SQL도 attempt_num의 연속성만 가정하여 취약하므로 2점. T4는 자료의 human-in-the-loop, v1 자산 무손상, 병행 운영 및 컷오버 절차를 정확히 반영하여 5점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 13915,
+      "completion_tokens": 3576,
+      "total_tokens": 17491,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3338
+      }
+    },
+    "latencyMs": 95830,
+    "judgedAt": "2026-09-11T12:39:48.658Z"
+  },
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": 5,
+    "condition": "B1",
+    "groundedness": 2,
+    "diagnosisAccuracy": 4,
+    "sqlCorrectness": 2,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "새 Read Model 테이블이 필요하지 않습니다 (정답 요지와 상충)",
+      "z1 단일 좌표를 z 평균으로 대체함",
+      "read_grip_anomaly 테이블 스키마 임의 생성"
+    ],
+    "rationale": "groundedness: T4에서 자료에 없는 테이블 스키마를 임의로 생성했으며, 정답 요지의 'Read Model(v2) 신규 구축' 지시를 무시함. diagnosisAccuracy: T1은 장면 내 시도 간 깊이 급변(Δ>0.10m)을 정확히 지적했으나, 정답 요지의 '물리/정합성 검사 통과' 및 '평균 깊이 기준'이라는 핵심 뉘앙스를 누락함. sqlCorrectness: T2/T3 SQL은 LAG 함수의 컬럼 할당 순서가 반전되어 양수 점프 시 음수 차이를 계산하며, 질문 요구사항인 'z 평균' 대신 'z1'을 사용하고 v2 Read Model 구축을 생략함. versioningQuality: T4는 v1 클라이언트 보호를 위한 버전 경로, 병행 운영, 컷오버 절차 등 구체적 마이그레이션 전략을 entirely 누락하고 단순 테이블명 추론만 제시함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 5987,
+      "completion_tokens": 4341,
+      "total_tokens": 10328,
+      "completion_tokens_details": {
+        "reasoning_tokens": 4046
+      }
+    },
+    "latencyMs": 82185,
+    "judgedAt": "2026-09-11T12:41:10.845Z"
+  },
+  {
+    "scenarioId": "A7-grip-depth-underflow",
+    "rep": 1,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 4,
+    "unsupportedClaims": [],
+    "rationale": "groundedness는 자료의 테이블명, 컬럼명, 시퀀스 번호를 정확히 인용해 외부 추측이나 지어낸 값이 전혀 없었음. diagnosisAccuracy는 정답 요지와 일치하게 성공 맥락에서 z1~z8 하한 미만을 지적하고, 자료의 권고 섹션에 명시된 GripResultProjector의 무결성 훅 누락을 원인으로 정확히 도출함. sqlCorrectness는 T2가 자료의 contain 전략 SQL과 일치하며, T3이 v2 스키마를 활용해 LEAST 함수로 최소 깊이를 정확히 계산하고 조건에 맞게 필터링해 v1 테이블을 수정하지 않음. versioningQuality는 버전 경로 병행 운영과 v1 무손상 전략을 명확히 서술했으나, 자료의 핵심 제약사항인 'DDL 실행 및 API 컷오버는 인간 승인 후에만'이라는 human-in-the-loop 게이트를 구체적 절차에 명시적으로 반영하지 못해 감점함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 17836,
+      "completion_tokens": 3819,
+      "total_tokens": 21655,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3557
+      }
+    },
+    "latencyMs": 110383,
+    "judgedAt": "2026-09-11T12:43:01.232Z"
+  },
+  {
+    "scenarioId": "A7-grip-depth-underflow",
+    "rep": 1,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "grip_3d_pose를 JSONB 배열로 오인하여 jsonb_array_elements_text 사용",
+      "정답 요지의 'v1 무손상' 원칙을 위반하며 기존 테이블에 ALTER TABLE 제안",
+      "T4에서 v1 보호 절차를 제시하지 않고 자료 부재를 이유로 회피"
+    ],
+    "rationale": "T1은 자료의 수치와 정답 요지의 모순 지점을 정확히 진단하여 높은 점수. 그러나 T2 SQL은 기존 Read Model을 직접 수정(ALTER)하여 정답 요지의 'v1 무손상' 원칙을 위반하며, JSONB 객체를 배열로 오인하는 문법적 오류가 반복되어 실행 불가. T3도 동일한 flawed SQL에 의존하여 유효하지 않음. T4는 구체적인 v1 보호 절차를 제시하지 않고 자료 부재를 이유로 회피함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 16411,
+      "completion_tokens": 3373,
+      "total_tokens": 19784,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3155
+      }
+    },
+    "latencyMs": 97273,
+    "judgedAt": "2026-09-11T12:44:38.509Z"
+  },
+  {
+    "scenarioId": "A7-grip-depth-underflow",
+    "rep": 3,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "T1은 자료의 로그 수치와 정답 요지의 문제·원인을 정확히 매칭하여 5점. T2는 자료의 즉시 격리 SQL을 그대로 적용해 v1 무손상 원칙을 준수하므로 5점. T3은 단순 조회 질문에 불필요한 DDL 생성과 함께, JSONB 객체에서 z1~z8 숫자값을 추출하는 로직이 기술적으로 오류가 있어 1점. T4는 자료의 API 버전 관리 및 human-in-the-loop 컷오버 절차를 정확히 반영하여 5점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 16798,
+      "completion_tokens": 3356,
+      "total_tokens": 20154,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3189
+      }
+    },
+    "latencyMs": 98406,
+    "judgedAt": "2026-09-11T12:46:16.917Z"
+  },
+  {
+    "scenarioId": "A7-grip-depth-underflow",
+    "rep": 3,
+    "condition": "B1",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 1,
+    "unsupportedClaims": [],
+    "rationale": "T1은 정답 요지의 모순 지점과 원시 레코드 수치를 정확히 인용하여 진단 정확도 5점. T2/T3 SQL은 괄호만 수백 개 중첩된 구문 오류로 실행 및 검증이 불가능하며, 정답 요지의 'Read Model 보강'을 새 테이블 생성으로 과잉 설계하여 1점. T4는 v1 보호 절차 제시를 거부해 1점. Groundedness는 T1의 정확한 근거로 4점 부여.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 23547,
+      "completion_tokens": 2960,
+      "total_tokens": 26507,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2803
+      }
+    },
+    "latencyMs": 96686,
+    "judgedAt": "2026-09-11T12:47:53.610Z"
+  },
+  {
+    "scenarioId": "A7-grip-depth-underflow",
+    "rep": 4,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "T1은 자료의 로그와 정답 요지대로 파지 성공과 깊이 하한 미달의 모순 원인을 정확히 진단했다. T2/T3 SQL은 자료에 명시된 격리 쿼리와 스키마 필드를 정확히 반영하여 문제를 해결하고 질의에 답한다. T4는 자료의 v2 마이그레이션 계획에 따라 병행 운영, 백필, 컷오버 및 인간 승인 절차를 구체적으로 서술하여 v1 클라이언트 보호를 보장한다. 모든 답변은 제공된 자료와 정답 요지에 기반하여 지어낸 값이나 근거 없는 주장을 포함하지 않았다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 16060,
+      "completion_tokens": 3540,
+      "total_tokens": 19600,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3360
+      }
+    },
+    "latencyMs": 100393,
+    "judgedAt": "2026-09-11T12:49:34.006Z"
+  },
+  {
+    "scenarioId": "A7-grip-depth-underflow",
+    "rep": 4,
+    "condition": "B1",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 1,
+    "unsupportedClaims": [],
+    "rationale": "T1은 정답 요지의 모순 지점과 원시 레코드 수치를 정확히 인용하여 진단 정확도 5점. T2/T3 SQL은 괄호만 수백 개 중첩된 구문 오류로 실행 및 검증이 불가능하며, 정답 요지의 'Read Model 보강'을 새 테이블 생성으로 과잉 설계하여 1점. T4는 v1 보호 절차 제시를 거부해 1점. Groundedness는 T1의 정확한 근거로 4점 부여.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 23547,
+      "completion_tokens": 2960,
+      "total_tokens": 26507,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2803
+      }
+    },
+    "latencyMs": 64419,
+    "judgedAt": "2026-09-11T12:50:38.431Z"
+  },
+  {
+    "scenarioId": "A7-grip-depth-underflow",
+    "rep": 5,
+    "condition": "A",
+    "groundedness": 2,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 5,
+    "unsupportedClaims": [
+      "T3 답변의 1~98단계 반복 주석 및 누락된 SELECT 문",
+      "T3 내 event_store 스키마 부재 가정 반복 서술"
+    ],
+    "rationale": "T1은 정답 요지와 문제·원인·근거가 일치하여 5점. T2는 자료의 격리 SQL을 정확히 인용. 그러나 T3은 요청된 SELECT 문 대신 1~98단계의 동일 주석을 반복하고 종료되어 SQL 정확도 1점. T4는 v1 무손상 및 병행 운영 절차를 명확히 서술하여 5점. T3의 반복 텍스트는 자료에 존재하지 않아 근거성에서 감점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 24398,
+      "completion_tokens": 2571,
+      "total_tokens": 26969,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2385
+      }
+    },
+    "latencyMs": 99846,
+    "judgedAt": "2026-09-11T12:52:18.282Z"
+  },
+  {
+    "scenarioId": "A7-grip-depth-underflow",
+    "rep": 5,
+    "condition": "B1",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 1,
+    "unsupportedClaims": [],
+    "rationale": "T1은 정답 요지의 모순 지점과 원시 레코드 수치를 정확히 인용하여 진단 정확도 5점. T2/T3 SQL은 괄호만 수백 개 중첩된 구문 오류로 실행 및 검증이 불가능하며, 정답 요지의 'Read Model 보강'을 새 테이블 생성으로 과잉 설계하여 1점. T4는 v1 보호 절차 제시를 거부해 1점. Groundedness는 T1의 정확한 근거로 4점 부여.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 23547,
+      "completion_tokens": 2960,
+      "total_tokens": 26507,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2803
+      }
+    },
+    "latencyMs": 64437,
+    "judgedAt": "2026-09-11T12:53:22.725Z"
+  },
+  {
+    "scenarioId": "A8-translation-x-violation",
+    "rep": 1,
+    "condition": "A",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 5,
+    "unsupportedClaims": [
+      "T3 백필 SQL에서 기존 v1 테이블(read_grip_result)에 존재하지 않는 컬럼(robot_tf_translation_x, robot_tf_translation_y)을 CASE 조건으로 참조"
+    ],
+    "rationale": "T1은 정답 요지와 정확히 일치하며 시퀀스·수치·로그 인용이 정확함. T2 DDL 및 격리 DELETE는 자료와 일치하나, T3 백필 SQL에서 v1 스키마에 존재하지 않는 컬럼을 참조하고 PostgreSQL JSONB 추출 문법이 오류가 있어 치명적 결함이 있음. T4는 자료의 비파괴 마이그레이션 및 human-in-the-loop 절차를 정확히 반영함. 전반적으로 근거는 탄탄하나 T3 SQL의 환각으로 인해 groundedness와 sqlCorrectness에서 감점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 16679,
+      "completion_tokens": 4493,
+      "total_tokens": 21172,
+      "completion_tokens_details": {
+        "reasoning_tokens": 4287
+      }
+    },
+    "latencyMs": 121904,
+    "judgedAt": "2026-09-11T12:55:24.634Z"
+  },
+  {
+    "scenarioId": "A8-translation-x-violation",
+    "rep": 1,
+    "condition": "B1",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 3,
+    "versioningQuality": 1,
+    "unsupportedClaims": [],
+    "rationale": "T1은 원시 레코드 수치와 정답 요지의 정합성 위반 원인을 정확히 식별하여 5점. T2/T3 SQL은 진단용 SELECT에 그쳤고, PostgreSQL의 `->>0::float` 연산자 우선순위 문제로 실행이 불안정하며, T2(해결)와 T3(파생질의)가 동일하여 실제 조치나 파생 분석이 누락되어 3점. T4는 정답 요지의 'v1 무손상' 요구사항과 CQRS Read Model 보강 관례를 무시하고 자료 부재를 이유로 답변을 회피하여 1점. 전반적으로 데이터 기반 분석은 정확하나 해결 방안 및 버전 관리 측면에서 미흡함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 6603,
+      "completion_tokens": 3292,
+      "total_tokens": 9895,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3089
+      }
+    },
+    "latencyMs": 73955,
+    "judgedAt": "2026-09-11T12:56:38.593Z"
+  },
+  {
+    "scenarioId": "A8-translation-x-violation",
+    "rep": 2,
+    "condition": "A",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 5,
+    "unsupportedClaims": [
+      "T3 백필 SQL에서 자료에 존재하지 않는 event_store 테이블 및 컬럼 구조를 가정함",
+      "PostgreSQL JSONB 배열 추출 문법 (payload->...)->'0'::double precision이 구문 오류이며 자료에 없음"
+    ],
+    "rationale": "T1 진단과 T2 DDL, T4 버전 관리 절차는 자료의 로그, 스키마, 제약조건을 정확히 반영하여 높은 점수. T3의 백필 SQL은 자료에 없는 event_store 테이블을 가정하고 PostgreSQL JSONB 배열 추출 문법이 구문 오류이므로 sqlCorrectness와 groundedness에서 감점. T4는 병행 운영과 human-in-the-loop 절차를 명확히 서술하여 버전 관리 기준을 충족함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 14237,
+      "completion_tokens": 3855,
+      "total_tokens": 18092,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3661
+      }
+    },
+    "latencyMs": 102294,
+    "judgedAt": "2026-09-11T12:58:20.890Z"
+  },
+  {
+    "scenarioId": "A8-translation-x-violation",
+    "rep": 2,
+    "condition": "B1",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 1,
+    "unsupportedClaims": [],
+    "rationale": "T1은 제공된 로그의 수치와 범위를 정확히 인용하여 정답 요지와 일치하는 진단을 내렸고, T2/T3는 기존 Read Model 스키마를 변경하지 않고 JSONB 배열 접근으로 조건부 조회 쿼리를 정확히 작성하여 문제를 해결했다. 반면 T4는 자료 부재를 이유로 v1 클라이언트 호환을 위한 구체적 마이그레이션 절차(가독 필드 추가, 버전 경로 설정, 병행 운영 등)를 제시하지 않아 아키텍처 요구사항을 완전히 충족시키지 못했다. 지어낸 주장이나 부정확한 SQL은 발견되지 않았다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 6608,
+      "completion_tokens": 2870,
+      "total_tokens": 9478,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2690
+      }
+    },
+    "latencyMs": 58938,
+    "judgedAt": "2026-09-11T12:59:19.832Z"
+  },
+  {
+    "scenarioId": "A8-translation-x-violation",
+    "rep": 3,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 3,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 모든 수치, 식별자, 테이블명, API 경로가 자료와 정확히 일치하며 외부 추측이나 지어낸 값이 없음. diagnosisAccuracy: 정답 요지의 핵심 문제(파지 성공 but translation 밖)와 원인(정합성 검증 누락)을 정확히 매칭하여 오진 없음. sqlCorrectness: T2 SQL은 자료 DDL과 완벽 일치하나, T3 백필 쿼리에 CROSS JOIN LATERAL 문법 오류와 참조 불일치가 있어 실행 불가함. 다만 선택적 백필 항목이며 최종 질문 답변용 SELECT문은 v2 스키마 기반 조건을 정확히 적용하여 의도한 결과를 도출함. versioningQuality: v1 무손상, 신규 엔드포인트 병행 운영, 인간 승인 게이트, 백필/컷오버 순서를 자료의 마이그레이션 절차와 정확히 매핑하여 구체적 실행 방안 제시.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 16052,
+      "completion_tokens": 4315,
+      "total_tokens": 20367,
+      "completion_tokens_details": {
+        "reasoning_tokens": 4067
+      }
+    },
+    "latencyMs": 116331,
+    "judgedAt": "2026-09-11T13:01:16.166Z"
+  },
+  {
+    "scenarioId": "A8-translation-x-violation",
+    "rep": 3,
+    "condition": "B1",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 1,
+    "unsupportedClaims": [],
+    "rationale": "T1은 원시 레코드 수치와 정답 요지의 위반 조건을 정확히 매칭하여 문제와 원인을 명확히 진단했으며(5점), T2/T3 SQL은 기존 jsonb 컬럼을 조회 조건으로 활용하고 DDL 변경 없이 질문 의도를 정확히 구현하여(5점) 높은 점수를 받음. groundedness는 자료 외 추측이나 지어낸 값이 전혀 없어(5점) 평가됨. 반면 T4는 v1 호환성 보호를 위한 구체적인 마이그레이션/버전 관리 절차를 제시하지 않고 자료 부족을 이유로 답변을 회피하여(1점) 낮은 점수.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 6608,
+      "completion_tokens": 3410,
+      "total_tokens": 10018,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3230
+      }
+    },
+    "latencyMs": 65325,
+    "judgedAt": "2026-09-11T13:02:21.493Z"
+  },
+  {
+    "scenarioId": "A8-translation-x-violation",
+    "rep": 4,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 2,
+    "unsupportedClaims": [
+      "컷오버 단계에서 v1 엔드포인트 및 테이블 삭제/비활성화를 제안하여 'v1 자산 무손상' 제약 조건과 충돌함."
+    ],
+    "rationale": "T1~T3는 자료의 수치, 식별자, 제약 조건을 정확히 반영하여 높은 완성도를 보임. T2 격리 SQL과 T3 JSONB 조회 문은 실행 가능하고 요구사항을 충족함. 그러나 T4는 컷오버 시 v1 리소스 삭제를 제안하여 자료의 핵심 제약('v1 자산 무손상')을 위반함. 병행 운영만 유지해야 하므로 버전 관리 점수를 감점함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 14927,
+      "completion_tokens": 3483,
+      "total_tokens": 18410,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3301
+      }
+    },
+    "latencyMs": 96585,
+    "judgedAt": "2026-09-11T13:03:58.084Z"
+  },
+  {
+    "scenarioId": "A8-translation-x-violation",
+    "rep": 4,
+    "condition": "B1",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 1,
+    "unsupportedClaims": [],
+    "rationale": "T1은 원시 레코드 수치와 정답 요지의 위반 조건을 정확히 매칭하여 문제와 원인을 명확히 진단했으며(5점), T2/T3 SQL은 기존 jsonb 컬럼을 조회 조건으로 활용하고 DDL 변경 없이 질문 의도를 정확히 구현하여(5점) 높은 점수를 받음. groundedness는 자료 외 추측이나 지어낸 값이 전혀 없어(5점) 평가됨. 반면 T4는 v1 호환성 보호를 위한 구체적인 마이그레이션/버전 관리 절차를 제시하지 않고 자료 부족을 이유로 답변을 회피하여(1점) 낮은 점수.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 6608,
+      "completion_tokens": 3410,
+      "total_tokens": 10018,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3230
+      }
+    },
+    "latencyMs": 65152,
+    "judgedAt": "2026-09-11T13:05:03.238Z"
+  },
+  {
+    "scenarioId": "A8-translation-x-violation",
+    "rep": 5,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness는 자료의 로그 수치와 스키마 정의만 정확히 인용하여 지어낸 값이나 외부 추측이 전무함. diagnosisAccuracy는 정답 요지의 작업 영역 이탈 정합성 위반과 프로젝트어 검증 로직 누락 원인을 정확히 매칭함. sqlCorrectness는 v2 스키마와 범위 조건을 정확히 반영한 DDL 및 조회 쿼리를 작성하여 기존 v1 테이블을 건드리지 않으며 질문 의도를 정확히 해결함. versioningQuality는 자료의 마이그레이션 절차(경로 분리, 신구 병행 운영, 컷오버 전 검증, 인간 승인 게이트)를 구체적이고 실행 가능한 단계로 정확히 재구성하여 v1 클라이언트를 완벽하게 보호함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 15350,
+      "completion_tokens": 2721,
+      "total_tokens": 18071,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2512
+      }
+    },
+    "latencyMs": 82148,
+    "judgedAt": "2026-09-11T13:06:25.398Z"
+  },
+  {
+    "scenarioId": "A8-translation-x-violation",
+    "rep": 5,
+    "condition": "B1",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 1,
+    "unsupportedClaims": [],
+    "rationale": "T1은 원시 레코드 수치와 정답 요지의 위반 조건을 정확히 매칭하여 문제와 원인을 명확히 진단했으며(5점), T2/T3 SQL은 기존 jsonb 컬럼을 조회 조건으로 활용하고 DDL 변경 없이 질문 의도를 정확히 구현하여(5점) 높은 점수를 받음. groundedness는 자료 외 추측이나 지어낸 값이 전혀 없어(5점) 평가됨. 반면 T4는 v1 호환성 보호를 위한 구체적인 마이그레이션/버전 관리 절차를 제시하지 않고 자료 부족을 이유로 답변을 회피하여(1점) 낮은 점수.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 6608,
+      "completion_tokens": 3410,
+      "total_tokens": 10018,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3230
+      }
+    },
+    "latencyMs": 65227,
+    "judgedAt": "2026-09-11T13:07:30.629Z"
+  },
+  {
+    "scenarioId": "A9-non-integer-id",
+    "rep": 1,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 3,
+    "versioningQuality": 4,
+    "unsupportedClaims": [],
+    "rationale": "T1은 자료 로그와 정답 요지의 소수 유입 및 Zod 검증 실패 원인을 정확히 매칭하여 5점이다. T2 SQL은 자료에 제시된 격리 검증 쿼리를 정확히 재현해 적절하다. T3 SQL은 원본 값이 저장소에 없음에도 VALUES 절로 상수만 반환해 실제 조회를 수행하지 못해 3점이다. T4는 v1 무손상 원칙과 human-in-the-loop 제약을 준수하는 절차를 제시했으나, 클라이언트 측 데이터 부재 시 처리 방안이 구체적이지 않아 4점이다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12010,
+      "completion_tokens": 3963,
+      "total_tokens": 15973,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3788
+      }
+    },
+    "latencyMs": 99238,
+    "judgedAt": "2026-09-11T13:09:09.872Z"
+  },
+  {
+    "scenarioId": "A9-non-integer-id",
+    "rep": 1,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "T3에서 제공되지 않은 'log_events' 테이블과 JSONB 컬럼 구조 가정",
+      "T4에서 global_seq에 임의 값(1000, 1001)을 채워 Read Model에 더미 데이터 INSERT 제안",
+      "T4에서 API 버전/마이그레이션 정보 부재를 이유로 구체적인 v1 호환 절차 제시 거부"
+    ],
+    "rationale": "groundedness: T1/T2는 로그와 스키마를 정확히 활용했으나, T3에서 존재하지 않는 log_events 테이블을 가정하고 JSONB 파싱 로직을 작성했으며, T4에서 global_seq에 임의 값을 채워 INSERT하는 등 자료 외 값을 생성함. diagnosisAccuracy: T1에서 Zod 검증 오류 경로와 타입 불일치 원인을 로그 및 정답 요지와 정확히 매칭하여 문제 진단을 완벽하게 수행함. sqlCorrectness: T2는 검증/삭제 로직이 타당하나, T3에서 가상의 테이블 구조를 가정하고 실행 불가능한 SQL 구문을 사용했으며 로그 형식과도 불일치하여 실제 문제 해결에 기여하지 못함. versioningQuality: 정답 요지의 클라이언트 정수화 권고와 v1 무손상 원칙을 무시하고, 정보 부재를 이유로 구체적인 병행 운영/컷오버 절차를 제시하지 못했으며 더미 데이터 삽입이라는 비표준 우회책만 제안함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 15630,
+      "completion_tokens": 4182,
+      "total_tokens": 19812,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3845
+      }
+    },
+    "latencyMs": 112143,
+    "judgedAt": "2026-09-11T13:11:02.019Z"
+  },
+  {
+    "scenarioId": "A9-non-integer-id",
+    "rep": 2,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 3,
+    "unsupportedClaims": [],
+    "rationale": "T1은 자료 로그와 정답 요지의 원인·영향을 정확히 매칭하여 5점. T2는 자료의 격리 쿼리를 정확히 작성했으나, T3에서 '위반 필드명과 원본 값 조회'라는 질문을 무시하고 T2 SQL을 그대로 복사하여 답변함으로써 정답 요지의 조치(검증 로그 보강)와도 동떨어진 무의미한 응답을 제공했으므로 2점. T4는 자료의 'API 버전 변경 없음' 및 human-in-the-loop 제약을 준수했으나, 정답 요지의 검증 로그 보강 및 클라이언트 정수화 권고 조치가 누락되어 3점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 11744,
+      "completion_tokens": 3035,
+      "total_tokens": 14779,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2846
+      }
+    },
+    "latencyMs": 80230,
+    "judgedAt": "2026-09-11T13:12:22.254Z"
+  },
+  {
+    "scenarioId": "A9-non-integer-id",
+    "rep": 2,
+    "condition": "B1",
+    "groundedness": 2,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "T2/T3에서 자료에 없는 insight_event_store 테이블 인용",
+      "실패한 파일의 실제 페이로드(object_name, pose 등)를 임의로 채워 Read Model INSERT 시도",
+      "로그 detail 컬럼이 JSONB 형식이라고 잘못 가정 (자료에서는 -)",
+      "global_seq를 0으로 설정하여 ES 추적성 파괴",
+      "한글이 포함된 stream_id에서 LENGTH(stream_id)-1로 시도번호 추출하는 로직 오류"
+    ],
+    "rationale": "groundedness는 T2/T3에서 자료에 없는 테이블을 인용하고 페이로드를 임의로 채워 Read Model에 삽입했으며 로그 구조를 잘못 가정하여 감점. diagnosisAccuracy는 T1에서 Zod 정수 검증 위반 필드와 원인을 정확히 지적하여 정답 요지와 일치하므로 만점. sqlCorrectness는 T2가 ES/CQRS 아키텍처에 맞지 않는 Read Model 수동 복구를 시도하고 global_seq를 0으로 설정해 추적성을 파괴했으며, T3은 존재하지 않는 테이블을 조회하고 한글 ID 추출 로직이 오류가 있어 감점. versioningQuality는 T4에서 API 정보 부족을 이유로 답변을 회피하여 v1 클라이언트 보호를 위한 구체적 절차(경로 변경, 병행 운영 등)를 전혀 제시하지 못해 감점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 13587,
+      "completion_tokens": 3283,
+      "total_tokens": 16870,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2964
+      }
+    },
+    "latencyMs": 89108,
+    "judgedAt": "2026-09-11T13:13:51.366Z"
+  },
+  {
+    "scenarioId": "A9-non-integer-id",
+    "rep": 3,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 4,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "T1과 T2는 제공된 로그와 자료의 권고 사항을 정확히 인용하여 문제 원인과 조치 방안을 5점으로 평가. T3은 거부된 데이터가 ES 및 ReadModel에 적재되지 않았음을 정확히 지적하나, 질문이 요구한 '위반 필드명과 원본 값'을 DB에서 조회할 수 없다는 점을 명확히 하되 대체 SQL로 식별자만 나열하는 데 그쳐 4점. T4는 v1 무손상 원칙과 자료의 변경 없음 결론을 구체적으로 기술하여 5점. 전반적으로 근거 기반 판단이 탄탄하며 지어진 주장 없음.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12722,
+      "completion_tokens": 3042,
+      "total_tokens": 15764,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2864
+      }
+    },
+    "latencyMs": 82687,
+    "judgedAt": "2026-09-11T13:15:14.056Z"
+  },
+  {
+    "scenarioId": "A9-non-integer-id",
+    "rep": 3,
+    "condition": "B1",
+    "groundedness": 2,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 4,
+    "versioningQuality": 2,
+    "unsupportedClaims": [
+      "T4에서 원본 데이터가 아닌 더미 값(grip_succeed=0, pose='[]')으로 ReadModel에 INSERT하여 복구하라고 제안함",
+      "T4에서 자료에 없는 API 버전 경로 변경 및 신구 병행 운영을 일반론으로 제시함",
+      "T4에서 정답 요지의 핵심인 '클라이언트 정수화 권고' 및 'v1 무손상' 조치 누락"
+    ],
+    "rationale": "T1은 로그의 Zod 검증 오류와 정수 타입 불일치를 정확히 진단하여 정답 요지와 일치함(5점). T2/T3 SQL은 제공된 ReadModel 스키마를 활용해 누락 건을 식별하고 위반 필드를 추출하는 논리가 정확하나, 로그 테이블 스키마 부재로 인해 값을 하드코딩한 점은 제한적임(4점). T4는 정답 요지의 핵심인 '클라이언트 정수화 권고'와 'v1 무손상'을 누락하고, 자료에 없는 더미 데이터 DB 삽입 및 일반적인 API 버전화 전략을 제시하여 근거 부족과 위험한 조치 포함(2점). 전반적으로 T1/T2/T3는 우수하나 T4의 근거 없는 주장으로 인해 groundedness와 versioningQuality가 감점됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 15567,
+      "completion_tokens": 3754,
+      "total_tokens": 19321,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3442
+      }
+    },
+    "latencyMs": 103662,
+    "judgedAt": "2026-09-11T13:16:57.722Z"
+  },
+  {
+    "scenarioId": "A9-non-integer-id",
+    "rep": 4,
+    "condition": "A",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "T1은 로그와 정답 요지의 원인을 정확히 매칭하여 5점. T2는 자료에 제시된 격리 검증 쿼리와 일치해 정확함. T3은 '원본 값 조회' 요구사항에 대해 실제 데이터베이스를 쿼리하지 않고 하드코딩된 상수 UNION ALL로 응답하여 문제 해결력이 떨어지며, 검증 실패 시 원본 값이 저장되지 않는 시스템 특성을 고려하지 않아 2점. T4는 v1 무손상 제약과 API 변경 불필요를 구체적으로 기술해 5점. 전반적으로 근거는 탄탄하나 T3 SQL 구현에 결함이 있음.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 11842,
+      "completion_tokens": 3258,
+      "total_tokens": 15100,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3073
+      }
+    },
+    "latencyMs": 84693,
+    "judgedAt": "2026-09-11T13:18:22.419Z"
+  },
+  {
+    "scenarioId": "A9-non-integer-id",
+    "rep": 4,
+    "condition": "B1",
+    "groundedness": 2,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 2,
+    "unsupportedClaims": [
+      "T3에서 detail::jsonb 컬럼과 insight_event_store 테이블을 가정했으나 자료의 logging_context 테이블은 detail이 '-'이며 오류 메시지는 msg 컬럼에 문자열로 존재함",
+      "T2에서 global_seq, pose 값 등을 자료에 없는 임의값으로 하드코딩하여 삽입",
+      "T4에서 v1 무손상을 위한 ES/CQRS 표준 절차(이벤트 거부/격리, 클라이언트 정수화 권고)를 제시하지 않고 자료 부족을 이유로 답변 회피"
+    ],
+    "rationale": "T1은 로그의 Zod 오류와 정답 요지를 정확히 매칭하여 5점. T2는 ES/CQRS 원칙에 위배되는 ReadModel 직접 수정을 제안하고 자료 미비 값을 하드코딩하여 1점. T3은 제공된 로그 테이블 구조를 무시하고 존재하지 않는 JSONB 컬럼을 조회하는 SQL을 작성하여 1점. T4는 v1 무손상을 위한 표준 절차(이벤트 격리/클라이언트 정수화 권고)를 누락하고 답변 회피하여 2점. 전반적으로 근거 없는 가정과 SQL 오류가 많아 groundedness는 2점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12758,
+      "completion_tokens": 4030,
+      "total_tokens": 16788,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3739
+      }
+    },
+    "latencyMs": 102568,
+    "judgedAt": "2026-09-11T13:20:04.989Z"
+  },
+  {
+    "scenarioId": "A9-non-integer-id",
+    "rep": 5,
+    "condition": "A",
+    "groundedness": 2,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 3,
+    "unsupportedClaims": [
+      "read_grip_result 스키마에 violation_field, original_value 컬럼 존재 가정",
+      "event_store에서 적재 거부된 이벤트 조회 및 백필 시도 (ES append-only 특성 위반)",
+      "Zod 검증 로직 수정을 통한 타입 허용 확장 권고 (정답 요지 및 자료는 클라이언트 정수화 권고 및 검증 로그 보강 명시)"
+    ],
+    "rationale": "groundedness는 T3에서 자료에 없는 컬럼을 임의로 추가하고 ES의 append-only 특성을 무시한 백필 SQL로 인해 감점되었다. diagnosisAccuracy는 T1에서 로그와 정답 요지의 Zod .int() 위반 원인을 정확히 식별하여 만점이다. sqlCorrectness는 T2는 정답이나 T3에서 존재하지 않는 스키마를 가정하고 거절 이벤트를 조회하는 논리적 오류로 감점되었다. versioningQuality는 v1 무손상을 정확히 지적했으나, 정답 요지의 클라이언트 정수화 권고와 human-in-the-loop 절차를 구체적으로 반영하지 못해 중간 점수를 부여한다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 14752,
+      "completion_tokens": 2739,
+      "total_tokens": 17491,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2472
+      }
+    },
+    "latencyMs": 81098,
+    "judgedAt": "2026-09-11T13:21:26.090Z"
+  },
+  {
+    "scenarioId": "A9-non-integer-id",
+    "rep": 5,
+    "condition": "B1",
+    "groundedness": 2,
+    "diagnosisAccuracy": 4,
+    "sqlCorrectness": 1,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "T4 INSERT 문에서 로그에 없는 더미 데이터(attempt_num 1,2,3 및 고정 JSON 값) 생성",
+      "T2/T3 SQL에서 MySQL/Postgres 구문 혼재 및 한글 파일명 underscore 기반 파싱 로직의 비현실성",
+      "T3은 '위반 필드명과 원본 값 조회' 요구를 미수행하고 T2 검증 쿼리를 반복"
+    ],
+    "rationale": "T1은 Zod 정수 위반과 적재 거부를 정확히 진단했으나 정답 요지의 구체적 조치(검증 로그 보강, 클라이언트 정수화 권고)를 누락해 4점. T2/T3 SQL은 구문 혼재 및 한글 파일명 파싱 오류가 있고, T3은 '위반 필드/원본 값 조회' 요구를 전혀 반영하지 않아 1점. T4는 v1 호환 절차에 대해 자료 부재를 이유로 구체적인 버전 경로, 병행 운영, 컷오버 순서를 제시하지 않아 1점. T4의 INSERT 문에서 로그에 없는 더미 데이터를 생성한 점도 groundedness를 2점으로 낮춤.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 20526,
+      "completion_tokens": 3415,
+      "total_tokens": 23941,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3131
+      }
+    },
+    "latencyMs": 108074,
+    "judgedAt": "2026-09-11T13:23:14.167Z"
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": 1,
+    "condition": "A",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 5,
+    "unsupportedClaims": [
+      "T3에서 event_store에 scene_key 컬럼이 존재한다고 가정하여 조인 수행",
+      "T3에서 read_grip_result 테이블에 DELETE를 실행하는 백필 절차 제시 (자료는 DDL/데이터 조작 없이 skip/dead-letter 후 재실행 권고)",
+      "T3의 NOT EXISTS 조인 쿼리는 자료의 단순 global_seq 기반 조회와 상충"
+    ],
+    "rationale": "T1은 로그와 정답 요지의 문제·원인·근거를 정확히 매칭하여 5점. T2는 자료의 권고 SQL을 그대로 인용해 요구사항을 정확히 충족하므로 5점. T3은 event_store에 scene_key 컬럼이 존재하지 않음을 무시하고 조인을 작성했으며, 자료에서 명시한 '데이터 무해화 및 조작 금지' 원칙에 위배되는 DELETE 문을 포함해 2점. T4는 코드 수정-인간 승인-재투영 순서를 명확히 제시해 v1 호환성을 보장하므로 5점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 8408,
+      "completion_tokens": 4305,
+      "total_tokens": 12713,
+      "completion_tokens_details": {
+        "reasoning_tokens": 4050
+      }
+    },
+    "latencyMs": 97615,
+    "judgedAt": "2026-09-11T13:24:51.785Z"
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": 1,
+    "condition": "B1",
+    "groundedness": 2,
+    "diagnosisAccuracy": 3,
+    "sqlCorrectness": 1,
+    "versioningQuality": 2,
+    "unsupportedClaims": [
+      "T2 INSERT문의 hardcoded 값들(scene_key, object_name, pose 등)은 로그에 존재하지 않는 가상의 데이터임",
+      "T1에서 배치 트랜잭션 전체 롤백으로 정상 이벤트까지 미투영된다는 핵심 원인을 누락함",
+      "T3 쿼리는 Read Model에 이미 존재하는 레코드 수를 세는 것이지 미투영 이벤트를 조회하지 않음"
+    ],
+    "rationale": "T1은 결함 원인은 정확히 짚었으나 배치 트랜잭션 롤백으로 정상 이벤트까지 미투영된다는 핵심 메커니즘을 누락해 3점. T2는 ES/CQRS 원칙에 위배되는 수동 DB 패치와 로그에 없는 가짜 데이터 삽입을 제안해 근거 부족과 SQL 오류로 1점. T3은 미투영 이벤트를 조회하지 않고 기존 Read Model 레코드만 집계하는 잘못된 쿼리. T4는 자료 부족을 이유로 구체적인 v1 호환 절차를 제시하지 않고 일반론에 그쳐 2점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 8956,
+      "completion_tokens": 2915,
+      "total_tokens": 11871,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2655
+      }
+    },
+    "latencyMs": 72068,
+    "judgedAt": "2026-09-11T13:26:03.855Z"
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": 2,
+    "condition": "A",
+    "groundedness": 2,
+    "diagnosisAccuracy": 4,
+    "sqlCorrectness": 1,
+    "versioningQuality": 2,
+    "unsupportedClaims": [
+      "T1: 현재 시스템이 SkipProjectionError를 던졌다고 명시 (자료에서는 일반 Error 또는 예외 전파로 기술)",
+      "T2/T3: event_store의 is_projected, skip_reason 컬럼 가정 및 projection_cursor 직접 UPDATE",
+      "T4: isolation_logs 테이블 존재 가정, URI Path Versioning 전략 제시"
+    ],
+    "rationale": "T1은 poison 이벤트로 인한 트랜잭션 롤백과 정상 이벤트 미투영이라는 핵심 문제를 정확히 파악했으나, SkipProjectionError를 기존 오류로 오기재하고 롤백이 PK 유지 불가를 의미한다는 논리가 부정확하다. T2/T3는 자료의 명시적 금지사항인 커서 직접 점프를 SQL로 실행하려 했으며 존재하지 않는 컬럼을 사용하여 실제 실행이 불가능하다. T4는 API 변경 없음이라는 자료 전제를 무시하고 불필요한 버전 전략과 근거 없는 테이블을 포함해 실제 적용이 어렵다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 9511,
+      "completion_tokens": 3289,
+      "total_tokens": 12800,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3050
+      }
+    },
+    "latencyMs": 80147,
+    "judgedAt": "2026-09-11T13:27:24.005Z"
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": 2,
+    "condition": "B1",
+    "groundedness": 2,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 3,
+    "unsupportedClaims": [
+      "global_seq = 1 임의 가정",
+      "read_projection_failure_log 테이블 생성 제안",
+      "events 테이블 기반 Fallback 쿼리 추측",
+      "/api/v1/results 엔드포인트 경로 가정"
+    ],
+    "rationale": "T1은 로그의 매핑 실패 원인을 정확히 진단했으나, T2는 정답 요지(커서 관리/사건 skip)와 상충하는 Read Model 직접 수정을 제안하고 자료에 없는 새 테이블 생성을 포함함. T3은 SQL을 전혀 제공하지 않아 질문을 미답변 처리했으며, T4는 v1 API 정보 부재를 인정했으나 제안 절차가 일반적인 이론에 그쳐 구체성이 떨어짐. 자료 기반 주장으로 global_seq=1 가정, events 테이블 추측, v1 엔드포인트 가정이 포함됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 16030,
+      "completion_tokens": 3356,
+      "total_tokens": 19386,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3150
+      }
+    },
+    "latencyMs": 96392,
+    "judgedAt": "2026-09-11T13:29:00.400Z"
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": 3,
+    "condition": "A",
+    "groundedness": 2,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 5,
+    "unsupportedClaims": [
+      "event_id 값 오타 (e6a94-e6a98c2d6272)",
+      "현재 시스템이 DEAD_LETTER_SKIP 에러를 던진다고 오기 (자료는 권고사항임)",
+      "event_store의 occurred_at/attempt_num 등 자료에 명시되지 않은 컬럼 가정",
+      "프로젝터 경유 없이 직접 SQL 백필 권고 (CQRS/ES 원칙 및 자료의 skip/replay 조치와 상충)"
+    ],
+    "rationale": "T1은 poison 이벤트로 인한 배치 롤백 및 정상 데이터 누락을 정확히 진단해 diagnosisAccuracy는 5점. groundedness는 event_id 오타, 권고사항을 현재 동작으로 오인, 자료에 없는 컬럼 가정 및 백필 SQL 제안으로 2점. sqlCorrectness는 T3의 직접 INSERT 백필이 CQRS/ES 원칙과 자료의 skip/replay 지시를 위반하며 T2 조회 로직도 누락 이벤트 탐지에 부적절해 2점. versioningQuality는 내부 로직 변경임을 정확히 파악해 API 변경 불필요함을 명시하므로 5점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 9345,
+      "completion_tokens": 3922,
+      "total_tokens": 13267,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3645
+      }
+    },
+    "latencyMs": 92335,
+    "judgedAt": "2026-09-11T13:30:32.737Z"
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": 3,
+    "condition": "B1",
+    "groundedness": 5,
+    "diagnosisAccuracy": 2,
+    "sqlCorrectness": 1,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "T1 근본 원인을 Read Model 레코드 부재로 오진 (정답은 배치 트랜잭션 롤백 및 커서 정지)",
+      "T2 SQL이 poison 이벤트를 Read Model에 저장된 것으로 가정 (정답은 skip/dead-letter)",
+      "T3에서 동일한 T2 쿼리를 반복 출력하여 질문 미수행"
+    ],
+    "rationale": "groundedness는 제공된 로그와 스키마 외 값을 임의로 생성하지 않아 5점이지만, diagnosisAccuracy는 배치 트랜잭션 롤백 및 커서 정지 메커니즘을 누락해 2점이다. sqlCorrectness는 T2가 poison 이벤트를 저장된 것으로 잘못 가정하고 T3가 동일한 쿼리를 반복해 미답변 처리되어 1점이며, versioningQuality는 v1 호환 절차가 전혀 제시되지 않아 1점이다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 13860,
+      "completion_tokens": 3593,
+      "total_tokens": 17453,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3368
+      }
+    },
+    "latencyMs": 95902,
+    "judgedAt": "2026-09-11T13:32:08.644Z"
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": 4,
+    "condition": "A",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 5,
+    "unsupportedClaims": [
+      "T2/T3에서 자료에 명시된 '프로젝터 수정 후 catch-up 재실행' 대신 수동 DELETE/INSERT 백필을 제안함",
+      "T3 SQL의 `e.payload->>'objects'::jsonb` 문법은 PostgreSQL 표준 JSONB 연산과 일치하지 않음",
+      "T2/T3 초기 응답에서 동일한 SQL 블록을 중복 복사함"
+    ],
+    "rationale": "T1은 로그와 정답 요지를 정확히 매칭하여 문제 원인을 명확히 진단했으며(5점), T4는 자료의 권고사항을 구체적인 컷오버 및 검증 절차로 잘 정리하여 v1 호환성을 보호하는 방안을 제시했다(5점). 그러나 T2/T3 SQL은 자료의 핵심 조치인 '프로젝터 수정 후 재실행'을 무시하고 수동 DML을 제안했으며, SELECT 조회 질문에 INSERT 백필을 포함하고 JSONB 문법도 부정확하여(2점) groundedness는 자료와 상충되는 주장으로 인해 3점으로 평가된다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 9789,
+      "completion_tokens": 4332,
+      "total_tokens": 14121,
+      "completion_tokens_details": {
+        "reasoning_tokens": 4074
+      }
+    },
+    "latencyMs": 101283,
+    "judgedAt": "2026-09-11T13:33:49.931Z"
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": 4,
+    "condition": "B1",
+    "groundedness": 4,
+    "diagnosisAccuracy": 3,
+    "sqlCorrectness": 1,
+    "versioningQuality": 3,
+    "unsupportedClaims": [
+      "stream_events 테이블 가정",
+      "payload JSONB 구조 가정",
+      "API 버전 관리 절차 (자료 미제공)"
+    ],
+    "rationale": "T1은 결함 원인을 맞혔으나 배치 트랜잭션 롤백 영향과 커서 점프 금지, 데드레터 처리 등 정답 요지의 핵심 ES 운영 조치 누락으로 3점. T2 SQL은 WHERE 절이 결함 이벤트를 선택하는 역논리 오류가 있고, 투영 로직 버그를 SQL 필터로 해결하려는 아키텍처적 오류가 있어 1점. T3는 구조적 타당성 있으나 가정된 테이블 사용으로 제한적. T4는 자료 부재를 인정했으나 일반론에 그쳐 3점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 8401,
+      "completion_tokens": 3741,
+      "total_tokens": 12142,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3544
+      }
+    },
+    "latencyMs": 86546,
+    "judgedAt": "2026-09-11T13:35:16.479Z"
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": 5,
+    "condition": "A",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 4,
+    "versioningQuality": 5,
+    "unsupportedClaims": [
+      "T2 SQL에서 event_store.status 컬럼을 가정하여 UPDATE문 작성 (자료에 미등재)",
+      "T4에서 구체적인 API 엔드포인트 경로(/api/v1/...) 제시 (자료에 명시되지 않음)"
+    ],
+    "rationale": "T1은 자료의 로그와 정답 요지를 정확히 매칭하여 poison 이벤트 원인과 배치 롤백 영향을 명확히 진단함. T3 SQL은 자료의 검증 쿼리와 일치하나, T2는 자료에서 명시한 '프로젝터 map() 로직 변경' 대신 존재하지 않는 DB 컬럼을 직접 수정하는 방식으로 제시되어 아키텍처 가이드라인과 다소 괴리됨. T4는 인간 승인, 커서 조작 금지, 재투영 등 핵심 제약조건을 잘 준수한 구체적 절차임. 전반적으로 근거는 탄탄하나 T2의 구현 방식에서 자료 미등재 컬럼 가정과 권장 아키텍처 이탈이 확인됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 8166,
+      "completion_tokens": 3859,
+      "total_tokens": 12025,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3618
+      }
+    },
+    "latencyMs": 88508,
+    "judgedAt": "2026-09-11T13:36:44.989Z"
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": 5,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 4,
+    "sqlCorrectness": 1,
+    "versioningQuality": 3,
+    "unsupportedClaims": [
+      "정답 요지와 배치하여 '새 Read Model 테이블 생성 필요' 주장",
+      "T3에서 '미투영 정상 이벤트 수'가 아닌 '이미 투영된 레코드 수'를 조회하는 논리",
+      "v1 API 경로 분리 및 병행 운영에 대한 구체적 절차(자료 미제공)"
+    ],
+    "rationale": "T1은 로그 기반 원인 분석이 정확하나 배치 롤백 및 정상 이벤트 미투영 영향까지 명시하지 못해 4점. T2는 정답 요지(새 ReadModel 불필요)와 반대로 새 테이블을 생성하도록 제안했고, T3은 질문의 '미투영 정상 이벤트 수'가 아닌 '이미 투영된 레코드 수'를 조회하는 논리적 오류가 있어 SQL 점수는 1점. T4는 자료 부재를 인정했으나 일반적인 API 버전화 전략으로 그쳤으며, 플랫폼 특화 백필/컷오버 절차가 부족해 3점. 전반적으로 자료 기반 주장보다 추상적 해결책이 많아 groundedness는 3점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 8588,
+      "completion_tokens": 2650,
+      "total_tokens": 11238,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2389
+      }
+    },
+    "latencyMs": 66032,
+    "judgedAt": "2026-09-11T13:37:51.024Z"
+  },
+  {
+    "scenarioId": "B2-multimodal-integrity",
+    "rep": 1,
+    "condition": "A",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 4,
+    "unsupportedClaims": [
+      "T3 SQL의 파일명 파싱 인덱스([5])가 제공된 예시 구조(인덱스 4)와 불일치",
+      "T4의 event_store DELETE 제안은 자료의 격리 SQL(SELECT) 및 이벤트 소싱 불변 원칙과 상충됨"
+    ],
+    "rationale": "T1은 자료의 로그와 결정 사항에 기반해 문제 원인을 정확히 진단하여 5점. T3 SQL은 제공된 파일명 예시 구조를 기준으로 인덱스 위치를 잘못 계산하여 실제 실행 시 오류를 유발하므로 2점. T4는 버전 변경 불필요 및 human-in-the-loop 승인 절차를 정확히 서술했으나, event_store 삭제 제안은 ES 원칙과 자료의 격리 방안(SELECT)에 부합하지 않아 4점. 전반적으로 근거는 충실하나 SQL 인덱스 오류와 ES 원칙 위반 주장이 감점 요인임.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 9140,
+      "completion_tokens": 3693,
+      "total_tokens": 12833,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3454
+      }
+    },
+    "latencyMs": 87449,
+    "judgedAt": "2026-09-11T13:39:18.477Z"
+  },
+  {
+    "scenarioId": "B2-multimodal-integrity",
+    "rep": 1,
+    "condition": "B1",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 1,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 모든 사실·로그 식별자·스키마가 제공 자료와 정확히 일치하며 추측이나 지어낸 값이 없음. diagnosisAccuracy: T1이 파일명 좌표 불일치 및 정합성 위반 원인을 정답 요지와 완벽히 매칭함. sqlCorrectness: T2가 ALTER TABLE 및 인플레이스 UPDATE를 제안해 'v1 무손상' 지시와 ES 원칙을 위배하며, 파일명 파싱 SUBSTRING 로직이 실제 형식에 맞지 않아 해로움. versioningQuality: T4가 자료 부족을 이유로 답변을 회피하여 v1 클라이언트 보호를 위한 구체적 병행·격리 절차를 제시하지 못함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 7503,
+      "completion_tokens": 2915,
+      "total_tokens": 10418,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2716
+      }
+    },
+    "latencyMs": 68596,
+    "judgedAt": "2026-09-11T13:40:27.076Z"
+  },
+  {
+    "scenarioId": "B2-multimodal-integrity",
+    "rep": 2,
+    "condition": "A",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "T3 SQL의 underscore 기반 경계 추출 로직이 scene_key 내 다중 underscore로 인해 실제 데이터에서 오동작함",
+      "T4의 /v2 엔드포인트 신규 생성은 자료의 '변경 없음' 및 'v1 자산 무손상' 제약과 직접 충돌함"
+    ],
+    "rationale": "T1은 로그와 정답 요지를 정확히 매칭해 문제 원인을 명확히 진단하여 5점. T2는 자료의 격리 SQL을 정확히 인용해 문제를 해결하므로 5점. T3은 scene_key 내 underscore를 고려하지 않은 문자열 파싱 로직을 SQL에 적용해 논리적 오류가 있으며 실제 조회 시 오동작할 가능성이 높아 2점. T4는 자료의 'API 엔드포인트 변경 없음' 및 '무손상' 제약을 무시하고 불필요한 v2 경로 생성을 제안해 제약 위반으로 1점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 11197,
+      "completion_tokens": 4029,
+      "total_tokens": 15226,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3806
+      }
+    },
+    "latencyMs": 98844,
+    "judgedAt": "2026-09-11T13:42:05.925Z"
+  },
+  {
+    "scenarioId": "B2-multimodal-integrity",
+    "rep": 2,
+    "condition": "B1",
+    "groundedness": 2,
+    "diagnosisAccuracy": 4,
+    "sqlCorrectness": 1,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "T1에서 첫 번째 정합성 위반 원인을 로그의 '2D 이미지 파일명'이 아닌 'video_file_name'으로 잘못 인용함",
+      "정답 요지의 'v1 무손상·격리' 원칙을 위반하고 DELETE를 통한 데이터 삭제를 제안함",
+      "스키마 형식(_scene_attempt_date.ext)과 무관한 임의의 SUBSTRING 파일명 파싱 로직 사용"
+    ],
+    "rationale": "T1은 정답 요지의 핵심 불일치 문제를 정확히 지적했으나 로그의 위반 대상 컬럼(image vs video)을 혼동하여 진단Accuracy는 4점이다. T2/T3 SQL은 정답 요지의 'v1 무손상·격리' 원칙을 무시하고 파괴적 DELETE를 제안했으며, 스키마 형식과 맞지 않는 임의의 파일명 파싱 로직을 사용해 sqlCorrectness는 1점이다. T4는 DB 삭제라는 파괴적 조치와 일반론에 그쳐 v1 보호를 위한 플래그 격리 또는 구체적인 버전 병행·백필 절차가 누락되어 versioningQuality는 1점이다. 자료 기반 주장의 정확성(groundedness)은 로그 오인용과 근거 없는 SQL 로직으로 인해 2점이다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 10572,
+      "completion_tokens": 4548,
+      "total_tokens": 15120,
+      "completion_tokens_details": {
+        "reasoning_tokens": 4239
+      }
+    },
+    "latencyMs": 107580,
+    "judgedAt": "2026-09-11T13:43:53.508Z"
+  },
+  {
+    "scenarioId": "B2-multimodal-integrity",
+    "rep": 3,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness는 T1~T4 모두 [자료]의 로그, DDL, 마이그레이션 절차 등을 정확히 인용해 외부 추측 없이 구성했음. diagnosisAccuracy는 정답 요지의 핵심인 파일명 메타데이터와 레코드 좌표 불일치 및 투영 매핑 충돌 원인을 정확히 진단함. sqlCorrectness는 T2 DDL은 정확하나, T3 조회 SQL에서 PostgreSQL의 regexp_matches가 배열을 반환하는 특성을 무시해 타입 불일치 오류를 유발하며, 백필도 추출 로직 없이 NULL 삽입으로 처리해 정합성 검증 데이터 준비가 미흡함. versioningQuality는 신규 엔드포인트 추가, v1 무손상 유지, 인간 승인 기반 컷오버 순서 등 자료의 절차와 정확히 매칭해 즉시 실행 가능한 구체적 전략을 제시함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 14852,
+      "completion_tokens": 3081,
+      "total_tokens": 17933,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2863
+      }
+    },
+    "latencyMs": 88101,
+    "judgedAt": "2026-09-11T13:45:21.614Z"
+  },
+  {
+    "scenarioId": "B2-multimodal-integrity",
+    "rep": 3,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "T2/T3 SQL에서 scene_id 추출을 위해 '_02027' 길이 등 고정값 가정",
+      "T2에서 정답 요지의 'v1 무손상' 원칙에 위배되는 DELETE 삭제 전략 제시",
+      "T4에서 자료 부족을 이유로 v1 클라이언트 보호 절차 미제시"
+    ],
+    "rationale": "T1은 로그의 정합성 위반 코드와 불일치 내용을 정확히 식별해 정답 요지와 일치하므로 5점. T2는 PostgreSQL 문법 오류가 있으며 무손상 원칙에 위배되는 삭제 쿼리를 제시해 1점. T3 SQL은 scene_id 추출에 고정값을 가정해 실제 실행 시 오류가 발생하므로 1점. T4는 자료 부족을 이유로 v1 호환 절차를 제시하지 않아 1점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 15468,
+      "completion_tokens": 3137,
+      "total_tokens": 18605,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2921
+      }
+    },
+    "latencyMs": 90622,
+    "judgedAt": "2026-09-11T13:46:52.240Z"
+  },
+  {
+    "scenarioId": "B2-multimodal-integrity",
+    "rep": 4,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 4,
+    "unsupportedClaims": [],
+    "rationale": "groundedness는 제공된 로그·스키마·리포트의 식별자와 제약사항만 정확히 인용해 5점, diagnosisAccuracy는 정답 요지의 핵심(파일명 메타데이터와 레코드 좌표 불일치, 투영 통과 후 정합성 검사 잡음)을 정확히 매칭해 5점 부여함. sqlCorrectness는 T3이 특정 사례를 하드코딩하고 NOT LIKE 조건으로 동적 일관성 검증을 구현하지 않아 질문의 일반화 요구를 충족하지 못해 2점, versioningQuality는 v1 무손상 제약과 인간 승인 게이트를 구체적으로 서술했으나 정답 요지의 '플래그/격리 테이블' 아키텍처 대안을 누락해 4점 평가함. unsupportedClaims는 자료 외 주장이 없어 빈 배열 처리함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 9493,
+      "completion_tokens": 4727,
+      "total_tokens": 14220,
+      "completion_tokens_details": {
+        "reasoning_tokens": 4497
+      }
+    },
+    "latencyMs": 108277,
+    "judgedAt": "2026-09-11T13:48:40.522Z"
+  },
+  {
+    "scenarioId": "B2-multimodal-integrity",
+    "rep": 4,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "T2의 DELETE 기반 데이터 삭제/정제 방식은 자료 및 정답 요지(격리·플래그)와 상충",
+      "T4의 v1 호환 절차 부재는 과제 요구사항 미충족"
+    ],
+    "rationale": "T1은 로그 detail을 정확히 인용해 정답 요지의 불일치 원인을 완벽히 진단(5점)했으나, T2에서 정답 요지가 요구하는 '격리·플래그' 대신 destructive한 DELETE 쿼리를 제안하여 v1 무손상 원칙을 위반함(1점). T3 조회 쿼리는 식별 목적에는 부합하나 T2의 해로운 접근이 전체 SQL 점수를 낮춤. T4는 자료 부족을 정직히 인정했으나 v1 클라이언트 보호를 위한 구체적 절차(버전 경로, 병행 운영 등)를 전혀 제시하지 못해 1점. 전반적으로 진단은 우수하나 해결책과 운영 절차에서 자료/요지 이탈이 뚜렷해 groundedness는 3점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12404,
+      "completion_tokens": 3037,
+      "total_tokens": 15441,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2777
+      }
+    },
+    "latencyMs": 81515,
+    "judgedAt": "2026-09-11T13:50:02.040Z"
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": 1,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "모든 답변은 제공된 로그, 스키마 정의, 분석 문서의 식별자와 값만 정확히 인용하여 자료 기반성이 완벽하다. T1은 정답 요지와 일치하게 스키마 드리프트에 의한 투영 유실과 insight.card.miss 반복을 근거로 문제 원인을 정확히 진단했다. T2 DDL은 자료의 권장안과 동일하며, T3 SQL은 요청한 시 단위 평균 집계 및 정렬을 새 Read Model 기준으로 정확히 수행한다. T4는 v1 무손상, 병행 운영, 인간 승인 기반 백필 및 컷오버 절차를 구체적으로 서술하여 즉시 실행 가능한 버전 관리 가이드라인을 제공한다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 20056,
+      "completion_tokens": 2320,
+      "total_tokens": 22376,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2127
+      }
+    },
+    "latencyMs": 84463,
+    "judgedAt": "2026-09-11T13:51:26.508Z"
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": 1,
+    "condition": "B1",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 4,
+    "versioningQuality": 4,
+    "unsupportedClaims": [
+      "event_store.grip_attempt 테이블 명칭은 제공된 스키마에 없음",
+      "T4에서 기존 Read Model에 ALTER TABLE을 권장하는 부분은 CQRS 원칙 및 T2 제안과 모순"
+    ],
+    "rationale": "T1은 제공 로그와 정답 요지의 문제 원인(payload-drift로 인한 Read Model 유실)을 정확히 지적하여 5점. T2는 새 Read Model 생성으로 방향성을 맞췄으나, T3 백필 SQL에서 제공 스키마에 없는 event_store.grip_attempt 테이블을 가정하고 occurred_at 추출 로직이 추상적이라 4점. T4는 v1/v2 병행 운영 및 컷오버 절차를 구체적으로 서술했으나, 기존 read_grip_result에 ALTER TABLE을 권장하는 부분이 CQRS의 Read Model 불변성 원칙과 T2의 제안에 모순되어 4점. 전반적으로 근거는 탄탄하나 SQL 구현부에서 자료 외 가정과 모순이 존재함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 14189,
+      "completion_tokens": 4118,
+      "total_tokens": 18307,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3866
+      }
+    },
+    "latencyMs": 107480,
+    "judgedAt": "2026-09-11T13:53:13.991Z"
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": 2,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 4,
+    "unsupportedClaims": [],
+    "rationale": "groundedness는 제공된 로그와 스키마의 식별자만 정확히 참조해 지어낸 값이 없었으며, diagnosisAccuracy는 payload 드리프트 유실 원인을 정답 요지와 완벽하게 매칭했다. sqlCorrectness는 T2가 자료 DDL과 동일하고 T3이 postgres dialect에 맞게 시 단위 집계를 정확히 구현해 문제를 해결했으며, versioningQuality는 병행 운영 전략은 명확하나 human-in-the-loop 승인과 백필 시나리오 누락으로 즉시 실행성에서 약간 떨어짐.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 18175,
+      "completion_tokens": 3728,
+      "total_tokens": 21903,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3566
+      }
+    },
+    "latencyMs": 109280,
+    "judgedAt": "2026-09-11T13:55:03.276Z"
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": 2,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 4,
+    "unsupportedClaims": [
+      "T3 백필 SQL에서 payload.schema.drift 로그의 detail 컬럼에 실제 이벤트별 데이터가 저장되어 있다고 가정함",
+      "stream_id 파싱 시 자료에 없는 콜론 뒤 공백 형식(POSITION(': ' IN ...))을 가정함",
+      "T4 SQL에서 event_store_grip_result라는 자료에 없는 테이블명을 인용함"
+    ],
+    "rationale": "T1은 정답 요지와 동일하게 payload-drift로 인한 Read Model 미비 및 신규 테이블 생성 필요성을 정확히 진단해 5점. T2 새 테이블 생성은 적절하나, T3 백필 SQL이 drift 요약 로그를 실제 데이터 소스로 오인하고 자료 형식과 불일치하는 문자열 함수를 사용해 SQL 정확도 2점. T4는 API 버전 분리, 병행 운영, 백필·컷오버 절차를 구체적으로 제시해 4점. 전반적으로 T3의 데이터 소스 오인 및 자료 미등재 테이블/함수 사용으로 근거성 3점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12848,
+      "completion_tokens": 3567,
+      "total_tokens": 16415,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3316
+      }
+    },
+    "latencyMs": 93274,
+    "judgedAt": "2026-09-11T13:56:36.552Z"
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": 3,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness는 5점으로, 모든 로그 식별자, 스키마 이름, SQL 및 절차가 [자료]에 명시된 사실만 정확히 인용하여 지어낸 주장이 없다. diagnosisAccuracy는 5점으로, T1이 payload.schema.drift와 insight.card.miss 로그를 근거로 문제 원인을 정답 요지와 완벽히 일치시켜 진단했다. sqlCorrectness는 5점으로, T2 DDL이 read_ 접두어와 PK 제약을 준수하며 T3 질의문이 Postgres 문법으로 시간대별 평균 조회 요구사항을 정확히 구현했다. versioningQuality는 5점으로, T4가 v1 무손상 보장, 인간 승인 게이트, 백필 및 롤백 계획을 포함한 구체적이고 실행 가능한 컷오버 절차를 제시했다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 18992,
+      "completion_tokens": 3126,
+      "total_tokens": 22118,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2909
+      }
+    },
+    "latencyMs": 98698,
+    "judgedAt": "2026-09-11T13:58:15.255Z"
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": 3,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 5,
+    "unsupportedClaims": [
+      "T2/T3에서 gripper_temperature 필드가 기존 read_grip_result 테이블에 존재하거나 자동 반영된다고 가정함",
+      "새 Read Model 테이블이 필요 없다는 주장"
+    ],
+    "rationale": "T1은 로그의 payload.schema.drift 정보와 정답 요지의 원인 분석을 정확히 매칭하여 5점. T2/T3 SQL은 문법적 오류는 없으나, 자료에 명시된 대로 필드가 Read Model에 유실되었음에도 기존 테이블에 컬럼이 존재한다고 가정하여 근거 부족으로 감점됨. 특히 T2는 occurred_at을 그대로 GROUP BY하여 시간대별 집계 의미가 퇴화됨. T4는 API 버전 분리, 새 Read Model 병행, 백필 및 컷오버 절차를 정답 요지와 일치하게 구체적으로 서술하여 5점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12245,
+      "completion_tokens": 3322,
+      "total_tokens": 15567,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3111
+      }
+    },
+    "latencyMs": 86974,
+    "judgedAt": "2026-09-11T13:59:42.231Z"
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": 4,
+    "condition": "A",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 3,
+    "unsupportedClaims": [
+      "T3 백필 SQL에서 event_store 테이블 직접 참조 (자료에 명시된 스키마 없음)",
+      "T4 컷오버 단계에서 API 경로 변경 주장과 기존 v1 클라이언트 유지 주장 간 논리적 충돌"
+    ],
+    "rationale": "T1~T3는 자료의 로그, 스키마, 권장안을 정확히 반영했으나 T3에서 event_store 직접 조회를 가정했고 T4의 라우팅 설명에 모순이 있어 4점. 진단은 정답 요지와 로그 근거가 정확히 일치하여 5점. SQL은 자료 DDL과 완벽 매칭되며 집계/백필 로직이 ES 관례에 맞게 정확히 작성되어 5점. 버전링은 병행 운영 개념은 포함했으나 자료의 핵심 제약인 human-in-the-loop 승인 누락과 라우팅 단계 내 논리적 모순으로 3점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 20239,
+      "completion_tokens": 4005,
+      "total_tokens": 24244,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3779
+      }
+    },
+    "latencyMs": 119950,
+    "judgedAt": "2026-09-11T14:01:42.184Z"
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": 4,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 4,
+    "unsupportedClaims": [
+      "한글이 포함된 stream_id를 SUBSTRING(13)으로 파싱하여 scene_key 및 시간대 추출",
+      "event_store 테이블의 payload 구조 및 컬럼명 가정",
+      "occurred_at을 stream_id 문자 위치로 임의로 매핑하는 CASE 문 로직"
+    ],
+    "rationale": "T1은 로그와 스키마를 정확히 인용해 정답 요지와 일치하는 5점이나, T2/T3의 백필 SQL에서 한글이 포함된 stream_id를 SUBSTRING으로 파싱하고 시간대를 임의로 매핑하는 로직은 자료에 없는 지어낸 주장으로 sqlCorrectness를 2점으로 감점함. T4는 API 버전 분리, 병행 운영, 백필 및 컷오버 절차를 구체적으로 제시해 v1 보호에 적합하므로 4점이며, 전반적으로 핵심 진단은 정확하나 SQL 구현부에 근거 없는 가정과 UTF-8 처리 오류가 있어 groundedness는 3점임.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 14277,
+      "completion_tokens": 3111,
+      "total_tokens": 17388,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2870
+      }
+    },
+    "latencyMs": 87400,
+    "judgedAt": "2026-09-11T14:03:09.590Z"
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": 5,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 4,
+    "unsupportedClaims": [],
+    "rationale": "모든 답변은 제공된 로그, 스키마, DDL 예시를 정확히 인용하여 외부 추측이나 지어낸 값이 없으며(groundedness 5), payload 드리프트로 인한 Read Model 부재 원인을 정답 요지와 일치시켜 진단함(diagnosisAccuracy 5). T2 DDL과 T3 SELECT문은 PostgreSQL 문법으로 요구사항을 정확히 구현했으며 기존 v1 테이블을 건드리지 않아 안전함(sqlCorrectness 5). T4는 병행 운영과 컷오버 절차를 서술했으나, 자료의 핵심 제약인 human-in-the-loop 승인 게이트를 누락하여 엄격한 운영 관점에서 실무 적용 시 안전장치가 부족함(versioningQuality 4).",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 18260,
+      "completion_tokens": 3292,
+      "total_tokens": 21552,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3090
+      }
+    },
+    "latencyMs": 100252,
+    "judgedAt": "2026-09-11T14:04:49.846Z"
+  },
+  {
+    "scenarioId": "E1-new-column-query",
+    "rep": 5,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 4,
+    "versioningQuality": 2,
+    "unsupportedClaims": [
+      "이벤트 스토어 기존 이벤트 덮어쓰기/업데이트 주장",
+      "T1/T2 새 Read Model 생성 권고와 T4 기존 테이블 ALTER 제안 간 모순"
+    ],
+    "rationale": "진단(T1)은 로그의 schema drift와 Read Model 미비 문제를 정답 요지와 정확히 일치해 5점이다. SQL(T2/T3)은 새 테이블 생성과 시간대별 평균 집계 쿼리가 요청 조건을 충족하나, T3에서 CREATE TABLE을 중복 서술하는 실수가 있어 4점이다. 버전 관리(T4)는 ES의 불변성 원칙을 무시한 이벤트 덮어쓰기 주장과 T1/T2와의 모순으로 인해 2점이다. 전반적으로 자료 기반 분석은 양호하나 아키텍처 원칙 위반과 서술 실수가 있어 groundedness는 3점이다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12583,
+      "completion_tokens": 3470,
+      "total_tokens": 16053,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3245
+      }
+    },
+    "latencyMs": 90710,
+    "judgedAt": "2026-09-11T14:06:20.558Z"
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": 1,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 4,
+    "unsupportedClaims": [],
+    "rationale": "T1~T3는 제공된 자료의 로그, 스키마, DDL을 정확히 인용하여 문제 진단 및 SQL 생성에 오류가 없으며 지어낸 값이나 근거 없는 주장이 없음. T4는 병행 운영, 라우팅, 롤백 계획을 구체적으로 서술했으나, 자료의 제약사항에 명시된 'DDL/API 컷오버 전 인간 승인(human-in-the-loop)' 게이트와 '컷오버 전 집계 일치 검증' 단계를 누락하여 실전 적용 절차의 완성도가 다소 떨어짐.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 10597,
+      "completion_tokens": 2366,
+      "total_tokens": 12963,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2202
+      }
+    },
+    "latencyMs": 64553,
+    "judgedAt": "2026-09-11T14:07:25.116Z"
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": 1,
+    "condition": "B1",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 1,
+    "unsupportedClaims": [],
+    "rationale": "groundedness는 제공된 스키마와 로그의 필드만 정확히 참조했으며, 제안한 새 테이블은 해결 방안일 뿐 기존 데이터에 대한 허위 주장이 없어 5점이다. diagnosisAccuracy는 기존 Read Model의 집계 구조 부재 문제를 정확히 지적하여 정답 요지와 일치하므로 5점이다. sqlCorrectness는 새 집계 테이블 생성 및 백필 로직을 정확히 구현해 기존 스키마를 훼손하지 않고 요구사항을 충족하므로 5점이다. versioningQuality는 자료 부재를 이유로 구체적인 v1 호환 절차(병행 운영, 컷오버 등)를 제시하지 않아 정답 요지의 방향과 architect 기대 수준에 미달하므로 1점이다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 4783,
+      "completion_tokens": 2638,
+      "total_tokens": 7421,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2437
+      }
+    },
+    "latencyMs": 57267,
+    "judgedAt": "2026-09-11T14:08:22.384Z"
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": 2,
+    "condition": "A",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 2,
+    "unsupportedClaims": [
+      "T4에서 기존 v1 엔드포인트(`/multimodal` 등)에 `/v1/`, `/v2/` 접두사를 붙여 버전을 분리한다고 서술했으나, 자료는 기존 라우트 경로를 무변경 유지하고 신규 `/object-grip-stats` 라우트만 additive로 추가한다고 명시함."
+    ],
+    "rationale": "T1~T3는 자료의 insight.card.miss 로그, read_grip_result PK 구조, 제공 DDL을 정확히 인용하여 문제 진단과 SQL 해결이 완벽하다. 그러나 T4에서 기존 v1 엔드포인트에 `/v1/`, `/v2/` 접두사를 추가하는 버전 분리 전략을 제시했으나, 자료는 기존 라우트 경로를 무변경 유지하고 신규 `/object-grip-stats` 라우트만 additive로 추가한다고 명시하여 근거가 부족하다. 이에 따라 groundedness와 versioningQuality는 감점 처리한다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 10821,
+      "completion_tokens": 2939,
+      "total_tokens": 13760,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2701
+      }
+    },
+    "latencyMs": 76263,
+    "judgedAt": "2026-09-11T14:09:38.652Z"
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": 2,
+    "condition": "B1",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "T1은 로그의 miss 패턴과 read_grip_result의 PK 구조를 정확히 분석해 집계 Read Model 부재를 진단함. T2 SQL은 기존 테이블을 건드리지 않고 object_name 키의 새 Read Model을 생성해 백필하는 정석적 CQRS 해결책이며, T3는 요청 조건을 정확히 구현. T4는 URL 버전화, 병행 운영, 컷오버 절차를 구체적으로 서술하여 v1 클라이언트 보호 방안을 제시함. 자료 기반 정확도가 높고 정답 요지와 완벽히 일치함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 5745,
+      "completion_tokens": 3436,
+      "total_tokens": 9181,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3283
+      }
+    },
+    "latencyMs": 74355,
+    "judgedAt": "2026-09-11T14:10:53.011Z"
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": 3,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 4,
+    "unsupportedClaims": [
+      "T4에서 기존 엔드포인트를 /v1/로 변경하라고 제안했으나 자료에서는 신규 라우트 POST /object-success-rate 추가만 명시됨"
+    ],
+    "rationale": "groundedness는 모든 식별자, 로그 레벨, SQL 구조가 자료에서 직접 추출되어 지어낸 값이 없어 5점이다. diagnosisAccuracy는 T1이 정답 요지와 정확히 일치하여 누락된 집계 Read Model과 1:1 테이블 구조를 원인으로 정확히 지적해 5점이다. sqlCorrectness는 T2가 자료의 DDL과 카탈로그 등록 SQL을 그대로 따랐고, T3 백필 쿼리가 원본 테이블을 건드리지 않고 집계하여 신규 테이블에 채우는 논리가 정확해 5점이다. versioningQuality는 병행 운영과 컷오버 절차를 구체적으로 서술했으나, 자료의 'human-in-the-loop' 승인 게이트 누락과 기존 엔드포인트 변경 제안이 자료와 상충되어 4점이다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 13793,
+      "completion_tokens": 4448,
+      "total_tokens": 18241,
+      "completion_tokens_details": {
+        "reasoning_tokens": 4191
+      }
+    },
+    "latencyMs": 113493,
+    "judgedAt": "2026-09-11T14:12:46.509Z"
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": 3,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 5,
+    "unsupportedClaims": [
+      "T3에서 insert.file.ok 로그가 데이터 성공을 의미한다고 추측",
+      "T3 백필 SQL의 SUBSTRING(stream_id, 12)는 object_name이 아닌 scene_key 전체를 추출하여 GROUP BY 조건과 불일치"
+    ],
+    "rationale": "T1 진단은 자료의 로그와 스키마를 정확히 분석하여 정답 요지와 일치함. T4 버전 관리 절차는 병행 운영과 컷오버를 구체적으로 서술하여 실용적임. 그러나 T3 백필 SQL에서 stream_id 파싱 로직이 scene_key를 추출하도록 작성되어 object_name별 집계가 불가능한 논리적 오류가 있으며, 로그의 insert.file.ok를 성공으로 추측하는 주장은 자료에 근거하지 않음. 이로 인해 groundedness와 sqlCorrectness가 감점됨.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 6492,
+      "completion_tokens": 3724,
+      "total_tokens": 10216,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3511
+      }
+    },
+    "latencyMs": 81882,
+    "judgedAt": "2026-09-11T14:14:08.396Z"
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": 4,
+    "condition": "A",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 3,
+    "unsupportedClaims": [
+      "T4에서 제안한 `/object-grip-rate/v2` 경로 변경 및 v1 엔드포인트 삭제/비활성화안은 자료의 '순수 추가(additive) 변경' 및 'v1 엔드포인트 무손상' 제약과 상충함."
+    ],
+    "rationale": "T1은 로그와 정답 요지의 문제 원인을 정확히 식별해 5점. T2 SQL은 자료 제공 DDL과 완전히 일치하며 제약사항을 준수해 5점. T3 백필 및 조회 쿼리는 기존 v1 테이블을 건드리지 않고 집계 로직을 정확히 구현해 5점. T4는 자료의 '순수 추가 변경' 원칙을 무시하고 `/v2` 경로 변경 및 v1 삭제안을 제시해 실제 아키텍처 가이드와 괴리되므로 3점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 11482,
+      "completion_tokens": 3881,
+      "total_tokens": 15363,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3661
+      }
+    },
+    "latencyMs": 96563,
+    "judgedAt": "2026-09-11T14:15:44.963Z"
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": 4,
+    "condition": "B1",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "T1~T3는 제공된 로그와 스키마를 정확히 참조하여 집계 Read Model 부재 문제를 진단하고, 새 테이블 생성 SQL로 요구사항을 완벽히 해결했다. T4는 URL 경로 기반 버전 관리, 병행 운영, 백필 및 실시간 프로젝터(UPSERT) 적용까지 구체적 마이그레이션 절차를 제시하여 v1 클라이언트 보호가 명확하다. 자료 외 추측이나 기존 테이블 수정 제안 없이 정답 요지와 일치하는 구조적 해결안을 제시했다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 5450,
+      "completion_tokens": 3033,
+      "total_tokens": 8483,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2880
+      }
+    },
+    "latencyMs": 65984,
+    "judgedAt": "2026-09-11T14:16:50.951Z"
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": 5,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "T1은 로그와 정답 요지의 문제 원인(행 단위 저장, 집계 Read Model 부재)을 정확히 진단하여 5점. T2는 자료의 권장 DDL을 그대로 제시해 5점. T3은 상위 3개 조회 SELECT문과 백필 SQL 요청에 대해 T2의 CREATE TABLE을 그대로 복사해 붙여넣어 질문을 완전히 무시했으므로 1점. T4는 v1 무손상, 병행 운영, 백필 및 컷오버 절차를 자료의 마이그레이션 가이드와 제약조건에 맞게 구체적으로 서술해 5점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 11828,
+      "completion_tokens": 2601,
+      "total_tokens": 14429,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2427
+      }
+    },
+    "latencyMs": 71660,
+    "judgedAt": "2026-09-11T14:18:02.615Z"
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": 5,
+    "condition": "B1",
+    "groundedness": 1,
+    "diagnosisAccuracy": 1,
+    "sqlCorrectness": 4,
+    "versioningQuality": 1,
+    "unsupportedClaims": [
+      "T1에서 read_grip_result에 attempt_num 필드가 존재하지 않는다고 주장",
+      "T1에서 stream_id가 object_name을 포함하지 않아 그룹화 불가하다고 주장"
+    ],
+    "rationale": "T1에서 제공된 스키마에 명시된 attempt_num 존재 여부와 stream_id 구조를 반대로 서술하여 groundedness(1)와 diagnosisAccuracy(1)가 낮음. 정답 요지의 핵심인 '시도 단위 1:1 테이블이므로 집계 Read Model 부재'를 놓침. T2/T3 SQL은 문법 및 집계 로직이 정확하나(Correctness 4), CQRS 관점에서 원본 테이블 직접 집계는 성능상 비권장됨. T4는 자료 부족을 이유로 구체적 마이그레이션 절차를 제시하지 않고 일반론으로 회피하여(Versioning 1) 점수 낮음.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 4436,
+      "completion_tokens": 3366,
+      "total_tokens": 7802,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3144
+      }
+    },
+    "latencyMs": 70093,
+    "judgedAt": "2026-09-11T14:19:12.714Z"
+  },
+  {
+    "scenarioId": "E3-new-join-query",
+    "rep": 1,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "모든 답변(T1~T4)이 제공된 [자료]의 로그, 스키마, SQL, API 버전링 절차를 정확히 인용하여 근거 없는 주장이나 지어낸 값이 전혀 없다. T1의 진단은 [정답 요지]와 일치하며, T2/T3 SQL은 신규 통합 Read Model 생성 및 조회를 정확히 구현하고, T4는 v1 무손상 원칙과 인간 승인 게이트를 반영한 구체적 병행 운영 절차를 제시한다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 14917,
+      "completion_tokens": 2395,
+      "total_tokens": 17312,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2244
+      }
+    },
+    "latencyMs": 74502,
+    "judgedAt": "2026-09-11T14:20:27.221Z"
+  },
+  {
+    "scenarioId": "E3-new-join-query",
+    "rep": 1,
+    "condition": "B1",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 3,
+    "unsupportedClaims": [
+      "read_grip_result 테이블에 image_2d_uri/video_uri 컬럼 추가 제안",
+      "프로젝터 로직 변경 및 insert.file.ok 이벤트 매핑 가정"
+    ],
+    "rationale": "T1은 로그의 miss 메시지와 정답 요지의 분리된 Read Model 문제를 정확히 진단해 5점이다. T2/T3 SQL은 기존 테이블을 ALTER 없이 JOIN으로 요구사항을 정확히 해결해 5점이다. T4는 버전 병행·백필·컷오버 절차를 구체적으로 서술했으나, 정답 요지의 뷰/통합 RM 신설 대신 읽기 모델 ALTER를 제안해 CQRS 원칙에 부합하지 않아 3점이며 자료 외 가정이 섞여 groundedness는 4점이다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 6148,
+      "completion_tokens": 3958,
+      "total_tokens": 10106,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3761
+      }
+    },
+    "latencyMs": 85296,
+    "judgedAt": "2026-09-11T14:21:52.521Z"
+  },
+  {
+    "scenarioId": "E3-new-join-query",
+    "rep": 2,
+    "condition": "A",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 3,
+    "unsupportedClaims": [
+      "T4에서 제안한 '/v2' 접두사 엔드포인트('/projection/insight-card-v2') 및 기존 v1 유지 전략은 자료에 명시된 신규 라우트 '/projection/insight-card' 추가 방식과 상충함."
+    ],
+    "rationale": "T1은 로그와 정답 요지를 정확히 매칭해 5점. T2 SQL은 자료의 DDL 및 카탈로그 등록 쿼리를 그대로 정확히 재현해 5점. T3 조회 쿼리는 요청 컬럼을 새 테이블에서 정확히 선택해 5점. T4는 병행 운영 개념은 맞으나, 자료에 명시된 신규 라우트('/projection/insight-card') 대신 '/v2' 접두사 전략을 제안했고, 인간 승인 게이트 및 롤백 조건 등 자료의 구체적 절차를 누락해 3점. 전반적으로 근거는 탄탄하나 버전 관리 부분에서 자료와 일부 상충함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12535,
+      "completion_tokens": 3559,
+      "total_tokens": 16094,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3325
+      }
+    },
+    "latencyMs": 92402,
+    "judgedAt": "2026-09-11T14:23:24.928Z"
+  },
+  {
+    "scenarioId": "E3-new-join-query",
+    "rep": 2,
+    "condition": "B1",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "T1은 로그의 insight.card.miss 메시지와 Read Model 분리 구조를 정확히 인용하여 정답 요지의 문제 원인과 일치함. T2/T3 SQL은 제공된 스키마의 컬럼만 사용하여 (scene_key, attempt_num)으로 조인하는 쿼리를 정확히 작성했으며 ALTER/DROP이나 불필요한 테이블 생성 없이 즉시 해결 가능함. T4는 정답 요지의 '통합 Read Model(뷰) 신설 + 백필, API v2 병행'을 구체적 버전 경로, 병행 운영, 컷오버 절차로 구현 가능하게 서술함. 자료 외 추측이나 지어낸 값·컬럼이 전혀 없음.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 5605,
+      "completion_tokens": 2789,
+      "total_tokens": 8394,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2598
+      }
+    },
+    "latencyMs": 61874,
+    "judgedAt": "2026-09-11T14:24:26.806Z"
+  },
+  {
+    "scenarioId": "E3-new-join-query",
+    "rep": 3,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness는 엔지니어의 모든 주장과 SQL, 절차가 제공된 [자료]의 로그, 스키마, 권장사항과 정확히 일치하여 외부 추측이나 지어낸 값이 전혀 없다. diagnosisAccuracy는 [정답 요지]의 핵심 문제(분할 Read Model로 인한 단일 뷰 부재)와 원인(로그의 insight.card.miss 패턴)을 정확히 매칭했다. sqlCorrectness는 T2 DDL이 자료와 동일하며, T3 백필 및 조회 쿼리가 기존 테이블의 PK 조인과 요청 컬럼을 정확히 반영해 CQRS 백필 패턴을 완벽히 수행한다. versioningQuality는 v1 무손상, additive 변경, human-in-the-loop 승인 및 병행 운영 순서를 자료의 마이그레이션 가이드라인에 정확히 부합하여 즉시 실행 가능한 절차를 제시했다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 13092,
+      "completion_tokens": 3153,
+      "total_tokens": 16245,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2925
+      }
+    },
+    "latencyMs": 85381,
+    "judgedAt": "2026-09-11T14:25:52.191Z"
+  },
+  {
+    "scenarioId": "E3-new-join-query",
+    "rep": 3,
+    "condition": "B1",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 3,
+    "unsupportedClaims": [
+      "T4에서 'grip.result', 'media.uploaded' 이벤트 이름을 자료에 없이 가정함",
+      "T4 투영 SQL에서 INSERT만 기술하여 ES/CQRS 환경의 업데이트/중복 처리(ON CONFLICT) 누락"
+    ],
+    "rationale": "T1은 정답 요지의 문제와 원인을 정확히 지적하여 5점. T2/T3 SQL은 기존 Read Model을 조인해 요구사항을 정확히 해결하며 5점. T4는 API 버전 분리, 병행 운영, 백필 등 절차 구조는 갖췄으나 자료에 없는 이벤트 이름을 가정하고 투영 로직을 과도하게 복잡하게 설계해 실제 구현 시 정합성 문제가 발생할 수 있어 3점. 전반적으로 자료 기반은 탄탄하나 T4의 불필요한 추측과 SQL 누락으로 groundedness는 4점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 8262,
+      "completion_tokens": 3202,
+      "total_tokens": 11464,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2980
+      }
+    },
+    "latencyMs": 75704,
+    "judgedAt": "2026-09-11T14:27:07.897Z"
+  },
+  {
+    "scenarioId": "E3-new-join-query",
+    "rep": 4,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 4,
+    "versioningQuality": 5,
+    "unsupportedClaims": [
+      "T1에서 'POST /grip-result-with-media 엔드포인트 호출'로 진단했으나 자료 로그는 insight.card.request 발생을 기록함",
+      "T3 백필 SQL에서 read_grip_result 테이블에 존재하지 않는 image_2d_file_name 컬럼을 참조함",
+      "T4에서 API 경로에 /v1/ 접두사를 추가했으나 자료는 /projection/grip-result 만 명시"
+    ],
+    "rationale": "T1은 자료 로그와 정답 요지의 분리된 Read Model 원인 분석이 정확히 일치해 5점. T2는 자료에 명시된 DDL 및 Insight 등록 SQL을 그대로 적용해 5점. T3의 핵심 조회 SELECT 문은 정답이나 백필 INSERT에서 존재하지 않는 컬럼을 참조하는 SQL 오류가 있어 4점. T4는 병행 운영, 컷오버, human-in-the-loop 승인 및 롤백 절차를 자료 제약조건에 맞게 구체적으로 서술해 5점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 14241,
+      "completion_tokens": 4804,
+      "total_tokens": 19045,
+      "completion_tokens_details": {
+        "reasoning_tokens": 4562
+      }
+    },
+    "latencyMs": 121742,
+    "judgedAt": "2026-09-11T14:29:09.646Z"
+  },
+  {
+    "scenarioId": "E3-new-join-query",
+    "rep": 4,
+    "condition": "B1",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 4,
+    "unsupportedClaims": [],
+    "rationale": "groundedness는 모든 테이블명, 컬럼, 키 구조 및 로그 메시지가 [자료]와 정확히 일치하여 만점. diagnosisAccuracy는 분리된 Read Model로 인한 통합 조회 불가 문제를 [정답 요지]와 동일하게 정확히 진단함. sqlCorrectness는 기존 스키마를 변경하지 않고 공유 PK로 조인하는 쿼리로 요청을 정확히 해결함. versioningQuality는 버전 경로, 병행 운영, 백필, 컷오버 절차를 구체적으로 제시했으나, 단계3 SQL에서 이미 조인된 테이블을 중복 조인하는 기술적 모순과 '승인' 절차 누락으로 1점 감점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 5447,
+      "completion_tokens": 3635,
+      "total_tokens": 9082,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3448
+      }
+    },
+    "latencyMs": 77492,
+    "judgedAt": "2026-09-11T14:30:27.141Z"
+  },
+  {
+    "scenarioId": "E3-new-join-query",
+    "rep": 5,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness는 자료의 로그, 스키마, SQL을 정확히 인용해 지어낸 값이 없었으며 5점이다. diagnosisAccuracy는 T1에서 분리된 Read Model과 insight.card.miss 로그를 정확히 매칭해 정답 요지와 일치하므로 5점이다. sqlCorrectness는 T2 DDL이 자료와 동일하고 T3가 신규 테이블을 조회해 기존 v1을 건드리지 않아 정확하므로 5점이다. versioningQuality는 T4가 버전 병행, 인간 승인 컷오버, 백필 순서를 구체적으로 서술해 실행 가능하므로 5점이다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 14003,
+      "completion_tokens": 3008,
+      "total_tokens": 17011,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2824
+      }
+    },
+    "latencyMs": 84773,
+    "judgedAt": "2026-09-11T14:31:51.919Z"
+  },
+  {
+    "scenarioId": "E3-new-join-query",
+    "rep": 5,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 3,
+    "sqlCorrectness": 5,
+    "versioningQuality": 4,
+    "unsupportedClaims": [
+      "T1에서 '두 테이블을 조인할 수 있는 공통 필드가 현재 스키마에 존재하지 않는다'고 주장했으나, 자료상 양 테이블 모두 (scene_key, attempt_num)을 PK로 공유함.",
+      "T1에서 stream_id와 attempt_num 포함 여부가 키 구조 불일치의 원인이라고 오해함."
+    ],
+    "rationale": "groundedness는 T1의 키 불일치 주장이 자료와 상충되나 SQL과 설계는 정확해 3점. diagnosisAccuracy는 통합 모델 부재 문제는 맞혔으나 원인을 키 구조 문제로 오인해 3점. sqlCorrectness는 공유 PK 조인으로 요구사항을 정확히 해결해 5점. versioningQuality는 병행 운영과 새 모델 신설 절차가 구체적이나, 정답 요지의 핵심인 기존 데이터 백필(Backfill) 단계가 누락되어 4점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 5355,
+      "completion_tokens": 3116,
+      "total_tokens": 8471,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2888
+      }
+    },
+    "latencyMs": 67659,
+    "judgedAt": "2026-09-11T14:32:59.581Z"
+  },
+  {
+    "scenarioId": "E4-time-series-query",
+    "rep": 1,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "T1은 자료의 insight.card.miss 로그와 기존 Read Model 스키마를 정확히 인용하여 정답 요지와 일치하는 원인을 진단했다. T2와 T3의 SQL은 자료의 PostgreSQL dialect 및 스키마를 정확히 반영하여 백필과 조회 로직이 실행 가능하며, 자료에 제시된 검증 쿼리까지 포함해 정확하다. T4는 v1 자산 무손상 제약, API 버전 경로 병행, human-in-the-loop 승인 절차 등 자료의 가이드라인을 구체적으로 따라 구현 가능한 절차로 서술했다. 전반적으로 자료 외 추측이나 지어낸 값 없이 모든 주장과 코드가 [자료]에 명확히 근거하므로 각 항목 만점을 부여한다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12325,
+      "completion_tokens": 2734,
+      "total_tokens": 15059,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2530
+      }
+    },
+    "latencyMs": 75232,
+    "judgedAt": "2026-09-11T14:34:14.816Z"
+  },
+  {
+    "scenarioId": "E4-time-series-query",
+    "rep": 1,
+    "condition": "B1",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 3,
+    "versioningQuality": 4,
+    "unsupportedClaims": [],
+    "rationale": "groundedness는 제공된 로그와 ReadModel 스키마를 정확히 인용해 5점, diagnosisAccuracy는 정답 요지의 시계열 집계 부재 문제를 로그와 PK 구조로 정확히 매칭해 5점이다. sqlCorrectness는 새 집계 테이블 생성 방향은 맞으나 DDL의 PK 정의와 SELECT 문 간 논리적 모순 및 백필 시 데이터 충돌 위험이 있어 3점이다. versioningQuality는 v1 병행과 컷오버 절차를 구체적으로 서술했으나 일부 단계가 일반론에 머물러 4점이다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 6415,
+      "completion_tokens": 3549,
+      "total_tokens": 9964,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3377
+      }
+    },
+    "latencyMs": 78221,
+    "judgedAt": "2026-09-11T14:35:33.040Z"
+  },
+  {
+    "scenarioId": "E4-time-series-query",
+    "rep": 2,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness는 모든 식별자·로그 ID·컬럼 타입이 자료에 정확히 부합하며 외부 추측이나 지어낸 값이 전혀 없다. diagnosisAccuracy는 T1에서 insight.card.miss 로그와 row-level 모델의 한계를 정확히 지적해 정답 요지의 문제·원인과 완전히 일치한다. sqlCorrectness는 T2 DDL이 자료와 동일하고 T3 SELECT문이 요구된 정렬 및 조회 조건을 정확히 반영하여 새 테이블 구조에 맞게 작성되었다. versioningQuality는 T4가 v1 엔드포인트 무변경, v2 병행 운영, 인간 승인 게이트, 백필 검증 등 자료의 제약사항을 구체적으로 반영해 즉시 실행 가능한 절차를 제시한다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 10976,
+      "completion_tokens": 2394,
+      "total_tokens": 13370,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2193
+      }
+    },
+    "latencyMs": 66038,
+    "judgedAt": "2026-09-11T14:36:39.082Z"
+  },
+  {
+    "scenarioId": "E4-time-series-query",
+    "rep": 2,
+    "condition": "B1",
+    "groundedness": 3,
+    "diagnosisAccuracy": 3,
+    "sqlCorrectness": 2,
+    "versioningQuality": 4,
+    "unsupportedClaims": [
+      "`insight.card.miss` 로그를 stream_id 매핑 실패로 오해함 (실제로는 기능 미지원 miss 로그)",
+      "T2 스키마 PK(date)와 T3 백필 SQL의 GROUP BY(date, scene_key)가 충돌하여 실행 불가"
+    ],
+    "rationale": "groundedness는 로그를 기능 부재 miss로 오해하여 근거 없는 주장을 포함했다. diagnosisAccuracy는 집계 모델 부재라는 핵심 문제를 맞췄으나 로그 해석 오류로 인해 원인과 근거가 부분적으로 어긋났다. sqlCorrectness는 백필 SQL이 T2 스키마의 PK(date)와 GROUP BY(date, scene_key)가 충돌하여 실행 시 오류를 유발한다. versioningQuality는 버전 분리, 병행 운영, 백필, 컷오버 절차를 구체적으로 제시하여 실용성이 높다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 6270,
+      "completion_tokens": 3561,
+      "total_tokens": 9831,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3335
+      }
+    },
+    "latencyMs": 78070,
+    "judgedAt": "2026-09-11T14:37:57.156Z"
+  },
+  {
+    "scenarioId": "E4-time-series-query",
+    "rep": 3,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "T1은 자료의 insight.card.miss 로그와 read_grip_result 키 구조를 정확히 인용해 문제 원인을 진단했으며 정답 요지와 완전히 일치한다. T2 DDL은 자료에 명시된 스키마와 정확히 매칭되며, T3 SELECT 문은 요청한 집계 컬럼과 시간 순 정렬 조건을 정확히 반영했다. T4는 v1 엔드포인트 무손상, 신규 v2 병행 운영, 컷오버 단계를 구체적으로 서술하여 호환성 보호 절차를 충족한다. 전체적으로 자료 외 추측이나 오류가 없으며 모든 답변이 근거에 부합한다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 10332,
+      "completion_tokens": 2669,
+      "total_tokens": 13001,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2488
+      }
+    },
+    "latencyMs": 69781,
+    "judgedAt": "2026-09-11T14:39:06.942Z"
+  },
+  {
+    "scenarioId": "E4-time-series-query",
+    "rep": 3,
+    "condition": "B1",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 4,
+    "unsupportedClaims": [
+      "`insight.card.miss` 원인이 집계 키워드가 `object_name` 필드 키로 오해되어 발생했다는 주장은 제공된 로그에 명시되지 않음"
+    ],
+    "rationale": "groundedness는 자료의 스키마와 로그를 정확히 인용했으나, 로그 원인에 대한 추론이 일부 과장됨. diagnosisAccuracy는 정답 요지의 핵심 문제(집계 Read Model 부재)와 해결 방향을 정확히 포착함. sqlCorrectness는 기존 테이블을 훼손하지 않고 요구사항을 충족하는 표준 집계 쿼리를 제시함. versioningQuality는 병행 운영과 컷오버 절차를 상세히 서술했으나, 승인 절차와 백필 전략의 구체성이 다소 부족함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 6463,
+      "completion_tokens": 3490,
+      "total_tokens": 9953,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3293
+      }
+    },
+    "latencyMs": 77261,
+    "judgedAt": "2026-09-11T14:40:24.207Z"
+  },
+  {
+    "scenarioId": "E4-time-series-query",
+    "rep": 4,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness는 제공된 자료의 로그, 스키마, 코드 스니펫, 제약 조건을 정확히 인용했으며 외부 지식이나 추측값을 섞지 않음. diagnosisAccuracy는 정답 요지의 문제 원인과 insight.card.miss 로그 근거를 정확히 매칭하여 5점. sqlCorrectness는 T2 DDL이 자료 명세를 정확히 따르고, T3 조회문이 요청 조건을 완벽하게 반영하여 기존 v1 테이블을 훼손하지 않음. versioningQuality는 인간 승인 절차, 병행 운영, 백필 및 롤백 계획을 자료의 제약 조건과 운영 관례에 맞게 구체적으로 서술함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12919,
+      "completion_tokens": 3023,
+      "total_tokens": 15942,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2839
+      }
+    },
+    "latencyMs": 82689,
+    "judgedAt": "2026-09-11T14:41:46.901Z"
+  },
+  {
+    "scenarioId": "E4-time-series-query",
+    "rep": 4,
+    "condition": "B1",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 4,
+    "unsupportedClaims": [],
+    "rationale": "T1은 정답 요지와 동일하게 기존 Read Model의 시계열 집계 부재를 정확히 진단했으며, 로그와 스키마를 근거로 삼아 groundedness 5점이다. T2/T3 SQL은 기존 테이블을 활용해 요구사항을 정확히 충족하므로 sqlCorrectness 5점이다. T4는 v2 API 병행과 점진적 전환 절차를 제시했으나 정답 요지의 '백필' 전략이 누락되어 운영 리스크가 있어 versioningQuality 4점이다. 자료 외 거짓 주장은 발견되지 않았다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 5612,
+      "completion_tokens": 3507,
+      "total_tokens": 9119,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3343
+      }
+    },
+    "latencyMs": 75662,
+    "judgedAt": "2026-09-11T14:43:02.567Z"
+  },
+  {
+    "scenarioId": "E4-time-series-query",
+    "rep": 5,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 4,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 모든 식별자, 로그 패턴, 테이블 스키마가 제공된 자료에 정확히 기반하며 외부 추측이나 지어낸 값이 혼입되지 않음. diagnosisAccuracy: T1은 정답 요지와 자료의 insight.card.miss 3회 발생, 기존 Read Model의 Row-level 한계 및 집계 로직 부재 원인을 정확히 매칭함. sqlCorrectness: T2 DDL은 자료 명세와 일치하며, T3 쿼리는 요청 조건(날짜 오름차순, 성공률 계산)을 NULLIF로 안전하게 처리해 정확히 수행함. versioningQuality: 병행 운영, v1 무손상, 롤백 절차를 구체적으로 서술했으나, 자료의 핵심 제약사항인 'DDL 실행 및 API 컷오버 시 인간 승인(human-in-the-loop) 필수'와 명시적 백필(backfill) 단계를 누락하여 실전 적용에 약간의 보완이 필요함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 10531,
+      "completion_tokens": 3569,
+      "total_tokens": 14100,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3314
+      }
+    },
+    "latencyMs": 88005,
+    "judgedAt": "2026-09-11T14:44:30.577Z"
+  },
+  {
+    "scenarioId": "E4-time-series-query",
+    "rep": 5,
+    "condition": "B1",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 5,
+    "unsupportedClaims": [
+      "T4 Step 2에서 'parse_event'라는 이벤트명을 자료에 없이 임의로 가정함"
+    ],
+    "rationale": "T1은 스키마 구조와 로그를 정확히 분석해 집계 부재 문제를 도출했으며(5점), T2/T3 SQL은 기존 테이블을 활용해 요구 조건을 정확히 충족함(5점). T4는 정답 요지의 핵심 조치(신규 집계 모델 신설, 백필, API v2 병행)를 구체적 실행 절차로 잘 구현함(5점). 다만 T4에서 'parse_event'라는 이벤트명을 자료에 없이 임의로 가정하는 등 미세한 근거 이탈이 있어 unsupportedClaims에 기록함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 5751,
+      "completion_tokens": 3507,
+      "total_tokens": 9258,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3322
+      }
+    },
+    "latencyMs": 75957,
+    "judgedAt": "2026-09-11T14:45:46.541Z"
+  },
+  {
+    "scenarioId": "E5-failure-ranking-query",
+    "rep": 1,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "groundedness: 모든 테이블명, 컬럼명, 로그 메시지 및 API 버전 전략이 [자료]에 정확히 부합하며 외부 정보를 추가하거나 지어낸 값이 없음. diagnosisAccuracy: T1에서 insight.card.miss 원인을 기존 Read Model의 집계 부재 및 카탈로그 미등록으로 정확히 지적하여 [정답 요지]와 완벽히 일치함. sqlCorrectness: T2 DDL이 자료 명세와 동일하며, T3 질의문은 요청한 컬럼을 failure_count 내림차순으로 정렬해 상위 3개만 조회하는 정확한 SELECT문임. versioningQuality: T4에서 v1 엔드포인트 무손상 유지, 신규 v2 엔드포인트 병행 운영, 인간 승인 게이트, 백필(catchUp) 및 카탈로그 등록 절차를 구체적이고 실행 가능한 순서로 서술함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 11478,
+      "completion_tokens": 2435,
+      "total_tokens": 13913,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2202
+      }
+    },
+    "latencyMs": 67936,
+    "judgedAt": "2026-09-11T14:46:54.480Z"
+  },
+  {
+    "scenarioId": "E5-failure-ranking-query",
+    "rep": 1,
+    "condition": "B1",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 4,
+    "unsupportedClaims": [],
+    "rationale": "groundedness는 제공된 로그 및 스키마의 식별자·컬럼을 정확히 인용하여 외부 가정이나 지어낸 값이 전혀 없음. diagnosisAccuracy는 기존 Read Model의 시도 단위 저장 구조로 인한 집계 부재 문제를 정답 요지와 완벽하게 일치하게 진단함. sqlCorrectness는 새 집계 테이블 생성 및 백필 SQL이 기존 스키마를 훼손하지 않으며, 윈도우 함수와 그룹화를 통해 요청된 순위 및 필터링을 정확히 처리함. versioningQuality는 병행 운영·백필·컷오버 절차를 구체적으로 서술했으나, 정답 요지의 'API v2 병행' 지시를 무시하고 v1 엔드포인트 확장/신설을 제안하여 strictness 기준에서 감점.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 6595,
+      "completion_tokens": 4231,
+      "total_tokens": 10826,
+      "completion_tokens_details": {
+        "reasoning_tokens": 4023
+      }
+    },
+    "latencyMs": 92218,
+    "judgedAt": "2026-09-11T14:48:26.702Z"
+  },
+  {
+    "scenarioId": "E5-failure-ranking-query",
+    "rep": 2,
+    "condition": "A",
+    "groundedness": 3,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 2,
+    "unsupportedClaims": [
+      "T4에서 신규 API 경로를 `/object-failure-stats-v1`로 명명했으나, 자료에서는 `POST /object-failure-stats`를 신규 라우트로 명시함",
+      "T4에서 기존 `/object-failure-stats`(v1)가 `GripResultProjector` 기반이라고 주장했으나, 자료는 해당 엔드포인트를 신규 추가 항목으로 분류하고 기존 v1 자산 무손상을 강조함"
+    ],
+    "rationale": "T1~T3는 자료의 로그, DDL 스키마, 집계 요구사항을 정확히 반영하여 높은 점수 부여. T4는 자료에 명시된 `POST /object-failure-stats` 신규 라우트 추가 전략을 무시하고 `/object-failure-stats-v1` 경로를 임의로 생성했으며, 기존 엔드포인트의 구현체를 `GripResultProjector`로 잘못 매핑함. 자료의 'v1 자산 무손상' 및 '신규 라우트 배선' 지침과 상충되어 버전 관리 품질이 낮음.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12855,
+      "completion_tokens": 3836,
+      "total_tokens": 16691,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3581
+      }
+    },
+    "latencyMs": 98711,
+    "judgedAt": "2026-09-11T14:50:05.417Z"
+  },
+  {
+    "scenarioId": "E5-failure-ranking-query",
+    "rep": 2,
+    "condition": "B1",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 5,
+    "unsupportedClaims": [
+      "insight.card.hit 이벤트 (자료 로그에 미등재)"
+    ],
+    "rationale": "T1 진단은 기존 Read Model의 집계/랭킹 부재 문제를 정확히 지적하여 정답 요지와 일치한다. T2/T3 SQL은 WHERE grip_succeed=0으로 필터링한 후 분모에 COUNT(grip_succeed)를 사용해 실패율이 항상 100%로 계산되는 논리적 오류가 있으며, 정답 요지가 명시한 사전 집계 Read Model 신설 원칙을 무시하고 온디맨드 쿼리로 해결하려 해 CQRS 아키텍처에 부적합하다. T4는 v2 경로 분리, 병행 운영, 백필 SQL, 이벤트 핸들러 설계 등 정답 요지의 조치 사항을 구체적이고 실행 가능한 절차로 완벽히 구현했다. 자료에 insight.card.hit 로그가 존재하지 않아 해당 언급은 근거 부족이다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 5770,
+      "completion_tokens": 3573,
+      "total_tokens": 9343,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3355
+      }
+    },
+    "latencyMs": 77198,
+    "judgedAt": "2026-09-11T14:51:22.617Z"
+  },
+  {
+    "scenarioId": "E5-failure-ranking-query",
+    "rep": 3,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 5,
+    "unsupportedClaims": [
+      "T1에서 집계 조회 실패 원인을 '신규 v2 엔드포인트 호출'로 서술했으나, 자료상 해당 엔드포인트는 아직 미구현 제안 단계이며 실제 시스템 트리거는 `insight.card.miss` 로그였다."
+    ],
+    "rationale": "T1~T4 모두 [자료]의 DDL, 로그 맥락, 마이그레이션 절차를 정확히 반영하여 높은 완성도를 보였다. T1의 엔드포인트 호출 서술은 자료상 미구현 제안 단계와 미세한 시차 차이가 있으나 핵심 문제 진단(집계 모델 부재)은 정확했다. T2/T3 SQL은 제약사항을 준수하며 요구사항을 완벽히 해결한다. T4는 병행 운영, 백필 검증, 컷오버 절차를 구체적으로 서술해 v1 보호 전략으로 충분하다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 10362,
+      "completion_tokens": 3597,
+      "total_tokens": 13959,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3380
+      }
+    },
+    "latencyMs": 88126,
+    "judgedAt": "2026-09-11T14:52:50.748Z"
+  },
+  {
+    "scenarioId": "E5-failure-ranking-query",
+    "rep": 3,
+    "condition": "B1",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 2,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "T1과 T4는 제공된 스키마의 PK 제약과 로그 내용을 정확히 인용하여 문제 원인을 진단하고, v1 클라이언트 보호를 위한 구체적인 버전 경로 및 병행 운영 절차를 제시함. T2 SQL은 집계 모델 신설과 순위 계산 로직이 정확하나, T3에서 WINDOW 함수를 WHERE 절에 직접 적용하는 치명적인 SQL 문법 오류가 있어 sqlCorrectness는 낮게 평가됨. 전반적으로 자료 기반 주장이 명확하나 SQL 실행 가능성에서 감점 필요.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 6372,
+      "completion_tokens": 3113,
+      "total_tokens": 9485,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2966
+      }
+    },
+    "latencyMs": 69757,
+    "judgedAt": "2026-09-11T14:54:00.509Z"
+  },
+  {
+    "scenarioId": "E5-failure-ranking-query",
+    "rep": 4,
+    "condition": "A",
+    "groundedness": 4,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 5,
+    "unsupportedClaims": [
+      "T4 단계 1에서 'v3 엔드포인트' 언급 (자료는 v1→v2 전환만 명시)"
+    ],
+    "rationale": "T1은 정답 요지와 문제·원인·해결책이 정확히 일치하여 진단Accuracy 5점입니다. T2 DDL은 자료와 동일하고, T3 SELECT문은 요청 조건을 정확히 반영해 SQLCorrectness 5점입니다. T4는 비파괴적 마이그레이션·인간 승인·롤백 계획이 자료와 일치해 versioningQuality 5점이나, 'v3' 언급 등 근거 없는 주장이 있어 groundedness 4점으로 감점합니다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 11131,
+      "completion_tokens": 3669,
+      "total_tokens": 14800,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3488
+      }
+    },
+    "latencyMs": 91394,
+    "judgedAt": "2026-09-11T14:55:31.907Z"
+  },
+  {
+    "scenarioId": "E5-failure-ranking-query",
+    "rep": 4,
+    "condition": "B1",
+    "groundedness": 2,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 1,
+    "versioningQuality": 4,
+    "unsupportedClaims": [
+      "`insight_events` 테이블 존재 가정",
+      "`stream_id`에 `trip-anchor:` 접두사 존재 주장",
+      "`insight.card.miss`를 파지 실패 이벤트로 오인"
+    ],
+    "rationale": "T1은 정답 요지와 동일하게 기존 Read Model의 집계/랭킹 기능 부재를 정확히 진단하여 높은 점수(5)를 부여함. T2/T3 SQL은 자료에 없는 `insight_events` 테이블을 가정하고 로그의 캐시 미스 메시지를 이벤트로 오인해 `trip-anchor:` 접두사를 지어내는 등 근거가 결여되어 낮은 점수(1)를 부여함. T4는 v1/v2 엔드포인트 분리, 병행 운영, 백필 절차가 구체적이며 정답 요지의 조치와 일치하여 높은 점수(4)를 부여함.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 7919,
+      "completion_tokens": 3769,
+      "total_tokens": 11688,
+      "completion_tokens_details": {
+        "reasoning_tokens": 3550
+      }
+    },
+    "latencyMs": 86319,
+    "judgedAt": "2026-09-11T14:56:58.229Z"
+  },
+  {
+    "scenarioId": "E5-failure-ranking-query",
+    "rep": 5,
+    "condition": "A",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "각 축 5점: T1은 자료의 insight.card.miss 로그와 기존 Read Model PK 구조를 정확히 인용해 집계 뷰 부재를 진단했으며 정답 요지와 일치함. T2 DDL은 자료의 스키마와 제약조건을 그대로 반영했고, T3 SQL은 신규 테이블을 활용해 실패율 계산 및 상위 3건 조회를 정확히 수행함. T4는 인간 승인 게이트, 병행 API 라우팅, 백필 검증 절차를 자료의 가이드라인에 따라 구체적으로 서술함. 지어낸 값이나 근거 없는 주장은 전혀 발견되지 않음.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 12359,
+      "completion_tokens": 2559,
+      "total_tokens": 14918,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2383
+      }
+    },
+    "latencyMs": 71844,
+    "judgedAt": "2026-09-11T14:58:10.078Z"
+  },
+  {
+    "scenarioId": "E5-failure-ranking-query",
+    "rep": 5,
+    "condition": "B1",
+    "groundedness": 5,
+    "diagnosisAccuracy": 5,
+    "sqlCorrectness": 5,
+    "versioningQuality": 5,
+    "unsupportedClaims": [],
+    "rationale": "T1은 기존 Read Model의 집계 부재와 로그의 insight.card.miss를 정확히 매칭하여 정답 요지와 일치한다. T2/T3 SQL은 새 Read Model 생성 및 상위 3건 조회 쿼리가 스키마 제약 없이 정확히 작성되었으며, 기존 테이블을 수정하지 않았다. T4는 URL 버전 분리, 병행 운영, 백필 및 컷오버 절차를 구체적으로 제시해 v1 클라이언트 보호를 실현한다. 전 답변은 제공된 로그와 스키마 외의 값을 임의로 추가하거나 왜곡하지 않아 근거가 탄탄하다.",
+    "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+    "finishReason": "stop",
+    "usage": {
+      "prompt_tokens": 7565,
+      "completion_tokens": 2966,
+      "total_tokens": 10531,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2792
+      }
+    },
+    "latencyMs": 69789,
+    "judgedAt": "2026-09-11T14:59:19.871Z"
+  }
+]

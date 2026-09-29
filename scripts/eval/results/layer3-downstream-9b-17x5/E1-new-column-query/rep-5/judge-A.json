@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 5,
+  "versioningQuality": 4,
+  "unsupportedClaims": [],
+  "rationale": "모든 답변은 제공된 로그, 스키마, DDL 예시를 정확히 인용하여 외부 추측이나 지어낸 값이 없으며(groundedness 5), payload 드리프트로 인한 Read Model 부재 원인을 정답 요지와 일치시켜 진단함(diagnosisAccuracy 5). T2 DDL과 T3 SELECT문은 PostgreSQL 문법으로 요구사항을 정확히 구현했으며 기존 v1 테이블을 건드리지 않아 안전함(sqlCorrectness 5). T4는 병행 운영과 컷오버 절차를 서술했으나, 자료의 핵심 제약인 human-in-the-loop 승인 게이트를 누락하여 엄격한 운영 관점에서 실무 적용 시 안전장치가 부족함(versioningQuality 4).",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 18260,
+    "completion_tokens": 3292,
+    "total_tokens": 21552,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3090
+    }
+  },
+  "latencyMs": 100252,
+  "judgedAt": "2026-09-11T14:04:49.846Z"
+}

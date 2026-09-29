@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "sqlCorrectness": 5, "versioningQuality": 4, "unsupportedClaims": [], "rationale": "groundedness: 모든 식별자, 로그 패턴, 테이블 스키마가 제공된 자료에 정확히 기반하며 외부 추측이나 지어낸 값이 혼입되지 않음. diagnosisAccuracy: T1은 정답 요지와 자료의 insight.card.miss 3회 발생, 기존 Read Model의 Row-level 한계 및 집계 로직 부재 원인을 정확히 매칭함. sqlCorrectness: T2 DDL은 자료 명세와 일치하며, T3 쿼리는 요청 조건(날짜 오름차순, 성공률 계산)을 NULLIF로 안전하게 처리해 정확히 수행함. versioningQuality: 병행 운영, v1 무손상, 롤백 절차를 구체적으로 서술했으나, 자료의 핵심 제약사항인 'DDL 실행 및 API 컷오버 시 인간 승인(human-in-the-loop) 필수'와 명시적 백필(backfill) 단계를 누락하여 실전 적용에 약간의 보완이 필요함."}

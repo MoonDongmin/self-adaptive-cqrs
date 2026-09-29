@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "sqlCorrectness": 5, "versioningQuality": 5, "unsupportedClaims": [], "rationale": "groundedness는 모든 식별자·로그 ID·컬럼 타입이 자료에 정확히 부합하며 외부 추측이나 지어낸 값이 전혀 없다. diagnosisAccuracy는 T1에서 insight.card.miss 로그와 row-level 모델의 한계를 정확히 지적해 정답 요지의 문제·원인과 완전히 일치한다. sqlCorrectness는 T2 DDL이 자료와 동일하고 T3 SELECT문이 요구된 정렬 및 조회 조건을 정확히 반영하여 새 테이블 구조에 맞게 작성되었다. versioningQuality는 T4가 v1 엔드포인트 무변경, v2 병행 운영, 인간 승인 게이트, 백필 검증 등 자료의 제약사항을 구체적으로 반영해 즉시 실행 가능한 절차를 제시한다."}

@@ -1,0 +1,23 @@
+{
+  "groundedness": 3,
+  "diagnosisAccuracy": 5,
+  "actionability": 4,
+  "completeness": 5,
+  "unsupportedClaims": [
+    "src/insert/dto/toy-data.dto.ts의 toyDataSchema 정의",
+    "src/projection/projector/grip-result.projector.ts의 map() 메서드 동작"
+  ],
+  "rationale": "groundedness: 3. 핵심 로그 오류는 정확히 인용했으나, 제공 자료에 없는 소스 파일 경로 및 Zod 스키마 정의를 근거 없이 인용함. diagnosisAccuracy: 5. 정답 요지와 완벽히 일치하며, 타입/치역 위반 원인과 ES 미적재 결과를 정확히 진단함. actionability: 4. 검증용 SQL은 실행 성공했으나, 요구된 'Read Model 생성/변경'이 아닌 무유입 확인 쿼리를 제시하여 형식적 요구사항과 미세하게 어긋남. completeness: 5. 권고, SQL, API 버저닝 세 요소가 모두 포함되며 서로 모순 없이 일관되게 서술됨.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 19063,
+    "completion_tokens": 3443,
+    "total_tokens": 22506,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3211
+    }
+  },
+  "latencyMs": 105086,
+  "judgedAt": "2026-09-14T00:50:55.595Z"
+}

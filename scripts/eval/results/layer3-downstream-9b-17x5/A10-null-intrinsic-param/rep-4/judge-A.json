@@ -1,0 +1,22 @@
+{
+  "groundedness": 4,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 1,
+  "versioningQuality": 5,
+  "unsupportedClaims": [
+    "T3에서 event_store 테이블을 거부 건수 집계 대상으로 인용한 것은 자료상 검증 실패 로그가 별도 로깅 시스템에 기록되므로 근거 없음"
+  ],
+  "rationale": "T1 진단과 T2 SQL은 자료의 로그 맥락 및 격리 전략을 정확히 반영해 높은 점수를 받으나, T3은 거부된 이벤트가 event_store에 존재하지 않음에도 해당 테이블을 조회 대상으로 설정해 논리적 오류가 있다. T4는 v1 무손상 제약과 인간 승인 절차를 명확히 준수해 호환성 보호 절차가 타당하다. 전반적으로 자료 기반이 탄탄하나 T3의 데이터 소스 선정 오류가 sqlCorrectness를 크게 낮춘다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 12903,
+    "completion_tokens": 3709,
+    "total_tokens": 16612,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3519
+    }
+  },
+  "latencyMs": 93933,
+  "judgedAt": "2026-09-11T11:17:58.435Z"
+}

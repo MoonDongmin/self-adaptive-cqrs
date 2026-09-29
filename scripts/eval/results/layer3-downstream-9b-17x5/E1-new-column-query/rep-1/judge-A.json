@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 5,
+  "versioningQuality": 5,
+  "unsupportedClaims": [],
+  "rationale": "모든 답변은 제공된 로그, 스키마 정의, 분석 문서의 식별자와 값만 정확히 인용하여 자료 기반성이 완벽하다. T1은 정답 요지와 일치하게 스키마 드리프트에 의한 투영 유실과 insight.card.miss 반복을 근거로 문제 원인을 정확히 진단했다. T2 DDL은 자료의 권장안과 동일하며, T3 SQL은 요청한 시 단위 평균 집계 및 정렬을 새 Read Model 기준으로 정확히 수행한다. T4는 v1 무손상, 병행 운영, 인간 승인 기반 백필 및 컷오버 절차를 구체적으로 서술하여 즉시 실행 가능한 버전 관리 가이드라인을 제공한다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 20056,
+    "completion_tokens": 2320,
+    "total_tokens": 22376,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2127
+    }
+  },
+  "latencyMs": 84463,
+  "judgedAt": "2026-09-11T13:51:26.508Z"
+}

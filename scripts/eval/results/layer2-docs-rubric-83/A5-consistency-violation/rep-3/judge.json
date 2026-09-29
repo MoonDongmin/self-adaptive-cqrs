@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 5,
+  "completeness": 5,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용된 장면 키(02008, 02009), 센서 값(robotTfTranslationZ=1.5, grip3dPoseZMax≈0.398), 물리적 범위([0.95,1.15], [0.01,0.3])가 [자료]의 원시 로그와 정확히 일치하며 재확인된 사실에 기반함. diagnosisAccuracy: 정답 요지의 'grip_succeed=1과 센서 값 모순' 및 'Read Model 보강/격리, v1 무손상' 조치와 완벽히 일치하며, 근본 원인을 Read Model 레이어의 물리적 범위 검증 누락으로 정확히 진단함. actionability: 자동 검증 결과(DDL 2/2 실행, TS 4/4 컴파일 통과)를 바탕으로 신규 v2 테이블 생성 및 투영기 구현이 기존 v1을 건드리지 않고 문제를 해결할 수 있으며, 마이그레이션/롤백 절차도 명확함. completeness: 권고, SQL DDL, API 버저닝 세 요소가 모두 포함되어 있으며, 테이블명·컬럼명·프로젝터명이 문서 전반에서 일관되게 사용되어 구조적 완결성이 높음.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 18624,
+    "completion_tokens": 2743,
+    "total_tokens": 21367,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2440
+    }
+  },
+  "latencyMs": 82033,
+  "judgedAt": "2026-09-14T01:15:46.709Z"
+}

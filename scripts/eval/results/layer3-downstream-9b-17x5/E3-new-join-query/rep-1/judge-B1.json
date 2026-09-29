@@ -1,0 +1,23 @@
+{
+  "groundedness": 4,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 5,
+  "versioningQuality": 3,
+  "unsupportedClaims": [
+    "read_grip_result 테이블에 image_2d_uri/video_uri 컬럼 추가 제안",
+    "프로젝터 로직 변경 및 insert.file.ok 이벤트 매핑 가정"
+  ],
+  "rationale": "T1은 로그의 miss 메시지와 정답 요지의 분리된 Read Model 문제를 정확히 진단해 5점이다. T2/T3 SQL은 기존 테이블을 ALTER 없이 JOIN으로 요구사항을 정확히 해결해 5점이다. T4는 버전 병행·백필·컷오버 절차를 구체적으로 서술했으나, 정답 요지의 뷰/통합 RM 신설 대신 읽기 모델 ALTER를 제안해 CQRS 원칙에 부합하지 않아 3점이며 자료 외 가정이 섞여 groundedness는 4점이다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 6148,
+    "completion_tokens": 3958,
+    "total_tokens": 10106,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3761
+    }
+  },
+  "latencyMs": 85296,
+  "judgedAt": "2026-09-11T14:21:52.521Z"
+}

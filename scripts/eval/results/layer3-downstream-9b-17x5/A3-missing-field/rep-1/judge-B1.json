@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 4,
+  "versioningQuality": 1,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: T1~T3의 모든 분석과 SQL은 제공된 로그 및 ReadModel 스키마에 정확히 기반하며, 외부 지식이나 지어낸 값이 없음. diagnosisAccuracy: T1에서 Zod 파싱 실패, grip_data/robot_tf 누락, 적재 거부 원인을 정답 요지와 완벽하게 일치시켜 정확히 진단함. sqlCorrectness: T2/T3 모두 누락 검증 및 집계를 위한 논리는 정확하나, 로그 기반 동적 처리 대신 파일명을 하드코딩하고 T3의 UNION ALL 구조가 비효율적이므로 감점. versioningQuality: T4에서 v1 호환 절차에 대한 근거가 부족하다며 답변을 회피하여, 정답 요지의 'v1 무손상' 및 구체적인 병행 운영/컷오버 절차가 누락됨.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 13353,
+    "completion_tokens": 3034,
+    "total_tokens": 16387,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2809
+    }
+  },
+  "latencyMs": 81886,
+  "judgedAt": "2026-09-11T11:41:31.850Z"
+}

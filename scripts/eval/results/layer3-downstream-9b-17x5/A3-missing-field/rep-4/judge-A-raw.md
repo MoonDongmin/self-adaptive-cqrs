@@ -1,0 +1,3 @@
+
+
+{"groundedness": 3, "diagnosisAccuracy": 5, "sqlCorrectness": 1, "versioningQuality": 4, "unsupportedClaims": ["read_grip_result 테이블에 grip_data 컬럼 존재 가정 (실제 스키마 미존재)", "거부된 이벤트를 read_grip_result에 INSERT하여 백필 시도 (v1 자산 무손상/데이터 정합성 제약 위반)"], "rationale": "T1은 정답 요지와 자료 로그를 정확히 매칭하여 5점, T2는 자료의 격리 SQL과 일치하여 5점이다. 그러나 T3은 Read Model에 존재하지 않는 grip_data 컬럼을 가정하고 실제 테이블에 가짜 데이터를 INSERT하는 SQL을 제시하여 v1 자산 무손상 제약과 데이터 정합성 원칙을 심각하게 위반했으므로 1점이다. T4는 API 불변과 내부 격리, 인간 승인 절차를 제시했으나 구체적인 운영 순서가 다소 일반론에 머물러 4점이다."}

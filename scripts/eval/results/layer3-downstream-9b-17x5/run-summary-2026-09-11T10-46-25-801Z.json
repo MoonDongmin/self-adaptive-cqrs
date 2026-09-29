@@ -1,0 +1,461 @@
+{
+  "options": {
+    "scenarios": [
+      "A1-payload-drift",
+      "A2-type-mismatch",
+      "A3-missing-field",
+      "A9-non-integer-id",
+      "A10-null-intrinsic-param",
+      "A4-physical-impossible",
+      "A5-consistency-violation",
+      "A6-depth-jump",
+      "A7-grip-depth-underflow",
+      "A8-translation-x-violation",
+      "B1-projection-map-failed",
+      "B2-multimodal-integrity",
+      "E1-new-column-query",
+      "E2-new-aggregate-query",
+      "E3-new-join-query",
+      "E4-time-series-query",
+      "E5-failure-ranking-query"
+    ],
+    "reps": 5,
+    "conditions": [
+      "B1",
+      "A"
+    ],
+    "model": "qwen/qwen3.5-9b",
+    "maxTokens": 8192,
+    "temperature": 0,
+    "timeoutMs": 900000,
+    "docsDirectory": "scripts/eval/results/layer2-docs-llm-only-20x5-v2",
+    "resultsName": "layer3-downstream-9b-17x5"
+  },
+  "summary": [
+    {
+      "scenarioId": "A1-payload-drift",
+      "rep": 1,
+      "document": "2026-08-11-003828-50eed889-a94b-4d1b-af92-63a4888e32ea.md"
+    },
+    {
+      "scenarioId": "A1-payload-drift",
+      "rep": 2,
+      "document": "2026-08-11-093753-ef7a97a0-1c26-4340-a290-c7a592943c87.md"
+    },
+    {
+      "scenarioId": "A1-payload-drift",
+      "rep": 3,
+      "document": "2026-08-12-035813-e18ec5e8-31f8-42c6-b105-533fdc7373ad.md"
+    },
+    {
+      "scenarioId": "A1-payload-drift",
+      "rep": 4,
+      "document": "2026-08-14-180140-cd4a7d38-b8ae-47c0-b30d-a05f7531ed66.md"
+    },
+    {
+      "scenarioId": "A1-payload-drift",
+      "rep": 5,
+      "document": "2026-08-13-121715-ba0c7384-b8e3-4c8b-af0c-b739ee0d56c8.md"
+    },
+    {
+      "scenarioId": "A2-type-mismatch",
+      "rep": 1,
+      "document": "2026-08-11-010821-3e1426e4-85dd-41c3-aa39-04c9e140fdad.md"
+    },
+    {
+      "scenarioId": "A2-type-mismatch",
+      "rep": 2,
+      "document": "2026-08-11-104910-4714dd7b-ed3a-4520-be3e-818c082b6086.md"
+    },
+    {
+      "scenarioId": "A2-type-mismatch",
+      "rep": 3,
+      "document": "2026-08-12-044046-ac26991b-9f8d-4831-b386-957e1b997958.md"
+    },
+    {
+      "scenarioId": "A2-type-mismatch",
+      "rep": 4,
+      "document": "2026-08-12-185842-0069e24d-fc33-4d71-84a0-4aeab4ae354b.md"
+    },
+    {
+      "scenarioId": "A2-type-mismatch",
+      "rep": 5,
+      "document": "2026-08-13-124823-64cfdb18-ddbd-4492-95a4-9a350e21c3b7.md"
+    },
+    {
+      "scenarioId": "A3-missing-field",
+      "rep": 1,
+      "document": "2026-08-11-011837-f8148686-8f42-4e6f-bd96-71f8891488dc.md"
+    },
+    {
+      "scenarioId": "A3-missing-field",
+      "rep": 2,
+      "document": "2026-08-11-110657-1ec6c565-8522-4ec8-92ab-5a071d776fbe.md"
+    },
+    {
+      "scenarioId": "A3-missing-field",
+      "rep": 3,
+      "document": "2026-08-12-045628-0e0dc39b-7edd-41f0-8a85-de26b45d9ba1.md"
+    },
+    {
+      "scenarioId": "A3-missing-field",
+      "rep": 4,
+      "document": "2026-08-12-191007-b70bf9ab-4b8e-43d5-ba32-5ff1c63c022d.md"
+    },
+    {
+      "scenarioId": "A3-missing-field",
+      "rep": 5,
+      "document": "2026-08-13-131055-eeaa2cfe-1424-4957-8ebc-2219e32dcae2.md"
+    },
+    {
+      "scenarioId": "A9-non-integer-id",
+      "rep": 1,
+      "document": "2026-08-11-035103-7c6f6088-2361-48eb-8bf3-cc0d113dec4c.md"
+    },
+    {
+      "scenarioId": "A9-non-integer-id",
+      "rep": 2,
+      "document": "2026-08-14-121433-0dd288fd-95cd-428d-85ec-c18e9d5a692d.md"
+    },
+    {
+      "scenarioId": "A9-non-integer-id",
+      "rep": 3,
+      "document": "2026-08-12-113716-aaa46bb4-7b7d-4e48-a680-5c5fb0f2f51e.md"
+    },
+    {
+      "scenarioId": "A9-non-integer-id",
+      "rep": 4,
+      "document": "2026-08-14-212102-c3ed0664-1205-4435-a0c6-21507e8db831.md"
+    },
+    {
+      "scenarioId": "A9-non-integer-id",
+      "rep": 5,
+      "document": "2026-08-15-135422-7a4d68a1-3b98-4a36-b959-42062ac6ee0b.md"
+    },
+    {
+      "scenarioId": "A10-null-intrinsic-param",
+      "rep": 1,
+      "document": "2026-08-11-052002-56eff07e-bd6f-4df2-957c-6c0521b1a3e9.md"
+    },
+    {
+      "scenarioId": "A10-null-intrinsic-param",
+      "rep": 2,
+      "document": "2026-08-14-134331-416d5c44-4f0f-4a2a-bcdb-285a7f908cf3.md"
+    },
+    {
+      "scenarioId": "A10-null-intrinsic-param",
+      "rep": 3,
+      "document": "2026-08-12-115250-bff8a490-1e5c-42d5-9cd5-2e0d0ab60238.md"
+    },
+    {
+      "scenarioId": "A10-null-intrinsic-param",
+      "rep": 4,
+      "document": "2026-08-13-050835-bfa4a659-ddb6-4039-a2c1-1ed7eca0a83d.md"
+    },
+    {
+      "scenarioId": "A10-null-intrinsic-param",
+      "rep": 5,
+      "document": "2026-08-15-031523-991f7605-5256-4d4d-a029-fe5ae0cb9662.md"
+    },
+    {
+      "scenarioId": "A4-physical-impossible",
+      "rep": 1,
+      "document": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_00263.md"
+    },
+    {
+      "scenarioId": "A4-physical-impossible",
+      "rep": 2,
+      "document": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_00263.md"
+    },
+    {
+      "scenarioId": "A4-physical-impossible",
+      "rep": 3,
+      "document": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_00263.md"
+    },
+    {
+      "scenarioId": "A4-physical-impossible",
+      "rep": 4,
+      "document": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_00263.md"
+    },
+    {
+      "scenarioId": "A4-physical-impossible",
+      "rep": 5,
+      "document": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_00263.md"
+    },
+    {
+      "scenarioId": "A5-consistency-violation",
+      "rep": 1,
+      "document": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02008.md"
+    },
+    {
+      "scenarioId": "A5-consistency-violation",
+      "rep": 2,
+      "document": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02008.md"
+    },
+    {
+      "scenarioId": "A5-consistency-violation",
+      "rep": 3,
+      "document": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02008.md"
+    },
+    {
+      "scenarioId": "A5-consistency-violation",
+      "rep": 4,
+      "document": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02008.md"
+    },
+    {
+      "scenarioId": "A5-consistency-violation",
+      "rep": 5,
+      "document": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02008.md"
+    },
+    {
+      "scenarioId": "A6-depth-jump",
+      "rep": 1,
+      "document": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02010.md"
+    },
+    {
+      "scenarioId": "A6-depth-jump",
+      "rep": 2,
+      "document": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02010.md"
+    },
+    {
+      "scenarioId": "A6-depth-jump",
+      "rep": 3,
+      "document": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02010.md"
+    },
+    {
+      "scenarioId": "A6-depth-jump",
+      "rep": 4,
+      "document": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02010.md"
+    },
+    {
+      "scenarioId": "A6-depth-jump",
+      "rep": 5,
+      "document": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02010.md"
+    },
+    {
+      "scenarioId": "A7-grip-depth-underflow",
+      "rep": 1,
+      "document": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02018.md"
+    },
+    {
+      "scenarioId": "A7-grip-depth-underflow",
+      "rep": 2,
+      "skipped": "폴백 문서만 존재(sufficientEvidence != true): 2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02018.md"
+    },
+    {
+      "scenarioId": "A7-grip-depth-underflow",
+      "rep": 3,
+      "document": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02018.md"
+    },
+    {
+      "scenarioId": "A7-grip-depth-underflow",
+      "rep": 4,
+      "document": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02018.md"
+    },
+    {
+      "scenarioId": "A7-grip-depth-underflow",
+      "rep": 5,
+      "document": "2023-09-23-090000-반려동물용품_CR01_강아지공룡알장난감_02018.md"
+    },
+    {
+      "scenarioId": "A8-translation-x-violation",
+      "rep": 1,
+      "document": "2023-10-10-090000-반려동물용품_CR01_강아지공룡알장난감_02020.md"
+    },
+    {
+      "scenarioId": "A8-translation-x-violation",
+      "rep": 2,
+      "document": "2023-10-10-090000-반려동물용품_CR01_강아지공룡알장난감_02020.md"
+    },
+    {
+      "scenarioId": "A8-translation-x-violation",
+      "rep": 3,
+      "document": "2023-10-10-090000-반려동물용품_CR01_강아지공룡알장난감_02020.md"
+    },
+    {
+      "scenarioId": "A8-translation-x-violation",
+      "rep": 4,
+      "document": "2023-10-10-090000-반려동물용품_CR01_강아지공룡알장난감_02020.md"
+    },
+    {
+      "scenarioId": "A8-translation-x-violation",
+      "rep": 5,
+      "document": "2023-10-10-090000-반려동물용품_CR01_강아지공룡알장난감_02020.md"
+    },
+    {
+      "scenarioId": "B1-projection-map-failed",
+      "rep": 1,
+      "document": "2026-08-11-070644-174fa59a-162c-48c4-8164-1df4dc278f24.md"
+    },
+    {
+      "scenarioId": "B1-projection-map-failed",
+      "rep": 2,
+      "document": "2026-08-11-222607-af4516bb-9aff-4896-bc8f-87e9e45301ac.md"
+    },
+    {
+      "scenarioId": "B1-projection-map-failed",
+      "rep": 3,
+      "document": "2026-08-14-164045-15de548c-3870-45f1-b84d-dd09d545a2ed.md"
+    },
+    {
+      "scenarioId": "B1-projection-map-failed",
+      "rep": 4,
+      "document": "2026-08-13-064259-e1d30855-b67b-4176-b703-511b818ff2ab.md"
+    },
+    {
+      "scenarioId": "B1-projection-map-failed",
+      "rep": 5,
+      "document": "2026-08-15-044757-c40f6d2a-2015-4307-9bb8-9b1f06f4525e.md"
+    },
+    {
+      "scenarioId": "B2-multimodal-integrity",
+      "rep": 1,
+      "document": "2026-08-10-215349-d3ef57fe-0022-4a04-91be-5ffe32868419.md"
+    },
+    {
+      "scenarioId": "B2-multimodal-integrity",
+      "rep": 2,
+      "document": "2026-08-11-232750-c8ded58a-84c5-4e63-98dc-b1abd489eaeb.md"
+    },
+    {
+      "scenarioId": "B2-multimodal-integrity",
+      "rep": 3,
+      "document": "2026-08-12-133847-2e0ba5d4-c224-4a0e-9ab8-f169471f7bca.md"
+    },
+    {
+      "scenarioId": "B2-multimodal-integrity",
+      "rep": 4,
+      "document": "2026-08-13-065146-ee2549b1-5934-4548-bd3f-c5f9fe81eb3f.md"
+    },
+    {
+      "scenarioId": "B2-multimodal-integrity",
+      "rep": 5,
+      "skipped": "폴백 문서만 존재(sufficientEvidence != true): 2026-08-15-163847-background.md"
+    },
+    {
+      "scenarioId": "E1-new-column-query",
+      "rep": 1,
+      "document": "2026-08-14-092216-67ac254c-114e-4fd3-bf1f-a901d726ec60.md"
+    },
+    {
+      "scenarioId": "E1-new-column-query",
+      "rep": 2,
+      "document": "2026-08-12-001828-3d8cd69e-27ca-499f-b59c-6f6cb37e1f91.md"
+    },
+    {
+      "scenarioId": "E1-new-column-query",
+      "rep": 3,
+      "document": "2026-08-12-150255-6c4ce0db-5330-409d-ab4b-ea21dba948b3.md"
+    },
+    {
+      "scenarioId": "E1-new-column-query",
+      "rep": 4,
+      "document": "2026-08-13-081525-4645a1d4-9c60-4b8c-a8e3-038f3011fd37.md"
+    },
+    {
+      "scenarioId": "E1-new-column-query",
+      "rep": 5,
+      "document": "2026-08-15-090746-a043a140-8c6e-4b33-ab6b-6431d58c43e2.md"
+    },
+    {
+      "scenarioId": "E2-new-aggregate-query",
+      "rep": 1,
+      "document": "2026-08-14-100707-ea4ee9ce-edb0-4f77-8ec2-c65049a86a08.md"
+    },
+    {
+      "scenarioId": "E2-new-aggregate-query",
+      "rep": 2,
+      "document": "2026-08-12-012252-024af7c0-7847-4664-a276-a9680c7461a2.md"
+    },
+    {
+      "scenarioId": "E2-new-aggregate-query",
+      "rep": 3,
+      "document": "2026-08-14-164932-351e1b87-0959-4410-ba93-0983fe7e6cf7.md"
+    },
+    {
+      "scenarioId": "E2-new-aggregate-query",
+      "rep": 4,
+      "document": "2026-08-14-213054-376d841e-1546-47e6-ba5b-b6d837e8edaf.md"
+    },
+    {
+      "scenarioId": "E2-new-aggregate-query",
+      "rep": 5,
+      "document": "2026-08-15-094200-0c57d8eb-3d3b-4af9-addc-8c192f70357d.md"
+    },
+    {
+      "scenarioId": "E3-new-join-query",
+      "rep": 1,
+      "document": "2026-08-14-104836-ab9b5814-ed10-4646-8761-fd1845840652.md"
+    },
+    {
+      "scenarioId": "E3-new-join-query",
+      "rep": 2,
+      "document": "2026-08-12-021512-7be30198-dc16-4d70-bc4a-78aa5d654ff9.md"
+    },
+    {
+      "scenarioId": "E3-new-join-query",
+      "rep": 3,
+      "document": "2026-08-12-160018-ab2f93e1-c6ca-4376-89bf-58e370e2183c.md"
+    },
+    {
+      "scenarioId": "E3-new-join-query",
+      "rep": 4,
+      "document": "2026-08-13-091345-628677b3-2b44-4797-a757-d2d6c89bb1b3.md"
+    },
+    {
+      "scenarioId": "E3-new-join-query",
+      "rep": 5,
+      "document": "2026-08-15-100958-7ec0d044-5f61-427a-ac34-f2bdbafd80a1.md"
+    },
+    {
+      "scenarioId": "E4-time-series-query",
+      "rep": 1,
+      "document": "2026-08-11-001933-d04b1d4a-540e-4677-bf1d-2ea38dab964c.md"
+    },
+    {
+      "scenarioId": "E4-time-series-query",
+      "rep": 2,
+      "document": "2026-08-12-024045-7f638470-b913-438a-a200-1c6b20779b34.md"
+    },
+    {
+      "scenarioId": "E4-time-series-query",
+      "rep": 3,
+      "document": "2026-08-12-162844-7145b74d-4a63-492a-9320-2fb8a584d2ec.md"
+    },
+    {
+      "scenarioId": "E4-time-series-query",
+      "rep": 4,
+      "document": "2026-08-13-101511-4601b3a0-19c6-4f12-816c-4e2801538dfe.md"
+    },
+    {
+      "scenarioId": "E4-time-series-query",
+      "rep": 5,
+      "document": "2026-08-15-103011-e6070e58-70d5-406f-93a1-a92ca161723e.md"
+    },
+    {
+      "scenarioId": "E5-failure-ranking-query",
+      "rep": 1,
+      "document": "2026-08-14-111323-ad97f0d9-9104-443d-940b-686fc20a2274.md"
+    },
+    {
+      "scenarioId": "E5-failure-ranking-query",
+      "rep": 2,
+      "document": "2026-08-14-150907-4cd287fe-8fb3-4f28-9499-16ccd3114250.md"
+    },
+    {
+      "scenarioId": "E5-failure-ranking-query",
+      "rep": 3,
+      "document": "2026-08-12-174724-5dafb157-8e5b-49d5-a5cc-c16b33d3c95d.md"
+    },
+    {
+      "scenarioId": "E5-failure-ranking-query",
+      "rep": 4,
+      "document": "2026-08-13-104325-41b622e1-0ee2-4137-be39-fc548f8a3894.md"
+    },
+    {
+      "scenarioId": "E5-failure-ranking-query",
+      "rep": 5,
+      "document": "2026-08-15-105405-e1f71d70-eeed-49ef-ae28-6d4baac12418.md"
+    }
+  ]
+}

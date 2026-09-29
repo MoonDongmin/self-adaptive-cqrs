@@ -1,0 +1,23 @@
+{
+  "groundedness": 4,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 2,
+  "versioningQuality": 2,
+  "unsupportedClaims": [
+    "T3 SQL에서 v1 테이블(read_grip_result)에 정의되지 않은 추출 컬럼(robot_tf_translation_z, grip_3d_pose_z_max)을 참조함",
+    "T4 SQL에 'v1 자산 무손상' 제약 조건을 위반하는 DROP TABLE read_grip_result 문이 포함됨"
+  ],
+  "rationale": "T1은 정답 요지와 자료 로그를 정확히 매칭하여 만점이며, T2는 contain 전략 SQL과 일치함. 그러나 T3은 v1 스키마에 jsonb로 정의된 컬럼을 추출한 가상의 열명으로 조회문을 작성해 실행이 불가능하며, 백필 SQL 지시를 무시함. T4는 상세한 컷오버 절차를 서술했으나 'v1 자산 무손상'이라는 명시적 제약 조건을 위반하는 DROP TABLE 문을 포함하여 감점.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 16968,
+    "completion_tokens": 4033,
+    "total_tokens": 21001,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3809
+    }
+  },
+  "latencyMs": 110517,
+  "judgedAt": "2026-09-11T12:15:48.046Z"
+}

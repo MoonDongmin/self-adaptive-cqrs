@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "sqlCorrectness": 5, "versioningQuality": 5, "unsupportedClaims": [], "rationale": "groundedness는 5점으로, 모든 로그 식별자, 스키마 이름, SQL 및 절차가 [자료]에 명시된 사실만 정확히 인용하여 지어낸 주장이 없다. diagnosisAccuracy는 5점으로, T1이 payload.schema.drift와 insight.card.miss 로그를 근거로 문제 원인을 정답 요지와 완벽히 일치시켜 진단했다. sqlCorrectness는 5점으로, T2 DDL이 read_ 접두어와 PK 제약을 준수하며 T3 질의문이 Postgres 문법으로 시간대별 평균 조회 요구사항을 정확히 구현했다. versioningQuality는 5점으로, T4가 v1 무손상 보장, 인간 승인 게이트, 백필 및 롤백 계획을 포함한 구체적이고 실행 가능한 컷오버 절차를 제시했다."}

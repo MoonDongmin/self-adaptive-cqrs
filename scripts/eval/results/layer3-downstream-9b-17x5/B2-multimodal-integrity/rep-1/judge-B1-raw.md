@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "sqlCorrectness": 1, "versioningQuality": 1, "unsupportedClaims": [], "rationale": "groundedness: 모든 사실·로그 식별자·스키마가 제공 자료와 정확히 일치하며 추측이나 지어낸 값이 없음. diagnosisAccuracy: T1이 파일명 좌표 불일치 및 정합성 위반 원인을 정답 요지와 완벽히 매칭함. sqlCorrectness: T2가 ALTER TABLE 및 인플레이스 UPDATE를 제안해 'v1 무손상' 지시와 ES 원칙을 위배하며, 파일명 파싱 SUBSTRING 로직이 실제 형식에 맞지 않아 해로움. versioningQuality: T4가 자료 부족을 이유로 답변을 회피하여 v1 클라이언트 보호를 위한 구체적 병행·격리 절차를 제시하지 못함."}

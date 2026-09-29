@@ -1,0 +1,25 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 2,
+  "completeness": 3,
+  "unsupportedClaims": [
+    "src/insert/dto/toy-data.dto.ts",
+    "src/projection/projector/grip-result.projector.ts",
+    "src/insert/insert.service.ts",
+    "src/projection/projector/multimodal.projector.ts"
+  ],
+  "rationale": "groundedness 5: 引用日志、字段名及关联ID均与[资料]严格一致。diagnosisAccuracy 5: 准确诊断Zod因grip_data/robot_tf缺失导致解析拒绝，与[정답 요지]完全吻合。actionability 2: 仅提供验证性SELECT查询而非要求的DDL，未落实正答的Read Model/日志 보강意图。completeness 3: 三要素齐全但SQL部分类型错位（查询非DDL），与标题及正答要求矛盾。unsupportedClaims: 文档引用了资料中未提供的源码文件路径，属过度推断。",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 18890,
+    "completion_tokens": 4133,
+    "total_tokens": 23023,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3911
+    }
+  },
+  "latencyMs": 118362,
+  "judgedAt": "2026-09-14T01:00:12.830Z"
+}

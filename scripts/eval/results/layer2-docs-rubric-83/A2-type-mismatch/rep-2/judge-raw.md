@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 5, "completeness": 5, "unsupportedClaims": ["src/insert/dto/toy-data.dto.ts 및 GripResultProjector.map() 호출 경로는 제공된 [자료]에 명시되지 않음"], "rationale": "groundedness: 인용된 Zod 에러 메시지, 파일명, correlation_id가 [자료] 로그와 정확히 일치함. diagnosisAccuracy: 정답 요지와 동일하게 grip_succeed의 타입/범위 위반으로 Zod 검증 거부됨을 정확히 진단하고 v1 무손상 결론을 도출함. actionability: 검증용 SELECT SQL이 자동 검증에서 성공했으며, 기존 v1 테이블을 변경하지 않고 격리/모니터링 권고를 제시하여 실행 가능함. completeness: 권고, SQL(검증 쿼리), API 버저닝 세 요소가 모두 포함되며 서로 모순 없이 v1 무변경 관점에서 일관되게 서술됨."}

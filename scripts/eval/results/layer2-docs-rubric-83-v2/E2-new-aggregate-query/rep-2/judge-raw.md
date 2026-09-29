@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 5, "completeness": 5, "unsupportedClaims": [], "rationale": "groundedness: 인용된 로그 타임스탬프, insight.card.miss 메시지, read_grip_result 스키마 필드 및 기존 코드 경로가 모두 [자료]와 정확히 일치하며 추가적인 근거 없는 주장은 없음. diagnosisAccuracy: 정답 요지와 동일하게 기존 Read Model이 시도 단위 1:1 구조라 집계 뷰가 부재함을 정확히 진단하고, object_name을 키로 하는 신규 집계 Read Model 신설 및 API v2 병행 방안을 제안함. actionability: DDL과 Drizzle ORM 코드가 요구한 누적 시도·성공 수 및 성공률 집계를 정확히 구현했으며, upsert 시 SQL 템플릿으로 컬럼 타입이 DOUBLE PRECISION이므로 정수 나눗셈 문제가 발생하지 않고 기존 v1 테이블/프로젝터는 건드리지 않음. completeness: 권고, Read Model 생성 SQL, API 버저닝 세 요소가 모두 충실히 기술되어 있으며 TL;DR 대상 테이블명, DDL 컬럼명, 프로젝트 클래스명, 컨트롤러 라우트가 문서 전반에서 일관되게 사용되고 문단 간 모순이 없음."}

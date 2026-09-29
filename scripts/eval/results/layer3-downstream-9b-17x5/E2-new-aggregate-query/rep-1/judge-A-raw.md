@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "sqlCorrectness": 5, "versioningQuality": 4, "unsupportedClaims": [], "rationale": "T1~T3는 제공된 자료의 로그, 스키마, DDL을 정확히 인용하여 문제 진단 및 SQL 생성에 오류가 없으며 지어낸 값이나 근거 없는 주장이 없음. T4는 병행 운영, 라우팅, 롤백 계획을 구체적으로 서술했으나, 자료의 제약사항에 명시된 'DDL/API 컷오버 전 인간 승인(human-in-the-loop)' 게이트와 '컷오버 전 집계 일치 검증' 단계를 누락하여 실전 적용 절차의 완성도가 다소 떨어짐."}

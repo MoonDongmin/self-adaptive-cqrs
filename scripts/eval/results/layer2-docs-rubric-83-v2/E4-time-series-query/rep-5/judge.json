@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 3,
+  "completeness": 4,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 로그와 스키마 정보를 정확히 인용하였으며, 제안된 신규 파일은 저장소 미존재가 정상적인 신규 생성에 해당함. diagnosisAccuracy: 정답 요지와 일치하게 시계열 집계 Read Model 부재로 진단하고, 신규 테이블 생성 및 API v2 병행 방안을 제시함. actionability: 요구사항에 명시된 '성공률' 컬럼이 DDL 및 스키마에 누락되었으며, 시도/성공 카운트 필드에 double precision을 사용하여 정수 타입이 부적절함. 소폭 수정 시 해결 가능. completeness: 세 요소가 모두 포함되었으나, 코드 블록 간 클래스명/파일명(daily-stats vs daily-grip-stats-v2)과 import 경로가 불일치함.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 14042,
+    "completion_tokens": 4360,
+    "total_tokens": 18402,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4152
+    }
+  },
+  "latencyMs": 111569,
+  "judgedAt": "2026-09-14T09:23:29.407Z"
+}

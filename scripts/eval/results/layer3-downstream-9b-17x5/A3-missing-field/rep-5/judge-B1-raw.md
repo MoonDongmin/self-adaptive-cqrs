@@ -1,0 +1,3 @@
+
+
+{"groundedness": 2, "diagnosisAccuracy": 5, "sqlCorrectness": 1, "versioningQuality": 2, "unsupportedClaims": ["T4에서 v1/v2 API 경로 분리, 병행 운영, 컷오버 절차 등 자료에 없는 API 마이그레이션 전략 제시", "T4에서 read_grip_result 테이블에 수동 INSERT로 데이터 복구 시도 제안 (CQRS 원칙 및 자료와 상충)", "T3에서 적재 거부된 레코드가 존재하지 않는 ReadModel을 조회하여 누락 필드 집계 시도"], "rationale": "T1은 로그의 Zod 오류와 정답 요지의 필수 필드 누락 원인을 정확히 식별하여 5점. T2 SQL은 검증 목적에 맞게 정상적으로 작성되어 5점. T3 SQL은 적재 실패로 ES/ReadModel에 존재하지 않는 레코드를 조회하는 구조적 오류가 있으며 질문 의도(로그 기반 집계)와 맞지 않아 1점. T4는 정답 요지의 '적재 거부 추적 및 클라이언트 스키마 안내, v1 무손상'이라는 CQRS 원칙을 누르고 일반적인 API 버전화 전략과 수동 DB 패치를 제시하여 근거 없는 주장을 포함했으므로 2점. 전반적으로 T4의 추측성 내용이 groundedness를 낮춤."}

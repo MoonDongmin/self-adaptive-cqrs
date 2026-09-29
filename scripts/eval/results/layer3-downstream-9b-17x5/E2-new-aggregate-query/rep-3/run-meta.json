@@ -1,0 +1,76 @@
+{
+  "scenarioId": "E2-new-aggregate-query",
+  "rep": 3,
+  "sourceDocument": "2026-08-14-164932-351e1b87-0959-4410-ba93-0983fe7e6cf7.md",
+  "sourceDocsDirectory": "scripts/eval/results/layer2-docs-llm-only-20x5-v2",
+  "userQuery": "객체(object_name)별 파지 성공률을 한 번에 조회하고 싶다. 시도 수, 성공 수, 성공률이 필요하다.",
+  "model": "qwen/qwen3.5-9b",
+  "temperature": 0,
+  "maxTokens": 8192,
+  "answers": {
+    "B1-T1": {
+      "finishReason": "stop",
+      "promptTokens": 2662,
+      "completionTokens": 298,
+      "latencyMs": 13706,
+      "contextBytes": 4926,
+      "answeredAt": "2026-09-11T09:09:19.839Z"
+    },
+    "B1-T2": {
+      "finishReason": "stop",
+      "promptTokens": 2683,
+      "completionTokens": 531,
+      "latencyMs": 9919,
+      "contextBytes": 4926,
+      "answeredAt": "2026-09-11T09:09:29.759Z"
+    },
+    "B1-T3": {
+      "finishReason": "stop",
+      "promptTokens": 3247,
+      "completionTokens": 739,
+      "latencyMs": 15599,
+      "contextBytes": 4926,
+      "answeredAt": "2026-09-11T09:09:45.361Z"
+    },
+    "B1-T4": {
+      "finishReason": "stop",
+      "promptTokens": 2654,
+      "completionTokens": 1794,
+      "latencyMs": 32090,
+      "contextBytes": 4926,
+      "answeredAt": "2026-09-11T09:10:17.453Z"
+    },
+    "A-T1": {
+      "finishReason": "stop",
+      "promptTokens": 11412,
+      "completionTokens": 173,
+      "latencyMs": 39735,
+      "contextBytes": 32640,
+      "answeredAt": "2026-09-11T09:10:57.190Z"
+    },
+    "A-T2": {
+      "finishReason": "stop",
+      "promptTokens": 11433,
+      "completionTokens": 619,
+      "latencyMs": 12683,
+      "contextBytes": 32640,
+      "answeredAt": "2026-09-11T09:11:09.876Z"
+    },
+    "A-T3": {
+      "finishReason": "stop",
+      "promptTokens": 12085,
+      "completionTokens": 426,
+      "latencyMs": 11160,
+      "contextBytes": 32640,
+      "answeredAt": "2026-09-11T09:11:21.037Z"
+    },
+    "A-T4": {
+      "finishReason": "stop",
+      "promptTokens": 11404,
+      "completionTokens": 695,
+      "latencyMs": 14028,
+      "contextBytes": 32640,
+      "answeredAt": "2026-09-11T09:11:35.067Z"
+    }
+  }
+}

@@ -1,0 +1,3 @@
+
+
+{"groundedness": 2, "diagnosisAccuracy": 5, "sqlCorrectness": 2, "versioningQuality": 2, "unsupportedClaims": ["read_grip_result 스키마에 grip_data 컬럼이 존재한다고 주장함 (실제 스키마 없음)", "T3 SQL에서 UNNEST 및 JSONB 파싱 로직이 자료에 없는 로그 테이블을 가정함", "T4에서 batch_status 필드 추가 및 기존 테이블 ALTER를 제안하여 v1 무손상 원칙과 충돌"], "rationale": "T1은 로그와 정답 요지를 정확히 매칭하여 진단 만점을 받았으나, T3에서 실제 스키마에 없는 grip_data 컬럼을 가정하고 Postgres 문법 오류가 있는 SQL을 작성해 groundedness와 sqlCorrectness를 낮췄다. T4는 정답 요지의 'v1 무손상' 원칙을 무시하고 기존 스키마 변경과 API 로직 개선을 제안하여 v1 클라이언트 보호 절차가 부적절하다."}

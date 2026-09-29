@@ -1,0 +1,3 @@
+
+
+{"groundedness": 3, "diagnosisAccuracy": 5, "sqlCorrectness": 5, "versioningQuality": 2, "unsupportedClaims": ["T4에서 신규 API 경로를 `/object-failure-stats-v1`로 명명했으나, 자료에서는 `POST /object-failure-stats`를 신규 라우트로 명시함", "T4에서 기존 `/object-failure-stats`(v1)가 `GripResultProjector` 기반이라고 주장했으나, 자료는 해당 엔드포인트를 신규 추가 항목으로 분류하고 기존 v1 자산 무손상을 강조함"], "rationale": "T1~T3는 자료의 로그, DDL 스키마, 집계 요구사항을 정확히 반영하여 높은 점수 부여. T4는 자료에 명시된 `POST /object-failure-stats` 신규 라우트 추가 전략을 무시하고 `/object-failure-stats-v1` 경로를 임의로 생성했으며, 기존 엔드포인트의 구현체를 `GripResultProjector`로 잘못 매핑함. 자료의 'v1 자산 무손상' 및 '신규 라우트 배선' 지침과 상충되어 버전 관리 품질이 낮음."}

@@ -1,0 +1,3 @@
+
+
+{"groundedness": 3, "diagnosisAccuracy": 3, "sqlCorrectness": 2, "versioningQuality": 4, "unsupportedClaims": ["`insight.card.miss` 로그를 stream_id 매핑 실패로 오해함 (실제로는 기능 미지원 miss 로그)", "T2 스키마 PK(date)와 T3 백필 SQL의 GROUP BY(date, scene_key)가 충돌하여 실행 불가"], "rationale": "groundedness는 로그를 기능 부재 miss로 오해하여 근거 없는 주장을 포함했다. diagnosisAccuracy는 집계 모델 부재라는 핵심 문제를 맞췄으나 로그 해석 오류로 인해 원인과 근거가 부분적으로 어긋났다. sqlCorrectness는 백필 SQL이 T2 스키마의 PK(date)와 GROUP BY(date, scene_key)가 충돌하여 실행 시 오류를 유발한다. versioningQuality는 버전 분리, 병행 운영, 백필, 컷오버 절차를 구체적으로 제시하여 실용성이 높다."}

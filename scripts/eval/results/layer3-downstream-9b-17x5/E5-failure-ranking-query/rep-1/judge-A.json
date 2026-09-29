@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 5,
+  "versioningQuality": 5,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 모든 테이블명, 컬럼명, 로그 메시지 및 API 버전 전략이 [자료]에 정확히 부합하며 외부 정보를 추가하거나 지어낸 값이 없음. diagnosisAccuracy: T1에서 insight.card.miss 원인을 기존 Read Model의 집계 부재 및 카탈로그 미등록으로 정확히 지적하여 [정답 요지]와 완벽히 일치함. sqlCorrectness: T2 DDL이 자료 명세와 동일하며, T3 질의문은 요청한 컬럼을 failure_count 내림차순으로 정렬해 상위 3개만 조회하는 정확한 SELECT문임. versioningQuality: T4에서 v1 엔드포인트 무손상 유지, 신규 v2 엔드포인트 병행 운영, 인간 승인 게이트, 백필(catchUp) 및 카탈로그 등록 절차를 구체적이고 실행 가능한 순서로 서술함.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 11478,
+    "completion_tokens": 2435,
+    "total_tokens": 13913,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2202
+    }
+  },
+  "latencyMs": 67936,
+  "judgedAt": "2026-09-11T14:46:54.480Z"
+}

@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 5,
+  "completeness": 5,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용된 장면 번호(02020/02021), translation 좌표(X=1.2, Y=0.2), 작업 범위 부등호 및 gripSucceed 상태가 원문 로그와 정확히 일치하며 수치 추측 없음. diagnosisAccuracy: 정답 요지의 '파지 성공 맥락에서 translation 축 작업 영역 밖 정합성 위반' 진단과 완전히 일치하며 근본원인을 projection 로직 누락으로 정확히 특정. actionability: 자동 검증 결과에서 SQL 실행 및 코드 컴파일이 성공했으며, 기존 v1 테이블을 건드리지 않고 신규 v2 Read Model DDL과 격리 SQL, TypeScript 프로젝터 코드를 제공하여 즉시 실행 가능. completeness: 권고 사항, 신규 Read Model 생성 SQL(DDL), API 버저닝(v1->v2) 세 요소가 모두 포함되어 있으며 테이블명·컬럼명·프로젝터 로직 간에 일관성이 유지됨.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 18204,
+    "completion_tokens": 2723,
+    "total_tokens": 20927,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2473
+    }
+  },
+  "latencyMs": 87552,
+  "judgedAt": "2026-09-14T01:34:38.967Z"
+}

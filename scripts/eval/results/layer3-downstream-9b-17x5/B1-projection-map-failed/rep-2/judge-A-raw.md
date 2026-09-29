@@ -1,0 +1,3 @@
+
+
+{"groundedness": 2, "diagnosisAccuracy": 4, "sqlCorrectness": 1, "versioningQuality": 2, "unsupportedClaims": ["T1: 현재 시스템이 SkipProjectionError를 던졌다고 명시 (자료에서는 일반 Error 또는 예외 전파로 기술)", "T2/T3: event_store의 is_projected, skip_reason 컬럼 가정 및 projection_cursor 직접 UPDATE", "T4: isolation_logs 테이블 존재 가정, URI Path Versioning 전략 제시"], "rationale": "T1은 poison 이벤트로 인한 트랜잭션 롤백과 정상 이벤트 미투영이라는 핵심 문제를 정확히 파악했으나, SkipProjectionError를 기존 오류로 오기재하고 롤백이 PK 유지 불가를 의미한다는 논리가 부정확하다. T2/T3는 자료의 명시적 금지사항인 커서 직접 점프를 SQL로 실행하려 했으며 존재하지 않는 컬럼을 사용하여 실제 실행이 불가능하다. T4는 API 변경 없음이라는 자료 전제를 무시하고 불필요한 버전 전략과 근거 없는 테이블을 포함해 실제 적용이 어렵다."}

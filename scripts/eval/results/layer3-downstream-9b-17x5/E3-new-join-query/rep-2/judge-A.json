@@ -1,0 +1,22 @@
+{
+  "groundedness": 4,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 5,
+  "versioningQuality": 3,
+  "unsupportedClaims": [
+    "T4에서 제안한 '/v2' 접두사 엔드포인트('/projection/insight-card-v2') 및 기존 v1 유지 전략은 자료에 명시된 신규 라우트 '/projection/insight-card' 추가 방식과 상충함."
+  ],
+  "rationale": "T1은 로그와 정답 요지를 정확히 매칭해 5점. T2 SQL은 자료의 DDL 및 카탈로그 등록 쿼리를 그대로 정확히 재현해 5점. T3 조회 쿼리는 요청 컬럼을 새 테이블에서 정확히 선택해 5점. T4는 병행 운영 개념은 맞으나, 자료에 명시된 신규 라우트('/projection/insight-card') 대신 '/v2' 접두사 전략을 제안했고, 인간 승인 게이트 및 롤백 조건 등 자료의 구체적 절차를 누락해 3점. 전반적으로 근거는 탄탄하나 버전 관리 부분에서 자료와 일부 상충함.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 12535,
+    "completion_tokens": 3559,
+    "total_tokens": 16094,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3325
+    }
+  },
+  "latencyMs": 92402,
+  "judgedAt": "2026-09-11T14:23:24.928Z"
+}

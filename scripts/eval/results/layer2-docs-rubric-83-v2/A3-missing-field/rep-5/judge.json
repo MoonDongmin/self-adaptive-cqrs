@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 2,
+  "completeness": 2,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용된 로그 레벨, 상관관계 ID, 파일명(_02004/_02005), 누락 필드명 및 Zod 스키마 경로가 [자료]의 로그 테이블과 소스 코드 발췌와 정확히 일치한다. diagnosisAccuracy: Zod 검증 실패로 grip_data/robot_tf 누락 시 적재가 거부되며 배치 트랜잭션은 정상 완료된다는 진단이 [정답 요지]의 원인·처리 단계와 완전히 일치한다. actionability: 정답 요지에서 요구한 '거부 추적 Read Model/검증 로그 보강'을 제공하지 않고 검증용 SELECT만 수록하여, 실제 추적 메커니즘 부재로 요구 사항을 충족하지 못한다. completeness: 산출물 필수 요소인 Read Model 생성 SQL 절이 '불필요'로 처리되고 검증 쿼리만 존재하여, 명시된 세 요소 중 한 요소가 실질적으로 비어 있는 상태이다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 20741,
+    "completion_tokens": 3501,
+    "total_tokens": 24242,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3250
+    }
+  },
+  "latencyMs": 110831,
+  "judgedAt": "2026-09-14T06:01:54.811Z"
+}

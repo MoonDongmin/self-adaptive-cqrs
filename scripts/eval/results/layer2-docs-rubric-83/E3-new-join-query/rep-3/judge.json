@@ -1,0 +1,22 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 5,
+  "completeness": 5,
+  "unsupportedClaims": [
+    "TL;DR의 'fuzzy result'는 '파지 결과' 오역으로 자료에 없음"
+  ],
+  "rationale": "groundedness: 인용된 로그 correlation_id, 테이블 스키마(PK 및 필드), 메시지 내용이 [자료]와 정확히 일치하며 fabrication 없음. diagnosisAccuracy: 정답 요지의 '분할 Read Model로 인한 통합 뷰 부재' 진단과 로그의 3회 재시도 맥락을 정확히 포착하여 일치함. actionability: 자동 검증 결과 DDL 실행 및 코드 컴파일이 성공했으며, 기존 v1 자산을 건드리지 않고 신규 통합 테이블과 병행 API를 제안하여 요구사항을 충족함. completeness: 권고, DDL(인사이트 등록 포함), API v2 버저닝 세 요소가 모두 포함되어 있으며 테이블명 및 필드 매핑이 문서 전반에서 일관되게 유지됨.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 13985,
+    "completion_tokens": 3751,
+    "total_tokens": 17736,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3524
+    }
+  },
+  "latencyMs": 98785,
+  "judgedAt": "2026-09-14T02:23:54.826Z"
+}

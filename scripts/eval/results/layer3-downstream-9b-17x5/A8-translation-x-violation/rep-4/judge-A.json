@@ -1,0 +1,22 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 5,
+  "versioningQuality": 2,
+  "unsupportedClaims": [
+    "컷오버 단계에서 v1 엔드포인트 및 테이블 삭제/비활성화를 제안하여 'v1 자산 무손상' 제약 조건과 충돌함."
+  ],
+  "rationale": "T1~T3는 자료의 수치, 식별자, 제약 조건을 정확히 반영하여 높은 완성도를 보임. T2 격리 SQL과 T3 JSONB 조회 문은 실행 가능하고 요구사항을 충족함. 그러나 T4는 컷오버 시 v1 리소스 삭제를 제안하여 자료의 핵심 제약('v1 자산 무손상')을 위반함. 병행 운영만 유지해야 하므로 버전 관리 점수를 감점함.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 14927,
+    "completion_tokens": 3483,
+    "total_tokens": 18410,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3301
+    }
+  },
+  "latencyMs": 96585,
+  "judgedAt": "2026-09-11T13:03:58.084Z"
+}

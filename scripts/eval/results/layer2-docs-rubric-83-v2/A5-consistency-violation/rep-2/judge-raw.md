@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 4, "completeness": 4, "unsupportedClaims": ["src/shared/database/schema/service/read-grip-result-v2.ts (저장소에 실재하지 않으나 Docs에서 수정 대상 파일로 인용됨)"], "rationale": "groundedness: 인용된 장면 키, 센서 값 및 물리적 범위가 [자료] 로그와 정확히 일치한다. diagnosisAccuracy: 정답 요지의 모순 진단과 Read Model 보강/격리, v1 무손상 해결책과 완벽히 일치한다. actionability: SQL/TS는 실행 가능하나, 권고문에 'CHECK constraint 적용'이라고 명시했으나 실제 DDL에는 누락되어 설계와 불일치하며, 기각한 DELETE 조치를 즉시 격리 SQL로 포함해 권고 흐름과 상충된다. completeness: 세 요소가 모두 유효하고 구조적으로 완결되나, CHECK constraint 누락 및 DELETE SQL 포함으로 인한 권고-구현 간 미세 불일치가 존재한다."}

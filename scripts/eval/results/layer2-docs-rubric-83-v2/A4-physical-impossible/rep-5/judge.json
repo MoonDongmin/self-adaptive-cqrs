@@ -1,0 +1,20 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 2,
+  "completeness": 3,
+  "unsupportedClaims": [],
+  "rationale": "groundedness: 인용한 장면 번호, 센서 값(z1=-0.05, xl=2500) 및 파일 경로가 [자료]와 [저장소 확인] 결과와 정확히 일치한다. diagnosisAccuracy: 정답 요지의 물리적 위반 원인(z1<0, xl>1920)과 v2 Read Model 추가/기존 무손상 조치 방향이 정확히 부합한다. actionability: 프로젝트 로직(map)에서 DDL의 NOT NULL 컬럼에 null과 TODO 주석을 그대로 반환하여 실제 적재 시 실패하거나 의도한 격리/검증 로직이 누락되었다. 또한 정답 요지에서 요구한 CHECK 제약 대신 플래그만 사용하며 DB 레벨 차단이 불가능하다. completeness: DDL의 NOT NULL DEFAULT 0 정의와 Drizzle ORM 스키마의 notNull() 누락이 불일치하며, 핵심 검증 로직이 TODO로 미구현되어 세 요소 간 실행 가능한 완결성이 떨어진다.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 35477,
+    "completion_tokens": 4102,
+    "total_tokens": 39579,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3840
+    }
+  },
+  "latencyMs": 139257,
+  "judgedAt": "2026-09-14T06:14:12.060Z"
+}

@@ -1,0 +1,24 @@
+{
+  "groundedness": 2,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 2,
+  "versioningQuality": 1,
+  "unsupportedClaims": [
+    "T3에서 자료에 정의되지 않은 'logging_context' SQL 테이블과 JSONB 구조 가정",
+    "T4에서 'v1 자산 무손상' 및 'read_ 접두사' 제약 조건을 위반하는 read_grip_result_v2 테이블 생성 주장",
+    "T4에서 자료에 명시되지 않은 /api/v1 vs /api/v2 엔드포인트 분리 및 Strangler Fig 패턴 적용"
+  ],
+  "rationale": "T1 진단은 정답 요지와 정확히 일치하여 높은 점수를 받았으나, T3에서 자료에 정의되지 않은 로그 테이블과 JSONB 구조를 임의로 가정하여 SQL을 작성했고, T4에서 'v1 자산 무손상' 및 테이블명 제약 조건을 위반하며 불필요한 v2 API/테이블 컷오버를 제안함. 이로 인해 groundedness, sqlCorrectness, versioningQuality 모두 낮은 점수를 부여함.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 13382,
+    "completion_tokens": 3130,
+    "total_tokens": 16512,
+    "completion_tokens_details": {
+      "reasoning_tokens": 2902
+    }
+  },
+  "latencyMs": 83990,
+  "judgedAt": "2026-09-11T11:40:09.961Z"
+}

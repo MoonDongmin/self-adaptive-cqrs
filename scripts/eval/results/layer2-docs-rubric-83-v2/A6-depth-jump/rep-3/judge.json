@@ -1,0 +1,23 @@
+{
+  "groundedness": 4,
+  "diagnosisAccuracy": 5,
+  "actionability": 2,
+  "completeness": 4,
+  "unsupportedClaims": [
+    "저장소에 실재하지 않는 파일 경로 'src/shared/database/schema/service/read-grip-result-v2.ts'를 솔루션 코드 및 다음 단계에 포함하여 인용함",
+    "PostgreSQL에서 유효하지 않은 타입 'doublePrecision'을 DDL에 사용함 (자동 검증 결과에서 실패 확인)"
+  ],
+  "rationale": "groundedness: 핵심 수치(Δ=0.110m)와 장면명은 자료와 일치하나, 저장소에 없는 파일 경로와 실패한 SQL 타입을 인용함. diagnosisAccuracy: 정답 요지의 급변 감지, v2 Read Model 보강, v1 무손상 권고와 정확히 일치함. actionability: 'doublePrecision' 타입 오류로 DDL 실행이 불가하며, v1 무손상 제약에 위배되게 기존 테이블 DELETE 문을 즉시 격리 SQL로 제시함. completeness: 권고, DDL, API 버저닝 세 요소가 모두 포함되었으나 'fix' 권고와 신규 테이블 생성 간 명칭적 모순, 누락 파일 경로 포함으로 일관성이 떨어짐.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 18105,
+    "completion_tokens": 4841,
+    "total_tokens": 22946,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4570
+    }
+  },
+  "latencyMs": 127376,
+  "judgedAt": "2026-09-14T06:31:18.293Z"
+}

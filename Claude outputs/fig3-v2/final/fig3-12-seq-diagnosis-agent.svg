@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1045" height="955" viewBox="0 0 1045 955" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">
+<defs><marker id="m222222" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#222222"/></marker><marker id="m555" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#555"/></marker></defs>
+<rect width="1045" height="955" fill="#ffffff"/>
+<line x1="110" y1="78" x2="110" y2="935" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="275" y1="78" x2="275" y2="935" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="440" y1="78" x2="440" y2="935" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="605" y1="78" x2="605" y2="935" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="770" y1="78" x2="770" y2="935" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="935" y1="78" x2="935" y2="935" stroke="#666" stroke-width="1" stroke-dasharray="5 4"/>
+<rect x="269" y="124" width="12" height="716" fill="#e8edf3" stroke="#33557a" stroke-width="1.2"/>
+<rect x="213" y="132" width="784" height="590" fill="none" stroke="#333" stroke-width="1"/>
+<path d="M213,132 h40.68 v14 l-6,6 h-34.68 z" fill="#eeeeee" stroke="#333" stroke-width="1"/>
+<text x="220" y="146" font-size="10.5" font-weight="700" fill="#222">loop</text>
+<text x="261.68" y="146" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">[도구 왕복 ≤ 4 · 총 LLM 호출 ≤ 8]</text>
+<rect x="225" y="196" width="760" height="504" fill="none" stroke="#333" stroke-width="1"/>
+<path d="M225,196 h35.01 v14 l-6,6 h-29.009999999999998 z" fill="#eeeeee" stroke="#333" stroke-width="1"/>
+<text x="232" y="210" font-size="10.5" font-weight="700" fill="#222">alt</text>
+<text x="268.01" y="210" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">[응답에 tool_calls 존재]</text>
+<line x1="225" y1="380" x2="985" y2="380" stroke="#333" stroke-width="1" stroke-dasharray="5 4"/>
+<text x="233" y="394" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">[최종 응답]</text>
+<rect x="237" y="514" width="736" height="164" fill="none" stroke="#333" stroke-width="1"/>
+<path d="M237,514 h35.01 v14 l-6,6 h-29.009999999999998 z" fill="#eeeeee" stroke="#333" stroke-width="1"/>
+<text x="244" y="528" font-size="10.5" font-weight="700" fill="#222">alt</text>
+<text x="280.01" y="528" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">[검증 실패 (재요청 ≤ 2)]</text>
+<line x1="237" y1="608" x2="973" y2="608" stroke="#333" stroke-width="1" stroke-dasharray="5 4"/>
+<text x="245" y="622" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">[검증 성공]</text>
+<rect x="213" y="736" width="289" height="72" fill="none" stroke="#333" stroke-width="1"/>
+<path d="M213,736 h35.01 v14 l-6,6 h-29.009999999999998 z" fill="#eeeeee" stroke="#333" stroke-width="1"/>
+<text x="220" y="750" font-size="10.5" font-weight="700" fill="#222">opt</text>
+<text x="256.01" y="750" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">[상한 도달]</text>
+<rect x="57.685" y="30" width="104.63" height="42" rx="4" fill="#eef2f7" stroke="#33557a" stroke-width="1.4"/>
+<text x="110" y="48" text-anchor="middle" font-size="11" fill="#33557a" font-weight="600">그래프 노드</text>
+<text x="110" y="63" text-anchor="middle" font-size="9.5" fill="#556">makeRootCauseNode</text>
+<rect x="220.13" y="30" width="109.74" height="42" rx="4" fill="#eef2f7" stroke="#33557a" stroke-width="1.4"/>
+<text x="275" y="48" text-anchor="middle" font-size="11" fill="#33557a" font-weight="600">invokeAgentNode</text>
+<text x="275" y="63" text-anchor="middle" font-size="9.5" fill="#556">도구 루프 러너</text>
+<rect x="371.82000000000005" y="30" width="136.35999999999996" height="42" rx="4" fill="#fff8e8" stroke="#a0812f" stroke-width="1.4"/>
+<text x="440" y="48" text-anchor="middle" font-size="11" fill="#8a6d1f" font-weight="600">LLM</text>
+<text x="440" y="63" text-anchor="middle" font-size="9.5" fill="#556">도구 바인딩 · temperature 0</text>
+<rect x="547.16" y="30" width="115.67999999999998" height="42" rx="4" fill="#eef2f7" stroke="#33557a" stroke-width="1.4"/>
+<text x="605" y="48" text-anchor="middle" font-size="11" fill="#33557a" font-weight="600">DiagnosisToolkit</text>
+<text x="605" y="63" text-anchor="middle" font-size="9.5" fill="#556">도구 5종</text>
+<rect x="689.06" y="30" width="161.88" height="42" rx="4" fill="#f3f4f6" stroke="#777777" stroke-width="1.4"/>
+<text x="770" y="48" text-anchor="middle" font-size="11" fill="#444444" font-weight="600">Log DB · Insight DB · src/</text>
+<text x="770" y="63" text-anchor="middle" font-size="9.5" fill="#556">베이스라인 .md</text>
+<rect x="882.685" y="30" width="104.63" height="42" rx="4" fill="#eef2f7" stroke="#33557a" stroke-width="1.4"/>
+<text x="935" y="48" text-anchor="middle" font-size="11" fill="#33557a" font-weight="600">zod 스키마</text>
+<text x="935" y="63" text-anchor="middle" font-size="9.5" fill="#556">RootCauseAnalysis</text>
+<polyline points="116,102 269,102" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="192.5" y="97" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">invokeAgentNode(rolePrompt, facts, schema, toolkit)</text>
+<polyline points="281,166 434,166" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="357.5" y="161" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">[System(역할·도구 가이드), Human(facts), …도구 결과 누적]</text>
+<polyline points="434,230 281,230" fill="none" stroke="#555" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#m555)"/>
+<text x="357.5" y="225" text-anchor="middle" font-size="10.5" fill="#555" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">tool_calls[]</text>
+<polyline points="281,260 599,260" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="440.0" y="255" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">search_logs · get_insight_card · read_source_code · get_sensor_baseline</text>
+<polyline points="611,290 764,290" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="687.5" y="285" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">조회 (≤40행 · ≤120행 · 경로 default-deny)</text>
+<polyline points="764,320 611,320" fill="none" stroke="#555" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#m555)"/>
+<text x="687.5" y="315" text-anchor="middle" font-size="10.5" fill="#555" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">결과</text>
+<polyline points="599,350 281,350" fill="none" stroke="#555" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#m555)"/>
+<text x="440.0" y="345" text-anchor="middle" font-size="10.5" fill="#555" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">ToolMessage (≤4,000자 절단) → diagnosisTrajectory 기록</text>
+<polyline points="434,412 281,412" fill="none" stroke="#555" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#m555)"/>
+<text x="357.5" y="407" text-anchor="middle" font-size="10.5" fill="#555" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">산문 추론 + ```json 펜스</text>
+<path d="M281,442 h26 v22 h-26" fill="none" stroke="#222222" stroke-width="1.3"/>
+<polyline points="307,464 283,464" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="313" y="446" text-anchor="start" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">extractJson(마지막 펜스) · jsonrepair</text>
+<polyline points="281,484 929,484" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="605.0" y="479" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">schema.parse(json)</text>
+<polyline points="929,548 281,548" fill="none" stroke="#555" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#m555)"/>
+<text x="605.0" y="543" text-anchor="middle" font-size="10.5" fill="#555" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">ZodError</text>
+<polyline points="281,578 434,578" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="357.5" y="573" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">[…, 직전 AI 응답, Human(오류 내용 + 재출력 지시)]</text>
+<polyline points="929,640 281,640" fill="none" stroke="#555" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#m555)"/>
+<text x="605.0" y="635" text-anchor="middle" font-size="10.5" fill="#555" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">RootCauseAnalysis { anomalyKind(open-set), timeline, failedIntent, … }</text>
+<polyline points="281,770 434,770" fill="none" stroke="#222222" stroke-width="1.3" stroke-linejoin="round" marker-end="url(#m222222)"/>
+<text x="357.5" y="765" text-anchor="middle" font-size="10.5" fill="#222" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">ToolMessage: 지금까지의 증거로 최종 판정을 출력하라</text>
+<polyline points="269,822 116,822" fill="none" stroke="#555" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="6 4" marker-end="url(#m555)"/>
+<text x="192.5" y="817" text-anchor="middle" font-size="10.5" fill="#555" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">{ rootCause, diagnosisTrajectory }</text>
+<path d="M124,852 h322 l8,8 v47 h-330 z" fill="#fffbe6" stroke="#999" stroke-width="1"/>
+<path d="M446,852 v8 h8" fill="none" stroke="#999" stroke-width="1"/>
+<text x="132" y="866" text-anchor="start" font-size="10" fill="#333">일반 노드(decide · 생성기 5종)는 같은 규약에서</text>
+<text x="132" y="879" text-anchor="start" font-size="10" fill="#333">도구 루프만 없음: invokeNode → zod → 재요청 1회</text>
+<text x="132" y="892" text-anchor="start" font-size="10" fill="#333">→ 한자 혼입 · 의미 검증(실DB · tsc)은 노드별 validator</text>
+</svg>

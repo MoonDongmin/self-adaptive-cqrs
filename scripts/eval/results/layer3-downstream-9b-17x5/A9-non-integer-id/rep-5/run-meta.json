@@ -1,0 +1,82 @@
+{
+  "scenarioId": "A9-non-integer-id",
+  "rep": 5,
+  "sourceDocument": "2026-08-15-135422-7a4d68a1-3b98-4a36-b959-42062ac6ee0b.md",
+  "sourceSelection": {
+    "candidates": 2,
+    "eligible": 2,
+    "kind": "log",
+    "wantedKind": "log"
+  },
+  "sourceDocsDirectory": "scripts/eval/results/layer2-docs-llm-only-20x5-v2",
+  "userQuery": null,
+  "model": "qwen/qwen3.5-9b",
+  "temperature": 0,
+  "maxTokens": 8192,
+  "answers": {
+    "B1-T1": {
+      "finishReason": "stop",
+      "promptTokens": 8463,
+      "completionTokens": 271,
+      "latencyMs": 31866,
+      "contextBytes": 15447,
+      "answeredAt": "2026-09-11T10:02:55.388Z"
+    },
+    "B1-T2": {
+      "finishReason": "stop",
+      "promptTokens": 8484,
+      "completionTokens": 4945,
+      "latencyMs": 93969,
+      "contextBytes": 15447,
+      "answeredAt": "2026-09-11T10:04:29.359Z"
+    },
+    "B1-T3": {
+      "finishReason": "stop",
+      "promptTokens": 13451,
+      "completionTokens": 4241,
+      "latencyMs": 99944,
+      "contextBytes": 15447,
+      "answeredAt": "2026-09-11T10:06:09.304Z"
+    },
+    "B1-T4": {
+      "finishReason": "stop",
+      "promptTokens": 8455,
+      "completionTokens": 2113,
+      "latencyMs": 40366,
+      "contextBytes": 15447,
+      "answeredAt": "2026-09-11T10:06:49.671Z"
+    },
+    "A-T1": {
+      "finishReason": "stop",
+      "promptTokens": 9991,
+      "completionTokens": 290,
+      "latencyMs": 37345,
+      "contextBytes": 18868,
+      "answeredAt": "2026-09-11T10:07:27.020Z"
+    },
+    "A-T2": {
+      "finishReason": "stop",
+      "promptTokens": 10012,
+      "completionTokens": 284,
+      "latencyMs": 11404,
+      "contextBytes": 18868,
+      "answeredAt": "2026-09-11T10:07:38.426Z"
+    },
+    "A-T3": {
+      "finishReason": "stop",
+      "promptTokens": 10318,
+      "completionTokens": 2803,
+      "latencyMs": 59969,
+      "contextBytes": 18868,
+      "answeredAt": "2026-09-11T10:08:38.396Z"
+    },
+    "A-T4": {
+      "finishReason": "stop",
+      "promptTokens": 9983,
+      "completionTokens": 893,
+      "latencyMs": 22830,
+      "contextBytes": 18868,
+      "answeredAt": "2026-09-11T10:09:01.228Z"
+    }
+  }
+}

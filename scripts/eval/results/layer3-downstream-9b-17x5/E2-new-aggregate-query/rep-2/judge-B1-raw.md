@@ -1,0 +1,3 @@
+
+
+{"groundedness":5,"diagnosisAccuracy":5,"sqlCorrectness":5,"versioningQuality":5,"unsupportedClaims":[],"rationale":"T1은 로그의 miss 패턴과 read_grip_result의 PK 구조를 정확히 분석해 집계 Read Model 부재를 진단함. T2 SQL은 기존 테이블을 건드리지 않고 object_name 키의 새 Read Model을 생성해 백필하는 정석적 CQRS 해결책이며, T3는 요청 조건을 정확히 구현. T4는 URL 버전화, 병행 운영, 컷오버 절차를 구체적으로 서술하여 v1 클라이언트 보호 방안을 제시함. 자료 기반 정확도가 높고 정답 요지와 완벽히 일치함."}

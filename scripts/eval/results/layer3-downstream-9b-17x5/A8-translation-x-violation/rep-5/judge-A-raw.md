@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "sqlCorrectness": 5, "versioningQuality": 5, "unsupportedClaims": [], "rationale": "groundedness는 자료의 로그 수치와 스키마 정의만 정확히 인용하여 지어낸 값이나 외부 추측이 전무함. diagnosisAccuracy는 정답 요지의 작업 영역 이탈 정합성 위반과 프로젝트어 검증 로직 누락 원인을 정확히 매칭함. sqlCorrectness는 v2 스키마와 범위 조건을 정확히 반영한 DDL 및 조회 쿼리를 작성하여 기존 v1 테이블을 건드리지 않으며 질문 의도를 정확히 해결함. versioningQuality는 자료의 마이그레이션 절차(경로 분리, 신구 병행 운영, 컷오버 전 검증, 인간 승인 게이트)를 구체적이고 실행 가능한 단계로 정확히 재구성하여 v1 클라이언트를 완벽하게 보호함."}

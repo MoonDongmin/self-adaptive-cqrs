@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 2, "completeness": 4, "unsupportedClaims": [], "rationale": "groundedness: 인용된 필드(cody, fx), Zod 검증 실패 로그, DTO 스키마 비대칭(codx nullable) 및 파일명이 [자료]와 정확히 일치한다. diagnosisAccuracy: 정답 요지의 null 유인 원인, Zod 검증 실패 지점, v1 무손상 조치 방향과 완벽히 일치한다. actionability: 정답 요지에서 요구한 'null 유입 추적 Read Model/검증 로그 보강'을 수행하는 DDL이나 코드 대신 검증용 SELECT 쿼리만 제시하여 요구된 추적/보강 조치를 실행할 수 없다. completeness: 권고, SQL, API 버저닝 세 요소가 모두 존재하지만 'Read Model 생성 SQL' 제목 하에 DDL 불필요 및 검증 쿼리만 있어 제목과 내용 간 미세한 불일치가 있다."}

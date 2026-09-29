@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "sqlCorrectness": 3, "versioningQuality": 5, "unsupportedClaims": [], "rationale": "groundedness는 T1~T4 모두 자료의 로그, 스키마, 제약조건을 정확히 참조하여 근거 기반 답변을 구성했으므로 5점이다. diagnosisAccuracy는 T1에서 null 유입, Zod 검증 실패, 파일 단위 격리 등 핵심 원인과 현상을 정답 요지와 일치하게 진단했으므로 5점이다. sqlCorrectness는 T2 SQL에서 event_store에 정의되지 않은 scene_key를 선택했으며, HAVING COUNT(*)=0 구문이 누락 레코드 조회 논리로 부적절해 3점이다. versioningQuality는 T4에서 v1 무손상, API/DDL 변경 금지, 인간 승인 기반 원천 수정 및 재투영 절차 등 자료의 Decision Outcome과 제약조건을 구체적 실행 단계로 정확히 매핑했으므로 5점이다."}

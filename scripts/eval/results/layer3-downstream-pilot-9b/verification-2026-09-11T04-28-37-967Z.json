@@ -1,0 +1,822 @@
+[
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": 1,
+    "condition": "A",
+    "tasks": {
+      "T1": {
+        "pass": true,
+        "anchors": [
+          {
+            "group": [
+              "drift",
+              "드리프트",
+              "신규 키",
+              "newKeys",
+              "gripper_temperature",
+              "conveyor_speed"
+            ],
+            "hit": "drift"
+          }
+        ],
+        "characters": 512
+      },
+      "T2": {
+        "pass": true,
+        "blocks": 1,
+        "okBlocks": 1,
+        "failures": [],
+        "v1AssetViolations": []
+      },
+      "T3": {
+        "pass": true,
+        "blocks": 2,
+        "okBlocks": 2,
+        "lastColumns": [
+          "scene_key",
+          "attempt_num",
+          "conveyor_speed",
+          "gripper_temperature"
+        ],
+        "lastRowCount": 0,
+        "anchors": [
+          {
+            "group": [
+              "gripper_temperature",
+              "conveyor_speed"
+            ],
+            "hit": "gripper_temperature"
+          }
+        ],
+        "failures": [],
+        "v1AssetViolations": []
+      },
+      "T4": {
+        "pass": true,
+        "hits": 3,
+        "checklist": [
+          {
+            "id": "versionPath",
+            "hit": true
+          },
+          {
+            "id": "coexistence",
+            "hit": true
+          },
+          {
+            "id": "migrationOrCutover",
+            "hit": true
+          }
+        ]
+      }
+    },
+    "usage": {
+      "promptTokens": 59485,
+      "completionTokens": 2036,
+      "latencyMs": 91886
+    }
+  },
+  {
+    "scenarioId": "A1-payload-drift",
+    "rep": 1,
+    "condition": "B1",
+    "tasks": {
+      "T1": {
+        "pass": true,
+        "anchors": [
+          {
+            "group": [
+              "drift",
+              "드리프트",
+              "신규 키",
+              "newKeys",
+              "gripper_temperature",
+              "conveyor_speed"
+            ],
+            "hit": "drift"
+          }
+        ],
+        "characters": 484
+      },
+      "T2": {
+        "pass": false,
+        "blocks": 1,
+        "okBlocks": 1,
+        "failures": [],
+        "v1AssetViolations": [
+          {
+            "block": 0,
+            "statement": "ALTER",
+            "table": "read_grip_result"
+          }
+        ]
+      },
+      "T3": {
+        "pass": false,
+        "blocks": 1,
+        "okBlocks": 0,
+        "lastColumns": [],
+        "lastRowCount": null,
+        "anchors": [],
+        "failures": [
+          {
+            "index": 0,
+            "ok": false,
+            "duplicateCreate": false,
+            "error": "syntax error at or near \")\"",
+            "sqlHead": "CREATE TEMPORARY TABLE temp_schema_drift_data AS"
+          }
+        ],
+        "v1AssetViolations": [
+          {
+            "block": 0,
+            "statement": "ALTER",
+            "table": "read_grip_result"
+          }
+        ]
+      },
+      "T4": {
+        "pass": true,
+        "hits": 3,
+        "checklist": [
+          {
+            "id": "versionPath",
+            "hit": true
+          },
+          {
+            "id": "coexistence",
+            "hit": true
+          },
+          {
+            "id": "migrationOrCutover",
+            "hit": true
+          }
+        ]
+      }
+    },
+    "usage": {
+      "promptTokens": 34825,
+      "completionTokens": 3569,
+      "latencyMs": 97570
+    }
+  },
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": 1,
+    "condition": "A",
+    "tasks": {
+      "T1": {
+        "pass": true,
+        "anchors": [
+          {
+            "group": [
+              "jump",
+              "급변",
+              "Δ",
+              "델타",
+              "0.10",
+              "깊이"
+            ],
+            "hit": "jump"
+          }
+        ],
+        "characters": 318
+      },
+      "T2": {
+        "pass": true,
+        "blocks": 1,
+        "okBlocks": 1,
+        "failures": [],
+        "v1AssetViolations": []
+      },
+      "T3": {
+        "pass": false,
+        "blocks": 0,
+        "okBlocks": 0,
+        "lastColumns": [],
+        "lastRowCount": null,
+        "anchors": [],
+        "failures": [],
+        "v1AssetViolations": []
+      },
+      "T4": {
+        "pass": true,
+        "hits": 3,
+        "checklist": [
+          {
+            "id": "versionPath",
+            "hit": true
+          },
+          {
+            "id": "coexistence",
+            "hit": true
+          },
+          {
+            "id": "migrationOrCutover",
+            "hit": true
+          }
+        ]
+      }
+    },
+    "usage": {
+      "promptTokens": 46110,
+      "completionTokens": 5523,
+      "latencyMs": 146232
+    }
+  },
+  {
+    "scenarioId": "A6-depth-jump",
+    "rep": 1,
+    "condition": "B1",
+    "tasks": {
+      "T1": {
+        "pass": true,
+        "anchors": [
+          {
+            "group": [
+              "jump",
+              "급변",
+              "Δ",
+              "델타",
+              "0.10",
+              "깊이"
+            ],
+            "hit": "jump"
+          }
+        ],
+        "characters": 752
+      },
+      "T2": {
+        "pass": true,
+        "blocks": 1,
+        "okBlocks": 1,
+        "failures": [],
+        "v1AssetViolations": []
+      },
+      "T3": {
+        "pass": true,
+        "blocks": 1,
+        "okBlocks": 1,
+        "lastColumns": [
+          "scene_key",
+          "attempt_1_num",
+          "attempt_2_num",
+          "prev_avg_z",
+          "curr_avg_z",
+          "delta_z",
+          "validation_result"
+        ],
+        "lastRowCount": 0,
+        "anchors": [
+          {
+            "group": [
+              "z_avg",
+              "z_mean",
+              "depth",
+              "delta",
+              "diff",
+              "jump",
+              "변화",
+              "Δ",
+              "z_"
+            ],
+            "hit": "delta"
+          }
+        ],
+        "failures": [],
+        "v1AssetViolations": []
+      },
+      "T4": {
+        "pass": true,
+        "hits": 3,
+        "checklist": [
+          {
+            "id": "versionPath",
+            "hit": true
+          },
+          {
+            "id": "coexistence",
+            "hit": true
+          },
+          {
+            "id": "migrationOrCutover",
+            "hit": true
+          }
+        ]
+      }
+    },
+    "usage": {
+      "promptTokens": 14901,
+      "completionTokens": 3877,
+      "latencyMs": 85426
+    }
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": 1,
+    "condition": "A",
+    "tasks": {
+      "T1": {
+        "pass": true,
+        "anchors": [
+          {
+            "group": [
+              "projection.map.failed",
+              "투영",
+              "poison",
+              "매핑 실패",
+              "objects"
+            ],
+            "hit": "projection.map.failed"
+          }
+        ],
+        "characters": 601
+      },
+      "T2": {
+        "pass": true,
+        "blocks": 1,
+        "okBlocks": 1,
+        "failures": [],
+        "v1AssetViolations": []
+      },
+      "T3": {
+        "pass": false,
+        "blocks": 2,
+        "okBlocks": 1,
+        "lastColumns": [],
+        "lastRowCount": null,
+        "anchors": [],
+        "failures": [
+          {
+            "index": 1,
+            "ok": false,
+            "duplicateCreate": false,
+            "error": "column es.scene_key does not exist",
+            "sqlHead": "SELECT COUNT(*) AS unprojected_normal_events"
+          }
+        ],
+        "v1AssetViolations": []
+      },
+      "T4": {
+        "pass": true,
+        "hits": 3,
+        "checklist": [
+          {
+            "id": "versionPath",
+            "hit": true
+          },
+          {
+            "id": "coexistence",
+            "hit": true
+          },
+          {
+            "id": "migrationOrCutover",
+            "hit": true
+          }
+        ]
+      }
+    },
+    "usage": {
+      "promptTokens": 24856,
+      "completionTokens": 1774,
+      "latencyMs": 56023
+    }
+  },
+  {
+    "scenarioId": "B1-projection-map-failed",
+    "rep": 1,
+    "condition": "B1",
+    "tasks": {
+      "T1": {
+        "pass": true,
+        "anchors": [
+          {
+            "group": [
+              "projection.map.failed",
+              "투영",
+              "poison",
+              "매핑 실패",
+              "objects"
+            ],
+            "hit": "projection.map.failed"
+          }
+        ],
+        "characters": 525
+      },
+      "T2": {
+        "pass": false,
+        "blocks": 2,
+        "okBlocks": 1,
+        "failures": [
+          {
+            "index": 1,
+            "ok": false,
+            "duplicateCreate": false,
+            "error": "there is no unique or exclusion constraint matching the ON CONFLICT specification",
+            "sqlHead": "INSERT INTO read_grip_result ("
+          }
+        ],
+        "v1AssetViolations": []
+      },
+      "T3": {
+        "pass": false,
+        "blocks": 1,
+        "okBlocks": 0,
+        "lastColumns": [],
+        "lastRowCount": null,
+        "anchors": [],
+        "failures": [
+          {
+            "index": 0,
+            "ok": false,
+            "duplicateCreate": false,
+            "error": "missing FROM-clause entry for table \"r\"",
+            "sqlHead": "SELECT "
+          }
+        ],
+        "v1AssetViolations": []
+      },
+      "T4": {
+        "pass": true,
+        "hits": 3,
+        "checklist": [
+          {
+            "id": "versionPath",
+            "hit": true
+          },
+          {
+            "id": "coexistence",
+            "hit": true
+          },
+          {
+            "id": "migrationOrCutover",
+            "hit": true
+          }
+        ]
+      }
+    },
+    "usage": {
+      "promptTokens": 18541,
+      "completionTokens": 4162,
+      "latencyMs": 95227
+    }
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": 1,
+    "condition": "A",
+    "tasks": {
+      "T1": {
+        "pass": true,
+        "anchors": [
+          {
+            "group": [
+              "성공률",
+              "집계",
+              "aggregate",
+              "GROUP BY",
+              "group by"
+            ],
+            "hit": "성공률"
+          }
+        ],
+        "characters": 416
+      },
+      "T2": {
+        "pass": false,
+        "blocks": 1,
+        "okBlocks": 0,
+        "failures": [
+          {
+            "index": 0,
+            "ok": false,
+            "duplicateCreate": false,
+            "error": "type \"doubleprecision\" does not exist",
+            "sqlHead": "CREATE TABLE read_object_grip_aggregate_v1 ("
+          }
+        ],
+        "v1AssetViolations": []
+      },
+      "T3": {
+        "pass": false,
+        "blocks": 1,
+        "okBlocks": 0,
+        "lastColumns": [],
+        "lastRowCount": null,
+        "anchors": [],
+        "failures": [
+          {
+            "index": 0,
+            "ok": false,
+            "duplicateCreate": false,
+            "error": "relation \"read_object_grip_aggregate_v1\" does not exist",
+            "sqlHead": "SELECT "
+          }
+        ],
+        "v1AssetViolations": []
+      },
+      "T4": {
+        "pass": true,
+        "hits": 3,
+        "checklist": [
+          {
+            "id": "versionPath",
+            "hit": true
+          },
+          {
+            "id": "coexistence",
+            "hit": true
+          },
+          {
+            "id": "migrationOrCutover",
+            "hit": true
+          }
+        ]
+      }
+    },
+    "usage": {
+      "promptTokens": 35345,
+      "completionTokens": 1354,
+      "latencyMs": 55193
+    }
+  },
+  {
+    "scenarioId": "E2-new-aggregate-query",
+    "rep": 1,
+    "condition": "B1",
+    "tasks": {
+      "T1": {
+        "pass": true,
+        "anchors": [
+          {
+            "group": [
+              "성공률",
+              "집계",
+              "aggregate",
+              "GROUP BY",
+              "group by"
+            ],
+            "hit": "성공률"
+          }
+        ],
+        "characters": 855
+      },
+      "T2": {
+        "pass": true,
+        "blocks": 3,
+        "okBlocks": 3,
+        "failures": [],
+        "v1AssetViolations": []
+      },
+      "T3": {
+        "pass": true,
+        "blocks": 1,
+        "okBlocks": 1,
+        "lastColumns": [
+          "object_name",
+          "attempt_count",
+          "success_count",
+          "success_rate"
+        ],
+        "lastRowCount": 1,
+        "anchors": [
+          {
+            "group": [
+              "object_name"
+            ],
+            "hit": "object_name"
+          },
+          {
+            "group": [
+              "rate",
+              "ratio",
+              "성공률",
+              "pct",
+              "percent"
+            ],
+            "hit": "rate"
+          }
+        ],
+        "failures": [],
+        "v1AssetViolations": []
+      },
+      "T4": {
+        "pass": true,
+        "hits": 3,
+        "checklist": [
+          {
+            "id": "versionPath",
+            "hit": true
+          },
+          {
+            "id": "coexistence",
+            "hit": true
+          },
+          {
+            "id": "migrationOrCutover",
+            "hit": true
+          }
+        ]
+      }
+    },
+    "usage": {
+      "promptTokens": 11193,
+      "completionTokens": 1676,
+      "latencyMs": 41138
+    }
+  },
+  {
+    "scenarioId": "E4-time-series-query",
+    "rep": 1,
+    "condition": "A",
+    "tasks": {
+      "T1": {
+        "pass": true,
+        "anchors": [
+          {
+            "group": [
+              "일자별",
+              "일별",
+              "날짜별",
+              "시계열",
+              "추이",
+              "date_trunc",
+              "DATE"
+            ],
+            "hit": "일자별"
+          }
+        ],
+        "characters": 536
+      },
+      "T2": {
+        "pass": true,
+        "blocks": 1,
+        "okBlocks": 1,
+        "failures": [],
+        "v1AssetViolations": []
+      },
+      "T3": {
+        "pass": true,
+        "blocks": 2,
+        "okBlocks": 1,
+        "lastColumns": [
+          "occurred_at",
+          "total_attempts",
+          "success_count",
+          "success_rate"
+        ],
+        "lastRowCount": 0,
+        "anchors": [
+          {
+            "group": [
+              "date",
+              "day",
+              "occurred",
+              "일자",
+              "일별",
+              "bucket",
+              "period"
+            ],
+            "hit": "occurred"
+          },
+          {
+            "group": [
+              "rate",
+              "ratio",
+              "성공률",
+              "pct",
+              "percent"
+            ],
+            "hit": "rate"
+          }
+        ],
+        "failures": [
+          {
+            "index": 0,
+            "ok": false,
+            "duplicateCreate": false,
+            "error": "relation \"read_daily_grip_stats_v1\" already exists",
+            "sqlHead": "CREATE TABLE read_daily_grip_stats_v1 ("
+          }
+        ],
+        "v1AssetViolations": []
+      },
+      "T4": {
+        "pass": true,
+        "hits": 3,
+        "checklist": [
+          {
+            "id": "versionPath",
+            "hit": true
+          },
+          {
+            "id": "coexistence",
+            "hit": true
+          },
+          {
+            "id": "migrationOrCutover",
+            "hit": true
+          }
+        ]
+      }
+    },
+    "usage": {
+      "promptTokens": 38993,
+      "completionTokens": 2196,
+      "latencyMs": 76045
+    }
+  },
+  {
+    "scenarioId": "E4-time-series-query",
+    "rep": 1,
+    "condition": "B1",
+    "tasks": {
+      "T1": {
+        "pass": true,
+        "anchors": [
+          {
+            "group": [
+              "일자별",
+              "일별",
+              "날짜별",
+              "시계열",
+              "추이",
+              "date_trunc",
+              "DATE"
+            ],
+            "hit": "일자별"
+          }
+        ],
+        "characters": 690
+      },
+      "T2": {
+        "pass": true,
+        "blocks": 3,
+        "okBlocks": 3,
+        "failures": [],
+        "v1AssetViolations": []
+      },
+      "T3": {
+        "pass": true,
+        "blocks": 2,
+        "okBlocks": 2,
+        "lastColumns": [
+          "occurred_at",
+          "total_attempts",
+          "successful_attempts",
+          "success_rate"
+        ],
+        "lastRowCount": 1,
+        "anchors": [
+          {
+            "group": [
+              "date",
+              "day",
+              "occurred",
+              "일자",
+              "일별",
+              "bucket",
+              "period"
+            ],
+            "hit": "occurred"
+          },
+          {
+            "group": [
+              "rate",
+              "ratio",
+              "성공률",
+              "pct",
+              "percent"
+            ],
+            "hit": "rate"
+          }
+        ],
+        "failures": [],
+        "v1AssetViolations": []
+      },
+      "T4": {
+        "pass": true,
+        "hits": 3,
+        "checklist": [
+          {
+            "id": "versionPath",
+            "hit": true
+          },
+          {
+            "id": "coexistence",
+            "hit": true
+          },
+          {
+            "id": "migrationOrCutover",
+            "hit": true
+          }
+        ]
+      }
+    },
+    "usage": {
+      "promptTokens": 11734,
+      "completionTokens": 3271,
+      "latencyMs": 71156
+    }
+  }
+]

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="700" viewBox="0 0 1080 700" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">
+<defs></defs>
+<rect width="1080" height="700" fill="#ffffff"/>
+<rect x="190" y="30" width="520" height="70" rx="6" fill="#ffffff" stroke="#8b95a3" stroke-width="1.6"/>
+<text x="202" y="54.8" text-anchor="start" font-size="12.5" font-weight="700" fill="#333333">YAML front-matter</text>
+<text x="202" y="70.2" text-anchor="start" font-size="10" fill="#556">docId · generatedAt · targetReadModel · sqlDialect · sufficientEvidence</text>
+<text x="202" y="84.2" text-anchor="start" font-size="10" fill="#556">apiVersion{from, to, affectedEndpoints} · evidenceSources[] · constraints[6]</text>
+<rect x="190" y="110" width="520" height="54" rx="6" fill="#fbeef0" stroke="#a04050" stroke-width="1.6"/>
+<text x="202" y="133.8" text-anchor="start" font-size="12.5" font-weight="700" fill="#8c3444"># 제목 + 한 문장 결론 (TL;DR)</text>
+<text x="202" y="149.2" text-anchor="start" font-size="10" fill="#556">재생성 / 보강 / 조치 검토 / 조치 불필요 · (이상 유형: anomalyKind · 심각도)</text>
+<rect x="190" y="174" width="520" height="66" rx="6" fill="#eef2f7" stroke="#33557a" stroke-width="1.6"/>
+<text x="202" y="196.8" text-anchor="start" font-size="12.5" font-weight="700" fill="#33557a">근거 블록 (결론 바로 뒤, 권고보다 앞에 고정)</text>
+<text x="202" y="212.2" text-anchor="start" font-size="10" fill="#556">&lt;logging_context&gt; 이상 로그 윈도우 — 빈도 요약 + 9열 표 (← 트립 앵커)</text>
+<text x="202" y="226.2" text-anchor="start" font-size="10" fill="#556">&lt;insight_read_db&gt; 대상 Read Model 카드 — M-Schema 튜플</text>
+<rect x="190" y="250" width="520" height="84" rx="6" fill="#fff8e8" stroke="#a0812f" stroke-width="1.6"/>
+<text x="202" y="274.8" text-anchor="start" font-size="12.5" font-weight="700" fill="#8a6d1f">## 1. 권고 (Recommendation)</text>
+<text x="202" y="290.2" text-anchor="start" font-size="10" fill="#556">ADR: Status · Context(근거, [corr:id]) · Decision Drivers · Considered Options(≥2)</text>
+<text x="202" y="304.2" text-anchor="start" font-size="10" fill="#556">· Decision Outcome · Consequences(+/−) · Non-Goals   |   격리 SQL (결함 데이터 lane)</text>
+<text x="202" y="318.2" text-anchor="start" font-size="10" fill="#556">센서 레인: 데이터 품질 권고 — 심각도 · 기대-실측 델타 · contain → fix → harden</text>
+<rect x="190" y="344" width="520" height="96" rx="6" fill="#fff8e8" stroke="#a0812f" stroke-width="1.6"/>
+<text x="202" y="367.8" text-anchor="start" font-size="12.5" font-weight="700" fill="#8a6d1f">## 2. Read Model 생성 SQL (Read Model DDL)</text>
+<text x="202" y="383.2" text-anchor="start" font-size="10" fill="#556">&gt; 실행 게이트: 인간 승인 후에만 적용 (human-in-the-loop)</text>
+<text x="202" y="397.2" text-anchor="start" font-size="10" fill="#556">대상 · 키 · 원천 이벤트 → CREATE TABLE + CREATE INDEX → 필드 (mschema)</text>
+<text x="202" y="411.2" text-anchor="start" font-size="10" fill="#556">### 투영 매핑 명세 (이벤트 → 컬럼 · 변환 · 파생 컬럼 · upsert 키 · 리플레이 주의)</text>
+<text x="202" y="425.2" text-anchor="start" font-size="10" fill="#556">### Insight 카드 등록 (insight_entity / insight_field INSERT — 결정론 동봉)</text>
+<rect x="190" y="450" width="520" height="84" rx="6" fill="#fff8e8" stroke="#a0812f" stroke-width="1.6"/>
+<text x="202" y="474.8" text-anchor="start" font-size="12.5" font-weight="700" fill="#8a6d1f">## 3. API Versioning</text>
+<text x="202" y="490.2" text-anchor="start" font-size="10" fill="#556">&gt; 실행 게이트 · ### Unreleased (v1 → v2) — Keep a Changelog 범주</text>
+<text x="202" y="504.2" text-anchor="start" font-size="10" fill="#556">### 마이그레이션 절차: 하위 호환 / 파괴적 변경 / 컷오버 전 테스트 / 롤백 (+ 카드 등록)</text>
+<text x="202" y="518.2" text-anchor="start" font-size="10" fill="#556">### 사유·호환성 · ### 변경 파일 (addFile / modifyFile)</text>
+<rect x="190" y="544" width="520" height="54" rx="6" fill="#ffffff" stroke="#8b95a3" stroke-width="1.6"/>
+<text x="202" y="567.8" text-anchor="start" font-size="12.5" font-weight="700" fill="#333333">## Optional — 부속 자료 (예산 부족 시 생략)</text>
+<text x="202" y="583.2" text-anchor="start" font-size="10" fill="#556">Drizzle 스키마 · Projector · 배선(컨트롤러/서비스/모듈) · 버전 교체 코드</text>
+<rect x="190" y="608" width="520" height="60" rx="6" fill="#f1ecf8" stroke="#6a4ba0" stroke-width="1.6"/>
+<text x="202" y="627.8" text-anchor="start" font-size="12.5" font-weight="700" fill="#5b3f8a">## Guardrails (constraints) — 최하단</text>
+<text x="202" y="643.2" text-anchor="start" font-size="10" fill="#556">v1 무손상 · PK (scene_key, attempt_num) 유지 · any 금지 · 식별자 전체 단어</text>
+<text x="202" y="657.2" text-anchor="start" font-size="10" fill="#556">· DDL 실행·컷오버는 인간 승인 후 · read_ 접두 테이블명</text>
+<line x1="160" y1="110" x2="160" y2="534" stroke="#a0812f" stroke-width="2"/>
+<line x1="160" y1="110" x2="172" y2="110" stroke="#a0812f" stroke-width="2"/>
+<line x1="160" y1="534" x2="172" y2="534" stroke="#a0812f" stroke-width="2"/>
+<text x="150" y="330" text-anchor="middle" font-size="10.5" fill="#a0812f" font-weight="600" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" transform="rotate(-90 150 330)">코어 토큰 예산 — 목표 8,000 / 상한 20,000 (3자 ≈ 1토큰)</text>
+<text x="730" y="66" text-anchor="start" font-size="10" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">◀ 기계 검증용 메타데이터</text>
+<text x="730" y="137" text-anchor="start" font-size="10" fill="#8c3444" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">◀ U자형 배치: 결론(상단)·제약(하단)</text>
+<text x="730" y="200" text-anchor="start" font-size="10" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">◀ 사후 합리화 방지: 근거가 권고보다 앞</text>
+<text x="730" y="214" text-anchor="start" font-size="10" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">   [corr:x] / [seq:n] 인용 앵커 ⇄ evidenceSources</text>
+<text x="730" y="280" text-anchor="start" font-size="10" fill="#a0812f" font-weight="600" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">◀ 3요소 ①</text>
+<text x="730" y="294" text-anchor="start" font-size="10" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">   근거 부족 시 INSUFFICIENT_EVIDENCE 센티넬</text>
+<text x="730" y="308" text-anchor="start" font-size="10" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">   (절 형태는 항상 유지 → sufficientEvidence=false)</text>
+<text x="730" y="384" text-anchor="start" font-size="10" fill="#a0812f" font-weight="600" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">◀ 3요소 ②</text>
+<text x="730" y="398" text-anchor="start" font-size="10" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">   DDL만으로는 빈 테이블 → 매핑 명세를 코어에 보존</text>
+<text x="730" y="412" text-anchor="start" font-size="10" fill="#8c3444" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">   카드 INSERT = 카탈로그 폐쇄 루프의 입력</text>
+<text x="730" y="490" text-anchor="start" font-size="10" fill="#a0812f" font-weight="600" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">◀ 3요소 ③</text>
+<text x="730" y="504" text-anchor="start" font-size="10" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">   v1 무손상: _v2 테이블 · V2 프로젝터 · /v2 라우트</text>
+<text x="730" y="571" text-anchor="start" font-size="10" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">◀ Optional 구획은 예산 계산에서 제외</text>
+<text x="730" y="638" text-anchor="start" font-size="10" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">◀ 프로젝트 불변 규칙과 1:1</text>
+<text x="450" y="690" text-anchor="middle" font-size="10.5" fill="#556" paint-order="stroke" stroke="#ffffff" stroke-width="4" stroke-linejoin="round">파일: llm-docs/&lt;YYYY-MM-DD&gt;-&lt;HHmmss&gt;-&lt;docId&gt;.md   ·   docId = analysis-&lt;correlation ID&gt; (로그 레인) | dq-&lt;scene key&gt; (센서 레인)</text>
+</svg>

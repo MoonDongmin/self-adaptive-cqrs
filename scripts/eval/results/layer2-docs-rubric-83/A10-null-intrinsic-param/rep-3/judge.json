@@ -1,0 +1,22 @@
+{
+  "groundedness": 5,
+  "diagnosisAccuracy": 5,
+  "actionability": 5,
+  "completeness": 5,
+  "unsupportedClaims": [
+    "src/insert/dto/toy-data.dto.ts 및 GripResultProjector.map() 코드 상세는 [자료]에 명시되지 않음"
+  ],
+  "rationale": "groundedness: 인용된 필드명(cody/fx), 에러 메시지, 파일명이 [자료] 로그와 정확히 일치하며 코드 경로 추론은 문맥상 타당함. diagnosisAccuracy: 정답 요지의 null 유입, Zod 검증 실패, 비대칭 스키마 문제 및 v1 무손상 조치 방향을 정확히 진단함. actionability: 제공된 SQL은 기존 자산 변경 없는 검증 쿼리이며, 자동 검증 결과와 절차적 조치(거절 유지/로그 보강)가 문제 격리에 부합함. completeness: 권고, Read Model SQL, API 버저닝 세 요소가 모두 포함되며 DDL 불필요 결론과 API 변경 없음이 일관되게 서술됨.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 19021,
+    "completion_tokens": 3884,
+    "total_tokens": 22905,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3652
+    }
+  },
+  "latencyMs": 114069,
+  "judgedAt": "2026-09-14T00:40:11.013Z"
+}

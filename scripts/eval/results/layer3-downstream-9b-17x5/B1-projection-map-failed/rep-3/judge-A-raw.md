@@ -1,0 +1,3 @@
+
+
+{"groundedness": 2, "diagnosisAccuracy": 5, "sqlCorrectness": 2, "versioningQuality": 5, "unsupportedClaims": ["event_id 값 오타 (e6a94-e6a98c2d6272)", "현재 시스템이 DEAD_LETTER_SKIP 에러를 던진다고 오기 (자료는 권고사항임)", "event_store의 occurred_at/attempt_num 등 자료에 명시되지 않은 컬럼 가정", "프로젝터 경유 없이 직접 SQL 백필 권고 (CQRS/ES 원칙 및 자료의 skip/replay 조치와 상충)"], "rationale": "T1은 poison 이벤트로 인한 배치 롤백 및 정상 데이터 누락을 정확히 진단해 diagnosisAccuracy는 5점. groundedness는 event_id 오타, 권고사항을 현재 동작으로 오인, 자료에 없는 컬럼 가정 및 백필 SQL 제안으로 2점. sqlCorrectness는 T3의 직접 INSERT 백필이 CQRS/ES 원칙과 자료의 skip/replay 지시를 위반하며 T2 조회 로직도 누락 이벤트 탐지에 부적절해 2점. versioningQuality는 내부 로직 변경임을 정확히 파악해 API 변경 불필요함을 명시하므로 5점."}

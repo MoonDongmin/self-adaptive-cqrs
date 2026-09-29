@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "actionability": 5, "completeness": 5, "unsupportedClaims": [], "rationale": "groundedness: 인용된 로그 시퀀스, PK 구성, 필드 타입이 [자료]와 정확히 일치하며 프로젝트터 파일명 추론도 스키마 주석에 기반함. diagnosisAccuracy: [정답 요지]의 분리된 Read Model로 인한 조인 뷰 부재 원인과 신규 통합 모델 신설+API v2 병행 해결책을 정확히 매칭함. actionability: 자동 검증 결과(DDL/컴파일 성공)와 일치하며 기존 v1 자산 훼손 없이 신규 테이블/라우트만 추가하는 명확한 실행 경로 제공. completeness: 권고, DDL/매핑 SQL, API 버저닝(코드 포함) 세 요소가 모두 포함되어 있으며 테이블명·PK·버전 관리가 문서 전반에서 일관되게 사용됨."}

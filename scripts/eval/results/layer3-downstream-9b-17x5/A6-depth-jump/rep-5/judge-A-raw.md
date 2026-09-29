@@ -1,0 +1,3 @@
+
+
+{"groundedness": 5, "diagnosisAccuracy": 5, "sqlCorrectness": 2, "versioningQuality": 5, "unsupportedClaims": [], "rationale": "T1은 정답 요지의 Δ>0.10m 급변, warning 심각도, v2 Read Model 플래그 생성 및 v1 무손상 요건을 자료의 근본원인/권고 섹션과 정확히 매칭하여 5점. T2는 DDL은 정합이나 즉시 격리 SQL의 대상 테이블명을 자료의 권고사항과 달리 신규 v2로 잘못 지정하여 논리적 오류가 있음. T3 백필 SQL은 PostgreSQL JSONB 객체 추출 문법(`jsonb_array_elements`는 배열 전용) 오류와 조인/서브쿼리 로직 결함으로 실행이 불가능하며, 점프 조회 SQL도 attempt_num의 연속성만 가정하여 취약하므로 2점. T4는 자료의 human-in-the-loop, v1 자산 무손상, 병행 운영 및 컷오버 절차를 정확히 반영하여 5점."}

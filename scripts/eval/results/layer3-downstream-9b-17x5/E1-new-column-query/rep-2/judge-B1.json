@@ -1,0 +1,24 @@
+{
+  "groundedness": 3,
+  "diagnosisAccuracy": 5,
+  "sqlCorrectness": 2,
+  "versioningQuality": 4,
+  "unsupportedClaims": [
+    "T3 백필 SQL에서 payload.schema.drift 로그의 detail 컬럼에 실제 이벤트별 데이터가 저장되어 있다고 가정함",
+    "stream_id 파싱 시 자료에 없는 콜론 뒤 공백 형식(POSITION(': ' IN ...))을 가정함",
+    "T4 SQL에서 event_store_grip_result라는 자료에 없는 테이블명을 인용함"
+  ],
+  "rationale": "T1은 정답 요지와 동일하게 payload-drift로 인한 Read Model 미비 및 신규 테이블 생성 필요성을 정확히 진단해 5점. T2 새 테이블 생성은 적절하나, T3 백필 SQL이 drift 요약 로그를 실제 데이터 소스로 오인하고 자료 형식과 불일치하는 문자열 함수를 사용해 SQL 정확도 2점. T4는 API 버전 분리, 병행 운영, 백필·컷오버 절차를 구체적으로 제시해 4점. 전반적으로 T3의 데이터 소스 오인 및 자료 미등재 테이블/함수 사용으로 근거성 3점.",
+  "judgeModel": "qwen3.6-35b-a3b-ud-mlx",
+  "finishReason": "stop",
+  "usage": {
+    "prompt_tokens": 12848,
+    "completion_tokens": 3567,
+    "total_tokens": 16415,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3316
+    }
+  },
+  "latencyMs": 93274,
+  "judgedAt": "2026-09-11T13:56:36.552Z"
+}
